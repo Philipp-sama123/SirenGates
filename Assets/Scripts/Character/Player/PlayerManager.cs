@@ -30,6 +30,7 @@ public class PlayerManager : CharacterManager
 
     protected override void LateUpdate()
     {
+        base.LateUpdate();
         if (!IsOwner)
             return;
 

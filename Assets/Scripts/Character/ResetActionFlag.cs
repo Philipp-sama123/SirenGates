@@ -11,7 +11,6 @@ public class ResetActionFlag : StateMachineBehaviour
         {
             character = animator.GetComponent<CharacterManager>();
         }
-        Debug.Log("OnStateEnter");
         //  THIS IS CALLED WHEN AN ACTION ENDS, AND THE STATE RETURNS TO "EMPTY"
         character.isPerformingAction = false;
         character.applyRootMotion = false;
