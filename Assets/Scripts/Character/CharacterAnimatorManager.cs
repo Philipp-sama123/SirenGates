@@ -53,7 +53,6 @@ public class CharacterAnimatorManager : MonoBehaviour
     {
         if (!character.applyRootMotion) return;
 
-        Debug.Log("character.applyRootMotion" + character.applyRootMotion);
         Vector3 velocity = character.animator.deltaPosition;
         character.characterController.Move(velocity);
         character.transform.rotation *= character.animator.deltaRotation;

@@ -3,7 +3,8 @@ using UnityEngine;
 
 public class PlayerUIManager : MonoBehaviour
 {
-    public static PlayerUIManager instance; 
+    public static PlayerUIManager instance;
+    [HideInInspector] public PlayerUiHudManager playerUiHudManager;
 
     [Header("NETWORK JOIN")]
     [SerializeField] bool startGameAsClient;
@@ -18,6 +19,7 @@ public class PlayerUIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        playerUiHudManager = GetComponentInChildren<PlayerUiHudManager>();
     }
 
     private void Start()

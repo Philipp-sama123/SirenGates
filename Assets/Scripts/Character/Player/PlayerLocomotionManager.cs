@@ -19,7 +19,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
 
     [Header("Dodge")]
     private Vector3 rollDirection;
-    [SerializeField] float dodgeStaminaCost = 25;
+    [SerializeField] int dodgeStaminaCost = 10;
 
     protected override void Awake()
     {
@@ -123,11 +123,11 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.playerNetworkManager.isSprinting.Value = false;
         }
 
-        // if (player.playerNetworkManager.currentStamina.Value <= 0)
-        // {
-        //     player.playerNetworkManager.isSprinting.Value = false;
-        //     return;
-        // }
+        if (player.playerNetworkManager.currentStamina.Value <= 0)
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+            return;
+        }
 
         //  IF WE ARE MOVING, SPRINTING IS TRUE
         if (moveAmount >= 0.5)
@@ -140,19 +140,19 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             player.playerNetworkManager.isSprinting.Value = false;
         }
 
-        // if (player.playerNetworkManager.isSprinting.Value)
-        // {
-        //     player.playerNetworkManager.currentStamina.Value -= sprintingStaminaCost * Time.deltaTime;
-        // }
+        if (player.playerNetworkManager.isSprinting.Value)
+        {
+            player.playerNetworkManager.currentStamina.Value -= sprintingStaminaCost * Time.deltaTime;
+        }
     }
 
     public void AttemptToPerformDodge()
     {
         if (player.isPerformingAction)
             return;
-        //
-        // if (player.playerNetworkManager.currentStamina.Value <= 0)
-        //     return;
+
+        if (player.playerNetworkManager.currentStamina.Value <= 0)
+            return;
 
         //  IF WE ARE MOVING WHEN WE ATTEMPT TO DODGE, WE PERFORM A ROLL
         if (PlayerInputManager.instance.moveAmount > 0)
@@ -165,14 +165,14 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
             player.transform.rotation = playerRotation;
 
-            player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true, true,true,false);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true, true, true, false);
         }
         //  IF WE ARE STATIONARY, WE PERFORM A BACKSTEP
         else
         {
-            player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Backward_01", true, true,true,false);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Backward_01", true, true, true, false);
         }
 
-        // player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
+        player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
     }
 }

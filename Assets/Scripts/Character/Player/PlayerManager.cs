@@ -5,6 +5,7 @@ public class PlayerManager : CharacterManager
     [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
     [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
     [HideInInspector] public PlayerNetworkManager playerNetworkManager;
+    [HideInInspector] public PlayerStatsManager playerStatsManager;
     protected override void Awake()
     {
         base.Awake();
@@ -14,6 +15,7 @@ public class PlayerManager : CharacterManager
         playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
         playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
         playerNetworkManager = GetComponent<PlayerNetworkManager>();
+        playerStatsManager = GetComponent<PlayerStatsManager>();
     }
 
     protected override void Update()
@@ -26,6 +28,7 @@ public class PlayerManager : CharacterManager
 
         //  HANDLE MOVEMENT
         playerLocomotionManager.HandleAllMovement();
+        playerStatsManager.RegenerateStamina();
     }
 
     protected override void LateUpdate()
@@ -48,6 +51,15 @@ public class PlayerManager : CharacterManager
         {
             PlayerCamera.instance.player = this;
             PlayerInputManager.instance.player = this;
+            playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewStaminaValue;
+            playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
+            ;
+
+            // this will be moved when saving and loading 
+            playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
+            playerNetworkManager.currentStamina.Value =
+                playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
+            PlayerUIManager.instance.playerUiHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
         }
     }
 }

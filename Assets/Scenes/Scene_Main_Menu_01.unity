@@ -1634,17 +1634,37 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 878964224989124091, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 878964224989124091, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3450225885094318177, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
       propertyPath: m_Name
       value: Player UI Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 4141496800477027205, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141496800477027205, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4141496800477027205, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9001212145858842870, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 810.5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001212145858842870, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 486
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9001212145858842870, guid: b76cbf68a35384897bcbe15b2250f4b5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1748,9 +1768,9 @@ SceneRoots:
   - {fileID: 705507995}
   - {fileID: 899902858}
   - {fileID: 623845143}
-  - {fileID: 6644615425858520901}
   - {fileID: 1836835191}
   - {fileID: 1219927566}
+  - {fileID: 6644615425858520901}
   - {fileID: 458779296810058379}
   - {fileID: 8433597523956926983}
   - {fileID: 3536794611736829825}
