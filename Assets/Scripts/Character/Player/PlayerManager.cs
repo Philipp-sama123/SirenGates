@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -8,6 +10,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
         [HideInInspector] public PlayerNetworkManager playerNetworkManager;
         [HideInInspector] public PlayerStatsManager playerStatsManager;
+
         protected override void Awake()
         {
             base.Awake();
@@ -30,12 +33,13 @@ namespace KrazyKatgames
 
             //  HANDLE MOVEMENT
             playerLocomotionManager.HandleAllMovement();
+
+            //  REGEN STAMINA
             playerStatsManager.RegenerateStamina();
         }
 
         protected override void LateUpdate()
         {
-            base.LateUpdate();
             if (!IsOwner)
                 return;
 
@@ -51,17 +55,17 @@ namespace KrazyKatgames
             //  IF THIS IS THE PLAYER OBJECT OWNED BY THIS CLIENT
             if (IsOwner)
             {
+                // Setup Player Instances
                 PlayerCamera.instance.player = this;
                 PlayerInputManager.instance.player = this;
+                WorldSaveGameManager.instance.player = this;
+
                 playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewStaminaValue;
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
-                ;
 
-                // this will be moved when saving and loading 
-                playerNetworkManager.maxStamina.Value =
-                    playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
-                playerNetworkManager.currentStamina.Value =
-                    playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
+                //  THIS WILL BE MOVED WHEN SAVING AND LOADING IS ADDED
+                playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
+                playerNetworkManager.currentStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
                 PlayerUIManager.instance.playerUiHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             }
         }

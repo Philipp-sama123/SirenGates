@@ -1,11 +1,15 @@
-using Unity.Netcode;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using Unity.Netcode;
 using UnityEngine.UI;
 
 namespace KrazyKatgames
 {
     public class TitleScreenManager : MonoBehaviour
     {
+        public static TitleScreenManager Instance;
+
         [Header("Menus")]
         [SerializeField] GameObject titleScreenMainMenu;
         [SerializeField] GameObject titleScreenLoadMenu;
@@ -13,6 +17,24 @@ namespace KrazyKatgames
         [Header("Buttons")]
         [SerializeField] Button loadMenuReturnButton;
         [SerializeField] Button mainMenuLoadGameButton;
+        [SerializeField] Button mainMenuNewGameButton;
+
+        [Header("Pop Ups")]
+        [SerializeField] GameObject noCharacterSlotsPopUp;
+        [SerializeField] Button noCharacterSlotsOkayButton;
+
+        private void Awake()
+        {
+            if (Instance == null)
+            {
+                Instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+        }
+
         public void StartNetworkAsHost()
         {
             NetworkManager.Singleton.StartHost();
@@ -20,8 +42,7 @@ namespace KrazyKatgames
 
         public void StartNewGame()
         {
-            WorldSaveGameManager.instance.CreateNewGame();
-            StartCoroutine(WorldSaveGameManager.instance.LoadWorldScene());
+            WorldSaveGameManager.instance.AttemptToCreateNewGame();
         }
 
         public void OpenLoadGameMenu()
@@ -46,6 +67,18 @@ namespace KrazyKatgames
 
             //  SELECT THE LOAD BUTTON
             mainMenuLoadGameButton.Select();
+        }
+
+        public void DisplayNoFreeCharacterSlotsPopUp()
+        {
+            noCharacterSlotsPopUp.SetActive(true);
+            noCharacterSlotsOkayButton.Select();
+        }
+
+        public void CloseNoFreeCharacterSlotsPopUp()
+        {
+            noCharacterSlotsPopUp.SetActive(false);
+            mainMenuNewGameButton.Select();
         }
     }
 }

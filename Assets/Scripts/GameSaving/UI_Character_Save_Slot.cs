@@ -1,5 +1,7 @@
-using TMPro;
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 namespace KrazyKatgames
 {
@@ -184,6 +186,12 @@ namespace KrazyKatgames
                     gameObject.SetActive(false);
                 }
             }
+        }
+
+        public void LoadGameFromCharacterSlot()
+        {
+            WorldSaveGameManager.instance.currentCharacterSlotBeingUsed = characterSlot;
+            WorldSaveGameManager.instance.LoadGame();
         }
     }
 }

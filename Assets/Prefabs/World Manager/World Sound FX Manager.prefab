@@ -44,4 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a765d6ffa235447e690ad0196492bbfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rollSFX: {fileID: 8300000, guid: cc27ff24ff07147f7a81c238a4b34316, type: 3}
+  rollSFX: {fileID: 8300000, guid: e3298d0844ac746e0b20c76413abb353, type: 3}
