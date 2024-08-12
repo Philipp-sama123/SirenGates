@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,7 +15,7 @@ namespace KrazyKatgames
         [SerializeField] bool loadGame;
 
         [Header("World Scene Index")]
-        [SerializeField] int worldSceneIndex = 1;
+        [SerializeField] int worldSceneIndex = 1; // default to 1 
 
         [Header("Save Data Writer")]
         private SaveFileDataWriter saveFileDataWriter;
@@ -144,6 +143,102 @@ namespace KrazyKatgames
                 return;
             }
 
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_03);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_03;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_04);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_04;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_05);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_05;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_06);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_06;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_07);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_07;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_08);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_08;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_09);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_09;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
+            //  CHECK TO SEE IF WE CAN CREATE A NEW SAVE FILE (CHECK FOR OTHER EXISITING FILES FIRST)
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(CharacterSlot.CharacterSlot_10);
+
+            if (!saveFileDataWriter.CheckToSeeIfFileExists())
+            {
+                //  IF THIS PROFILE SLOT IS NOT TAKEN, MAKE A NEW ONE USING THIS SLOT
+                currentCharacterSlotBeingUsed = CharacterSlot.CharacterSlot_10;
+                currentCharacterData = new CharacterSaveData();
+                StartCoroutine(LoadWorldScene());
+                return;
+            }
+
             //  IF THERE ARE NO FREE SLOTS, NOTIFY THE PLAYER
             TitleScreenManager.Instance.DisplayNoFreeCharacterSlotsPopUp();
         }
@@ -177,6 +272,15 @@ namespace KrazyKatgames
 
             //  WRITE THAT INFO ONTO A JSON FILE, SAVED TO THIS MACHINE
             saveFileDataWriter.CreateNewCharacterSaveFile(currentCharacterData);
+        }
+
+        public void DeleteGame(CharacterSlot characterSlot)
+        {
+            //  CHOOSE FILE BASED ON NAME
+            saveFileDataWriter = new SaveFileDataWriter();
+            saveFileDataWriter.saveDataDirectoryPath = Application.persistentDataPath;
+            saveFileDataWriter.saveFileName = DecideCharacterFileNameBasedOnCharacterSlotBeingUsed(characterSlot);
+            saveFileDataWriter.DeleteSaveFile();
         }
 
         //  LOAD ALL CHARACTER PROFILES ON DEVICE WHEN STARTING GAME
@@ -218,7 +322,11 @@ namespace KrazyKatgames
 
         public IEnumerator LoadWorldScene()
         {
+            //  IF YOU JUST WANT 1 WORLD SCENE USE THIS
             AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
+
+            //  IF YOU WANT TO USE DIFFERENT SCENES FOR LEVELS IN YOUR PROJECT USE THIS
+            //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
 
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
 

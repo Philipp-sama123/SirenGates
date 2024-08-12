@@ -1,21 +1,26 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
-[System.Serializable]
-//  SINCE WE WANT TO REFERENCE THIS DATA FOR EVERY SAVE FILE, THIS SCRIPT IS NOT A MONOBEHAVIOUR AND IS INSTEAD SERIALIZABLE
-public class CharacterSaveData
+namespace KrazyKatgames
 {
-    [Header("Character Name")]
-    public string characterName= "Character";
+    [Serializable]
+    //  SINCE WE WANT TO REFERENCE THIS DATA FOR EVERY SAVE FILE, THIS SCRIPT IS NOT A MONOBEHAVIOUR AND IS INSTEAD SERIALIZABLE
+    public class CharacterSaveData
+    {
+        [Header("SCENE INDEX")]
+        public int sceneIndex = 1;
 
-    [Header("Time Played")]
-    public float secondsPlayed;
+        [Header("Character Name")]
+        public string characterName = "Character";
 
-    // QUESTION: WHY NOT USE A VECTOR3?
-    // ANSWER: WE CAN ONLY SAVE DATA FROM "BASIC" VARIABLE TYPES (Float, Int, String, Bool, ect)
-    [Header("World Coordinates")]
-    public float xPosition;
-    public float yPosition;
-    public float zPosition;
+        [Header("Time Played")]
+        public float secondsPlayed;
+
+        // QUESTION: WHY NOT USE A VECTOR3?
+        // ANSWER: WE CAN ONLY SAVE DATA FROM "BASIC" VARIABLE TYPES (Float, Int, String, Bool, ect)
+        [Header("World Coordinates")]
+        public float xPosition;
+        public float yPosition;
+        public float zPosition;
+    }
 }
