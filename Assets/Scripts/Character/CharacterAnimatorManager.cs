@@ -5,24 +5,33 @@ public class CharacterAnimatorManager : MonoBehaviour
 {
     CharacterManager character;
 
-    float vertical;
-    float horizontal;
+    int vertical;
+    int horizontal;
 
     protected virtual void Awake()
     {
         character = GetComponent<CharacterManager>();
+
+        horizontal = Animator.StringToHash("Horizontal");
+        vertical = Animator.StringToHash("Vertical");
     }
 
-    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement)
+    public void UpdateAnimatorMovementParameters(float horizontalMovement, float verticalMovement, bool isSprinting)
     {
-        character.animator.SetFloat("Horizontal", horizontalMovement, 0.1f, Time.deltaTime);
-        character.animator.SetFloat("Vertical", verticalMovement, 0.1f, Time.deltaTime);
+        float horizontalAmount = horizontalMovement;
+        float verticalAmount = verticalMovement;
+        if (isSprinting)
+        {
+            verticalAmount = 2f;
+        }
+        character.animator.SetFloat(horizontal, horizontalAmount, 0.1f, Time.deltaTime);
+        character.animator.SetFloat(vertical, verticalAmount, 0.1f, Time.deltaTime);
     }
     public virtual void PlayTargetActionAnimation(
-        string targetAnimation, 
-        bool isPerformingAction, 
-        bool applyRootMotion = true, 
-        bool canRotate = false, 
+        string targetAnimation,
+        bool isPerformingAction,
+        bool applyRootMotion = true,
+        bool canRotate = false,
         bool canMove = false)
     {
         character.applyRootMotion = applyRootMotion;
@@ -36,14 +45,15 @@ public class CharacterAnimatorManager : MonoBehaviour
         character.canMove = canMove;
 
         //  TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
-        character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation, applyRootMotion);
+        character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
+            applyRootMotion);
     }
 
     protected virtual void OnAnimatorMove()
     {
         if (!character.applyRootMotion) return;
-        
-        Debug.Log("character.applyRootMotion"+character.applyRootMotion);
+
+        Debug.Log("character.applyRootMotion" + character.applyRootMotion);
         Vector3 velocity = character.animator.deltaPosition;
         character.characterController.Move(velocity);
         character.transform.rotation *= character.animator.deltaRotation;

@@ -24,8 +24,6 @@ public class CharacterManager : NetworkBehaviour
 
     protected virtual void Update()
     {
-        
-        Debug.Log("applyRootMotion"+applyRootMotion);
         //  IF THIS CHARACTER IS BEING CONTROLLED FROM OUR SIDE, THEN ASSIGN ITS NETWORK POSITION TO THE POSITION OF OUR TRANSFORM
         if (IsOwner)
         {

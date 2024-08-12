@@ -13,9 +13,10 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     private Vector3 moveDirection;
     private Vector3 targetRotationDirection;
 
-    [SerializeField] float walkingSpeed = 2;
-    [SerializeField] float runningSpeed = 5;
-    [SerializeField] float rotationSpeed = 15;
+    [SerializeField] float walkingSpeed = 2f;
+    [SerializeField] float runningSpeed = 4.5f;
+    [SerializeField] float sprintingSpeed = 7.5f;
+    [SerializeField] float rotationSpeed = 15f;
 
     [Header("Dodge")]
     private Vector3 rollDirection;
@@ -29,6 +30,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
     protected override void Update()
     {
         base.Update();
+
         if (player.IsOwner)
         {
             player.characterNetworkManager.verticalMovement.Value = verticalMovement;
@@ -41,7 +43,7 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             horizontalMovement = player.characterNetworkManager.horizontalMovement.Value;
             moveAmount = player.characterNetworkManager.moveAmount.Value;
 
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
         }
     }
     public void HandleAllMovement()
@@ -71,13 +73,20 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
         moveDirection.Normalize();
         moveDirection.y = 0;
 
-        if (PlayerInputManager.instance.moveAmount > 0.5f)
+        if (player.playerNetworkManager.isSprinting.Value)
         {
-            player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
+            player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
         }
-        else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+        else
         {
-            player.characterController.Move(moveDirection * walkingSpeed * Time.deltaTime);
+            if (PlayerInputManager.instance.moveAmount > 0.5f)
+            {
+                player.characterController.Move(moveDirection * runningSpeed * Time.deltaTime);
+            }
+            else if (PlayerInputManager.instance.moveAmount <= 0.5f)
+            {
+                player.characterController.Move(moveDirection * walkingSpeed * Time.deltaTime);
+            }
         }
     }
 
@@ -121,5 +130,27 @@ public class PlayerLocomotionManager : CharacterLocomotionManager
             // Perform Backstep Animation
             player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Backward_01", true, true, true, false);
         }
+    }
+    public void HandleSprinting()
+    {
+        if (player.isPerformingAction)
+        {
+            // Sprinting is false
+            player.playerNetworkManager.isSprinting.Value = false;
+            return;
+        }
+        Debug.Log("player.isPerformingAction s" + moveAmount);
+
+
+        // If we are moving sprinting is true , false when stationary
+        if (PlayerInputManager.instance.moveAmount >= 0.5f)
+        {
+            player.playerNetworkManager.isSprinting.Value = true;
+        }
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+        }
+        // out of stamina --> False
     }
 }

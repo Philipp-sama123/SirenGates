@@ -24,6 +24,7 @@ public class PlayerInputManager : MonoBehaviour
     [Header("Player Action Input")]
     [SerializeField]
     private bool dodgeInput = false;
+    [SerializeField]
     private bool sprintInput = false;
 
 
@@ -72,9 +73,9 @@ public class PlayerInputManager : MonoBehaviour
 
             playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
             playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
-           
+
             playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
-           
+
             // Hold Input Action --> set bool to false
             playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
             // Release Input Action --> set bool to false
@@ -99,7 +100,13 @@ public class PlayerInputManager : MonoBehaviour
         if (sprintInput)
         {
             // Handle Sprinting
-        }    }
+            player.playerLocomotionManager.HandleSprinting();
+        }
+        else
+        {
+            player.playerNetworkManager.isSprinting.Value = false;
+        }
+    }
     private void OnDestroy()
     {
         //  IF WE DESTROY THIS OBJECT, UNSUBSCRIBE FROM THIS EVENT
@@ -144,7 +151,7 @@ public class PlayerInputManager : MonoBehaviour
             return;
 
         //  IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
-        player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount);
+        player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
 
         //  IF WE ARE LOCKED ON PASS THE HORIZONTAL MOVEMENT AS WELL
     }
