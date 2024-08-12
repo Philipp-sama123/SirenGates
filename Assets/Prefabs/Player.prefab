@@ -8289,7 +8289,7 @@ Animator:
   m_Avatar: {fileID: 9000000, guid: 97a70e1893eacab4186f36faae78c2b1, type: 3}
   m_Controller: {fileID: 9100000, guid: 0db8d8e17b0964827bd5f9042f8b4a29, type: 2}
   m_CullingMode: 1
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 1
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -8334,6 +8334,10 @@ MonoBehaviour:
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
+  isPerformingAction: 0
+  applyRootMotion: 0
+  canRotate: 1
+  canMove: 1
 --- !u!143 &870262873858375523
 CharacterController:
   m_ObjectHideFlags: 0
@@ -8379,6 +8383,12 @@ MonoBehaviour:
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPositionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
+  horizontalMovement:
+    m_InternalValue: 0
+  verticalMovement:
+    m_InternalValue: 0
+  moveAmount:
+    m_InternalValue: 0
 --- !u!114 &-6754247136792872320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8412,6 +8422,10 @@ MonoBehaviour:
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
+  isPerformingAction: 0
+  applyRootMotion: 0
+  canRotate: 1
+  canMove: 1
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
 --- !u!114 &964620063594327577
