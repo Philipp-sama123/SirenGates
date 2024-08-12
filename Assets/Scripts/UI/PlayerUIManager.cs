@@ -1,41 +1,44 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class PlayerUIManager : MonoBehaviour
+namespace KrazyKatgames
 {
-    public static PlayerUIManager instance;
-    [HideInInspector] public PlayerUiHudManager playerUiHudManager;
-
-    [Header("NETWORK JOIN")]
-    [SerializeField] bool startGameAsClient;
-
-    private void Awake()
+    public class PlayerUIManager : MonoBehaviour
     {
-        if (instance == null)
+        public static PlayerUIManager instance;
+        [HideInInspector] public PlayerUiHudManager playerUiHudManager;
+
+        [Header("NETWORK JOIN")]
+        [SerializeField] bool startGameAsClient;
+
+        private void Awake()
         {
-            instance = this;
+            if (instance == null)
+            {
+                instance = this;
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
+            playerUiHudManager = GetComponentInChildren<PlayerUiHudManager>();
         }
-        else
+
+        private void Start()
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(gameObject);
         }
-        playerUiHudManager = GetComponentInChildren<PlayerUiHudManager>();
-    }
 
-    private void Start()
-    {
-        DontDestroyOnLoad(gameObject);
-    }
-
-    private void Update()
-    {
-        if (startGameAsClient)
+        private void Update()
         {
-            startGameAsClient = false;
-            //  WE MUST FIRST SHUT DOWN, BECAUSE WE HAVE STARTED AS A HOST DURING THE TITLE SCREEN
-            NetworkManager.Singleton.Shutdown();
-            //  WE THEN RESTART, AS A CLIENT
-            NetworkManager.Singleton.StartClient();
+            if (startGameAsClient)
+            {
+                startGameAsClient = false;
+                //  WE MUST FIRST SHUT DOWN, BECAUSE WE HAVE STARTED AS A HOST DURING THE TITLE SCREEN
+                NetworkManager.Singleton.Shutdown();
+                //  WE THEN RESTART, AS A CLIENT
+                NetworkManager.Singleton.StartClient();
+            }
         }
     }
 }

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class PlayerSoundFXManager : CharacterSoundFXManager
+namespace KrazyKatgames
 {
+    public class PlayerSoundFXManager : CharacterSoundFXManager
+    {
+    }
 }

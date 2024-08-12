@@ -1,15 +1,14 @@
-using Unity.VisualScripting;
-using UnityEngine;
-
-public class PlayerAnimatorManager : CharacterAnimatorManager
+namespace KrazyKatgames
 {
-    PlayerManager player;
-
-    protected override void Awake()
+    public class PlayerAnimatorManager : CharacterAnimatorManager
     {
-        base.Awake();
+        PlayerManager player;
 
-        player = GetComponent<PlayerManager>();
+        protected override void Awake()
+        {
+            base.Awake();
+
+            player = GetComponent<PlayerManager>();
+        }
     }
-
 }

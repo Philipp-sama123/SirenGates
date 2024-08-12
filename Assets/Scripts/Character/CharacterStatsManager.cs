@@ -1,6 +1,7 @@
+using UnityEngine;
 
-    using UnityEngine;
-
+namespace KrazyKatgames
+{
     public class CharacterStatsManager : MonoBehaviour
     {
         CharacterManager character;
@@ -67,3 +68,4 @@
             }
         }
     }
+}

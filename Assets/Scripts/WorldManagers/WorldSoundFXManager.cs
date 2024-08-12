@@ -1,28 +1,28 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class WorldSoundFXManager : MonoBehaviour
+namespace KrazyKatgames
 {
-    public static WorldSoundFXManager instance;
-
-    [Header("Action Sounds")]
-    public AudioClip rollSFX;
-
-    private void Awake()
+    public class WorldSoundFXManager : MonoBehaviour
     {
-        if(instance == null)
+        public static WorldSoundFXManager instance;
+
+        [Header("Action Sounds")]
+        public AudioClip rollSFX;
+
+        private void Awake()
         {
-            instance = this; 
+            if(instance == null)
+            {
+                instance = this; 
+            }
+            else
+            {
+                Destroy(gameObject);
+            }
         }
-        else
+        private void Start()
         {
-            Destroy(gameObject);
+            DontDestroyOnLoad(this);
         }
-    }
-    private void Start()
-    {
-        DontDestroyOnLoad(this);
     }
 }

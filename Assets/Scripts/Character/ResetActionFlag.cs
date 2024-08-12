@@ -1,20 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class ResetActionFlag : StateMachineBehaviour
+namespace KrazyKatgames
 {
-    private CharacterManager character;
-    override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    public class ResetActionFlag : StateMachineBehaviour
     {
-        if (character == null)
+        private CharacterManager character;
+        override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
         {
-            character = animator.GetComponent<CharacterManager>();
+            if (character == null)
+            {
+                character = animator.GetComponent<CharacterManager>();
+            }
+            //  THIS IS CALLED WHEN AN ACTION ENDS, AND THE STATE RETURNS TO "EMPTY"
+            character.isPerformingAction = false;
+            character.applyRootMotion = false;
+            character.canRotate = true;
+            character.canMove = true;
         }
-        //  THIS IS CALLED WHEN AN ACTION ENDS, AND THE STATE RETURNS TO "EMPTY"
-        character.isPerformingAction = false;
-        character.applyRootMotion = false;
-        character.canRotate = true;
-        character.canMove = true;
     }
 }

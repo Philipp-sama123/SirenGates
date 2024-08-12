@@ -1,27 +1,27 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UI_StatBar : MonoBehaviour
+namespace KrazyKatgames
 {
-    private Slider slider;
-    // Variable to scale Bar Size depending on Stat (Higher stat = longer bar across Screen) 
-
-    protected virtual void Awake()
+    public class UI_StatBar : MonoBehaviour
     {
-        slider = GetComponent<Slider>();
-    }
+        private Slider slider;
+        // Variable to scale Bar Size depending on Stat (Higher stat = longer bar across Screen) 
 
-    public virtual void SetStat(int newValue)
-    {
-        slider.value = newValue;
-    }
+        protected virtual void Awake()
+        {
+            slider = GetComponent<Slider>();
+        }
+
+        public virtual void SetStat(int newValue)
+        {
+            slider.value = newValue;
+        }
     
-    public virtual void SetMaxStat(int maxValue)
-    {
-        slider.maxValue = maxValue;
-        slider.value = maxValue;
+        public virtual void SetMaxStat(int maxValue)
+        {
+            slider.maxValue = maxValue;
+            slider.value = maxValue;
+        }
     }
 }

@@ -1,13 +1,14 @@
-using System;
 using UnityEngine;
 
-public class CharacterLocomotionManager : MonoBehaviour
+namespace KrazyKatgames
 {
-    protected virtual void Awake()
+    public class CharacterLocomotionManager : MonoBehaviour
     {
-
-    }
-    protected virtual void Update()
-    {
+        protected virtual void Awake()
+        {
+        }
+        protected virtual void Update()
+        {
+        }
     }
 }

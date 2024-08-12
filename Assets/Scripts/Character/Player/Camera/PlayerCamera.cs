@@ -1,10 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerCamera : MonoBehaviour
+namespace KrazyKatgames
 {
-
+    public class PlayerCamera : MonoBehaviour
+    {
         public static PlayerCamera instance;
         public PlayerManager player;
         public Camera cameraObject;
@@ -12,21 +11,21 @@ public class PlayerCamera : MonoBehaviour
 
         //  CHANGE THESE TO TWEAK CAMERA PERFORMANCE
         [Header("Camera Settings")]
-        private float cameraSmoothSpeed = 1;    // THE BIGGER THIS NUMBER, THE LONGER FOR THE CAMERA TO REACH ITS POSITION DURING MOVEMENT
+        private float cameraSmoothSpeed = 1; // THE BIGGER THIS NUMBER, THE LONGER FOR THE CAMERA TO REACH ITS POSITION DURING MOVEMENT
         [SerializeField] float leftAndRightRotationSpeed = 220;
         [SerializeField] float upAndDownRotationSpeed = 220;
-        [SerializeField] float minimumPivot = -30;  //  THE LOWEST POINT YOU ARE ABLE TO LOOK DOWN
-        [SerializeField] float maximumPivot = 60;   //  THE HIGHEST POINT YOU ARE ABLE TO LOOK UP
+        [SerializeField] float minimumPivot = -30; //  THE LOWEST POINT YOU ARE ABLE TO LOOK DOWN
+        [SerializeField] float maximumPivot = 60; //  THE HIGHEST POINT YOU ARE ABLE TO LOOK UP
         [SerializeField] float cameraCollisionRadius = 0.2f;
         [SerializeField] LayerMask collideWithLayers;
 
         [Header("Camera Values")]
         private Vector3 cameraVelocity;
-        private Vector3 cameraObjectPosition;   //USED FOR CAMERA COLLISIONS (MOVES THE CAMERA OBJECT TO THIS POSITION UPON COLLIDING)
+        private Vector3 cameraObjectPosition; //USED FOR CAMERA COLLISIONS (MOVES THE CAMERA OBJECT TO THIS POSITION UPON COLLIDING)
         [SerializeField] float leftAndRightLookAngle;
         [SerializeField] float upAndDownLookAngle;
-        private float cameraZPosition;    //  VALUES USED FOR CAMERA COLLISIONS
-        private float targetCameraZPosition;    //  VALUES USED FOR CAMERA COLLISIONS
+        private float cameraZPosition; //  VALUES USED FOR CAMERA COLLISIONS
+        private float targetCameraZPosition; //  VALUES USED FOR CAMERA COLLISIONS
 
         private void Awake()
         {
@@ -58,7 +57,8 @@ public class PlayerCamera : MonoBehaviour
 
         private void HandleFollowTarget()
         {
-            Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity, cameraSmoothSpeed * Time.deltaTime);
+            Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity,
+                cameraSmoothSpeed * Time.deltaTime);
             transform.position = targetCameraPosition;
         }
 
@@ -100,7 +100,8 @@ public class PlayerCamera : MonoBehaviour
             direction.Normalize();
 
             //  WE CHECK IF THERE IS AN OBJECT IN FRONT OF OUR DESIRED DIRECTION ^ (SEE ABOVE)
-            if (Physics.SphereCast(cameraPivotTransform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(targetCameraZPosition), collideWithLayers))
+            if (Physics.SphereCast(cameraPivotTransform.position, cameraCollisionRadius, direction, out hit, Mathf.Abs(targetCameraZPosition),
+                    collideWithLayers))
             {
                 //  IF THERE IS, WE GET OUR DISTANCE FROM IT
                 float distanceFromHitObject = Vector3.Distance(cameraPivotTransform.position, hit.point);
@@ -118,4 +119,5 @@ public class PlayerCamera : MonoBehaviour
             cameraObjectPosition.z = Mathf.Lerp(cameraObject.transform.localPosition.z, targetCameraZPosition, 0.2f);
             cameraObject.transform.localPosition = cameraObjectPosition;
         }
+    }
 }
