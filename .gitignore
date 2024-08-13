@@ -47,6 +47,10 @@ ExportedObj/
 *.opendb
 *.VC.db
 
+
+# Ignore .cs.meta files
+*.cs.meta
+
 # Unity3D generated meta files
 *.pidb.meta
 *.pdb.meta
@@ -74,6 +78,3 @@ crashlytics-build.properties
 
 # Custom Assets
 /[Aa]ssets/[Aa]rt/[Aa]ssets/
-
-# ignore .cs.meta
-*.cs.meta
