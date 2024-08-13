@@ -22,5 +22,13 @@ namespace KrazyKatgames
         public float xPosition;
         public float yPosition;
         public float zPosition;
+
+        [Header("Resources")]
+        public float currentHealth;
+        public float currentStamina;
+
+        [Header("Character Stats")]
+        public int endurance;
+        public int vitality;
     }
 }

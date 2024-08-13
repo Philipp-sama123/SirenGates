@@ -17,6 +17,9 @@ namespace KrazyKatgames
             character = GetComponent<CharacterManager>();
         }
 
+        protected virtual void Start()
+        {
+        }
         public int CalculateStaminaBasedOnEnduranceLevel(int endurance)
         {
             float stamina = 0;
@@ -26,6 +29,16 @@ namespace KrazyKatgames
             stamina = endurance * 10;
 
             return Mathf.RoundToInt(stamina);
+        }
+        public int CalculateHealthBasedOnVitalityLevel(int vitality)
+        {
+            float health = 0;
+
+            //  CREATE AN EQUATION FOR HOW YOU WANT YOUR STAMINA TO BE CALCULATED
+
+            health = vitality * 10;
+
+            return Mathf.RoundToInt(health);
         }
 
         public virtual void RegenerateStamina()

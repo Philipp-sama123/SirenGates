@@ -58,15 +58,15 @@ namespace KrazyKatgames
                 PlayerInputManager.instance.player = this;
                 WorldSaveGameManager.instance.player = this;
 
+                // Update Maximum Health or Maximum Stamina when endurance or vitality is changed
+                playerNetworkManager.vitality.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
+                playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
+                
+                // Updates UI for Stat Bars (!)
                 playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewStaminaValue;
+                playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewHealthValue;
+                
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
-
-                //  THIS WILL BE MOVED WHEN SAVING AND LOADING IS ADDED
-                playerNetworkManager.maxStamina.Value =
-                    playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
-                playerNetworkManager.currentStamina.Value =
-                    playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(playerNetworkManager.endurance.Value);
-                PlayerUIManager.instance.playerUiHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             }
         }
 
@@ -78,6 +78,12 @@ namespace KrazyKatgames
             currentCharacterData.xPosition = transform.position.x;
             currentCharacterData.yPosition = transform.position.y;
             currentCharacterData.zPosition = transform.position.z;
+
+            currentCharacterData.vitality = characterNetworkManager.vitality.Value;
+            currentCharacterData.endurance = characterNetworkManager.endurance.Value;
+
+            currentCharacterData.currentHealth = characterNetworkManager.currentHealth.Value;
+            currentCharacterData.currentStamina = characterNetworkManager.currentStamina.Value;
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -85,6 +91,18 @@ namespace KrazyKatgames
             playerNetworkManager.characterName.Value = currentCharacterData.characterName;
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
+            
+            characterNetworkManager.vitality.Value = currentCharacterData.vitality;
+            characterNetworkManager.endurance.Value = currentCharacterData.endurance;
+            
+            characterNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
+            characterNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
+            
+            playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(currentCharacterData.endurance);
+            playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(currentCharacterData.vitality);
+
+            PlayerUIManager.instance.playerUiHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
+            PlayerUIManager.instance.playerUiHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
         }
     }
 }
