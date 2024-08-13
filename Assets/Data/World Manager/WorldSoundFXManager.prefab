@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6406351501059936690}
   - component: {fileID: 707848805349022379}
   m_Layer: 0
-  m_Name: World Sound FX Manager
+  m_Name: WorldSoundFXManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

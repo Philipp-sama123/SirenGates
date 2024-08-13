@@ -8251,6 +8251,7 @@ GameObject:
   - component: {fileID: 6689764289711465070}
   - component: {fileID: 1371228475571454881}
   - component: {fileID: -2121120498334711591}
+  - component: {fileID: 4132556457617580131}
   m_Layer: 6
   m_Name: Player
   m_TagString: Untagged
@@ -8313,7 +8314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 317645115
+  GlobalObjectIdHash: 2729144484
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -8483,7 +8484,7 @@ MonoBehaviour:
   dodgeStaminaCost: 10
   jumpStaminaCost: 10
   jumpHeight: 3.5
-  inAirMovementSpeedMultiplier: 0.35
+  inAirMovementSpeedMultiplier: 0.5
 --- !u!114 &5697033895161935815
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8747,6 +8748,20 @@ MonoBehaviour:
   m_maxIkCorrectionOffset: 0
   m_upwardsVelocity: 0
   m_maxUpwardsVelocity: 0
+--- !u!114 &4132556457617580131
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8853214748901143767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 367efffaab2c494f8ee39af1d7240704, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  effectToTest: {fileID: 11400000, guid: c5f78d5b072e24bd89034fad9e8b13ab, type: 2}
+  processEffect: 1
 --- !u!1 &8853237802025195645
 GameObject:
   m_ObjectHideFlags: 0
