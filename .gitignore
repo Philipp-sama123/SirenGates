@@ -74,3 +74,6 @@ crashlytics-build.properties
 
 # Custom Assets
 /[Aa]ssets/[Aa]rt/[Aa]ssets/
+
+# ignore .cs.meta
+*.cs.meta
