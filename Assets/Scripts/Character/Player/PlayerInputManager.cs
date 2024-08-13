@@ -1,3 +1,4 @@
+using System.Reflection;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -27,6 +28,8 @@ namespace KrazyKatgames
         private bool dodgeInput = false;
         [SerializeField]
         private bool sprintInput = false;
+        [SerializeField]
+        private bool jumpInput = false;
 
 
         private void Awake()
@@ -76,6 +79,7 @@ namespace KrazyKatgames
                 playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
 
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
+                playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
 
                 // Hold Input Action --> set bool to false
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
@@ -94,8 +98,17 @@ namespace KrazyKatgames
             HandleMovementInput();
             HandleCameraMovementInput();
             HandleDodgeInput();
+            HandleJumpInput();
             HandleSprinting();
         }
+        private void HandleJumpInput()
+        {
+            if (jumpInput)
+            {
+                jumpInput = false;
+                // Attempt To Perform Jump
+                player.playerLocomotionManager.AttemptToPerformJump();
+            }        }
         private void HandleSprinting()
         {
             if (sprintInput)

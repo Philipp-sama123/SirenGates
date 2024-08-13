@@ -1,3 +1,4 @@
+using HoaxGames;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -14,7 +15,10 @@ namespace KrazyKatgames
         public bool applyRootMotion = false;
         public bool canRotate = true;
         public bool canMove = true;
+        public bool isJumping = false;
+        public bool isGrounded = false;
 
+        public FootIK footIK;
         protected virtual void Awake()
         {
             DontDestroyOnLoad(this);
@@ -22,10 +26,13 @@ namespace KrazyKatgames
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
+
+            footIK = GetComponent<FootIK>();
         }
 
         protected virtual void Update()
         {
+            animator.SetBool("IsGrounded", isGrounded);
             //  IF THIS CHARACTER IS BEING CONTROLLED FROM OUR SIDE, THEN ASSIGN ITS NETWORK POSITION TO THE POSITION OF OUR TRANSFORM
             if (IsOwner)
             {

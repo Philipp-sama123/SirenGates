@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -15,13 +16,16 @@ namespace KrazyKatgames
         private Vector3 targetRotationDirection;
         [SerializeField] float walkingSpeed = 2;
         [SerializeField] float runningSpeed = 5;
-        [SerializeField] float sprintingSpeed = 6.5f;
+        [SerializeField] float sprintingSpeed = 7.5f;
         [SerializeField] float rotationSpeed = 15;
         [SerializeField] int sprintingStaminaCost = 2;
 
         [Header("Dodge")]
         private Vector3 rollDirection;
         [SerializeField] int dodgeStaminaCost = 10;
+        [SerializeField] float jumpStaminaCost = 10f;
+        [SerializeField] float jumpHeight = 3.5f;
+        [SerializeField] float inAirMovementSpeedMultiplier = .35f;
 
         protected override void Awake()
         {
@@ -29,7 +33,6 @@ namespace KrazyKatgames
 
             player = GetComponent<PlayerManager>();
         }
-
         protected override void Update()
         {
             base.Update();
@@ -52,14 +55,41 @@ namespace KrazyKatgames
                 //  IF LOCKED ON, PASS HORZ AND VERT
             }
         }
-
         public void HandleAllMovement()
         {
-            HandleGroundedMovement();
+            HandleMovement();
             HandleRotation();
-            //  AERIAL MOVEMENT
         }
+        private void HandleMovement()
+        {
+            if (!player.canMove)
+                return;
 
+            CalculateMovementDirection();
+
+            if (player.isGrounded && !player.isJumping)
+                HandleGroundedMovement();
+            else
+                HandleInAirMovement();
+        }
+        private void HandleInAirMovement()
+        {
+            if (player.playerNetworkManager.isSprinting.Value)
+            {
+                player.characterController.Move(moveDirection * sprintingSpeed * inAirMovementSpeedMultiplier * Time.deltaTime);
+            }
+            else
+            {
+                if (moveAmount > 0.5f)
+                {
+                    player.characterController.Move(moveDirection * runningSpeed * inAirMovementSpeedMultiplier * Time.deltaTime);
+                }
+                else
+                {
+                    player.characterController.Move(moveDirection * walkingSpeed * inAirMovementSpeedMultiplier * Time.deltaTime);
+                }
+            }
+        }
         private void GetMovementValues()
         {
             verticalMovement = PlayerInputManager.instance.verticalInput;
@@ -67,19 +97,8 @@ namespace KrazyKatgames
             moveAmount = PlayerInputManager.instance.moveAmount;
             //  CLAMP THE MOVEMENTS
         }
-
         private void HandleGroundedMovement()
         {
-            if (!player.canMove)
-                return;
-
-            GetMovementValues();
-            //  OUR MOVE DIRECTION IS BASED ON OUR CAMERAS FACING PERSPECTIVE & OUR MOVEMENT INPUTS
-            moveDirection = PlayerCamera.instance.transform.forward * verticalMovement;
-            moveDirection = moveDirection + PlayerCamera.instance.transform.right * horizontalMovement;
-            moveDirection.Normalize();
-            moveDirection.y = 0;
-
             if (player.playerNetworkManager.isSprinting.Value)
             {
                 player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
@@ -96,7 +115,15 @@ namespace KrazyKatgames
                 }
             }
         }
-
+        private void CalculateMovementDirection()
+        {
+            GetMovementValues();
+            //  OUR MOVE DIRECTION IS BASED ON OUR CAMERAS FACING PERSPECTIVE & OUR MOVEMENT INPUTS
+            moveDirection = PlayerCamera.instance.transform.forward * verticalMovement;
+            moveDirection = moveDirection + PlayerCamera.instance.transform.right * horizontalMovement;
+            moveDirection.Normalize();
+            moveDirection.y = 0;
+        }
         private void HandleRotation()
         {
             if (!player.canRotate)
@@ -117,7 +144,6 @@ namespace KrazyKatgames
             Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed * Time.deltaTime);
             transform.rotation = targetRotation;
         }
-
         public void HandleSprinting()
         {
             if (player.isPerformingAction)
@@ -147,7 +173,6 @@ namespace KrazyKatgames
                 player.playerNetworkManager.currentStamina.Value -= sprintingStaminaCost * Time.deltaTime;
             }
         }
-
         public void AttemptToPerformDodge()
         {
             if (player.isPerformingAction)
@@ -176,6 +201,29 @@ namespace KrazyKatgames
             }
 
             player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
+        }
+        public void AttemptToPerformJump()
+        {
+            if (player.isPerformingAction) // ToDo: AttackJump
+                return;
+            if (player.playerNetworkManager.currentStamina.Value <= 0)
+                return;
+            if (player.isJumping) // ToDo: DoubleJump
+                return;
+            if (!player.isGrounded)
+                return;
+
+            player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
+
+            player.playerAnimatorManager.PlayTargetActionAnimation("Protector_Jump_Start", false, true, true, true);
+            player.isJumping = true;
+        }
+        /***
+         * Animation Event
+         */
+        public void ApplyJumpingVelocity()
+        {
+            yVelocity.y = Mathf.Sqrt(jumpHeight * -2 * gravityForce);
         }
     }
 }
