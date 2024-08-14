@@ -8,6 +8,9 @@ namespace KrazyKatgames
     {
         public static WorldCharacterEffectsManager instance;
 
+        [Header("Take Damage Effect")]
+        public TakeDamageEffect takeDamageEffect;
+
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 
         private void Awake()

@@ -6,9 +6,13 @@ namespace KrazyKatgames
 {
     public class CharacterManager : NetworkBehaviour
     {
+        [Header("Status")]
+        public NetworkVariable<bool> isDead = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
         [HideInInspector] public CharacterController characterController;
         [HideInInspector] public Animator animator;
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
+        [HideInInspector] public CharacterEffectsManager characterEffects;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -26,6 +30,7 @@ namespace KrazyKatgames
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
+            characterEffects = GetComponent<CharacterEffectsManager>();
 
             footIK = GetComponent<FootIK>();
         }
