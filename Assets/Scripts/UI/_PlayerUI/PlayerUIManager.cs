@@ -1,12 +1,15 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
     public class PlayerUIManager : MonoBehaviour
     {
         public static PlayerUIManager instance;
-        [HideInInspector] public PlayerUiHudManager playerUiHudManager;
+        [FormerlySerializedAs("playerUiHudManager")]
+        [HideInInspector] public PlayerUIHudManager playerUIHudManager;
+        [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
         [Header("NETWORK JOIN")]
         [SerializeField] bool startGameAsClient;
@@ -21,7 +24,9 @@ namespace KrazyKatgames
             {
                 Destroy(gameObject);
             }
-            playerUiHudManager = GetComponentInChildren<PlayerUiHudManager>();
+
+            playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
+            playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
         }
 
         private void Start()

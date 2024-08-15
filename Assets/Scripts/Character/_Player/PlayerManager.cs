@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -5,6 +6,10 @@ namespace KrazyKatgames
 {
     public class PlayerManager : CharacterManager
     {
+        [Header("Debug Menu")]
+        [SerializeField] bool respawnCharacter = false;
+
+
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
         [HideInInspector] public PlayerNetworkManager playerNetworkManager;
@@ -35,6 +40,9 @@ namespace KrazyKatgames
 
             //  REGEN STAMINA
             playerStatsManager.RegenerateStamina();
+
+
+            DebugMenu();
         }
 
         protected override void LateUpdate()
@@ -61,13 +69,36 @@ namespace KrazyKatgames
                 // Update Maximum Health or Maximum Stamina when endurance or vitality is changed
                 playerNetworkManager.vitality.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
                 playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
-                
+
                 // Updates UI for Stat Bars (!)
-                playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewStaminaValue;
-                playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUiHudManager.SetNewHealthValue;
-                
+                playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+                playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
             }
+            // not just for the owner
+            playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
+        }
+        public override void ReviveCharacter()
+        {
+            base.ReviveCharacter();
+
+            if (IsOwner)
+            {
+                playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
+                playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
+                
+                playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
+            }
+        }
+        public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+        {
+            if (IsOwner)
+            {
+                PlayerUIManager.instance.playerUIPopUpManager.SendYouDiedPopUp();
+            }
+            // ToDo: check for alive Players, if 0 --> Respawn all Characters (!)
+            return base.ProcessDeathEvent(manuallySelectDeathAnimation);
         }
 
         public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -91,18 +122,27 @@ namespace KrazyKatgames
             playerNetworkManager.characterName.Value = currentCharacterData.characterName;
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
-            
+
             characterNetworkManager.vitality.Value = currentCharacterData.vitality;
             characterNetworkManager.endurance.Value = currentCharacterData.endurance;
-            
+
             characterNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
             characterNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
-            
+
             playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(currentCharacterData.endurance);
             playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(currentCharacterData.vitality);
 
-            PlayerUIManager.instance.playerUiHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
-            PlayerUIManager.instance.playerUiHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
+        }
+
+        private void DebugMenu()
+        {
+            if (respawnCharacter)
+            {
+                respawnCharacter = false;
+                ReviveCharacter();
+            }
         }
     }
 }

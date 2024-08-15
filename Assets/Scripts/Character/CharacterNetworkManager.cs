@@ -31,7 +31,7 @@ namespace KrazyKatgames
         [Header("Resources")]
         public NetworkVariable<float> currentStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> maxStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<float> currentHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> currentHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> maxHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Stats")]
@@ -42,6 +42,23 @@ namespace KrazyKatgames
         {
             character = GetComponent<CharacterManager>();
         }
+
+        public void CheckHP(int oldValue, int newValue)
+        {
+            if (currentHealth.Value <= 0)
+            {
+                StartCoroutine(character.ProcessDeathEvent());
+            }
+            // Avoid Overhealing(!)
+            if (character.IsOwner)
+            {
+                if (currentHealth.Value > maxHealth.Value)
+                {
+                    currentHealth.Value = maxHealth.Value;
+                }
+            }
+        }
+
         // Is a function called from a client, to the Server
         [ServerRpc]
         public void NotifyTheServerOfActionAnimationServerRpc(ulong clientId, string animationId, bool applyRootMotion)

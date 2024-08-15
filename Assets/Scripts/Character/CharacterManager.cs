@@ -1,3 +1,4 @@
+using System.Collections;
 using HoaxGames;
 using Unity.Netcode;
 using UnityEngine;
@@ -13,6 +14,7 @@ namespace KrazyKatgames
         [HideInInspector] public Animator animator;
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
         [HideInInspector] public CharacterEffectsManager characterEffects;
+        [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -31,6 +33,7 @@ namespace KrazyKatgames
             animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
             characterEffects = GetComponent<CharacterEffectsManager>();
+            characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
 
             footIK = GetComponent<FootIK>();
         }
@@ -63,6 +66,30 @@ namespace KrazyKatgames
 
         protected virtual void LateUpdate()
         {
+        }
+
+        public virtual IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
+        {
+            if (IsOwner)
+            {
+                characterNetworkManager.currentHealth.Value = 0;
+                isDead.Value = true;
+
+                // if in air -- air death animation()!
+                if (!manuallySelectDeathAnimation)
+                {
+                    characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
+                }
+                yield return new WaitForSeconds(5);
+                
+                // Award Player with Runes (!)
+                
+            }
+        }
+
+        public virtual void ReviveCharacter()
+        {
+            
         }
     }
 }

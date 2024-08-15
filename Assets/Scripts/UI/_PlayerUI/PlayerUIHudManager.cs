@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KrazyKatgames
 {
-    public class PlayerUiHudManager : MonoBehaviour
+    public class PlayerUIHudManager : MonoBehaviour
     {
         [SerializeField] UI_StatBar staminaBar;
         [SerializeField] UI_StatBar healthBar;
@@ -15,9 +15,9 @@ namespace KrazyKatgames
         {
             staminaBar.SetMaxStat(maxStamina);
         }
-        public void SetNewHealthValue(float oldValue, float newValue)
+        public void SetNewHealthValue(int oldValue, int newValue)
         {
-            healthBar.SetStat(Mathf.RoundToInt(newValue));
+            healthBar.SetStat(newValue);
         }
         public void SetMaxHealthValue(int maxStamina)
         {
