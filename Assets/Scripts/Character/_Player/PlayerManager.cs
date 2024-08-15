@@ -14,6 +14,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
         [HideInInspector] public PlayerNetworkManager playerNetworkManager;
         [HideInInspector] public PlayerStatsManager playerStatsManager;
+        [HideInInspector] public PlayerInventoryManager playerInventoryManager;
 
         protected override void Awake()
         {
@@ -22,6 +23,7 @@ namespace KrazyKatgames
             //  DO MORE STUFF, ONLY FOR THE PLAYER
 
             playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
+            playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerNetworkManager = GetComponent<PlayerNetworkManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
@@ -87,7 +89,7 @@ namespace KrazyKatgames
             {
                 playerNetworkManager.currentHealth.Value = playerNetworkManager.maxHealth.Value;
                 playerNetworkManager.currentStamina.Value = playerNetworkManager.maxStamina.Value;
-                
+
                 playerAnimatorManager.PlayTargetActionAnimation("Empty", false);
             }
         }
