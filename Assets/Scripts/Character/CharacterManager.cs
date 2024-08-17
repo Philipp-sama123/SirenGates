@@ -13,7 +13,7 @@ namespace KrazyKatgames
         [HideInInspector] public CharacterController characterController;
         [HideInInspector] public Animator animator;
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
-        [HideInInspector] public CharacterEffectsManager characterEffects;
+        [HideInInspector] public CharacterEffectsManager characterEffectsManager;
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
 
         [Header("Flags")]
@@ -32,7 +32,7 @@ namespace KrazyKatgames
             characterController = GetComponent<CharacterController>();
             animator = GetComponent<Animator>();
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
-            characterEffects = GetComponent<CharacterEffectsManager>();
+            characterEffectsManager = GetComponent<CharacterEffectsManager>();
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
 
             footIK = GetComponent<FootIK>();

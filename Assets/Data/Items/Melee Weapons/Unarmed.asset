@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0ce6a69c62fd4c85a0a574d295892cd7, type: 3}
-  m_Name: Sword_Blade
+  m_Name: Unarmed
   m_EditorClassIdentifier: 
   itemName: 
   itemIcon: {fileID: 0}
   itemDescription: 
   itemID: 0
-  weaponModel: {fileID: 6397344720308477397, guid: 7527692ca028d4307a8703a12285c32b, type: 3}
-  strengthREQ: 10
+  weaponModel: {fileID: 6397344720308477397, guid: b87356b08151043ad913f22d2acad671, type: 3}
+  strengthREQ: 0
   dexREQ: 0
   intREQ: 0
   faithREQ: 0
-  physicalDamage: 10
+  physicalDamage: 0
   magicDamage: 0
   fireDamage: 0
   holyDamage: 0
   lightningDamage: 0
-  poiseDamage: 0
-  baseStaminaCost: 20
+  poiseDamage: 5
+  baseStaminaCost: 5
