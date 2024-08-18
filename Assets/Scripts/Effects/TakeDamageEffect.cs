@@ -74,7 +74,7 @@ namespace KrazyKatgames
             {
                 finalDamageDealt = 1;
             }
-            Debug.Log("finalDamageDealt " + finalDamageDealt);
+            Debug.Log("ProcessEffect--> CalculateDamage --> finalDamageDealt: " + finalDamageDealt);
 
             character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
         }

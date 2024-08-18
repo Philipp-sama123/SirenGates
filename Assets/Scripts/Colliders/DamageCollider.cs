@@ -60,7 +60,6 @@ namespace KrazyKatgames
             damageEffect.holyDamage = holyDamage;
             damageEffect.contactPoint = contactPoint;
 
-            Debug.Log("protected virtual void DamageTarget " + damageTarget.name);
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }
 

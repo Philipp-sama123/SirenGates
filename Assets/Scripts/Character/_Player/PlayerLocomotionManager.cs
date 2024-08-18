@@ -216,7 +216,7 @@ namespace KrazyKatgames
 
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
-            player.playerAnimatorManager.PlayTargetActionAnimation("Protector_Jump_Start", false, true, true, true);
+            player.playerAnimatorManager.PlayTargetActionAnimation("Jump_Start", false, true, true, true);
             player.characterNetworkManager.isJumping.Value = true;
         }
         /***
