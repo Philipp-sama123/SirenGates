@@ -49,7 +49,7 @@ namespace KrazyKatgames
             {
                 StartCoroutine(character.ProcessDeathEvent());
             }
-            
+
             // Avoid Overhealing(!)
             if (character.IsOwner)
             {
@@ -59,7 +59,7 @@ namespace KrazyKatgames
                 }
             }
         }
-
+        #region Action Animations
         // Is a function called from a client, to the Server
         [ServerRpc]
         public void NotifyTheServerOfActionAnimationServerRpc(ulong clientId, string animationId, bool applyRootMotion)
@@ -85,5 +85,30 @@ namespace KrazyKatgames
             character.animator.CrossFade(animationId, 0.2f);
             character.applyRootMotion = applyRootMotion;
         }
+        #endregion
+
+        #region Attack Animations
+        [ServerRpc]
+        public void NotifyTheServerOfAttackActionAnimationServerRpc(ulong clientId, string animationId, bool applyRootMotion)
+        {
+            if (IsServer)
+            {
+                PlayAttackActionAnimationForAllClientsClientRpc(clientId, animationId, applyRootMotion);
+            }
+        }
+        [ClientRpc]
+        public void PlayAttackActionAnimationForAllClientsClientRpc(ulong clientId, string animationId, bool applyRootMotion)
+        {
+            if (clientId != NetworkManager.Singleton.LocalClientId)
+            {
+                PerformAttackActionAnimationFromServer(animationId, applyRootMotion);
+            }
+        }
+        private void PerformAttackActionAnimationFromServer(string animationId, bool applyRootMotion)
+        {
+            character.animator.CrossFade(animationId, 0.2f);
+            character.applyRootMotion = applyRootMotion;
+        }
+        #endregion
     }
 }

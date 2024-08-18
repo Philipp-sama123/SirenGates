@@ -50,6 +50,27 @@ namespace KrazyKatgames
             character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
                 applyRootMotion);
         }
+        public virtual void PlayTargetAttackActionAnimation(
+            string targetAnimation,
+            bool isPerformingAction,
+            bool applyRootMotion = true,
+            bool canRotate = false,
+            bool canMove = false)
+        {
+            //ToDo's: 
+            // Keep track of last performed for Combos
+            // Keep track of current Attack Type
+            // update AnimationSet to current Weapon Animations
+            // Decide if the Attack can be parried 
+            // Tell the Network --> in Attacking FLAG 
+            character.applyRootMotion = applyRootMotion;
+            character.animator.CrossFade(targetAnimation, 0.2f);
+            character.isPerformingAction = isPerformingAction;
+            character.canRotate = canRotate;
+            character.canMove = canMove;
+            character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
+                applyRootMotion);
+        }
 
         protected virtual void OnAnimatorMove()
         {

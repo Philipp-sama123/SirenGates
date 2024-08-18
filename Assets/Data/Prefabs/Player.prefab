@@ -8866,7 +8866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 317645115
+  GlobalObjectIdHash: 2729144484
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -8915,7 +8915,7 @@ MonoBehaviour:
   endurance:
     m_InternalValue: 10
   vitality:
-    m_InternalValue: 1
+    m_InternalValue: 10
   characterName:
     m_InternalValue:
       utf8LengthInBytes: 9
@@ -9015,7 +9015,7 @@ MonoBehaviour:
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
   isPerformingAction: 0
-  applyRootMotion: 1
+  applyRootMotion: 0
   canRotate: 0
   canMove: 0
   isGrounded: 1

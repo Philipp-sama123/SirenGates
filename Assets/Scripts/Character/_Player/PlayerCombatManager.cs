@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -19,10 +20,19 @@ namespace KrazyKatgames
 
         public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
         {
-            //  PERFORM THE ACTION
-            weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
+            if (player.IsOwner)
+            {
+                //  PERFORM THE ACTION
+                weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
+                
+                //  NOTIFY THE SERVER WE HAVE PERFORMED THE ACTION, SO WE PERFORM IT FROM THERE PERSPECTIVE ALSO}
+                player.playerNetworkManager.NotifyTheServerOfWeaponActionServerRpc(
+                    NetworkManager.Singleton.LocalClientId,
+                    weaponAction.actionID,
+                    weaponPerformingAction.itemID
+                );
 
-            //  NOTIFY THE SERVER WE HAVE PERFORMED THE ACTION, SO WE PERFORM IT FROM THERE PERSPECTIVE ALSO
+            }
         }
     }
 }

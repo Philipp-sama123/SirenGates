@@ -12,8 +12,8 @@ namespace KrazyKatgames
             if (playerPerformingAction.IsOwner)
             {
                 playerPerformingAction.playerNetworkManager.currentWeaponBeingUsed.Value = weaponPerformingAction.itemID;
+                Debug.Log("The Action has fired: " + weaponPerformingAction);
             }
-            Debug.Log("The Action has fired!");
         }
     }
 }
