@@ -17,8 +17,6 @@ namespace KrazyKatgames
         }
         public void SetWeaponDamage(CharacterManager characterWieldingWeapon, WeaponItem weapon)
         {
-            meleeDamageCollider.DisableDamageCollider(); // ToDo: instead of this dont damage owner
-
             meleeDamageCollider.characterCausingDamage = characterWieldingWeapon;
             meleeDamageCollider.physicalDamage = weapon.physicalDamage;
             meleeDamageCollider.magicDamage = weapon.magicDamage;

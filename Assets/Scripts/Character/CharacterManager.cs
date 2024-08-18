@@ -1,4 +1,6 @@
+using System;
 using System.Collections;
+using System.Collections.Generic;
 using HoaxGames;
 using Unity.Netcode;
 using UnityEngine;
@@ -37,7 +39,11 @@ namespace KrazyKatgames
 
             footIK = GetComponent<FootIK>();
         }
-
+        protected virtual void Start()
+        {
+            IgnoreMyOwnColliders();
+        }
+        
         protected virtual void Update()
         {
             animator.SetBool("IsGrounded", isGrounded);
@@ -81,15 +87,36 @@ namespace KrazyKatgames
                     characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
                 }
                 yield return new WaitForSeconds(5);
-                
+
                 // Award Player with Runes (!)
-                
             }
         }
 
         public virtual void ReviveCharacter()
         {
-            
+        }
+
+        protected virtual void IgnoreMyOwnColliders()
+        {
+            Collider characterControllerCollider = GetComponent<Collider>();
+            Collider[] damageableCharacterColliders = GetComponentsInChildren<Collider>();
+
+            List<Collider> ignoreColliders = new List<Collider>();
+
+            foreach (var collider in damageableCharacterColliders)
+            {
+                ignoreColliders.Add(collider);
+            }
+            ignoreColliders.Add(characterControllerCollider);
+
+
+            foreach (var collider in ignoreColliders)
+            {
+                foreach (var otherCollider in ignoreColliders)
+                {
+                    Physics.IgnoreCollision(collider, otherCollider, true);
+                }
+            }
         }
     }
 }

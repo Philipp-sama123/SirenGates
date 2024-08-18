@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -28,19 +29,21 @@ namespace KrazyKatgames
         }
         private void OnTriggerEnter(Collider other)
         {
-            CharacterManager damageTarget = other.GetComponent<CharacterManager>();
+            CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
+            // Check for character controller collider
+            // if (damageTarget == null)
+            //     damageTarget = other.GetComponent<CharacterManager>();
 
             if (damageTarget != null)
             {
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
-                //  CHECK IF WE CAN DAMAGE THIS TARGET BASED ON FRIENDLY FIRE
-
-                //  CHECK IF TARGET IS BLOCKING
-
-                //  CHECK IF TARGET IS INVULNERABLE
+                //  FRIENDLY FIRE
+                //  BLOCKING
+                //  IS INVULNERABLE
 
                 DamageTarget(damageTarget);
+                Debug.Log("damageTarget " + other.name);
             }
         }
 
