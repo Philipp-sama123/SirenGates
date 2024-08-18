@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -13,8 +11,7 @@ namespace KrazyKatgames
             {
                 character = animator.GetComponent<CharacterManager>();
             }
-            character.isJumping = false;
+            character.characterNetworkManager.isJumping.Value = false;
         }
     }
-    
 }

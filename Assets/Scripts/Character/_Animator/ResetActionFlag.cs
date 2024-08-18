@@ -16,9 +16,9 @@ namespace KrazyKatgames
             character.applyRootMotion = false;
             character.canRotate = true;
             character.canMove = true;
-            
+
             // ToDo: maybe remove
-            character.isJumping = false;
+            character.characterNetworkManager.isJumping.Value = false;
         }
     }
 }

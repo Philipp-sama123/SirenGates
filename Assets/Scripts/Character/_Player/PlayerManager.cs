@@ -83,11 +83,19 @@ namespace KrazyKatgames
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
             }
             // not just for the owner
+            // Stats
             playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
             
-            //
+            // Equipment
             playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+
+            // on connecting --> reload character data to this new instantiated character
+            // not run if server --> bc the host should already have loaded this 
+            if (IsOwner && !IsServer)
+            {
+                LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
+            }
         }
         public override void ReviveCharacter()
         {

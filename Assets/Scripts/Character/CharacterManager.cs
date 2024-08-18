@@ -23,7 +23,6 @@ namespace KrazyKatgames
         public bool applyRootMotion = false;
         public bool canRotate = true;
         public bool canMove = true;
-        public bool isJumping = false;
         public bool isGrounded = false;
 
         public FootIK footIK;

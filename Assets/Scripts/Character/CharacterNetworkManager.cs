@@ -25,8 +25,8 @@ namespace KrazyKatgames
             new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Flags")]
-        public NetworkVariable<bool> isSprinting =
-            new NetworkVariable<bool>(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Resources")]
         public NetworkVariable<float> currentStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -45,13 +45,11 @@ namespace KrazyKatgames
 
         public void CheckHP(int oldValue, int newValue)
         {
-            Debug.Log("oldValue" + oldValue);
-            Debug.Log("newValue" + newValue);
-            
             if (currentHealth.Value <= 0)
             {
                 StartCoroutine(character.ProcessDeathEvent());
             }
+            
             // Avoid Overhealing(!)
             if (character.IsOwner)
             {

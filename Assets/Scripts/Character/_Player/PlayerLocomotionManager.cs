@@ -67,7 +67,7 @@ namespace KrazyKatgames
 
             CalculateMovementDirection();
 
-            if (player.isGrounded && !player.isJumping)
+            if (player.isGrounded && !player.characterNetworkManager.isJumping.Value)
                 HandleGroundedMovement();
             else
                 HandleInAirMovement();
@@ -76,6 +76,7 @@ namespace KrazyKatgames
         {
             if (player.playerNetworkManager.isSprinting.Value)
             {
+                // ToDo: think of rider suggestion (whats the benefit) 
                 player.characterController.Move(moveDirection * sprintingSpeed * inAirMovementSpeedMultiplier * Time.deltaTime);
             }
             else
@@ -208,7 +209,7 @@ namespace KrazyKatgames
                 return;
             if (player.playerNetworkManager.currentStamina.Value <= 0)
                 return;
-            if (player.isJumping) // ToDo: DoubleJump
+            if (player.characterNetworkManager.isJumping.Value) // ToDo: DoubleJump
                 return;
             if (!player.isGrounded)
                 return;
@@ -216,7 +217,7 @@ namespace KrazyKatgames
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;
 
             player.playerAnimatorManager.PlayTargetActionAnimation("Protector_Jump_Start", false, true, true, true);
-            player.isJumping = true;
+            player.characterNetworkManager.isJumping.Value = true;
         }
         /***
          * Animation Event
