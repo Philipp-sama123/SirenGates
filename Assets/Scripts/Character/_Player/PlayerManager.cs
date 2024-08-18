@@ -43,13 +43,8 @@ namespace KrazyKatgames
             if (!IsOwner)
                 return;
 
-            //  HANDLE MOVEMENT
             playerLocomotionManager.HandleAllMovement();
-
-            //  REGEN STAMINA
             playerStatsManager.RegenerateStamina();
-
-
             DebugMenu();
         }
 
@@ -84,7 +79,7 @@ namespace KrazyKatgames
 
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
             }
-            // not just for the owner
+
             // Stats
             playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
 
@@ -147,16 +142,17 @@ namespace KrazyKatgames
             characterNetworkManager.vitality.Value = currentCharacterData.vitality;
             characterNetworkManager.endurance.Value = currentCharacterData.endurance;
 
-            characterNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
-            characterNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
-
             playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(currentCharacterData.endurance);
             playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(currentCharacterData.vitality);
+
+            characterNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
+            characterNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
 
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
         }
 
+        
         private void DebugMenu()
         {
             if (respawnCharacter)

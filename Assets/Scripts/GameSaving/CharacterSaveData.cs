@@ -28,7 +28,7 @@ namespace KrazyKatgames
         public float currentStamina;
 
         [Header("Character Stats")]
-        public int endurance;
-        public int vitality;
+        public int endurance = 10;
+        public int vitality = 10;
     }
 }

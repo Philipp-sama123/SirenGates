@@ -1,7 +1,4 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -9,7 +6,7 @@ namespace KrazyKatgames
     public class DamageCollider : MonoBehaviour
     {
         [Header("Collider")]
-        protected Collider damageCollider;
+        [SerializeField] protected Collider damageCollider;
 
         [Header("Damage")]
         public float physicalDamage = 0; // (TO DO, SPLIT INTO "Standard", "Strike", "Slash" and "Pierce")
@@ -25,9 +22,10 @@ namespace KrazyKatgames
         protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
         protected virtual void Awake()
         {
-            damageCollider = GetComponent<Collider>();
+            if (damageCollider == null)
+                damageCollider = GetComponent<Collider>();
         }
-        private void OnTriggerEnter(Collider other)
+        protected virtual void OnTriggerEnter(Collider other)
         {
             CharacterManager damageTarget = other.GetComponentInParent<CharacterManager>();
             // Check for character controller collider
@@ -43,7 +41,6 @@ namespace KrazyKatgames
                 //  IS INVULNERABLE
 
                 DamageTarget(damageTarget);
-                Debug.Log("damageTarget " + other.name);
             }
         }
 
@@ -63,6 +60,7 @@ namespace KrazyKatgames
             damageEffect.holyDamage = holyDamage;
             damageEffect.contactPoint = contactPoint;
 
+            Debug.Log("protected virtual void DamageTarget " + damageTarget.name);
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }
 

@@ -43,6 +43,8 @@ namespace KrazyKatgames
         public override void ProcessEffect(CharacterManager character)
         {
             base.ProcessEffect(character);
+            Debug.Log("ProcessEffect " + character.name);
+            Debug.Log("character.isDead.Value " + character.isDead.Value);
 
             if (character.isDead.Value)
                 return;
@@ -60,19 +62,21 @@ namespace KrazyKatgames
         }
         private void CalculateDamage(CharacterManager character)
         {
-            if (!character.IsOwner) return;
+            if (!character.IsOwner) 
+                return;
 
-            // if (characterCausingDamage != null) // ToDo: add again when using
-            // {
-                finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
-                if (finalDamageDealt <= 0)
-                {
-                    finalDamageDealt = 1;
-                }
-                character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
-                
-                // 
-            // }
+            if (characterCausingDamage != null)
+            {
+                // Check for Damage modifiers and modify base damage
+            }
+            finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
+            if (finalDamageDealt <= 0)
+            {
+                finalDamageDealt = 1;
+            }
+            Debug.Log("finalDamageDealt " + finalDamageDealt);
+
+            character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
         }
     }
 }

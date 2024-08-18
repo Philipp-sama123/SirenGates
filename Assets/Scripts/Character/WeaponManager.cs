@@ -4,8 +4,7 @@ namespace KrazyKatgames
 {
     public class WeaponManager : MonoBehaviour
     {
-        [SerializeField]
-        private MeleeWeaponDamageCollider meleeDamageCollider;
+        public MeleeWeaponDamageCollider meleeDamageCollider;
 
         private void Awake()
         {
@@ -19,6 +18,7 @@ namespace KrazyKatgames
             meleeDamageCollider.fireDamage = weapon.fireDamage;
             meleeDamageCollider.holyDamage = weapon.holyDamage;
             meleeDamageCollider.lightningDamage = weapon.lightningDamage;
+            meleeDamageCollider.light_Attack_01_Modifier = weapon.light_attack_01_modifier;
         }
     }
 }

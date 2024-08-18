@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enums : MonoBehaviour
 {
-
 }
 
 public enum CharacterSlot
@@ -29,4 +26,9 @@ public enum WeaponModelSlot
     //Right Hips
     //Left Hips
     //Back
+}
+
+public enum AttackType
+{
+    LightAttack01
 }

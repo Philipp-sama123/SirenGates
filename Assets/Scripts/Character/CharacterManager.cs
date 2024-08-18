@@ -17,6 +17,7 @@ namespace KrazyKatgames
         [HideInInspector] public CharacterNetworkManager characterNetworkManager;
         [HideInInspector] public CharacterEffectsManager characterEffectsManager;
         [HideInInspector] public CharacterAnimatorManager characterAnimatorManager;
+        [HideInInspector] public CharacterCombatManager characterCombatManager;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -35,6 +36,7 @@ namespace KrazyKatgames
             characterNetworkManager = GetComponent<CharacterNetworkManager>();
             characterEffectsManager = GetComponent<CharacterEffectsManager>();
             characterAnimatorManager = GetComponent<CharacterAnimatorManager>();
+            characterCombatManager = GetComponent<CharacterCombatManager>();
 
             footIK = GetComponent<FootIK>();
         }

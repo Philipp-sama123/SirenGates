@@ -51,12 +51,14 @@ namespace KrazyKatgames
                 applyRootMotion);
         }
         public virtual void PlayTargetAttackActionAnimation(
+            AttackType attackType,
             string targetAnimation,
             bool isPerformingAction,
             bool applyRootMotion = true,
             bool canRotate = false,
             bool canMove = false)
         {
+            character.characterCombatManager.currentAttackType = attackType;
             //ToDo's: 
             // Keep track of last performed for Combos
             // Keep track of current Attack Type

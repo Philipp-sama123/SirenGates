@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -116,11 +114,13 @@ namespace KrazyKatgames
             foreach (WeaponItem weapon in player.playerInventoryManager.weaponsInRightHandSlots)
             {
                 //  IF THE NEXT POTENTIAL WEAPON DOES NOT EQUAL THE UNARMED WEAPON
-                if (player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID != WorldItemDatabase.Instance.unarmedWeapon.itemID)
+                if (player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID !=
+                    WorldItemDatabase.Instance.unarmedWeapon.itemID)
                 {
                     selectedWeapon = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex];
                     //  ASSIGN THE NETWORK WEAPON ID SO IT SWITCHES FOR ALL CONNECTED CLIENTS
-                    player.playerNetworkManager.currentRightHandWeaponID.Value = player.playerInventoryManager.weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
+                    player.playerNetworkManager.currentRightHandWeaponID.Value = player.playerInventoryManager.
+                        weaponsInRightHandSlots[player.playerInventoryManager.rightHandWeaponIndex].itemID;
                     return;
                 }
             }
@@ -150,7 +150,6 @@ namespace KrazyKatgames
 
         public void SwitchLeftWeapon()
         {
-
         }
 
         public void LoadLeftWeapon()
@@ -165,6 +164,30 @@ namespace KrazyKatgames
                 leftHandSlot.LoadWeapon(leftHandWeaponModel);
                 leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
                 leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
+            }
+        }
+
+        public void OpenDamageCollider()
+        {
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                rightWeaponManager.meleeDamageCollider.EnableDamageCollider();
+            }
+            else if (player.playerNetworkManager.isUsingLeftHand.Value)
+            {
+                leftWeaponManager.meleeDamageCollider.EnableDamageCollider();
+            }
+            // Play whoosh sfx (!)
+        }
+        public void CloseDamageCollider()
+        {
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+            }
+            else if (player.playerNetworkManager.isUsingLeftHand.Value)
+            {
+                leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
             }
         }
     }
