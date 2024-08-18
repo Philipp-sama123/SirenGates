@@ -18,6 +18,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerStatsManager playerStatsManager;
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
+        [HideInInspector] public PlayerCombatManager playerCombatManager;
 
         protected override void Awake()
         {
@@ -30,6 +31,7 @@ namespace KrazyKatgames
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerNetworkManager = GetComponent<PlayerNetworkManager>();
+            playerCombatManager = GetComponent<PlayerCombatManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
         }
 
@@ -85,10 +87,11 @@ namespace KrazyKatgames
             // not just for the owner
             // Stats
             playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
-            
+
             // Equipment
             playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+            playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
             // on connecting --> reload character data to this new instantiated character
             // not run if server --> bc the host should already have loaded this 
@@ -163,12 +166,12 @@ namespace KrazyKatgames
             }
             if (switchRightWeapon)
             {
-                switchRightWeapon = false; 
+                switchRightWeapon = false;
                 playerEquipmentManager.SwitchRightWeapon();
-            }   
+            }
             if (switchLeftWeapon)
             {
-                switchLeftWeapon = false; 
+                switchLeftWeapon = false;
                 playerEquipmentManager.SwitchLeftWeapon();
             }
         }

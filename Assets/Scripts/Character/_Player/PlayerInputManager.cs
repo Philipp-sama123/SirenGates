@@ -23,12 +23,10 @@ namespace KrazyKatgames
         public float moveAmount;
 
         [Header("Player Action Input")]
-        [SerializeField]
-        private bool dodgeInput = false;
-        [SerializeField]
-        private bool sprintInput = false;
-        [SerializeField]
-        private bool jumpInput = false;
+        [SerializeField] private bool dodgeInput = false;
+        [SerializeField] private bool sprintInput = false;
+        [SerializeField] private bool jumpInput = false;
+        [SerializeField] private bool RB_Input = false;
 
 
         private void Awake()
@@ -93,6 +91,8 @@ namespace KrazyKatgames
                 playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
                 playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
 
+                playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+
                 // Hold Input Action --> set bool to false
                 playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
                 // Release Input Action --> set bool to false
@@ -112,6 +112,23 @@ namespace KrazyKatgames
             HandleDodgeInput();
             HandleJumpInput();
             HandleSprinting();
+            HandleRBInput();
+        }
+        private void HandleRBInput()
+        {
+            if (RB_Input)
+            {
+                RB_Input = false;
+                //ToDo: If UI Window open return (!)
+
+                player.playerNetworkManager.SetCharacterActionHand(true); // Right Weapon because --> right bumper 
+                // ToDo: if 2 handed --> 2 Handed Action 
+                
+                player.playerCombatManager.PerformWeaponBasedAction(
+                    player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
+                    player.playerInventoryManager.currentRightHandWeapon
+                );
+            }
         }
         private void HandleJumpInput()
         {

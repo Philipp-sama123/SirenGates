@@ -41,7 +41,8 @@ namespace KrazyKatgames
 
 
         //  ITEM BASED ACTIONS (RB, RT, LB, LT)
-
+        [Header("Actions")]
+        public WeaponItemAction oh_RB_Action; // One Handed Right Bumper Action // ToDo: OH Left Mouse Button (?)
         //  ASH OF WAR
 
         //  BLOCKING SOUNDS
