@@ -1,6 +1,8 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Unity.Netcode;
+
 
 namespace KrazyKatgames
 {
@@ -62,6 +64,7 @@ namespace KrazyKatgames
         {
             base.OnNetworkSpawn();
 
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnectedCallback;
             //  IF THIS IS THE PLAYER OBJECT OWNED BY THIS CLIENT
             if (IsOwner)
             {
@@ -151,8 +154,33 @@ namespace KrazyKatgames
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
         }
+        private void OnClientConnectedCallback(ulong clientID)
+        {
+            WorldGameSessionManager.instance.AddPlayerToActivePlayersList(this);
+            // ToDo: keep a list of the active players 
 
-        
+            // If we are the server -->Host , so don't load other Players Equipment
+            if (!IsServer && IsOwner)
+            {
+                foreach (var player in WorldGameSessionManager.instance.players)
+                {
+                    if (player != null)
+                    {
+                        player.LoadOtherPlayerCharacterWhenJoiningServer();
+                    }
+                }
+            }
+            //   LoadGameDataFromCurrentCharacterData();
+        }
+        private void LoadOtherPlayerCharacterWhenJoiningServer()
+        {
+            // Sync Weapons when joining (!)
+            playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
+            playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
+            // Sync Armor when joining (!)
+            // ToDo: Armor
+        }
+
         private void DebugMenu()
         {
             if (respawnCharacter)

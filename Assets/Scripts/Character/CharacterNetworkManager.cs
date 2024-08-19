@@ -46,7 +46,7 @@ namespace KrazyKatgames
         public void CheckHP(int oldValue, int newValue)
         {
             if (currentHealth.Value <= 0)
-            {           
+            {
                 Debug.LogWarning("StartCoroutine(character.ProcessDeathEvent" + newValue);
                 StartCoroutine(character.ProcessDeathEvent());
             }

@@ -477,6 +477,24 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1018578223762713509, guid: ad92b907161ff4c10966b4c2b2e94135, type: 3}
   m_PrefabInstance: {fileID: 1779322557}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &113024055 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2247863161401084596, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
+  m_PrefabInstance: {fileID: 8433597523956926983}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &113024059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 113024055}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed59cbbe9a584bf69a86e8b8010c0bab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  players: []
 --- !u!224 &152760406 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1018578223762713509, guid: ad92b907161ff4c10966b4c2b2e94135, type: 3}
@@ -5999,7 +6017,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2247863161401084596, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 113024059}
   m_SourcePrefab: {fileID: 100100000, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
 --- !u!1001 &9118256561011551216
 PrefabInstance:
@@ -6049,10 +6070,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1031128742239737505, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
-      propertyPath: bloodSplatterVFX
-      value: 
-      objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
     - target: {fileID: 8352545069278042891, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
       propertyPath: m_Name
       value: WorldCharacterEffectsManager
