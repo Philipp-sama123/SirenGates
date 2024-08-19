@@ -10,8 +10,10 @@ namespace KrazyKatgames
 
         [Header("Take Damage Effect")]
         public TakeDamageEffect takeDamageEffect;
-
         [SerializeField] List<InstantCharacterEffect> instantEffects;
+
+        [Header("VFX")]
+        [SerializeField] public GameObject bloodSplatterVFX;
 
         private void Awake()
         {

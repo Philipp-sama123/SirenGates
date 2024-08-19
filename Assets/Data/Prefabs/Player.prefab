@@ -8791,7 +8791,7 @@ GameObject:
   - component: {fileID: 106747563419026531}
   - component: {fileID: 3898277897904847606}
   - component: {fileID: 4380024234962509894}
-  - component: {fileID: 5697033895161935815}
+  - component: {fileID: 1251065776810463736}
   - component: {fileID: -6754247136792872320}
   - component: {fileID: 6501016363652720887}
   - component: {fileID: 6689764289711465070}
@@ -8866,7 +8866,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2729144484
+  GlobalObjectIdHash: 317645115
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -8995,7 +8995,7 @@ MonoBehaviour:
     m_InternalValue: 0
   isUsingLeftHand:
     m_InternalValue: 0
---- !u!114 &5697033895161935815
+--- !u!114 &1251065776810463736
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -9008,17 +9008,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isDead:
-    m_InternalValue: 1
+    m_InternalValue: 0
   characterController: {fileID: 0}
   animator: {fileID: 0}
   characterNetworkManager: {fileID: 0}
   characterEffectsManager: {fileID: 0}
   characterAnimatorManager: {fileID: 0}
+  characterCombatManager: {fileID: 0}
   isPerformingAction: 0
   applyRootMotion: 0
-  canRotate: 0
-  canMove: 0
-  isGrounded: 1
+  canRotate: 1
+  canMove: 1
+  isGrounded: 0
   footIK: {fileID: 0}
   respawnCharacter: 0
   switchRightWeapon: 0
@@ -9076,6 +9077,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c83a4b0049940ec8119c3f84b02dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentAttackType: 0
   currentWeaponBeingUsed: {fileID: 0}
 --- !u!114 &6689764289711465070
 MonoBehaviour:
@@ -9115,6 +9117,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 367efffaab2c494f8ee39af1d7240704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bloodSplatterVFX: {fileID: 0}
   effectToTest: {fileID: 11400000, guid: c5f78d5b072e24bd89034fad9e8b13ab, type: 2}
   processEffect: 1
 --- !u!114 &6576953863206392066

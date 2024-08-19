@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.TextCore.Text;
 
 namespace KrazyKatgames
 {
@@ -56,13 +57,13 @@ namespace KrazyKatgames
             // Check Damage Direction
             // Check for Buildups (poison,bleed, ....) 
             // Play Damage sound fx 
-            // Play Damage VFX (Blood) 
-
+            
+            PlayDamageVFX(character);
             // If Character is A.I. check for new target if character causing damage is present 
         }
         private void CalculateDamage(CharacterManager character)
         {
-            if (!character.IsOwner) 
+            if (!character.IsOwner)
                 return;
 
             if (characterCausingDamage != null)
@@ -77,6 +78,11 @@ namespace KrazyKatgames
             Debug.Log("ProcessEffect--> CalculateDamage --> finalDamageDealt: " + finalDamageDealt);
 
             character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
+        }
+        private void PlayDamageVFX(CharacterManager character)
+        {
+            //  if we have fire damage --> Play Fire Particles (same for lightning, ...) 
+            character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
         }
     }
 }

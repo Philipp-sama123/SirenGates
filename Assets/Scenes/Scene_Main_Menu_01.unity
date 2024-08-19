@@ -6049,6 +6049,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1031128742239737505, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
+      propertyPath: bloodSplatterVFX
+      value: 
+      objectReference: {fileID: 3548588485384254792, guid: 2f9e7dc163581394da1e00b561eed65d, type: 3}
     - target: {fileID: 8352545069278042891, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
       propertyPath: m_Name
       value: WorldCharacterEffectsManager
