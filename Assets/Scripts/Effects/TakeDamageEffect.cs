@@ -56,8 +56,7 @@ namespace KrazyKatgames
             // Calculate Damage
             // Check Damage Direction
             // Check for Buildups (poison,bleed, ....) 
-            // Play Damage sound fx 
-            
+            PlayDamageSFX(character);
             PlayDamageVFX(character);
             // If Character is A.I. check for new target if character causing damage is present 
         }
@@ -83,6 +82,11 @@ namespace KrazyKatgames
         {
             //  if we have fire damage --> Play Fire Particles (same for lightning, ...) 
             character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
+        }
+        private void PlayDamageSFX(CharacterManager character)
+        {
+            AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+            character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
         }
     }
 }

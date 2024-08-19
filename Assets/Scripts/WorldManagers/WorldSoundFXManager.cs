@@ -9,11 +9,14 @@ namespace KrazyKatgames
         [Header("Action Sounds")]
         public AudioClip rollSFX;
 
+        [Header("Damage Sounds")]
+        public AudioClip[] physicalDamageSFX;
+
         private void Awake()
         {
-            if(instance == null)
+            if (instance == null)
             {
-                instance = this; 
+                instance = this;
             }
             else
             {
@@ -23,6 +26,11 @@ namespace KrazyKatgames
         private void Start()
         {
             DontDestroyOnLoad(this);
+        }
+        public AudioClip ChooseRandomSFXFromArray(AudioClip[] array)
+        {
+            int index = Random.Range(0, array.Length);
+            return array[index];
         }
     }
 }

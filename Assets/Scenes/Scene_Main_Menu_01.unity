@@ -5139,6 +5139,90 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.size
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[0]
+      value: 
+      objectReference: {fileID: 8300000, guid: 71fd5b8d4d7e0c54395983805c6a63b1, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 612f742e5b7b83345a0eabdb03117665, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: 519c626e2c5efd74a85eae451c74914a, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[3]
+      value: 
+      objectReference: {fileID: 8300000, guid: b6992463d057884419abd7787e2fd218, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[4]
+      value: 
+      objectReference: {fileID: 8300000, guid: a8d593e94a683164088c10bb9949554f, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[5]
+      value: 
+      objectReference: {fileID: 8300000, guid: c1ba75a694aeed44395a87e3eb2e42cb, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[6]
+      value: 
+      objectReference: {fileID: 8300000, guid: 61904fc2b5575ba48af614e54c73b57a, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[7]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3d87441acb6e7f348a24c4efda75f6d8, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[8]
+      value: 
+      objectReference: {fileID: 8300000, guid: 3723e9d8f859621479aa415b910b6df3, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[9]
+      value: 
+      objectReference: {fileID: 8300000, guid: 5761b9e38203b9b40ae26116658983eb, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[10]
+      value: 
+      objectReference: {fileID: 8300000, guid: 43cf24515a8c5664e9386a304780af93, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[11]
+      value: 
+      objectReference: {fileID: 8300000, guid: 955969dcd0d884142a1c50ad9a5d0740, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[12]
+      value: 
+      objectReference: {fileID: 8300000, guid: f6d4629ac52b3894c8c27986ad3fe8dd, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[13]
+      value: 
+      objectReference: {fileID: 8300000, guid: affeec08f4ba8264d8940ada81b41d14, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[14]
+      value: 
+      objectReference: {fileID: 8300000, guid: e6a80c1f856319241a0095a74ef27925, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[15]
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a9271e413f98dd4ea9f08b25fe5d7f4, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[16]
+      value: 
+      objectReference: {fileID: 8300000, guid: be79177ae9b549a4db8788301f589b32, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[17]
+      value: 
+      objectReference: {fileID: 8300000, guid: b187bdb1e738c874894684f65f25b996, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[18]
+      value: 
+      objectReference: {fileID: 8300000, guid: aeb2e54cc11f0374d810ded46e9a531e, type: 3}
+    - target: {fileID: 707848805349022379, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: physicalDamageSFX.Array.data[19]
+      value: 
+      objectReference: {fileID: 8300000, guid: 80657bd3aee59be48ab2860785c95d82, type: 3}
     - target: {fileID: 6406351501059936690, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6070,6 +6154,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1031128742239737505, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
+      propertyPath: bloodSplatterVFX
+      value: 
+      objectReference: {fileID: 1620636520166436, guid: 97ad36ccf0f484e4dad745f179265f48, type: 3}
     - target: {fileID: 8352545069278042891, guid: b9c669d8c78514523a8998dc752f05a6, type: 3}
       propertyPath: m_Name
       value: WorldCharacterEffectsManager
