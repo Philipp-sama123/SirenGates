@@ -98,6 +98,8 @@ namespace KrazyKatgames
         {
             if (!character.IsOwner)
                 return;
+            if (character.isDead.Value)
+                return;
 
             //  TODO CALCULATE IF POISE IS BROKEN
             poiseIsBroken = true;

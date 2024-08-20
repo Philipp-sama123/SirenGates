@@ -128,20 +128,22 @@ namespace KrazyKatgames
             {
                 if (player.playerCombatManager.currentTarget == null)
                     return;
- 
+
                 if (player.playerCombatManager.currentTarget.isDead.Value)
                 {
                     player.playerNetworkManager.isLockedOn.Value = false;
                 }
 
-                //  ATTEMPT TO FIND NEW TARGET
+                // Find new Target
             }
 
 
             if (lockOn_Input && player.playerNetworkManager.isLockedOn.Value)
             {
                 lockOn_Input = false;
-                //  DISABLE LOCK ON
+                PlayerCamera.instance.ClearLockOnTargets();
+                player.playerNetworkManager.isLockedOn.Value = false;
+                // is already locked on --> Disable LockOn 
                 return;
             }
 
@@ -149,9 +151,16 @@ namespace KrazyKatgames
             {
                 lockOn_Input = false;
 
-                //  IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK WHILST AIMING)
+                //  ToDo: LockOn while Aiming(f.e. with a bow) return
 
                 PlayerCamera.instance.HandleLocatingLockOnTargets();
+
+                if (PlayerCamera.instance.nearestLockOnTarget != null)
+                {
+                    // set the target as current target
+                    player.playerCombatManager.SetTarget(PlayerCamera.instance.nearestLockOnTarget);
+                    player.playerNetworkManager.isLockedOn.Value = true;
+                }
             }
         }
         private void HandleRBInput()
