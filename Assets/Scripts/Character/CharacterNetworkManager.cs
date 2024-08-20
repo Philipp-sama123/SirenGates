@@ -25,6 +25,7 @@ namespace KrazyKatgames
             new NetworkVariable<float>(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Flags")]
+        public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -50,7 +51,6 @@ namespace KrazyKatgames
                 Debug.LogWarning("StartCoroutine(character.ProcessDeathEvent" + newValue);
                 StartCoroutine(character.ProcessDeathEvent());
             }
-            Debug.LogWarning("CheckHP NEW VALUE" + newValue);
             // Avoid Overhealing(!)
             if (character.IsOwner)
             {

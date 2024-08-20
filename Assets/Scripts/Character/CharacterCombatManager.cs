@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -6,16 +7,16 @@ namespace KrazyKatgames
 {
     public class CharacterCombatManager : MonoBehaviour
     {
+        [Header("Attack Target")]
+        public CharacterManager currentTarget;
+
+        [Header("Attack Type")]
         public AttackType currentAttackType;
 
-        protected virtual void Start()
-        {
-        }
-        protected virtual void Awake()
-        {
-        }
+        [Header("Lock On Transform")]
+        public Transform lockOnTransform;
 
-        protected virtual void Update()
+        protected virtual void Awake()
         {
         }
     }

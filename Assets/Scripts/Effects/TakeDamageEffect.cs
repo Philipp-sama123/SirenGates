@@ -44,6 +44,7 @@ namespace KrazyKatgames
         public override void ProcessEffect(CharacterManager character)
         {
             base.ProcessEffect(character);
+
             Debug.Log("ProcessEffect " + character.name);
             Debug.Log("character.isDead.Value " + character.isDead.Value);
 
@@ -51,6 +52,7 @@ namespace KrazyKatgames
                 return;
 
             CalculateDamage(character);
+            PlayDirectionalBasedDamageAnimation(character);
             // ToDo: Check for invulnerability
 
             // Calculate Damage
@@ -60,6 +62,7 @@ namespace KrazyKatgames
             PlayDamageVFX(character);
             // If Character is A.I. check for new target if character causing damage is present 
         }
+
         private void CalculateDamage(CharacterManager character)
         {
             if (!character.IsOwner)
@@ -67,8 +70,9 @@ namespace KrazyKatgames
 
             if (characterCausingDamage != null)
             {
-                // Check for Damage modifiers and modify base damage
+                // ToDo: Check for Damage modifiers and modify base damage
             }
+
             finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
             if (finalDamageDealt <= 0)
             {
@@ -78,15 +82,58 @@ namespace KrazyKatgames
 
             character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
         }
+
         private void PlayDamageVFX(CharacterManager character)
         {
-            //  if we have fire damage --> Play Fire Particles (same for lightning, ...) 
             character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
         }
+
         private void PlayDamageSFX(CharacterManager character)
         {
             AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
             character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+        }
+
+        private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+        {
+            if (!character.IsOwner)
+                return;
+
+            //  TODO CALCULATE IF POISE IS BROKEN
+            poiseIsBroken = true;
+
+            if (angleHitFrom >= 145 && angleHitFrom <= 180)
+            {
+                damageAnimation =
+                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+            }
+            else if (angleHitFrom <= -145 && angleHitFrom >= -180)
+            {
+                damageAnimation =
+                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
+            }
+            else if (angleHitFrom >= -45 && angleHitFrom <= 45)
+            {
+                damageAnimation =
+                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Medium_Damage);
+            }
+            else if (angleHitFrom >= -144 && angleHitFrom <= -45)
+            {
+                damageAnimation =
+                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
+            }
+            else if (angleHitFrom >= 45 && angleHitFrom <= 144)
+            {
+                damageAnimation =
+                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
+            }
+
+            //  IF POISE IS BROKEN, PLAY A STAGGERING DAMAGE ANIMATION
+            if (poiseIsBroken)
+            {
+                character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
+                character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
+            }
         }
     }
 }

@@ -21,7 +21,7 @@ MonoBehaviour:
   dexREQ: 0
   intREQ: 0
   faithREQ: 0
-  physicalDamage: 50
+  physicalDamage: 20
   magicDamage: 0
   fireDamage: 0
   holyDamage: 0

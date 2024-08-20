@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -13,19 +14,22 @@ namespace KrazyKatgames
 
         [Header("Camera Movement Input")]
         [SerializeField] Vector2 cameraInput;
-        public float cameraVerticalInput;
-        public float cameraHorizontalInput;
+        public float cameraVertical_Input;
+        public float cameraHorizontal_Input;
+
+        [Header("LockOn Input")]
+        [SerializeField] bool lockOn_Input = false;
 
         [Header("Player Movement Input")]
         [SerializeField] Vector2 movementInput;
-        public float verticalInput;
-        public float horizontalInput;
+        public float vertical_Input;
+        public float horizontal_Input;
         public float moveAmount;
 
         [Header("Player Action Input")]
-        [SerializeField] private bool dodgeInput = false;
-        [SerializeField] private bool sprintInput = false;
-        [SerializeField] private bool jumpInput = false;
+        [SerializeField] private bool dodge_Input = false;
+        [SerializeField] private bool sprint_Input = false;
+        [SerializeField] private bool jump_Input = false;
         [SerializeField] private bool RB_Input = false;
 
 
@@ -88,15 +92,17 @@ namespace KrazyKatgames
                 playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
                 playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
 
-                playerControls.PlayerActions.Dodge.performed += i => dodgeInput = true;
-                playerControls.PlayerActions.Jump.performed += i => jumpInput = true;
+                playerControls.PlayerActions.Dodge.performed += i => dodge_Input = true;
+                playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
 
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                // LockOn Input
+                playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
 
                 // Hold Input Action --> set bool to false
-                playerControls.PlayerActions.Sprint.performed += i => sprintInput = true;
+                playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
                 // Release Input Action --> set bool to false
-                playerControls.PlayerActions.Sprint.canceled += i => sprintInput = false;
+                playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
             }
 
             playerControls.Enable();
@@ -113,6 +119,40 @@ namespace KrazyKatgames
             HandleJumpInput();
             HandleSprinting();
             HandleRBInput();
+            HandleLockOnInput();
+        }
+        private void HandleLockOnInput()
+        {
+            //  CHECK FOR DEAD TARGET
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                if (player.playerCombatManager.currentTarget == null)
+                    return;
+ 
+                if (player.playerCombatManager.currentTarget.isDead.Value)
+                {
+                    player.playerNetworkManager.isLockedOn.Value = false;
+                }
+
+                //  ATTEMPT TO FIND NEW TARGET
+            }
+
+
+            if (lockOn_Input && player.playerNetworkManager.isLockedOn.Value)
+            {
+                lockOn_Input = false;
+                //  DISABLE LOCK ON
+                return;
+            }
+
+            if (lockOn_Input && !player.playerNetworkManager.isLockedOn.Value)
+            {
+                lockOn_Input = false;
+
+                //  IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK WHILST AIMING)
+
+                PlayerCamera.instance.HandleLocatingLockOnTargets();
+            }
         }
         private void HandleRBInput()
         {
@@ -123,7 +163,7 @@ namespace KrazyKatgames
 
                 player.playerNetworkManager.SetCharacterActionHand(true); // Right Weapon because --> right bumper 
                 // ToDo: if 2 handed --> 2 Handed Action 
-                
+
                 player.playerCombatManager.PerformWeaponBasedAction(
                     player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
                     player.playerInventoryManager.currentRightHandWeapon
@@ -132,16 +172,16 @@ namespace KrazyKatgames
         }
         private void HandleJumpInput()
         {
-            if (jumpInput)
+            if (jump_Input)
             {
-                jumpInput = false;
+                jump_Input = false;
                 // Attempt To Perform Jump
                 player.playerLocomotionManager.AttemptToPerformJump();
             }
         }
         private void HandleSprinting()
         {
-            if (sprintInput)
+            if (sprint_Input)
             {
                 // Handle Sprinting
                 player.playerLocomotionManager.HandleSprinting();
@@ -172,11 +212,11 @@ namespace KrazyKatgames
         }
         private void HandleMovementInput()
         {
-            verticalInput = movementInput.y;
-            horizontalInput = movementInput.x;
+            vertical_Input = movementInput.y;
+            horizontal_Input = movementInput.x;
 
             //  RETURNS THE ABSOLUTE NUMBER, (Meaning number without the negative sign, so its always positive)
-            moveAmount = Mathf.Clamp01(Mathf.Abs(verticalInput) + Mathf.Abs(horizontalInput));
+            moveAmount = Mathf.Clamp01(Mathf.Abs(vertical_Input) + Mathf.Abs(horizontal_Input));
 
             //  WE CLAMP THE VALUES, SO THEY ARE 0, 0.5 OR 1 (OPTIONAL)
             if (moveAmount <= 0.5 && moveAmount > 0)
@@ -201,14 +241,14 @@ namespace KrazyKatgames
         }
         private void HandleCameraMovementInput()
         {
-            cameraVerticalInput = cameraInput.y;
-            cameraHorizontalInput = cameraInput.x;
+            cameraVertical_Input = cameraInput.y;
+            cameraHorizontal_Input = cameraInput.x;
         }
         private void HandleDodgeInput()
         {
-            if (dodgeInput)
+            if (dodge_Input)
             {
-                dodgeInput = false;
+                dodge_Input = false;
                 // Dont Dodge While Menu is open
                 // Perform Dodge
                 player.playerLocomotionManager.AttemptToPerformDodge();
