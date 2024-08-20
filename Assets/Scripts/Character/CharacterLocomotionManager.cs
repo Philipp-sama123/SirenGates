@@ -13,13 +13,15 @@ namespace KrazyKatgames
         [SerializeField] float groundCheckSphereRadius = 1;
         [SerializeField] protected Vector3 yVelocity; // THE FORCE AT WHICH OUR CHARACTER IS PULLED UP OR DOWN (Jumping or Falling)
         [SerializeField] float groundedYVelocity = -20f; // THE FORCE AT WHICH OUR CHARACTER IS STICKING TO THE GROUND WHILST THEY ARE GROUNDED
-        [SerializeField]
-        float fallStartYVelocity = -5; // THE FORCE AT WHICH OUR CHARACTER BEGINS TO FALL WHEN THEY BECOME UNGROUNDED (RISES AS THEY FALL LONGER)
+        [SerializeField] float fallStartYVelocity = -5;
+        // THE FORCE AT WHICH OUR CHARACTER BEGINS TO FALL WHEN THEY BECOME UNGROUNDED (RISES AS THEY FALL LONGER)
         protected bool fallingVelocityHAsBeenSet = false;
         [SerializeField] protected float inAirTimer = 0;
         public FootIK footIk;
 
-
+        [Header("Flags")]
+        public bool isRolling = false; 
+        
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();

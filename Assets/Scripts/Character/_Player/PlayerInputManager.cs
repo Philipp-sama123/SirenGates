@@ -1,37 +1,43 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
     public class PlayerInputManager : MonoBehaviour
     {
+        //  INPUT CONTROLS
+        private PlayerControls playerControls;
+
+        //  SINGLETON
         public static PlayerInputManager instance;
 
+        //  LOCAL PLAYER
         public PlayerManager player;
 
-        PlayerControls playerControls;
-
-        [Header("Camera Movement Input")]
-        [SerializeField] Vector2 cameraInput;
+        [Header("CAMERA MOVEMENT INPUT")]
+        [SerializeField] Vector2 camera_Input;
         public float cameraVertical_Input;
         public float cameraHorizontal_Input;
 
-        [Header("LockOn Input")]
-        [SerializeField] bool lockOn_Input = false;
+        [Header("LOCK ON INPUT")]
+        [SerializeField] bool lockOn_Input;
+        [SerializeField] bool lockOn_Left_Input;
+        [SerializeField] bool lockOn_Right_Input;
+        private Coroutine lockOnCoroutine;
 
-        [Header("Player Movement Input")]
+        [Header("PLAYER MOVEMENT INPUT")]
         [SerializeField] Vector2 movementInput;
         public float vertical_Input;
         public float horizontal_Input;
         public float moveAmount;
 
-        [Header("Player Action Input")]
-        [SerializeField] private bool dodge_Input = false;
-        [SerializeField] private bool sprint_Input = false;
-        [SerializeField] private bool jump_Input = false;
-        [SerializeField] private bool RB_Input = false;
-
+        [Header("PLAYER ACTION INPUT")]
+        [SerializeField] bool dodge_Input = false;
+        [SerializeField] bool sprint_Input = false;
+        [SerializeField] bool jump_Input = false;
+        [SerializeField] bool RB_Input = false;
 
         private void Awake()
         {
@@ -66,6 +72,7 @@ namespace KrazyKatgames
             if (newScene.buildIndex == WorldSaveGameManager.instance.GetWorldSceneIndex())
             {
                 instance.enabled = true;
+
                 if (playerControls != null)
                 {
                     playerControls.Enable();
@@ -76,6 +83,7 @@ namespace KrazyKatgames
             else
             {
                 instance.enabled = false;
+
                 if (playerControls != null)
                 {
                     playerControls.Disable();
@@ -90,126 +98,37 @@ namespace KrazyKatgames
                 playerControls = new PlayerControls();
 
                 playerControls.PlayerMovement.Movement.performed += i => movementInput = i.ReadValue<Vector2>();
-                playerControls.PlayerCamera.Movement.performed += i => cameraInput = i.ReadValue<Vector2>();
-
+                playerControls.PlayerCamera.Movement.performed += i => camera_Input = i.ReadValue<Vector2>();
                 playerControls.PlayerActions.Dodge.performed += i => dodge_Input = true;
                 playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
-
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
-                // LockOn Input
-                playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
 
-                // Hold Input Action --> set bool to false
+                //  LOCK ON
+                playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
+                playerControls.PlayerActions.LockOnLeft.performed += i => lockOn_Left_Input = true;
+                playerControls.PlayerActions.LockOnRight.performed += i => lockOn_Right_Input = true;
+
+                //  HOLDING THE INPUT, SETS THE BOOL TO TRUE
                 playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
-                // Release Input Action --> set bool to false
+                //  RELEASING THE INPUT, SETS THE BOOL TO FALSE
                 playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
             }
 
             playerControls.Enable();
         }
-        private void Update()
-        {
-            HandleAllInput();
-        }
-        private void HandleAllInput()
-        {
-            HandleMovementInput();
-            HandleCameraMovementInput();
-            HandleDodgeInput();
-            HandleJumpInput();
-            HandleSprinting();
-            HandleRBInput();
-            HandleLockOnInput();
-        }
-        private void HandleLockOnInput()
-        {
-            //  CHECK FOR DEAD TARGET
-            if (player.playerNetworkManager.isLockedOn.Value)
-            {
-                if (player.playerCombatManager.currentTarget == null)
-                    return;
 
-                if (player.playerCombatManager.currentTarget.isDead.Value)
-                {
-                    player.playerNetworkManager.isLockedOn.Value = false;
-                }
-
-                // Find new Target
-            }
-
-
-            if (lockOn_Input && player.playerNetworkManager.isLockedOn.Value)
-            {
-                lockOn_Input = false;
-                PlayerCamera.instance.ClearLockOnTargets();
-                player.playerNetworkManager.isLockedOn.Value = false;
-                // is already locked on --> Disable LockOn 
-                return;
-            }
-
-            if (lockOn_Input && !player.playerNetworkManager.isLockedOn.Value)
-            {
-                lockOn_Input = false;
-
-                //  ToDo: LockOn while Aiming(f.e. with a bow) return
-
-                PlayerCamera.instance.HandleLocatingLockOnTargets();
-
-                if (PlayerCamera.instance.nearestLockOnTarget != null)
-                {
-                    // set the target as current target
-                    player.playerCombatManager.SetTarget(PlayerCamera.instance.nearestLockOnTarget);
-                    player.playerNetworkManager.isLockedOn.Value = true;
-                }
-            }
-        }
-        private void HandleRBInput()
-        {
-            if (RB_Input)
-            {
-                RB_Input = false;
-                //ToDo: If UI Window open return (!)
-
-                player.playerNetworkManager.SetCharacterActionHand(true); // Right Weapon because --> right bumper 
-                // ToDo: if 2 handed --> 2 Handed Action 
-
-                player.playerCombatManager.PerformWeaponBasedAction(
-                    player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
-                    player.playerInventoryManager.currentRightHandWeapon
-                );
-            }
-        }
-        private void HandleJumpInput()
-        {
-            if (jump_Input)
-            {
-                jump_Input = false;
-                // Attempt To Perform Jump
-                player.playerLocomotionManager.AttemptToPerformJump();
-            }
-        }
-        private void HandleSprinting()
-        {
-            if (sprint_Input)
-            {
-                // Handle Sprinting
-                player.playerLocomotionManager.HandleSprinting();
-            }
-            else
-            {
-                player.playerNetworkManager.isSprinting.Value = false;
-            }
-        }
         private void OnDestroy()
         {
             //  IF WE DESTROY THIS OBJECT, UNSUBSCRIBE FROM THIS EVENT
             SceneManager.activeSceneChanged -= OnSceneChange;
         }
-        private void OnApplicationFocus(bool hasFocus)
+
+        //  IF WE MINIMIZE OR LOWER THE WINDOW, STOP ADJUSTING INPUTS
+        private void OnApplicationFocus(bool focus)
         {
             if (enabled)
             {
-                if (hasFocus)
+                if (focus)
                 {
                     playerControls.Enable();
                 }
@@ -219,7 +138,109 @@ namespace KrazyKatgames
                 }
             }
         }
-        private void HandleMovementInput()
+
+        private void Update()
+        {
+            HandleAllInputs();
+        }
+
+        private void HandleAllInputs()
+        {
+            HandleLockOnInput();
+            HandleLockOnSwitchTargetInput();
+            HandlePlayerMovementInput();
+            HandleCameraMovementInput();
+            HandleDodgeInput();
+            HandleSprintInput();
+            HandleJumpInput();
+            HandleRBInput();
+        }
+
+        //  LOCK ON
+        private void HandleLockOnInput()
+        {
+            //  CHECK FOR DEAD TARGET
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                if (player.playerCombatManager.currentTarget == null)
+                    return;
+ 
+                if (player.playerCombatManager.currentTarget.isDead.Value)
+                {
+                    player.playerNetworkManager.isLockedOn.Value = false;
+                }
+
+                //  ATTEMPT TO FIND NEW TARGET
+
+                //  THIS ASSURES US THAT THE COROUTINE NEVER RUNS MUILTPLE TIMES OVERLAPPING ITSELF
+                if (lockOnCoroutine != null)
+                    StopCoroutine(lockOnCoroutine);
+
+                lockOnCoroutine = StartCoroutine(PlayerCamera.instance.WaitThenFindNewTarget());
+            }
+
+
+            if (lockOn_Input && player.playerNetworkManager.isLockedOn.Value)
+            {
+                lockOn_Input = false;
+                PlayerCamera.instance.ClearLockOnTargets();
+                player.playerNetworkManager.isLockedOn.Value = false;
+                //  DISABLE LOCK ON
+                return;
+            }
+
+            if (lockOn_Input && !player.playerNetworkManager.isLockedOn.Value)
+            {
+                lockOn_Input = false;
+
+                //  IF WE ARE AIMING USING RANGED WEAPONS RETURN (DO NOT ALLOW LOCK WHILST AIMING)
+
+                PlayerCamera.instance.HandleLocatingLockOnTargets();
+
+                if (PlayerCamera.instance.nearestLockOnTarget != null)
+                {
+                    player.playerCombatManager.SetTarget(PlayerCamera.instance.nearestLockOnTarget);
+                    player.playerNetworkManager.isLockedOn.Value = true;
+                }
+            }
+        }
+
+        private void HandleLockOnSwitchTargetInput()
+        {
+            if (lockOn_Left_Input)
+            {
+                lockOn_Left_Input = false;
+
+                if (player.playerNetworkManager.isLockedOn.Value)
+                {
+                    PlayerCamera.instance.HandleLocatingLockOnTargets();
+
+                    if (PlayerCamera.instance.leftLockOnTarget != null)
+                    {
+                        player.playerCombatManager.SetTarget(PlayerCamera.instance.leftLockOnTarget);
+                    }
+                }
+            }
+
+            if (lockOn_Right_Input)
+            {
+                lockOn_Right_Input = false;
+
+                if (player.playerNetworkManager.isLockedOn.Value)
+                {
+                    PlayerCamera.instance.HandleLocatingLockOnTargets();
+
+                    if (PlayerCamera.instance.rightLockOnTarget != null)
+                    {
+                        player.playerCombatManager.SetTarget(PlayerCamera.instance.rightLockOnTarget);
+                    }
+                }
+            }
+        }
+
+        //  MOVEMENT
+
+        private void HandlePlayerMovementInput()
         {
             vertical_Input = movementInput.y;
             horizontal_Input = movementInput.x;
@@ -244,23 +265,77 @@ namespace KrazyKatgames
                 return;
 
             //  IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
-            player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+
+            if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(0, moveAmount, player.playerNetworkManager.isSprinting.Value);
+            }
+            else
+            {
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontal_Input, vertical_Input, player.playerNetworkManager.isSprinting.Value);
+            }
 
             //  IF WE ARE LOCKED ON PASS THE HORIZONTAL MOVEMENT AS WELL
         }
+
         private void HandleCameraMovementInput()
         {
-            cameraVertical_Input = cameraInput.y;
-            cameraHorizontal_Input = cameraInput.x;
+            cameraVertical_Input = camera_Input.y;
+            cameraHorizontal_Input = camera_Input.x;
         }
+
+        //  ACTION
+
         private void HandleDodgeInput()
         {
             if (dodge_Input)
             {
                 dodge_Input = false;
-                // Dont Dodge While Menu is open
-                // Perform Dodge
+
+                //  FUTURE NOTE: RETURN (DO NOTHING) IF MENU OR UI WINDOW IS OPEN
+
                 player.playerLocomotionManager.AttemptToPerformDodge();
+            }
+        }
+
+        private void HandleSprintInput()
+        {
+            if (sprint_Input)
+            {
+                player.playerLocomotionManager.HandleSprinting();
+            }
+            else
+            {
+                player.playerNetworkManager.isSprinting.Value = false;
+            }
+        }
+
+        private void HandleJumpInput()
+        {
+            if (jump_Input)
+            {
+                jump_Input = false;
+
+                //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
+
+                //  ATTEMPT TO PERFORM JUMP
+                player.playerLocomotionManager.AttemptToPerformJump();
+            }
+        }
+
+        private void HandleRBInput()
+        {
+            if (RB_Input)
+            {
+                RB_Input = false;
+
+                //  TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+                player.playerNetworkManager.SetCharacterActionHand(true);
+
+                //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action, player.playerInventoryManager.currentRightHandWeapon);
             }
         }
     }

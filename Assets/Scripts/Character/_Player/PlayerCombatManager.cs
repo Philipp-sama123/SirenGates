@@ -32,6 +32,15 @@ namespace KrazyKatgames
                 );
             }
         }
+        
+        public override void SetTarget(CharacterManager newTarget)
+        {
+            base.SetTarget(newTarget);
+            if (IsOwner)
+            {
+                PlayerCamera.instance.SetLockCameraHeight();
+            }
+        }
         /**
          * Animation Event
          */
