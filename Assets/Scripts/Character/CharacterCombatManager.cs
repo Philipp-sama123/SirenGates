@@ -1,6 +1,3 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -12,7 +9,7 @@ namespace KrazyKatgames
 
         [Header("Last Attack Animation Performed")]
         public string lastAttackAnimationPerformed;
-        
+
         [Header("Attack Target")]
         public CharacterManager currentTarget;
 

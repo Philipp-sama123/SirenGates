@@ -1,4 +1,3 @@
-using KrazyKatgames;
 using UnityEngine;
 
 namespace KrazyKatgames

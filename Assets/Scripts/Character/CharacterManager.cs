@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using HoaxGames;
@@ -48,7 +47,7 @@ namespace KrazyKatgames
         {
             IgnoreMyOwnColliders();
         }
-        
+
         protected virtual void Update()
         {
             animator.SetBool("IsGrounded", isGrounded);

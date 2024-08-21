@@ -237,7 +237,11 @@ namespace KrazyKatgames
                 leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
             }
         }
-
+        
+        #region Animation Events
+        /**
+         * Animation Events
+         */
         public void OpenDamageCollider()
         {
             if (player.playerNetworkManager.isUsingRightHand.Value)
@@ -261,5 +265,6 @@ namespace KrazyKatgames
                 leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
             }
         }
+        #endregion
     }
 }

@@ -1,7 +1,6 @@
 using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
 using TMPro;
+using UnityEngine;
 
 namespace KrazyKatgames
 {
@@ -19,7 +18,7 @@ namespace KrazyKatgames
 
             youDiedPopUpGameObject.SetActive(true);
             youDiedPopUpBackgroundText.characterSpacing = 0;
-            
+
             StartCoroutine(StretchPopUpTextOverTime(youDiedPopUpBackgroundText, 8, 19));
             StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5));
             StartCoroutine(WaitThenFadeOutPopUpOverTime(youDiedPopUpCanvasGroup, 2, 5));
