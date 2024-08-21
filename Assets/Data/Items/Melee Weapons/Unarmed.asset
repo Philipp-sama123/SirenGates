@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Unarmed
   m_EditorClassIdentifier: 
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 207952239374147899f3f694dd4643ec, type: 3}
   itemDescription: 
   itemID: 0
   weaponModel: {fileID: 6397344720308477397, guid: b87356b08151043ad913f22d2acad671, type: 3}
@@ -28,6 +28,9 @@ MonoBehaviour:
   lightningDamage: 0
   poiseDamage: 5
   light_attack_01_modifier: 1.1
+  heavy_Attack_01_Modifier: 0
+  charge_Attack_01_Modifier: 0
   baseStaminaCost: 5
   lightAttackStaminaCostMultiplier: 0.9
   oh_RB_Action: {fileID: 11400000, guid: 82ac2184b24e24c9e811e3f225315065, type: 2}
+  oh_RT_Action: {fileID: 0}

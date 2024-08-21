@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Sword_Broad_Sword
   m_EditorClassIdentifier: 
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 9e6f65e6cb1f743e9886d87aec9b1c9e, type: 3}
   itemDescription: 
   itemID: 2
   weaponModel: {fileID: 6397344720308477397, guid: 7531ce1a1db4c4df0824c27ef0c958fc, type: 3}
@@ -28,6 +28,9 @@ MonoBehaviour:
   lightningDamage: 0
   poiseDamage: 0
   light_attack_01_modifier: 1
+  heavy_Attack_01_Modifier: 1.5
+  charge_Attack_01_Modifier: 3
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 1
   oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
+  oh_RT_Action: {fileID: 0}

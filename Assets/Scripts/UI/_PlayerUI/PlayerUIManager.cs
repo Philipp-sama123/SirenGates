@@ -7,11 +7,10 @@ namespace KrazyKatgames
     public class PlayerUIManager : MonoBehaviour
     {
         public static PlayerUIManager instance;
-        [FormerlySerializedAs("playerUiHudManager")]
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
 
-        [Header("NETWORK JOIN")]
+        [Header("Network Join")]
         [SerializeField] bool startGameAsClient;
 
         private void Awake()

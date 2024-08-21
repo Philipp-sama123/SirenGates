@@ -10,9 +10,6 @@ namespace KrazyKatgames
     {
         [Header("Debug Menu")]
         [SerializeField] bool respawnCharacter = false;
-        [SerializeField] bool switchRightWeapon = false;
-        [SerializeField] bool switchLeftWeapon = false;
-
 
         [HideInInspector] public PlayerAnimatorManager playerAnimatorManager;
         [HideInInspector] public PlayerLocomotionManager playerLocomotionManager;
@@ -193,25 +190,6 @@ namespace KrazyKatgames
                 playerNetworkManager.OnLockOnTargetIDChange(0, playerNetworkManager.currentTargetNetworkObjectID.Value);
             }
         }
-
-        private void DebugMenu()
-        {
-            if (respawnCharacter)
-            {
-                respawnCharacter = false;
-                ReviveCharacter();
-            }
-            if (switchRightWeapon)
-            {
-                switchRightWeapon = false;
-                playerEquipmentManager.SwitchRightWeapon();
-            }
-            if (switchLeftWeapon)
-            {
-                switchLeftWeapon = false;
-                playerEquipmentManager.SwitchLeftWeapon();
-            }
-        }
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
@@ -238,6 +216,15 @@ namespace KrazyKatgames
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
             // Flags
             playerNetworkManager.isChargingAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+        }
+
+        private void DebugMenu()
+        {
+            if (respawnCharacter)
+            {
+                respawnCharacter = false;
+                ReviveCharacter();
+            }
         }
     }
 }
