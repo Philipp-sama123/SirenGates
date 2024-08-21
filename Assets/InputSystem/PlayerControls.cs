@@ -318,6 +318,24 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""RT"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b52f2b8-0a14-4225-8a46-ea6372730e68"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold_RT"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""1c6ebadb-be07-44df-ae94-9f3ef11cb788"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold(pressPoint=0.1)"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""LockOn"",
                     ""type"": ""Button"",
                     ""id"": ""b9190692-c3c5-46a2-904e-c6e63b67d5a4"",
@@ -499,6 +517,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LockOnRight"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1f5e8204-b331-4577-9b8a-533aeb455a41"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""55f1cd58-543c-4743-99bc-40fa87dbd61c"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5b45ad8a-f068-4637-b963-46b17412ba62"",
+                    ""path"": ""<Gamepad>/rightTrigger"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3aca08c7-e975-49a2-8e46-6efdb3ba1af4"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_RT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -556,6 +618,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_RT = m_PlayerActions.FindAction("RT", throwIfNotFound: true);
+        m_PlayerActions_Hold_RT = m_PlayerActions.FindAction("Hold_RT", throwIfNotFound: true);
         m_PlayerActions_LockOn = m_PlayerActions.FindAction("LockOn", throwIfNotFound: true);
         m_PlayerActions_LockOnLeft = m_PlayerActions.FindAction("LockOnLeft", throwIfNotFound: true);
         m_PlayerActions_LockOnRight = m_PlayerActions.FindAction("LockOnRight", throwIfNotFound: true);
@@ -719,6 +783,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_RT;
+    private readonly InputAction m_PlayerActions_Hold_RT;
     private readonly InputAction m_PlayerActions_LockOn;
     private readonly InputAction m_PlayerActions_LockOnLeft;
     private readonly InputAction m_PlayerActions_LockOnRight;
@@ -730,6 +796,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @RT => m_Wrapper.m_PlayerActions_RT;
+        public InputAction @Hold_RT => m_Wrapper.m_PlayerActions_Hold_RT;
         public InputAction @LockOn => m_Wrapper.m_PlayerActions_LockOn;
         public InputAction @LockOnLeft => m_Wrapper.m_PlayerActions_LockOnLeft;
         public InputAction @LockOnRight => m_Wrapper.m_PlayerActions_LockOnRight;
@@ -754,6 +822,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @RT.started += instance.OnRT;
+            @RT.performed += instance.OnRT;
+            @RT.canceled += instance.OnRT;
+            @Hold_RT.started += instance.OnHold_RT;
+            @Hold_RT.performed += instance.OnHold_RT;
+            @Hold_RT.canceled += instance.OnHold_RT;
             @LockOn.started += instance.OnLockOn;
             @LockOn.performed += instance.OnLockOn;
             @LockOn.canceled += instance.OnLockOn;
@@ -779,6 +853,12 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @RT.started -= instance.OnRT;
+            @RT.performed -= instance.OnRT;
+            @RT.canceled -= instance.OnRT;
+            @Hold_RT.started -= instance.OnHold_RT;
+            @Hold_RT.performed -= instance.OnHold_RT;
+            @Hold_RT.canceled -= instance.OnHold_RT;
             @LockOn.started -= instance.OnLockOn;
             @LockOn.performed -= instance.OnLockOn;
             @LockOn.canceled -= instance.OnLockOn;
@@ -865,6 +945,8 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
+        void OnRT(InputAction.CallbackContext context);
+        void OnHold_RT(InputAction.CallbackContext context);
         void OnLockOn(InputAction.CallbackContext context);
         void OnLockOnLeft(InputAction.CallbackContext context);
         void OnLockOnRight(InputAction.CallbackContext context);

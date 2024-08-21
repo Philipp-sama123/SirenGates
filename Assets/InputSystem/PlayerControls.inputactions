@@ -296,6 +296,24 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "RT",
+                    "type": "Button",
+                    "id": "1b52f2b8-0a14-4225-8a46-ea6372730e68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold_RT",
+                    "type": "PassThrough",
+                    "id": "1c6ebadb-be07-44df-ae94-9f3ef11cb788",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold(pressPoint=0.1)",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "LockOn",
                     "type": "Button",
                     "id": "b9190692-c3c5-46a2-904e-c6e63b67d5a4",
@@ -475,6 +493,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "LockOnRight",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "1f5e8204-b331-4577-9b8a-533aeb455a41",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "55f1cd58-543c-4743-99bc-40fa87dbd61c",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5b45ad8a-f068-4637-b963-46b17412ba62",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3aca08c7-e975-49a2-8e46-6efdb3ba1af4",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

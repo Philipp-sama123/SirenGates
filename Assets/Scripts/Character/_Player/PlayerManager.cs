@@ -95,6 +95,9 @@ namespace KrazyKatgames
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
 
+            // Flags
+            playerNetworkManager.isChargingAttack.OnValueChanged += playerNetworkManager.OnIsChargingAttackChanged;
+
             // on connecting --> reload character data to this new instantiated character
             // not run if server --> bc the host should already have loaded this 
             if (IsOwner && !IsServer)
@@ -208,6 +211,33 @@ namespace KrazyKatgames
                 switchLeftWeapon = false;
                 playerEquipmentManager.SwitchLeftWeapon();
             }
+        }
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
+            if (IsOwner)
+            {
+                playerNetworkManager.vitality.OnValueChanged -= playerNetworkManager.SetNewMaxHealthValue;
+                playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaValue;
+
+                playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+                playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+
+                playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
+            }
+            // Stats
+            playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+            // LockOn
+            playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
+            playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
+            // Equipment
+            playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+            playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+            playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+            // Flags
+            playerNetworkManager.isChargingAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
         }
     }
 }

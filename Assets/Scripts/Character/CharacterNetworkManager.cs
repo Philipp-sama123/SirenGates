@@ -31,6 +31,7 @@ namespace KrazyKatgames
         public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isChargingAttack = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Resources")]
         public NetworkVariable<float> currentStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -77,6 +78,10 @@ namespace KrazyKatgames
             {
                 character.characterCombatManager.currentTarget = null;
             }
+        }
+        public void OnIsChargingAttackChanged(bool oldStatus, bool newStatus)
+        {
+            character.animator.SetBool("IsChargingAttack", isChargingAttack.Value);
         }
         #region Action Animations
         // Is a function called from a client, to the Server

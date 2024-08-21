@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -16,28 +14,35 @@ namespace KrazyKatgames
         //  LOCAL PLAYER
         public PlayerManager player;
 
-        [Header("CAMERA MOVEMENT INPUT")]
+        [Header("Camera Movement Inputs")]
         [SerializeField] Vector2 camera_Input;
         public float cameraVertical_Input;
         public float cameraHorizontal_Input;
 
-        [Header("LOCK ON INPUT")]
+        [Header("LockOn Inputs")]
         [SerializeField] bool lockOn_Input;
         [SerializeField] bool lockOn_Left_Input;
         [SerializeField] bool lockOn_Right_Input;
         private Coroutine lockOnCoroutine;
 
-        [Header("PLAYER MOVEMENT INPUT")]
+        [Header("Movement Inputs")]
         [SerializeField] Vector2 movementInput;
         public float vertical_Input;
         public float horizontal_Input;
         public float moveAmount;
 
-        [Header("PLAYER ACTION INPUT")]
+        [Header("Action Inputs")]
         [SerializeField] bool dodge_Input = false;
         [SerializeField] bool sprint_Input = false;
         [SerializeField] bool jump_Input = false;
+
+        [Header("Bumper Inputs")]
         [SerializeField] bool RB_Input = false;
+
+        [Header("Trigger Inputs")]
+        [SerializeField]
+        private bool RT_Input = false;
+        private bool Hold_RT_Input = false;
 
         private void Awake()
         {
@@ -101,7 +106,11 @@ namespace KrazyKatgames
                 playerControls.PlayerCamera.Movement.performed += i => camera_Input = i.ReadValue<Vector2>();
                 playerControls.PlayerActions.Dodge.performed += i => dodge_Input = true;
                 playerControls.PlayerActions.Jump.performed += i => jump_Input = true;
+
+                // Bumpers
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+                // Triggers
+                playerControls.PlayerActions.RT.performed += i => RT_Input = true;
 
                 //  LOCK ON
                 playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
@@ -110,8 +119,10 @@ namespace KrazyKatgames
 
                 //  HOLDING THE INPUT, SETS THE BOOL TO TRUE
                 playerControls.PlayerActions.Sprint.performed += i => sprint_Input = true;
+                playerControls.PlayerActions.Hold_RT.performed += i => Hold_RT_Input = true;
                 //  RELEASING THE INPUT, SETS THE BOOL TO FALSE
                 playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
+                playerControls.PlayerActions.Hold_RT.canceled += i => Hold_RT_Input = false;
             }
 
             playerControls.Enable();
@@ -154,6 +165,8 @@ namespace KrazyKatgames
             HandleSprintInput();
             HandleJumpInput();
             HandleRBInput();
+            HandleRTInput();
+            HandleChargeRTInput();
         }
 
         //  LOCK ON
@@ -164,7 +177,7 @@ namespace KrazyKatgames
             {
                 if (player.playerCombatManager.currentTarget == null)
                     return;
- 
+
                 if (player.playerCombatManager.currentTarget.isDead.Value)
                 {
                     player.playerNetworkManager.isLockedOn.Value = false;
@@ -272,7 +285,8 @@ namespace KrazyKatgames
             }
             else
             {
-                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontal_Input, vertical_Input, player.playerNetworkManager.isSprinting.Value);
+                player.playerAnimatorManager.UpdateAnimatorMovementParameters(horizontal_Input, vertical_Input,
+                    player.playerNetworkManager.isSprinting.Value);
             }
 
             //  IF WE ARE LOCKED ON PASS THE HORIZONTAL MOVEMENT AS WELL
@@ -335,7 +349,34 @@ namespace KrazyKatgames
 
                 //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
 
-                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action, player.playerInventoryManager.currentRightHandWeapon);
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RB_Action,
+                    player.playerInventoryManager.currentRightHandWeapon);
+            }
+        }
+        private void HandleRTInput()
+        {
+            if (RT_Input)
+            {
+                RT_Input = false;
+
+                //  TODO: IF WE HAVE A UI WINDOW OPEN, RETURN AND DO NOTHING
+
+                player.playerNetworkManager.SetCharacterActionHand(true);
+
+                //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
+
+                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_RT_Action,
+                    player.playerInventoryManager.currentRightHandWeapon);
+            }
+        }
+        private void HandleChargeRTInput()
+        {
+            if (player.isPerformingAction)
+            {
+                if (player.playerNetworkManager.isUsingRightHand.Value)
+                {
+                    player.playerNetworkManager.isChargingAttack.Value = Hold_RT_Input;
+                }
             }
         }
     }

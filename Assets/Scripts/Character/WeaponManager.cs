@@ -18,7 +18,10 @@ namespace KrazyKatgames
             meleeDamageCollider.fireDamage = weapon.fireDamage;
             meleeDamageCollider.holyDamage = weapon.holyDamage;
             meleeDamageCollider.lightningDamage = weapon.lightningDamage;
+            
             meleeDamageCollider.light_Attack_01_Modifier = weapon.light_attack_01_modifier;
+            meleeDamageCollider.heavy_Attack_01_Modifier = weapon.heavy_Attack_01_Modifier;
+            meleeDamageCollider.charge_Attack_01_Modifier = weapon.charge_Attack_01_Modifier;
         }
     }
 }

@@ -31,3 +31,4 @@ MonoBehaviour:
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 1
   oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}

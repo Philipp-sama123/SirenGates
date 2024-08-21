@@ -22,18 +22,17 @@ namespace KrazyKatgames
         public int holyDamage = 0;
         public int lightningDamage = 0;
 
-        //  WEAPON GUARD ABSORPTIONS (BLOCKING POWER)
+        //  Weapon Guard Absorption (Blocking power)
 
         [Header("Weapon Poise")]
         public float poiseDamage = 10;
-        //  OFFENSIVE  POISE BONUS WHEN ATTACKING
 
         [Header("Attack Modifiers")]
         public float light_attack_01_modifier = 1.1f;
+        public float heavy_Attack_01_Modifier = 1.5f;
+        public float charge_Attack_01_Modifier = 3f;
 
-        //  LIGHT ATTACK MODIFIER
-        //  HEAVY ATTACK MODIFIER
-        //  CRITICAL DAMAGE MODIFIER ECT
+        //  Crit Damage Modifier, etc
 
         [Header("Stamina Costs")]
         public int baseStaminaCost = 20;
@@ -46,8 +45,9 @@ namespace KrazyKatgames
         //  ITEM BASED ACTIONS (RB, RT, LB, LT)
         [Header("Actions")]
         public WeaponItemAction oh_RB_Action; // One Handed Right Bumper Action // ToDo: OH Left Mouse Button (?)
+        public WeaponItemAction oh_RT_Action; // One Handed Right Trigger Action // ToDo: OH Right Mouse Button (?)
         //  ASH OF WAR
 
-        //  BLOCKING SOUNDS
+        //  ToDo: blocking sfx
     }
 }
