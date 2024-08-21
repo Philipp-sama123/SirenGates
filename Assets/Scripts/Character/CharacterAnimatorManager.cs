@@ -81,7 +81,7 @@ namespace KrazyKatgames
         {
             float snappedHorizontal;
             float snappedVertical;
-
+            #region Snapping
             //This if chain will round the horizontal movement to -1, -0.5, 0, 0.5 or 1
 
             if (horizontalMovement > 0 && horizontalMovement <= 0.5f)
@@ -131,6 +131,7 @@ namespace KrazyKatgames
             {
                 snappedVertical = 2;
             }
+            #endregion
 
             character.animator.SetFloat(horizontal, snappedHorizontal, 0.1f, Time.deltaTime);
             character.animator.SetFloat(vertical, snappedVertical, 0.1f, Time.deltaTime);
@@ -165,6 +166,7 @@ namespace KrazyKatgames
             bool canMove = false)
         {
             character.characterCombatManager.currentAttackType = attackType;
+            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
             //ToDo's: 
             // Keep track of last performed for Combos
             // Keep track of current Attack Type
@@ -187,6 +189,14 @@ namespace KrazyKatgames
             Vector3 velocity = character.animator.deltaPosition;
             character.characterController.Move(velocity);
             character.transform.rotation *= character.animator.deltaRotation;
+        }
+
+        public virtual void DisableCanDoCombo()
+        {
+        }
+
+        public virtual void EnableCanDoCombo()
+        {
         }
     }
 }

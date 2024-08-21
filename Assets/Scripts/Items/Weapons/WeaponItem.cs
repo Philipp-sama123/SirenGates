@@ -29,8 +29,17 @@ namespace KrazyKatgames
 
         [Header("Attack Modifiers")]
         public float light_attack_01_modifier = 1.1f;
+        public float light_attack_02_modifier = 1.2f;
+        public float light_attack_03_modifier = 1.3f;
+        public float light_attack_04_modifier = 1.5f;
+
         public float heavy_Attack_01_Modifier = 1.5f;
+        public float heavy_Attack_02_Modifier = 2f;
+        public float heavy_Attack_03_Modifier = 2.5f;
+        public float heavy_Attack_04_Modifier = 5f;
+
         public float charge_Attack_01_Modifier = 3f;
+        public float charge_Attack_02_Modifier = 5f;
 
         //  Crit Damage Modifier, etc
 

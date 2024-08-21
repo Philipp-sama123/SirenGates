@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f450321b73d2e403f8e4e55362ff91c3
+guid: e0e2f9a9e295240eb9fe9a0a490d5062
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -455,7 +455,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: Main_Light_Attack_01
+    second: Main_Light_Attack_02
   - first:
       95: 9500000
     second: //RootNode
@@ -481,7 +481,7 @@ ModelImporter:
     animationImportWarnings: "\nClip 'Take 001' has import animation warnings that
       might lower retargeting quality:\nNote: Activate translation DOF on avatar
       to improve retargeting quality.\n\t'spine_01' has translation animation that
-      will be discarded.\n"
+      will be discarded.\n\t'spine_02' has translation animation that will be discarded.\n"
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
@@ -495,11 +495,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Main_Light_Attack_01
+      name: Main_Light_Attack_02
       takeName: Take 001
       internalID: 0
-      firstFrame: 0
-      lastFrame: 220
+      firstFrame: 460
+      lastFrame: 656
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -519,28 +519,28 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.11126001
+      - time: 0.06561433
         functionName: DrainStaminaBasedOnAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.20467836
+      - time: 0.08233651
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2748538
+      - time: 0.23805767
         functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35209104
+      - time: 0.29169613
         functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}

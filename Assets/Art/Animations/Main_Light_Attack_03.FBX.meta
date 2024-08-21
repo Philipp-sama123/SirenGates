@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: f450321b73d2e403f8e4e55362ff91c3
+guid: cd397cfc26b17441aa2f996bacdfc530
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable:
@@ -455,7 +455,7 @@ ModelImporter:
     second: root
   - first:
       74: 7400000
-    second: Main_Light_Attack_01
+    second: Main_Light_Attack_03
   - first:
       95: 9500000
     second: //RootNode
@@ -495,11 +495,11 @@ ModelImporter:
     extraUserProperties: []
     clipAnimations:
     - serializedVersion: 16
-      name: Main_Light_Attack_01
+      name: Main_Light_Attack_03
       takeName: Take 001
       internalID: 0
-      firstFrame: 0
-      lastFrame: 220
+      firstFrame: 912
+      lastFrame: 1140
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -519,29 +519,29 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.11126001
+      - time: 0.13957703
         functionName: DrainStaminaBasedOnAttack
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.20467836
+      - time: 0.15629922
         functionName: OpenDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.2748538
-        functionName: CloseDamageCollider
+      - time: 0.34795967
+        functionName: EnableCanDoCombo
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.35209104
-        functionName: EnableCanDoCombo
+      - time: 0.35921803
+        functionName: CloseDamageCollider
         data: 
         objectReferenceParameter: {instanceID: 0}
         floatParameter: 0

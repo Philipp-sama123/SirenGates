@@ -17,6 +17,7 @@ namespace KrazyKatgames
             character.canRotate = true;
             character.canMove = true;
             character.characterLocomotionManager.isRolling = false;
+            character.characterAnimatorManager.DisableCanDoCombo();
             
             if (character.IsOwner) // ToDo: maybe remove here
                 character.characterNetworkManager.isJumping.Value = false;

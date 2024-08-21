@@ -10,8 +10,15 @@ namespace KrazyKatgames
         [Header("Weapon Attack Modifiers")]
         public float light_Attack_01_Modifier;
         public float light_Attack_02_Modifier;
+        public float light_Attack_03_Modifier;
+        public float light_Attack_04_Modifier;
+
         public float heavy_Attack_01_Modifier;
+        public float heavy_Attack_02_Modifier;
+        public float heavy_Attack_03_Modifier;
+        public float heavy_Attack_04_Modifier;
         public float charge_Attack_01_Modifier;
+        public float charge_Attack_02_Modifier;
 
         protected override void Awake()
         {
@@ -61,11 +68,29 @@ namespace KrazyKatgames
                 case AttackType.LightAttack02:
                     ApplyAttackDamageModifiers(light_Attack_02_Modifier, damageEffect);
                     break;
+                case AttackType.LightAttack03:
+                    ApplyAttackDamageModifiers(light_Attack_03_Modifier, damageEffect);
+                    break;
+                case AttackType.LightAttack04:
+                    ApplyAttackDamageModifiers(light_Attack_04_Modifier, damageEffect);
+                    break;
                 case AttackType.HeavyAttack01:
                     ApplyAttackDamageModifiers(heavy_Attack_01_Modifier, damageEffect);
                     break;
+                case AttackType.HeavyAttack02:
+                    ApplyAttackDamageModifiers(heavy_Attack_02_Modifier, damageEffect);
+                    break;
+                case AttackType.HeavyAttack03:
+                    ApplyAttackDamageModifiers(heavy_Attack_03_Modifier, damageEffect);
+                    break;
+                case AttackType.HeavyAttack04:
+                    ApplyAttackDamageModifiers(heavy_Attack_04_Modifier, damageEffect);
+                    break;
                 case AttackType.ChargedAttack01:
                     ApplyAttackDamageModifiers(charge_Attack_01_Modifier, damageEffect);
+                    break;
+                case AttackType.ChargedAttack02:
+                    ApplyAttackDamageModifiers(charge_Attack_02_Modifier, damageEffect);
                     break;
                 default:
                     break;

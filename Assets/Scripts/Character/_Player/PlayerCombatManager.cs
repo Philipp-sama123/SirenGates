@@ -10,6 +10,10 @@ namespace KrazyKatgames
         PlayerManager player;
 
         public WeaponItem currentWeaponBeingUsed;
+
+        [Header("Flags")]
+        public bool canComboWithMainHandWeapon = false;
+        // public bool canComboWithOffHandWeapon = false; 
         protected override void Awake()
         {
             base.Awake();
@@ -32,7 +36,7 @@ namespace KrazyKatgames
                 );
             }
         }
-        
+
         public override void SetTarget(CharacterManager newTarget)
         {
             base.SetTarget(newTarget);
