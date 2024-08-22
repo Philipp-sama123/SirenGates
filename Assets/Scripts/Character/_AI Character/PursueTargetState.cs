@@ -25,10 +25,6 @@ namespace KrazyKatgames
             aiCharacter.navMeshAgent.CalculatePath(aiCharacter.aiCharacterCombatManager.currentTarget.transform.position, path);
             aiCharacter.navMeshAgent.SetPath(path);
 
-            // ToDo: fix this somehow like this(!)
-            // float agentSpeed = Mathf.Abs(aiCharacter.navMeshAgent.velocity.magnitude);
-            // Debug.LogWarning("agent speeeeed - " + agentSpeed);
-            // aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 1, false);
             return this;
             // make sure NavMeshAgent isActive, if not enable it 
             // if within combat range -> switch to combat stance 

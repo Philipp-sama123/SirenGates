@@ -7,8 +7,6 @@ namespace KrazyKatgames
             if (aiCharacter.aiCharacterNetworkManager.isMoving.Value)
             {
                 aiCharacter.transform.rotation = aiCharacter.navMeshAgent.transform.rotation;
-                aiCharacter.transform.position = aiCharacter.navMeshAgent.transform.position;
-                
             }
         }
     }
