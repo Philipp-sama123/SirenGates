@@ -27,8 +27,12 @@ public enum WeaponModelSlot
     //Left Hips
     //Back
 }
-
-// used to calculate 
+public enum CharacterGroup
+{
+    Team01,
+    Team02,
+}
+// used to calculate Damage
 public enum AttackType
 {
     LightAttack01,

@@ -26,7 +26,10 @@ namespace KrazyKatgames
         public bool canRotate = true;
         public bool canMove = true;
         public bool isGrounded = false;
-
+        
+        [Header("Character Group")]
+        public CharacterGroup characterGroup;
+        
         public FootIK footIK;
         protected virtual void Awake()
         {
@@ -47,7 +50,9 @@ namespace KrazyKatgames
         {
             IgnoreMyOwnColliders();
         }
-
+        protected virtual void FixedUpdate()
+        {
+        }
         protected virtual void Update()
         {
             animator.SetBool("IsGrounded", isGrounded);
