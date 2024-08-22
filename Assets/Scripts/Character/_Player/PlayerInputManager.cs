@@ -173,7 +173,7 @@ namespace KrazyKatgames
             HandleRBInput();
             HandleRTInput();
             HandleChargeRTInput();
-            
+
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
         }
@@ -285,6 +285,8 @@ namespace KrazyKatgames
             if (player == null)
                 return;
 
+            if (moveAmount != 0)
+                player.playerNetworkManager.isMoving.Value = true;
             //  IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
 
             if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)

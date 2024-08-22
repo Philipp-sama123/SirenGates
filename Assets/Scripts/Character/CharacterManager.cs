@@ -26,10 +26,10 @@ namespace KrazyKatgames
         public bool canRotate = true;
         public bool canMove = true;
         public bool isGrounded = false;
-        
+
         [Header("Character Group")]
         public CharacterGroup characterGroup;
-        
+
         public FootIK footIK;
         protected virtual void Awake()
         {
@@ -126,6 +126,16 @@ namespace KrazyKatgames
                     Physics.IgnoreCollision(collider, otherCollider, true);
                 }
             }
+        }
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
+            characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
+        }
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+            characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
         }
     }
 }

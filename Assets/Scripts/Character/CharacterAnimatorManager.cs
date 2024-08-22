@@ -182,14 +182,6 @@ namespace KrazyKatgames
                 applyRootMotion);
         }
 
-        protected virtual void OnAnimatorMove()
-        {
-            if (!character.applyRootMotion) return;
-
-            Vector3 velocity = character.animator.deltaPosition;
-            character.characterController.Move(velocity);
-            character.transform.rotation *= character.animator.deltaRotation;
-        }
 
         public virtual void DisableCanDoCombo()
         {

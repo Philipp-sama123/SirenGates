@@ -1,3 +1,6 @@
+
+using UnityEngine;
+
 namespace KrazyKatgames
 {
     public class PlayerAnimatorManager : CharacterAnimatorManager
@@ -36,6 +39,15 @@ namespace KrazyKatgames
                 // Enable off hand combo
                 // canComboWithOffHandWeapon = false; 
             }
+        }
+        
+        protected virtual void OnAnimatorMove()
+        {
+            if (!player.applyRootMotion) return;
+
+            Vector3 velocity = player.animator.deltaPosition;
+            player.characterController.Move(velocity);
+            player.transform.rotation *= player.animator.deltaRotation;
         }
     }
 }

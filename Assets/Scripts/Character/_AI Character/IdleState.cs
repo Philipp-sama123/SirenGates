@@ -10,9 +10,7 @@ namespace KrazyKatgames
             if (aiCharacter.characterCombatManager.currentTarget != null)
             {
                 //  Return the Pursue Target
-                Debug.Log("Got a TARGET - " + aiCharacter.characterCombatManager.currentTarget.name);
-
-                return this;
+                return SwitchState(aiCharacter, aiCharacter.pursueTarget);
             }
             else
             {
