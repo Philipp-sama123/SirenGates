@@ -32,14 +32,14 @@ namespace KrazyKatgames
                 {
                     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack02, heavy_Attack_02, true);
                 }
-                else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == heavy_Attack_02)
-                {
-                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack03, heavy_Attack_03, true);
-                }
-                else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == heavy_Attack_03)
-                {
-                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack04, heavy_Attack_04, true);
-                }
+                // else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == heavy_Attack_02)
+                // {
+                //     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack03, heavy_Attack_03, true);
+                // }
+                // else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == heavy_Attack_03)
+                // {
+                //     playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.HeavyAttack04, heavy_Attack_04, true);
+                // }
             }
             else if (!playerPerformingAction.isPerformingAction)
             {
