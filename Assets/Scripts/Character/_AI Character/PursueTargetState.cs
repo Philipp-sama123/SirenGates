@@ -15,9 +15,12 @@ namespace KrazyKatgames
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
 
-            // 1st Option
-            // Performance better but weird results ToDo: INVESTIGATE
-            // aiCharacter.navMeshAgent.SetDestination(aiCharacter.aiCharacterCombatManager.currentTarget.transform.position);
+            
+            if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV
+                || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+            {
+                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+            }
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
             // 2nd Option

@@ -4687,12 +4687,12 @@ GameObject:
   - component: {fileID: 8439402142563016341}
   - component: {fileID: 6265452835546319259}
   - component: {fileID: 1319764695862335458}
-  - component: {fileID: 2366049791994714822}
   - component: {fileID: 6171604851503328497}
   - component: {fileID: 9000439784585813718}
   - component: {fileID: 5500948303809527625}
   - component: {fileID: 3156296404296441345}
   - component: {fileID: 1723301941932351450}
+  - component: {fileID: 6866360928223709062}
   m_Layer: 6
   m_Name: DUMMY_01
   m_TagString: Untagged
@@ -5144,33 +5144,8 @@ MonoBehaviour:
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
-  minimumDetectionAngle: -35
-  maximumDetectionAngle: 35
---- !u!114 &2366049791994714822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4413532425802017334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 42a1b10f333745ab9aecfc7244268484, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lastDamageAnimationPlayed: 
-  hit_Forward_Medium_01: Hit_Forward_Medium_01
-  hit_Forward_Medium_02: Hit_Forward_Medium_02
-  hit_Backward_Medium_01: Hit_Backward_Medium_01
-  hit_Backward_Medium_02: Hit_Backward_Medium_02
-  hit_Left_Medium_01: Hit_Left_Medium_01
-  hit_Left_Medium_02: Hit_Left_Medium_02
-  hit_Right_Medium_01: Hit_Right_Medium_01
-  hit_Right_Medium_02: Hit_Right_Medium_02
-  forward_Medium_Damage: []
-  backward_Medium_Damage: []
-  left_Medium_Damage: []
-  right_Medium_Damage: []
+  minimumFOV: -35
+  maximumFOV: 35
 --- !u!114 &6171604851503328497
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5234,6 +5209,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 2
+--- !u!114 &6866360928223709062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413532425802017334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e74b024df567402885e90b6e59923190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lastDamageAnimationPlayed: 
+  hit_Forward_Medium_01: Hit_Forward_Medium_01
+  hit_Forward_Medium_02: Hit_Forward_Medium_02
+  hit_Backward_Medium_01: Hit_Backward_Medium_01
+  hit_Backward_Medium_02: Hit_Backward_Medium_02
+  hit_Left_Medium_01: Hit_Left_Medium_01
+  hit_Left_Medium_02: Hit_Left_Medium_02
+  hit_Right_Medium_01: Hit_Right_Medium_01
+  hit_Right_Medium_02: Hit_Right_Medium_02
+  forward_Medium_Damage: []
+  backward_Medium_Damage: []
+  left_Medium_Damage: []
+  right_Medium_Damage: []
 --- !u!1 &4448061770091362231
 GameObject:
   m_ObjectHideFlags: 0

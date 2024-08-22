@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -9,9 +10,9 @@ namespace KrazyKatgames
         public Vector3 targetsDirection;
 
         [Header("Detection")]
-        [SerializeField] float detectionRadius = 15;
-        [SerializeField] float minimumDetectionAngle = -35;
-        [SerializeField] float maximumDetectionAngle = 35;
+        public float detectionRadius = 15;
+        public float minimumFOV = -35;
+        public float maximumFOV = 35;
 
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
@@ -41,7 +42,7 @@ namespace KrazyKatgames
                     Vector3 targetsDirection = targetCharacter.transform.position - aiCharacter.transform.position;
                     float angleOfPotentialTarget = Vector3.Angle(targetsDirection, aiCharacter.transform.forward);
 
-                    if (angleOfPotentialTarget > minimumDetectionAngle && angleOfPotentialTarget < maximumDetectionAngle)
+                    if (angleOfPotentialTarget > minimumFOV && angleOfPotentialTarget < maximumFOV)
                     {
                         //  Check for Environment Layers
                         if (Physics.Linecast(
@@ -68,6 +69,7 @@ namespace KrazyKatgames
         {
             if (aiCharacter.isPerformingAction)
                 return;
+            // ToDo: fix the Animations (!)
 
             if (viewableAngle >= 20 && viewableAngle <= 60)
             {

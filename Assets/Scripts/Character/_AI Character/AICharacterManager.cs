@@ -39,8 +39,8 @@ namespace KrazyKatgames
         protected override void FixedUpdate()
         {
             base.FixedUpdate();
-
-            ProcessStateMachine();
+            if (IsOwner)
+                ProcessStateMachine();
         }
 
         //  OPTION 01
