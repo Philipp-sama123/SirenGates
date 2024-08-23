@@ -4694,7 +4694,7 @@ GameObject:
   - component: {fileID: 1723301941932351450}
   - component: {fileID: 6866360928223709062}
   m_Layer: 6
-  m_Name: DUMMY_01
+  m_Name: Undead_Dummy_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5102,6 +5102,8 @@ MonoBehaviour:
   currentState: {fileID: 11400000, guid: 86d959ea59b3245b6b10224f6a57b053, type: 2}
   idle: {fileID: 11400000, guid: 86d959ea59b3245b6b10224f6a57b053, type: 2}
   pursueTarget: {fileID: 11400000, guid: 32e6c12f18e394a22ae671a32db02e26, type: 2}
+  combatStance: {fileID: 11400000, guid: b7cbd29e36d3f418f9fbe87ccad97e1b, type: 2}
+  attack: {fileID: 11400000, guid: 51bf4c5ba06ce4419a8e69109976d74b, type: 2}
 --- !u!114 &6265452835546319259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5141,11 +5143,14 @@ MonoBehaviour:
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 2656600412041430311}
+  distanceFromTarget: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
   minimumFOV: -35
   maximumFOV: 35
+  actionRecoveryTimer: 0
+  attackRotationSpeed: 5
 --- !u!114 &6171604851503328497
 MonoBehaviour:
   m_ObjectHideFlags: 0

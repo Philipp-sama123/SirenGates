@@ -19,6 +19,9 @@ namespace KrazyKatgames
         [Header("States")]
         public IdleState idle;
         public PursueTargetState pursueTarget;
+        public CombatStanceState combatStance;
+        public AttackState attack;
+        
         protected override void Awake()
         {
             base.Awake();
@@ -43,7 +46,11 @@ namespace KrazyKatgames
                 ProcessStateMachine();
         }
 
-        //  OPTION 01
+        protected override void Update()
+        {
+            base.Update();
+            aiCharacterCombatManager.HandleActionRecovery(this);
+        }
         private void ProcessStateMachine()
         {
             AIState nextState = currentState?.Tick(this);

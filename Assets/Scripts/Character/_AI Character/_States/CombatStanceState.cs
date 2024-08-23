@@ -9,7 +9,7 @@ namespace KrazyKatgames
     {
         //  1. Select an Attack for the Attack State, depending on distance and Angle of the target in relation to the Character
         //  2. Process any Combat Logic here (Blocking, strafing and dodging) 
-        
+
         [Header("Attacks")]
         public List<AICharacterAttackAction> aiCharacterAttacks;
         private List<AICharacterAttackAction> potentialAttacks;
@@ -23,7 +23,7 @@ namespace KrazyKatgames
         [SerializeField] protected bool hasRolledForComboChance = false; // 
 
         [Header("Engagement Distance")]
-        [SerializeField] protected float maximumEngagementDistance = 5; // Distance away from target before entering pursue state
+        [SerializeField] public float maximumEngagementDistance = 5; // Distance away from target before entering pursue state
 
 
         public override AIState Tick(AICharacterManager aiCharacter)
@@ -33,7 +33,7 @@ namespace KrazyKatgames
 
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
-
+            Debug.LogWarning("1");
             // if face and turn towards its target include this 
             if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
             {
@@ -42,25 +42,30 @@ namespace KrazyKatgames
                     aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
                 }
             }
-            // rotate towards target
-            
-            
+            Debug.LogWarning("2");
+
+            aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);
+
             //  4. If the target is no longer present, switch to idle state 
             if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
                 return SwitchState(aiCharacter, aiCharacter.idle);
 
             if (!hasAttack)
             {
+                Debug.LogWarning("3");
+
                 GetNewAttack(aiCharacter);
             }
             else
             {
+                Debug.LogWarning("4");
+
+                aiCharacter.attack.currentAttack = choosenAttack;
+                return SwitchState(aiCharacter, aiCharacter.attack);
                 // check Recovery Timer, 
-                // Pass Attack to Attack State 
                 // Roll for Combo Chance 
-                // Switch State 
             }
-            
+
             //  3. If target moves out of combat range, switch to pursue state
             if (aiCharacter.aiCharacterCombatManager.distanceFromTarget > maximumEngagementDistance)
                 return SwitchState(aiCharacter, aiCharacter.pursueTarget);
@@ -70,7 +75,14 @@ namespace KrazyKatgames
             aiCharacter.navMeshAgent.SetPath(path);
             return this;
         }
-
+        
+        /**
+         *      1. Sort through possible Attacks
+         *      2. Remove Attacks that can not be used in this situation (based on angle and distance)
+         *      3. Place remaining attacks into a List
+         *      4. pick one of the remaining attacks randomly, based on weight
+         *      5. Select this attack and pass it to the attack state
+         */
         protected virtual void GetNewAttack(AICharacterManager aiCharacter)
         {
             potentialAttacks = new List<AICharacterAttackAction>();
@@ -104,23 +116,20 @@ namespace KrazyKatgames
             }
             var randomWeightValue = Random.Range(1, totalWeight + 1);
             var processedWeight = 0;
+
             foreach (var potentialAttack in potentialAttacks)
             {
                 processedWeight += potentialAttack.attackWeight;
 
+                // this is the actual attack (!)
                 if (randomWeightValue <= processedWeight)
                 {
                     choosenAttack = potentialAttack;
                     previousAttack = choosenAttack;
                     hasAttack = true;
-                    // this is the ATTACK (!)
+                    return;
                 }
             }
-            //      1. Sort through possible Attacks
-            //      2. Remove Attacks that can not be used in this situation (based on angle and distance) 
-            //      3. Place remaining attacks into a List
-            //      4. pick one of the remaining attacks randomly, based on weight 
-            //      5. Select this attack and pass it to the attack state
         }
 
         protected virtual bool RollForOutcomeChance(int outcomeChance)
