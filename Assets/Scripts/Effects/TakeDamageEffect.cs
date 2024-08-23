@@ -44,8 +44,7 @@ namespace KrazyKatgames
         {
             base.ProcessEffect(character);
 
-            Debug.Log("ProcessEffect " + character.name);
-            Debug.Log("character.isDead.Value " + character.isDead.Value);
+            Debug.Log("ProcessEffect " + character.name+ " character.isDead? " + character.isDead.Value);
 
             if (character.isDead.Value)
                 return;
@@ -77,7 +76,7 @@ namespace KrazyKatgames
             {
                 finalDamageDealt = 1;
             }
-            Debug.Log("ProcessEffect--> CalculateDamage --> finalDamageDealt: " + finalDamageDealt);
+            Debug.LogWarning("Damage to " + character.name + " finalDamageDealt: " + finalDamageDealt);
 
             character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
         }

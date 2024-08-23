@@ -10,6 +10,7 @@ namespace KrazyKatgames
         }
         protected virtual AIState SwitchState(AICharacterManager aiCharacter, AIState newState)
         {
+            Debug.LogWarning(aiCharacter.name + " SwitchState to " + newState.name);
             ResetStateFlags(aiCharacter);
             return newState;
         }

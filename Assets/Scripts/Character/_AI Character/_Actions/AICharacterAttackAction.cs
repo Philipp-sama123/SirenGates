@@ -25,7 +25,6 @@ namespace KrazyKatgames
 
         public void AttemptToPerformAction(AICharacterManager aiCharacter)
         {
-            Debug.LogWarning("AttemptToPerformAction");
             aiCharacter.characterAnimatorManager.PlayTargetAttackActionAnimation(attackType, attackAnimation, true);
         }
     }

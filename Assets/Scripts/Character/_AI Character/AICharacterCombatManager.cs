@@ -58,7 +58,6 @@ namespace KrazyKatgames
                         {
                             Debug.DrawLine(aiCharacter.characterCombatManager.lockOnTransform.position,
                                 targetCharacter.characterCombatManager.lockOnTransform.position);
-                            Debug.Log("BLOCKED");
                         }
                         else
                         {

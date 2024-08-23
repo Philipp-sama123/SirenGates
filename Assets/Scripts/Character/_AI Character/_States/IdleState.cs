@@ -14,8 +14,7 @@ namespace KrazyKatgames
             }
             else
             {
-                //  RETURN THIS STATE, TO CONTINUALLY SEARCH FOR A TARGET (KEEP THE STATE HERE, UNTIL A TARGET IS FOUND)
-                Debug.Log("SearchingTarget ... ");
+                // stay in this State until a target is found
                 aiCharacter.aiCharacterCombatManager.FindATargetViaLineOfSight(aiCharacter);
                 return this;
             }

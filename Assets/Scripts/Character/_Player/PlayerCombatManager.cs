@@ -64,7 +64,7 @@ namespace KrazyKatgames
                 default:
                     break;
             }
-            Debug.Log("DrainStaminaBasedOnAttack - staminaDeducted -" + staminaDeducted);
+            Debug.LogWarning("For " + player.name + " staminaDeducted -" + staminaDeducted);
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
         }
     }

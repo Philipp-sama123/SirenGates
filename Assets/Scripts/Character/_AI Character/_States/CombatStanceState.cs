@@ -33,7 +33,7 @@ namespace KrazyKatgames
 
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
-            Debug.LogWarning("1");
+
             // if face and turn towards its target include this 
             if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
             {
@@ -42,7 +42,6 @@ namespace KrazyKatgames
                     aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
                 }
             }
-            Debug.LogWarning("2");
 
             aiCharacter.aiCharacterCombatManager.RotateTowardsAgent(aiCharacter);
 
@@ -52,14 +51,10 @@ namespace KrazyKatgames
 
             if (!hasAttack)
             {
-                Debug.LogWarning("3");
-
                 GetNewAttack(aiCharacter);
             }
             else
             {
-                Debug.LogWarning("4");
-
                 aiCharacter.attack.currentAttack = choosenAttack;
                 return SwitchState(aiCharacter, aiCharacter.attack);
                 // check Recovery Timer, 
