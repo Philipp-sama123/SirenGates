@@ -200,7 +200,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2923380270829042908
 Transform:
   m_ObjectHideFlags: 0
@@ -755,7 +755,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4193118983943717705
 Transform:
   m_ObjectHideFlags: 0
@@ -878,7 +878,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 779536692331551507}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8765731, y: -0.006336569, z: -0.01156337, w: 0.48108813}
+  m_LocalRotation: {x: 0.87657344, y: -0.0063365917, z: -0.0115633905, w: 0.48108757}
   m_LocalPosition: {x: 0.0000000055983325, y: 0.07480115, z: 0.002928904}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000006}
   m_ConstrainProportionsScale: 0
@@ -896,8 +896,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 57.487156, y: -177.18794, z: -177.6291}
-  m_RotationOffset: {x: -57.411217, y: -1.4670392, z: 0.9125723}
+  m_RotationAtRest: {x: 57.48708, y: -177.18794, z: -177.6291}
+  m_RotationOffset: {x: -57.411148, y: -1.4670428, z: 0.9125755}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -3649,7 +3649,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3109003292049307554
 Transform:
   m_ObjectHideFlags: 0
@@ -4508,7 +4508,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2108619947681863884
 Transform:
   m_ObjectHideFlags: 0
@@ -5371,7 +5371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4740035985281923142}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5032867, y: 0.49760798, z: -0.50346786, w: -0.4955895}
+  m_LocalRotation: {x: -0.5032873, y: 0.49760798, z: -0.50346726, w: -0.49558952}
   m_LocalPosition: {x: 1.0186341e-10, y: 0.38115856, z: 0.0000000032582648}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -5389,8 +5389,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 89.21613, y: 97.65504, z: -172.2189}
-  m_RotationOffset: {x: 88.90019, y: 90.02342, z: -179.98462}
+  m_RotationAtRest: {x: 89.21639, y: 97.660126, z: -172.21408}
+  m_RotationOffset: {x: 88.90037, y: 90.02698, z: -179.98125}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -5487,7 +5487,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4980982948325114507}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5032558, y: -0.49763992, z: 0.50342834, w: -0.4956289}
+  m_LocalRotation: {x: -0.5032553, y: -0.49764058, z: 0.50342673, w: -0.49563044}
   m_LocalPosition: {x: -5.820766e-10, y: 0.38115853, z: -0.000000009081305}
   m_LocalScale: {x: 1.0000001, y: 1.0000004, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5505,8 +5505,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 89.22417, y: -97.74092, z: 172.13394}
-  m_RotationOffset: {x: 88.90805, y: -90.02705, z: 179.9821}
+  m_RotationAtRest: {x: 89.22468, y: -97.74453, z: 172.13058}
+  m_RotationOffset: {x: 88.908585, y: -90.02777, z: 179.98137}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -6123,7 +6123,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5609997129457185560
 Transform:
   m_ObjectHideFlags: 0
@@ -7246,7 +7246,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2334439063961523181
 Transform:
   m_ObjectHideFlags: 0
@@ -7420,7 +7420,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4002482150340374702
 Transform:
   m_ObjectHideFlags: 0
@@ -7765,7 +7765,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6751907362709121495}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011561726, y: -0.48108977, z: 0.8765722, w: 0.0063372096}
+  m_LocalRotation: {x: -0.011561743, y: -0.4810893, z: 0.8765725, w: 0.0063372278}
   m_LocalPosition: {x: -0.00000000466701, y: 0.07480115, z: -0.002928904}
   m_LocalScale: {x: 0.9999998, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
@@ -7783,8 +7783,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 57.487373, y: -2.8118336, z: 177.62914}
-  m_RotationOffset: {x: -57.41162, y: 1.4653283, z: -0.9105679}
+  m_RotationAtRest: {x: 57.487305, y: -2.8118339, z: 177.62914}
+  m_RotationOffset: {x: -57.41156, y: 1.4653313, z: -0.9105705}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -8328,7 +8328,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2015803288030258957
 Transform:
   m_ObjectHideFlags: 0
@@ -9324,7 +9324,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &5612107900796399864
 Transform:
   m_ObjectHideFlags: 0
@@ -9534,7 +9534,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &3538989671881618846
 Transform:
   m_ObjectHideFlags: 0
