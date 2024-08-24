@@ -113,7 +113,7 @@ namespace KrazyKatgames
         private void PerformActionAnimationFromServer(string animationId, bool applyRootMotion)
         {
             character.animator.CrossFade(animationId, 0.2f);
-            character.applyRootMotion = applyRootMotion;
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
         }
         #endregion
 
@@ -137,7 +137,7 @@ namespace KrazyKatgames
         private void PerformAttackActionAnimationFromServer(string animationId, bool applyRootMotion)
         {
             character.animator.CrossFade(animationId, 0.2f);
-            character.applyRootMotion = applyRootMotion;
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
         }
         #endregion
 

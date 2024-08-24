@@ -19,6 +19,7 @@ namespace KrazyKatgames
             base.Awake();
 
             player = GetComponent<PlayerManager>();
+            lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
         }
 
         public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)

@@ -20,8 +20,11 @@ namespace KrazyKatgames
         public FootIK footIk;
 
         [Header("Flags")]
-        public bool isRolling = false; 
-        
+        public bool isRolling = false;
+        public bool canRotate = true;
+        public bool canMove = true;
+        public bool isGrounded = false;
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
@@ -35,7 +38,7 @@ namespace KrazyKatgames
         {
             HandleGroundCheck();
 
-            if (character.isGrounded)
+            if (character.characterLocomotionManager.isGrounded)
             {
                 //  IF WE ARE NOT ATTEMPTING TO JUMP OR MOVE UPWARD
                 if (yVelocity.y < 0)
@@ -70,7 +73,7 @@ namespace KrazyKatgames
 
             if (footIk.getGroundedResult() != null)
             {
-                character.isGrounded = footIk.getGroundedResult().isGrounded;
+                character.characterLocomotionManager.isGrounded = footIk.getGroundedResult().isGrounded;
             }
         }
 
@@ -79,5 +82,16 @@ namespace KrazyKatgames
         {
             Gizmos.DrawSphere(character.transform.position, groundCheckSphereRadius);
         }
+
+        #region Animation Events
+        public void EnableCanRotate()
+        {
+            canRotate = true;
+        }
+        public void DisableCanRotate()
+        {
+            canRotate = false;
+        }
+        #endregion
     }
 }

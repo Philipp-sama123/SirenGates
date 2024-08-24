@@ -43,7 +43,7 @@ namespace KrazyKatgames
         
         protected virtual void OnAnimatorMove()
         {
-            if (!player.applyRootMotion) return;
+            if (!player.playerAnimatorManager.applyRootMotion) return;
 
             Vector3 velocity = player.animator.deltaPosition;
             player.characterController.Move(velocity);

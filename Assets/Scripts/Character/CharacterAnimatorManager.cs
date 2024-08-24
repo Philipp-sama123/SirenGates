@@ -10,7 +10,9 @@ namespace KrazyKatgames
 
         int vertical;
         int horizontal;
-
+        [Header("Flags")]
+        public bool applyRootMotion = false;
+        
         [Header("Damage Animations")]
         public string lastDamageAnimationPlayed;
 
@@ -30,6 +32,7 @@ namespace KrazyKatgames
         public List<string> backward_Medium_Damage = new List<string>();
         public List<string> left_Medium_Damage = new List<string>();
         public List<string> right_Medium_Damage = new List<string>();
+
 
         protected virtual void Awake()
         {
@@ -143,15 +146,15 @@ namespace KrazyKatgames
             bool canRotate = false,
             bool canMove = false)
         {
-            character.applyRootMotion = applyRootMotion;
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             //  CAN BE USED TO STOP CHARACTER FROM ATTEMPTING NEW ACTIONS
             //  FOR EXAMPLE, IF YOU GET DAMAGED, AND BEGIN PERFORMING A DAMAGE ANIMATION
             //  THIS FLAG WILL TURN TRUE IF YOU ARE STUNNED
             //  WE CAN THEN CHECK FOR THIS BEFORE ATTEMPTING NEW ACTIONS
             character.isPerformingAction = isPerformingAction;
-            character.canRotate = canRotate;
-            character.canMove = canMove;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
 
             //  TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
             character.characterNetworkManager.NotifyTheServerOfActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
@@ -173,11 +176,11 @@ namespace KrazyKatgames
             // update AnimationSet to current Weapon Animations
             // Decide if the Attack can be parried 
             // Tell the Network --> in Attacking FLAG 
-            character.applyRootMotion = applyRootMotion;
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             character.isPerformingAction = isPerformingAction;
-            character.canRotate = canRotate;
-            character.canMove = canMove;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
                 applyRootMotion);
         }

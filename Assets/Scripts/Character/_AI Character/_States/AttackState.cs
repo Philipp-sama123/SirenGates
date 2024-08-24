@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -16,15 +14,18 @@ namespace KrazyKatgames
 
         [Header("Pivot After Attack")]
         [SerializeField] protected bool pivotAfterAttack;
+        
+        // the order of operations is here very important
         public override AIState Tick(AICharacterManager aiCharacter)
         {
             if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
                 return SwitchState(aiCharacter, aiCharacter.idle);
+
             if (aiCharacter.aiCharacterCombatManager.currentTarget.isDead.Value)
                 return SwitchState(aiCharacter, aiCharacter.idle);
 
             // Rotate towards while Attacking (!) 
-
+            aiCharacter.aiCharacterCombatManager.RotateTowardsTargetWhilstAttacking(aiCharacter);
             // Set Movement Values to 0 
             aiCharacter.characterAnimatorManager.UpdateAnimatorMovementParameters(0, 0, false);
 
@@ -38,6 +39,9 @@ namespace KrazyKatgames
                     // currentAttack.comboAction.AttemptToPerformAction(aiCharacter);
                 }
             }
+            if (aiCharacter.isPerformingAction)
+                return this;
+            
             if (!hasPerformedAttack)
             {
                 // if still recovering from an action --> wait before performing another

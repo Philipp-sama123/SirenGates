@@ -26,7 +26,6 @@ namespace KrazyKatgames
             if (aiCharacter.aiCharacterCombatManager.distanceFromTarget <= aiCharacter.navMeshAgent.stoppingDistance)
                 return SwitchState(aiCharacter, aiCharacter.combatStance);
 
-            // 2nd Option
             NavMeshPath path = new NavMeshPath();
             aiCharacter.navMeshAgent.CalculatePath(aiCharacter.aiCharacterCombatManager.currentTarget.transform.position, path);
             aiCharacter.navMeshAgent.SetPath(path);

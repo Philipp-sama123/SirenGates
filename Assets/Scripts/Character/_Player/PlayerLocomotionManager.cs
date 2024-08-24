@@ -74,12 +74,12 @@ namespace KrazyKatgames
         }
         private void HandleMovement()
         {
-            if (!player.canMove)
+            if (!player.playerLocomotionManager.canMove)
                 return;
 
             CalculateMovementDirection();
 
-            if (player.isGrounded && !player.characterNetworkManager.isJumping.Value)
+            if (player.playerLocomotionManager.isGrounded && !player.characterNetworkManager.isJumping.Value)
                 HandleGroundedMovement();
             else
                 HandleInAirMovement();
@@ -142,7 +142,7 @@ namespace KrazyKatgames
         {
             if (player.isDead.Value)
                 return;
-            if (!player.canRotate)
+            if (!player.playerLocomotionManager.canRotate)
                 return;
 
             if (player.playerNetworkManager.isLockedOn.Value)
@@ -264,7 +264,7 @@ namespace KrazyKatgames
                 return;
             if (player.characterNetworkManager.isJumping.Value) // ToDo: DoubleJump
                 return;
-            if (!player.isGrounded)
+            if (!player.playerLocomotionManager.isGrounded)
                 return;
 
             player.playerNetworkManager.currentStamina.Value -= jumpStaminaCost;

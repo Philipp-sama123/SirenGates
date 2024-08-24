@@ -4926,8 +4926,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4339241763628378497}
+  - component: {fileID: 2799865679911008462}
   m_Layer: 7
-  m_Name: LockOnTarget
+  m_Name: LockOnTransform
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4948,6 +4949,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 7647209376751010788}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2799865679911008462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4507598115472770710}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c236386971964bf5aecfb3f06f1d055, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4514151787729076070
 GameObject:
   m_ObjectHideFlags: 0
@@ -8919,6 +8932,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7ac0795422b483093a717d7ac03d526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isMoving:
+    m_InternalValue: 0
   networkPosition:
     m_InternalValue: {x: 0, y: 0, z: 0}
   networkRotation:
@@ -8926,6 +8941,8 @@ MonoBehaviour:
   networkPositionVelocity: {x: 0, y: 0, z: 0}
   networkPositionSmoothTime: 0.1
   networkRotationSmoothTime: 0.1
+  currentTargetNetworkObjectID:
+    m_InternalValue: 0
   horizontalMovement:
     m_InternalValue: 0
   verticalMovement:
@@ -8937,6 +8954,8 @@ MonoBehaviour:
   isSprinting:
     m_InternalValue: 0
   isJumping:
+    m_InternalValue: 0
+  isChargingAttack:
     m_InternalValue: 0
   currentStamina:
     m_InternalValue: 0
@@ -9050,15 +9069,15 @@ MonoBehaviour:
   characterAnimatorManager: {fileID: 0}
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
+  characterLocomotionManager: {fileID: 0}
   isPerformingAction: 0
   applyRootMotion: 0
   canRotate: 1
   canMove: 1
   isGrounded: 0
+  characterGroup: 0
   footIK: {fileID: 0}
   respawnCharacter: 0
-  switchRightWeapon: 0
-  switchLeftWeapon: 0
   playerAnimatorManager: {fileID: 0}
   playerLocomotionManager: {fileID: 0}
   playerNetworkManager: {fileID: 0}
@@ -9088,6 +9107,7 @@ MonoBehaviour:
   fallStartYVelocity: -5
   inAirTimer: 0
   footIk: {fileID: 0}
+  isRolling: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -9112,10 +9132,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67c83a4b0049940ec8119c3f84b02dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lastAttackAnimationPerformed: 
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 4339241763628378497}
   currentWeaponBeingUsed: {fileID: 0}
+  canComboWithMainHandWeapon: 0
 --- !u!114 &6689764289711465070
 MonoBehaviour:
   m_ObjectHideFlags: 0

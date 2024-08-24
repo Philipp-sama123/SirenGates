@@ -16,10 +16,16 @@ namespace KrazyKatgames
 
         [Header("Recovery Timer")]
         public float actionRecoveryTimer = 0;
-        
+
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 5f;
 
+        protected override void Awake()
+        {
+            base.Awake();
+            
+            lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
+        }
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
             if (currentTarget != null)
@@ -131,7 +137,7 @@ namespace KrazyKatgames
         {
             if (currentTarget == null)
                 return;
-            if (!aiCharacter.canRotate)
+            if (!aiCharacter.characterLocomotionManager.canRotate)
                 return;
             // just do it while attacking
             if (!aiCharacter.isPerformingAction)

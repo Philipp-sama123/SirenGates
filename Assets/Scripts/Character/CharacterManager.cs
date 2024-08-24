@@ -22,10 +22,6 @@ namespace KrazyKatgames
 
         [Header("Flags")]
         public bool isPerformingAction = false;
-        public bool applyRootMotion = false;
-        public bool canRotate = true;
-        public bool canMove = true;
-        public bool isGrounded = false;
 
         [Header("Character Group")]
         public CharacterGroup characterGroup;
@@ -55,7 +51,7 @@ namespace KrazyKatgames
         }
         protected virtual void Update()
         {
-            animator.SetBool("IsGrounded", isGrounded);
+            animator.SetBool("IsGrounded", characterLocomotionManager.isGrounded);
             //  IF THIS CHARACTER IS BEING CONTROLLED FROM OUR SIDE, THEN ASSIGN ITS NETWORK POSITION TO THE POSITION OF OUR TRANSFORM
             if (IsOwner)
             {
