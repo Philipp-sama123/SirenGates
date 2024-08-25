@@ -126,6 +126,9 @@ namespace KrazyKatgames
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+            
+            animator.SetBool("IsMoving", characterNetworkManager.isMoving.Value);
+            // same as:  characterNetworkManager.OnIsMovingChanged(false, characterNetworkManager.isMoving.Value);
             characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
         }
         public override void OnNetworkDespawn()
