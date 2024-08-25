@@ -35,11 +35,11 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     }
     public void OpenLeftHandDamageCollider()
     {
-        rightHandDamageCollider.EnableDamageCollider();
+        leftHandDamageCollider.EnableDamageCollider();
     }
     public void DisableLeftHandDamageCollider()
     {
-        rightHandDamageCollider.DisableDamageCollider();
+        leftHandDamageCollider.DisableDamageCollider();
     }
     #endregion
 }
