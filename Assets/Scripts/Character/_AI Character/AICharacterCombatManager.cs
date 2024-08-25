@@ -4,6 +4,8 @@ namespace KrazyKatgames
 {
     public class AICharacterCombatManager : CharacterCombatManager
     {
+        protected AICharacterManager aiCharacterManager;
+
         [Header("Target Information")]
         public float distanceFromTarget;
         public float viewableAngle;
@@ -23,7 +25,7 @@ namespace KrazyKatgames
         protected override void Awake()
         {
             base.Awake();
-            
+            aiCharacterManager = GetComponent<AICharacterManager>();
             lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
         }
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)

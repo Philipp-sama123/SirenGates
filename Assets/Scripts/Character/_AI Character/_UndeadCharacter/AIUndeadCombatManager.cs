@@ -13,7 +13,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     [SerializeField] int baseDamage = 25;
     [SerializeField] float attack01DamageModifier = 1.0f;
     [SerializeField] float attack02DamageModifier = 1.4f;
-    
+
     #region Animation Events
     public void SetAttack01Damage()
     {
@@ -28,6 +28,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     public void OpenRightHandDamageCollider()
     {
         rightHandDamageCollider.EnableDamageCollider();
+        aiCharacterManager.characterSoundFXManager.PlayAttackGrunt();
     }
     public void DisableRightHandDamageCollider()
     {
@@ -36,6 +37,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     public void OpenLeftHandDamageCollider()
     {
         leftHandDamageCollider.EnableDamageCollider();
+        aiCharacterManager.characterSoundFXManager.PlayAttackGrunt();
     }
     public void DisableLeftHandDamageCollider()
     {

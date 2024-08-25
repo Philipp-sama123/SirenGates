@@ -58,5 +58,8 @@ namespace KrazyKatgames
         //  ASH OF WAR
 
         //  ToDo: blocking sfx
+
+        [Header("Whooshes")]
+        public AudioClip[] whooshes;
     }
 }

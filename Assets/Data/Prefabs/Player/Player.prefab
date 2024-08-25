@@ -8911,7 +8911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 317645115
+  GlobalObjectIdHash: 2729144484
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -9071,10 +9071,6 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   isPerformingAction: 0
-  applyRootMotion: 0
-  canRotate: 1
-  canMove: 1
-  isGrounded: 0
   characterGroup: 0
   footIK: {fileID: 0}
   respawnCharacter: 0
@@ -9108,6 +9104,9 @@ MonoBehaviour:
   inAirTimer: 0
   footIk: {fileID: 0}
   isRolling: 0
+  canRotate: 1
+  canMove: 1
+  isGrounded: 0
   verticalMovement: 0
   horizontalMovement: 0
   moveAmount: 0
@@ -9164,6 +9163,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 875cda3d2d4f74705bab2670c0821b4b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageGrunts:
+  - {fileID: 8300000, guid: c5b5f9d1e2023fa4e9ac7fb1d3600a4c, type: 3}
+  - {fileID: 8300000, guid: aecda938c23ab05429592a6424db3cc6, type: 3}
+  - {fileID: 8300000, guid: adc45099c0a74b24bacc57357ddca31c, type: 3}
+  - {fileID: 8300000, guid: 37a1e153e569f594aa3a69abaddee963, type: 3}
+  - {fileID: 8300000, guid: b5cfeac51836341479b470ad1ec7a586, type: 3}
+  - {fileID: 8300000, guid: 6e7098dfd548f514397f6cf2ec72b7b4, type: 3}
+  - {fileID: 8300000, guid: aaf6f4b298a3a15479272103106d9d0a, type: 3}
+  - {fileID: 8300000, guid: e36f8969eb514dd42bf5126a5116620d, type: 3}
+  - {fileID: 8300000, guid: 02f519c4978a0c54fa5204fd264a0fd0, type: 3}
 --- !u!114 &4132556457617580131
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9233,6 +9242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6899e2abe65941ddae7124f20997e21e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  applyRootMotion: 0
   lastDamageAnimationPlayed: 
   hit_Forward_Medium_01: Hit_Forward_Medium_01
   hit_Forward_Medium_02: Hit_Forward_Medium_02
