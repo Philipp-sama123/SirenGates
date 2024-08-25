@@ -21,16 +21,18 @@ namespace KrazyKatgames
         public PursueTargetState pursueTarget;
         public CombatStanceState combatStance;
         public AttackState attack;
-        
+
         protected override void Awake()
         {
             base.Awake();
-
             aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
             aiCharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
             aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();
+            // Fixes Character Moving when 
+            if (navMeshAgent.stoppingDistance <= 0)
+                navMeshAgent.stoppingDistance = 1;
 
             // use a c
             idle = Instantiate(idle);
