@@ -6,6 +6,8 @@ namespace KrazyKatgames
     public class CharacterNetworkManager : NetworkBehaviour
     {
         private CharacterManager character;
+        [Header("Is Active")]
+        public NetworkVariable<bool> isActive = new(true, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Position")]
         public NetworkVariable<bool> isMoving = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -88,6 +90,10 @@ namespace KrazyKatgames
         public void OnIsMovingChanged(bool oldStatus, bool newStatus)
         {
             character.animator.SetBool("IsMoving", isMoving.Value);
+        }
+        public virtual void OnIsActiveChanged(bool oldStatus, bool newStatus)
+        {
+            gameObject.SetActive(isActive.Value);
         }
         #region Action Animations
         // Is a function called from a client, to the Server

@@ -71,9 +71,13 @@ namespace KrazyKatgames
         {
             // character.isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
 
-            if (footIk.getGroundedResult() != null)
+            if (footIk&& footIk.getGroundedResult() != null)
             {
                 character.characterLocomotionManager.isGrounded = footIk.getGroundedResult().isGrounded;
+            }
+            else
+            {
+                isGrounded = Physics.CheckSphere(character.transform.position, groundCheckSphereRadius, groundLayer);
             }
         }
 

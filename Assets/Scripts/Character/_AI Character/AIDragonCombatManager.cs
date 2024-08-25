@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KrazyKatgames
 {
-    public class AIDragonCombatManager : MonoBehaviour
+    public class AIDragonCombatManager : AICharacterCombatManager
     {
         
     }

@@ -1,9 +1,8 @@
-using System;
 using UnityEngine;
 
 namespace KrazyKatgames
 {
-    [Serializable]
+    [System.Serializable]
     //  SINCE WE WANT TO REFERENCE THIS DATA FOR EVERY SAVE FILE, THIS SCRIPT IS NOT A MONOBEHAVIOUR AND IS INSTEAD SERIALIZABLE
     public class CharacterSaveData
     {
@@ -30,5 +29,15 @@ namespace KrazyKatgames
         [Header("Character Stats")]
         public int endurance = 10;
         public int vitality = 10;
+
+        [Header("Bosses")]
+        public SerializableDictionary<int, bool> bossesAwakened;
+        public SerializableDictionary<int, bool> bossesDefeated;
+
+        public CharacterSaveData()
+        {
+            bossesAwakened = new SerializableDictionary<int, bool>();
+            bossesDefeated = new SerializableDictionary<int, bool>();
+        }
     }
 }
