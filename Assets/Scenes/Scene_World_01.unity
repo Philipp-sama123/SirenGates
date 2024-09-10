@@ -7284,7 +7284,7 @@ PrefabInstance:
       objectReference: {fileID: 930394034859247514, guid: 73159db2273d943e898c295ab13bb396, type: 3}
     - target: {fileID: 5878258910986640695, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 57
+      value: 75
       objectReference: {fileID: 0}
     - target: {fileID: 5878258910986640695, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
       propertyPath: m_LocalPosition.y
@@ -7325,6 +7325,10 @@ PrefabInstance:
     - target: {fileID: 8805038132744123873, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
       propertyPath: m_Name
       value: AI Character Spawner (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8805038132744123873, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -10201,7 +10205,7 @@ PrefabInstance:
       objectReference: {fileID: 930394034859247514, guid: 4fb8d9c92f673435caa62150706e52b9, type: 3}
     - target: {fileID: 5878258910986640695, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 87.75
+      value: 45
       objectReference: {fileID: 0}
     - target: {fileID: 5878258910986640695, guid: 072b01eb5d6324af4ab24b99594bfa74, type: 3}
       propertyPath: m_LocalPosition.y

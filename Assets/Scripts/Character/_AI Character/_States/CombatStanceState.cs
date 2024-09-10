@@ -21,7 +21,8 @@ namespace KrazyKatgames
         [SerializeField] protected bool canPerformCombo = false;
         [SerializeField] protected int chanceToPerformCombo = 25;
         [SerializeField] protected bool hasRolledForComboChance = false; // 
-
+        
+        
         [Header("Engagement Distance")]
         [SerializeField] public float maximumEngagementDistance = 5; // Distance away from target before entering pursue state
 
@@ -33,13 +34,16 @@ namespace KrazyKatgames
 
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
-
-            // if face and turn towards its target include this 
-            if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
+            
+            if (aiCharacter.aiCharacterCombatManager.enablePivot)
             {
-                if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                // if face and turn towards its target include this 
+                if (!aiCharacter.aiCharacterNetworkManager.isMoving.Value)
                 {
-                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                    if (aiCharacter.aiCharacterCombatManager.viewableAngle < -30 || aiCharacter.aiCharacterCombatManager.viewableAngle > 30)
+                    {
+                        aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                    }
                 }
             }
 

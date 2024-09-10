@@ -30,18 +30,24 @@ namespace KrazyKatgames
         /**
          * AnimationEvent *
          */
-        public void PlayRollSoundFX()
+        public virtual void PlayRollSoundFX()
         {
             audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
         }
 
         public virtual void PlayDamageGrunt()
         {
-            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
+            if (damageGrunts.Length > 0)
+                PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
+            else
+                Debug.LogWarning("NO damageGrunt Sound Effects!");
         }
         public virtual void PlayAttackGrunt()
         {
-            PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+            if (attackGrunts.Length > 0)
+                PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
+            else
+                Debug.LogWarning("NO attackGrunts Sound Effects!");
         }
     }
 }

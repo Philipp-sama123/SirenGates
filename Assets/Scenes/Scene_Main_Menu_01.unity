@@ -5797,6 +5797,10 @@ PrefabInstance:
       propertyPath: lockOnTargetFollowSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7123055654616059410, guid: 5dbdf90245f7649ca86f4a116f925629, type: 3}
+      propertyPath: collideWithLayers.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -10,11 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ea7a1db5863cc45dfa52a3756ee72d38, type: 3}
-  m_Name: Combat Stance State
+  m_Name: Durk Combat Stance State
   m_EditorClassIdentifier: 
   aiCharacterAttacks:
-  - {fileID: 11400000, guid: 61f893cfe3e3d47d7a4af63651f3fa63, type: 2}
-  - {fileID: 11400000, guid: b6292f9a3c3e24fe2a6563ad6adeea87, type: 2}
+  - {fileID: 11400000, guid: 5055012e1f8ec48be81990c5e6031614, type: 2}
+  - {fileID: 11400000, guid: d0fe5db0f9f3e4b568cfcf85a2a2ff62, type: 2}
+  - {fileID: 11400000, guid: efcb6238c56b44a0f876d08e2dbedfeb, type: 2}
   canPerformCombo: 0
   chanceToPerformCombo: 25
   hasRolledForComboChance: 0

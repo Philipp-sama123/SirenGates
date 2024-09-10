@@ -4,7 +4,7 @@ namespace KrazyKatgames
 {
     public class AICharacterCombatManager : CharacterCombatManager
     {
-        protected AICharacterManager aiCharacterManager;
+        protected AICharacterManager aiCharacter;
 
         [Header("Target Information")]
         public float distanceFromTarget;
@@ -22,10 +22,13 @@ namespace KrazyKatgames
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 5f;
 
+        [Header("Pivot")]
+        [SerializeField] public bool enablePivot = true;
+
         protected override void Awake()
         {
             base.Awake();
-            aiCharacterManager = GetComponent<AICharacterManager>();
+            aiCharacter = GetComponent<AICharacterManager>();
             lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
         }
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
@@ -72,13 +75,15 @@ namespace KrazyKatgames
                             targetsDirection = targetCharacter.transform.position - transform.position;
                             viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetsDirection);
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
-                            PivotTowardsTarget(aiCharacter);
+                            
+                            if (enablePivot)
+                                PivotTowardsTarget(aiCharacter);
                         }
                     }
                 }
             }
         }
-        public void PivotTowardsTarget(AICharacterManager aiCharacter)
+        public virtual void PivotTowardsTarget(AICharacterManager aiCharacter)
         {
             if (aiCharacter.isPerformingAction)
                 return;

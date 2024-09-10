@@ -28,7 +28,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     public void OpenRightHandDamageCollider()
     {
         rightHandDamageCollider.EnableDamageCollider();
-        aiCharacterManager.characterSoundFXManager.PlayAttackGrunt();
+        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
     }
     public void DisableRightHandDamageCollider()
     {
@@ -37,7 +37,7 @@ public class AIUndeadCombatManager : AICharacterCombatManager
     public void OpenLeftHandDamageCollider()
     {
         leftHandDamageCollider.EnableDamageCollider();
-        aiCharacterManager.characterSoundFXManager.PlayAttackGrunt();
+        aiCharacter.characterSoundFXManager.PlayAttackGrunt();
     }
     public void DisableLeftHandDamageCollider()
     {

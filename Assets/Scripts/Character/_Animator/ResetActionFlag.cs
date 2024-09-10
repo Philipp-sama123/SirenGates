@@ -19,8 +19,12 @@ namespace KrazyKatgames
             character.characterLocomotionManager.isRolling = false;
             character.characterAnimatorManager.DisableCanDoCombo();
 
-            if (character.IsOwner) // ToDo: maybe remove here
+            if (character.IsOwner)
+            {
+                // ToDo: maybe remove here
                 character.characterNetworkManager.isJumping.Value = false;
+                character.characterNetworkManager.isInvulnerable.Value = false;
+            }
         }
     }
 }

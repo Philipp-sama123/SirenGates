@@ -42,9 +42,12 @@ namespace KrazyKatgames
 
         public override void ProcessEffect(CharacterManager character)
         {
+            // don't do anything if character is invulnerable
+            if (character.characterNetworkManager.isInvulnerable.Value)
+                return;
             base.ProcessEffect(character);
 
-            Debug.Log("ProcessEffect " + character.name+ " character.isDead? " + character.isDead.Value);
+            Debug.Log("ProcessEffect " + character.name + " character.isDead? " + character.isDead.Value);
 
             if (character.isDead.Value)
                 return;
@@ -91,7 +94,6 @@ namespace KrazyKatgames
             AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
             character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
             character.characterSoundFXManager.PlayDamageGrunt();
-            
         }
 
         private void PlayDirectionalBasedDamageAnimation(CharacterManager character)

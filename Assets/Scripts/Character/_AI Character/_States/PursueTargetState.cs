@@ -10,16 +10,20 @@ namespace KrazyKatgames
         {
             if (aiCharacter.isPerformingAction)
                 return this;
+
             if (aiCharacter.aiCharacterCombatManager.currentTarget == null)
                 return SwitchState(aiCharacter, aiCharacter.idle);
+
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
 
-
-            if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV
-                || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+            if (aiCharacter.aiCharacterCombatManager.enablePivot)
             {
-                aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                if (aiCharacter.aiCharacterCombatManager.viewableAngle < aiCharacter.aiCharacterCombatManager.minimumFOV
+                    || aiCharacter.aiCharacterCombatManager.viewableAngle > aiCharacter.aiCharacterCombatManager.maximumFOV)
+                {
+                    aiCharacter.aiCharacterCombatManager.PivotTowardsTarget(aiCharacter);
+                }
             }
             aiCharacter.aiCharacterLocomotionManager.RotateTowardsAgent(aiCharacter);
 
