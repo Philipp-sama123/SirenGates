@@ -12,6 +12,12 @@ namespace KrazyKatgames
         [Header("Attack Grunts")]
         [SerializeField] protected AudioClip[] attackGrunts;
 
+        [Header("Foot Steps")]
+        [SerializeField] public AudioClip[] footSteps;
+        [SerializeField] public AudioClip[] footStepsDirt;
+        [SerializeField] public AudioClip[] footStepsStone;
+        [SerializeField] public AudioClip[] footStepsWood;
+
         protected void Awake()
         {
             audioSource = GetComponent<AudioSource>();
@@ -35,14 +41,14 @@ namespace KrazyKatgames
             audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
         }
 
-        public virtual void PlayDamageGrunt()
+        public virtual void PlayDamageGruntSoundFX()
         {
             if (damageGrunts.Length > 0)
                 PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
             else
                 Debug.LogWarning("NO damageGrunt Sound Effects!");
         }
-        public virtual void PlayAttackGrunt()
+        public virtual void PlayAttackGruntSoundFX()
         {
             if (attackGrunts.Length > 0)
                 PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));

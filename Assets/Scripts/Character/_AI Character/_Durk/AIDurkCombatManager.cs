@@ -6,25 +6,37 @@ namespace KrazyKatgames
 {
     public class AIDurkCombatManager : AICharacterCombatManager
     {
+        private AIDurkCharacterManager aiDurkManager;
+
         [Header("Damage Collider")]
         [SerializeField] DurkClubDamageCollider clubDamageCollider;
-        [SerializeField] Transform durksStompingFoot;
-        [SerializeField] float stompAttackAOERadius = 1.5f;
+        [SerializeField] DurkStompCollider stompCollider;
+        public float stompAttackAOERadius = 1.5f;
 
         [Header("Damage")]
         [SerializeField] int baseDamage = 25;
         [SerializeField] float attack01DamageModifier = 1.0f;
         [SerializeField] float attack02DamageModifier = 1.4f;
         [SerializeField] float attack03DamageModifier = 1.6f;
-        [SerializeField] float stompDamage = 25;
+        [SerializeField]
+        public float stompDamage = 25;
 
+        [Header("VFX")]
+        public GameObject durkImpactVFX;
+        protected override void Awake()
+        {
+            base.Awake();
+            aiDurkManager = GetComponent<AIDurkCharacterManager>();
+        }
         public void SetAttack01Damage()
         {
+            aiDurkManager.durkSoundFXManager.PlayAttackGruntSoundFX();
             clubDamageCollider.physicalDamage = baseDamage * attack01DamageModifier;
         }
 
         public void SetAttack02Damage()
         {
+            aiDurkManager.durkSoundFXManager.PlayAttackGruntSoundFX();
             clubDamageCollider.physicalDamage = baseDamage * attack02DamageModifier;
         }
 
@@ -35,8 +47,9 @@ namespace KrazyKatgames
 
         public void OpenClubDamageCollider()
         {
-            aiCharacter.characterSoundFXManager.PlayAttackGrunt();
             clubDamageCollider.EnableDamageCollider();
+            aiDurkManager.durkSoundFXManager.PlaySoundFX(
+                WorldSoundFXManager.instance.ChooseRandomSFXFromArray(aiDurkManager.durkSoundFXManager.clubWhooshes));
         }
 
         public void CloseClubDamageCollider()
@@ -46,34 +59,7 @@ namespace KrazyKatgames
 
         public void ActivateDurkStomp()
         {
-            Collider[] colliders = Physics.OverlapSphere(durksStompingFoot.position, stompAttackAOERadius, WorldUtilityManager.Instance.GetCharacterLayers());
-            List<CharacterManager> charactersDamaged = new List<CharacterManager>(); // new list each time
-
-            foreach (var collider in colliders)
-            {
-                CharacterManager character = collider.GetComponentInParent<CharacterManager>();
-
-                if (character != null)
-                {
-                    if (charactersDamaged.Contains(character))
-                        continue;
-
-                    charactersDamaged.Add(character);
-
-                    //  WE ONLY PROCESS DAMAGE IF THE CHARACTER "ISOWNER" SO THAT THEY ONLY GET DAMAGED IF THE COLLIDER CONNECTS ON THEIR CLIENT
-                    //  MEANING IF YOU ARE HIT ON THE HOSTS SCREEN BUT NOT ON YOUR OWN, YOU WILL NOT BE HIT
-                    if (character.IsOwner)
-                    {
-                        //  CHECK FOR BLOCK
-
-                        TakeDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeDamageEffect);
-                        damageEffect.physicalDamage = stompDamage;
-                        damageEffect.poiseDamage = stompDamage;
-
-                        character.characterEffectsManager.ProcessInstantEffect(damageEffect);
-                    }
-                }
-            }
+stompCollider.StompAttack();
         }
 
         public override void PivotTowardsTarget(AICharacterManager aiCharacter)
