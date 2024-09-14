@@ -13,7 +13,7 @@ namespace KrazyKatgames
         public NavMeshAgent navMeshAgent;
 
         [Header("Current State")]
-        [SerializeField] AIState currentState;
+        [SerializeField] protected AIState currentState;
 
 
         [Header("States")]
@@ -33,12 +33,6 @@ namespace KrazyKatgames
             // Fixes Character Moving when 
             if (navMeshAgent.stoppingDistance <= 0)
                 navMeshAgent.stoppingDistance = 1;
-
-            // use a c
-            idle = Instantiate(idle);
-            pursueTarget = Instantiate(pursueTarget);
-
-            currentState = idle;
         }
 
         protected override void FixedUpdate()
@@ -47,7 +41,17 @@ namespace KrazyKatgames
             if (IsOwner)
                 ProcessStateMachine();
         }
+        public override void OnNetworkSpawn()
+        {
+            base.OnNetworkSpawn();
 
+            if (IsOwner)
+            {
+                idle = Instantiate(idle);
+                pursueTarget = Instantiate(pursueTarget);
+                currentState = idle;
+            }
+        }
         protected override void Update()
         {
             base.Update();

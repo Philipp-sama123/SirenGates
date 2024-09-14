@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2660420954
+  GlobalObjectIdHash: 2737363053
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -563,9 +563,14 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: 890ef3030c8854b148cc9d010b8e2a98, type: 2}
   attack: {fileID: 11400000, guid: cd4763a3ced614718a4f0fc61bb793ba, type: 2}
   bossID: 0
-  hasBeenDefeated: 0
-  hasBeenAwakened: 0
+  sleepState: {fileID: 11400000, guid: f5ed422fc5f50404dbdba7a989967eff, type: 2}
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakened:
+    m_InternalValue: 0
   fogWalls: []
+  sleepAnimation: Sleep_01
+  awakenAnimation: Awaken_01
   wakeBossUp: 0
   durkSoundFXManager: {fileID: 0}
   durkCombatManager: {fileID: 0}
@@ -990,7 +995,7 @@ CapsuleCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.35
   m_Height: 3

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace KrazyKatgames
 {
@@ -12,7 +12,10 @@ namespace KrazyKatgames
 
         [Header("Characters")]
         [SerializeField] List<AICharacterSpawner> aiCharacterSpawners;
-        [SerializeField] List<GameObject> spawnedInCharacters;
+        [SerializeField] List<AICharacterManager> spawnedInCharacters;
+
+        [Header("Bosses")]
+        [SerializeField] List<AIBossCharacterManager> spawnedInBosses;
 
         private void Awake()
         {
@@ -25,7 +28,23 @@ namespace KrazyKatgames
                 Destroy(gameObject);
             }
         }
+        public void AddCharacterToSpawnedCharactersList(AICharacterManager character)
+        {
+            if (spawnedInCharacters.Contains(character))
+                return;
 
+            spawnedInCharacters.Add(character);
+            
+            AIBossCharacterManager bossCharacter = character as AIBossCharacterManager;
+
+            if (bossCharacter != null)
+            {
+                if (spawnedInBosses.Contains(bossCharacter))
+                    return;
+
+                spawnedInBosses.Add(bossCharacter);
+            }
+        }
         public void SpawnCharacter(AICharacterSpawner aiCharacterSpawner)
         {
             if (NetworkManager.Singleton.IsServer)
@@ -33,6 +52,11 @@ namespace KrazyKatgames
                 aiCharacterSpawners.Add(aiCharacterSpawner);
                 aiCharacterSpawner.AttemptToSpawnCharacter();
             }
+        }
+
+        public AIBossCharacterManager GetBossCharacterByID(int ID)
+        {
+            return spawnedInBosses.FirstOrDefault(boss => boss.bossID == ID);
         }
 
         private void DespawnAllCharacters()

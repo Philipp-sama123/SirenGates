@@ -8,9 +8,7 @@ namespace KrazyKatgames
         [Header("Character")]
         [SerializeField] GameObject characterGameObject;
         [SerializeField] GameObject instantiateGameObject;
-        private void Awake()
-        {
-        }
+      
         private void Start()
         {
             WorldAIManager.instance.SpawnCharacter(this);
@@ -26,6 +24,7 @@ namespace KrazyKatgames
                 instantiateGameObject.transform.rotation = transform.rotation;
 
                 instantiateGameObject.GetComponent<NetworkObject>().Spawn();
+                WorldAIManager.instance.AddCharacterToSpawnedCharactersList(instantiateGameObject.GetComponent<AICharacterManager>());
             }
         }
     }
