@@ -7,7 +7,7 @@ namespace KrazyKatgames
     {
         [Header("Character Name")]
         public string characterName = "";
-        
+
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
         [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
@@ -54,6 +54,15 @@ namespace KrazyKatgames
                 pursueTarget = Instantiate(pursueTarget);
                 currentState = idle;
             }
+
+            // Stats
+            aiCharacterNetworkManager.currentHealth.OnValueChanged += aiCharacterNetworkManager.CheckHP;
+        }
+
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+            aiCharacterNetworkManager.currentHealth.OnValueChanged -= aiCharacterNetworkManager.CheckHP;
         }
         protected override void Update()
         {

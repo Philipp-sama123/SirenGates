@@ -145,13 +145,17 @@ namespace KrazyKatgames
         public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
         {
             PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(bossDefeatedMessage);
-            
+
             if (IsOwner)
             {
                 characterNetworkManager.currentHealth.Value = 0;
                 isDead.Value = true;
-
                 bossFightIsActive.Value = false;
+
+                foreach (var fogWall in fogWalls)
+                {
+                    fogWall.isActive.Value = false;
+                }
 
                 //  RESET ANY FLAGS HERE THAT NEED TO BE RESET
                 //  NOTHING YET
@@ -160,7 +164,7 @@ namespace KrazyKatgames
 
                 if (!manuallySelectDeathAnimation)
                 {
-                    characterAnimatorManager.PlayTargetActionAnimation("Dead_01", true);
+                    characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
                 }
 
                 hasBeenDefeated.Value = true;
