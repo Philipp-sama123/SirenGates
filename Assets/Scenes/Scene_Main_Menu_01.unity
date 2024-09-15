@@ -5181,6 +5181,10 @@ PrefabInstance:
       propertyPath: physicalDamageSFX.Array.data[19]
       value: 
       objectReference: {fileID: 8300000, guid: 80657bd3aee59be48ab2860785c95d82, type: 3}
+    - target: {fileID: 2328059167390218281, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: m_PlayOnAwake
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6406351501059936690, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -5219,6 +5223,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6406351501059936690, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7169822256141281474, guid: 40e83521524af425da4bc747afa8fec9, type: 3}
+      propertyPath: m_PlayOnAwake
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7994493097999971971, guid: 40e83521524af425da4bc747afa8fec9, type: 3}

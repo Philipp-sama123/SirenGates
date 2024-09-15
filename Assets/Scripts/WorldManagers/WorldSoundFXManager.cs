@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -5,7 +6,11 @@ namespace KrazyKatgames
     public class WorldSoundFXManager : MonoBehaviour
     {
         public static WorldSoundFXManager instance;
-        
+
+        [Header("Boss Track")]
+        [SerializeField] AudioSource bossIntroPlayer;
+        [SerializeField] AudioSource bossLoopPlayer;
+
         [Header("Action Sounds")]
         public AudioClip rollSFX;
 
@@ -48,6 +53,34 @@ namespace KrazyKatgames
                 return ChooseRandomSFXFromArray(character.characterSoundFXManager.footStepsStone);
             }
             return null;
+        }
+        public void PlayBossTrack(AudioClip introTrack, AudioClip loopTrack)
+        {
+            bossIntroPlayer.clip = introTrack;
+            bossIntroPlayer.volume = 1.0f;
+            bossIntroPlayer.loop = false;
+            bossIntroPlayer.Play();
+
+            bossLoopPlayer.clip = loopTrack;
+            bossLoopPlayer.volume = 1.0f;
+            bossLoopPlayer.loop = true;
+            bossLoopPlayer.PlayDelayed(bossIntroPlayer.clip.length);
+        }
+        public void StopBossMusic()
+        {
+            StartCoroutine(FadeOutBossMusicThenStop());
+        }
+        private IEnumerator FadeOutBossMusicThenStop()
+        {
+            while (bossLoopPlayer.volume > 0)
+            {
+                bossLoopPlayer.volume -= Time.deltaTime;
+                bossIntroPlayer.volume -= Time.deltaTime;
+                yield return null;
+            }
+
+            bossIntroPlayer.Stop();
+            bossLoopPlayer.Stop();
         }
     }
 }

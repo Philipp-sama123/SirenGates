@@ -12,17 +12,19 @@ namespace KrazyKatgames
 
         [Header("Attacks")]
         public List<AICharacterAttackAction> aiCharacterAttacks;
-        private List<AICharacterAttackAction> potentialAttacks;
-        private AICharacterAttackAction choosenAttack;
-        private AICharacterAttackAction previousAttack;
+        public List<AICharacterAttackAction> potentialAttacks;
+
+        public AICharacterAttackAction choosenAttack;
+        public AICharacterAttackAction previousAttack;
+
         protected bool hasAttack = false;
 
         [Header("Combo")]
         [SerializeField] protected bool canPerformCombo = false;
         [SerializeField] protected int chanceToPerformCombo = 25;
-        [SerializeField] protected bool hasRolledForComboChance = false; // 
-        
-        
+        [SerializeField] protected bool hasRolledForComboChance = false;
+
+
         [Header("Engagement Distance")]
         [SerializeField] public float maximumEngagementDistance = 5; // Distance away from target before entering pursue state
 
@@ -34,7 +36,7 @@ namespace KrazyKatgames
 
             if (!aiCharacter.navMeshAgent.enabled)
                 aiCharacter.navMeshAgent.enabled = true;
-            
+
             if (aiCharacter.aiCharacterCombatManager.enablePivot)
             {
                 // if face and turn towards its target include this 
@@ -74,7 +76,7 @@ namespace KrazyKatgames
             aiCharacter.navMeshAgent.SetPath(path);
             return this;
         }
-        
+
         /**
          *      1. Sort through possible Attacks
          *      2. Remove Attacks that can not be used in this situation (based on angle and distance)
