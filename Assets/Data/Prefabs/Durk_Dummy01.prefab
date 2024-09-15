@@ -206,7 +206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2737363053
+  GlobalObjectIdHash: 2660420954
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -553,6 +553,7 @@ MonoBehaviour:
   isPerformingAction: 0
   characterGroup: 1
   footIK: {fileID: 0}
+  characterName: Durk - Protector of the Prototype Realms
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterNetworkManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -564,6 +565,8 @@ MonoBehaviour:
   attack: {fileID: 11400000, guid: cd4763a3ced614718a4f0fc61bb793ba, type: 2}
   bossID: 0
   sleepState: {fileID: 11400000, guid: f5ed422fc5f50404dbdba7a989967eff, type: 2}
+  bossFightIsActive:
+    m_InternalValue: 0
   hasBeenDefeated:
     m_InternalValue: 0
   hasBeenAwakened:

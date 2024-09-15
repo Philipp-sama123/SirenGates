@@ -5,6 +5,9 @@ namespace KrazyKatgames
 {
     public class AICharacterManager : CharacterManager
     {
+        [Header("Character Name")]
+        public string characterName = "";
+        
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
         [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;

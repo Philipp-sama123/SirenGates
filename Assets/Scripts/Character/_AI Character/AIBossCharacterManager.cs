@@ -14,6 +14,7 @@ namespace KrazyKatgames
         [SerializeField] BossSleepState sleepState;
 
         [Header("Status")]
+        public NetworkVariable<bool> bossFightIsActive = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> hasBeenDefeated = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> hasBeenAwakened = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -48,6 +49,10 @@ namespace KrazyKatgames
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
+
+            bossFightIsActive.OnValueChanged += OnBossFightIsActiveChanged;
+
+            OnBossFightIsActiveChanged(false, bossFightIsActive.Value);
 
             if (IsOwner)
             {
@@ -100,6 +105,26 @@ namespace KrazyKatgames
             }
         }
 
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+            bossFightIsActive.OnValueChanged -= OnBossFightIsActiveChanged;
+        }
+        private void OnBossFightIsActiveChanged(bool oldStatus, bool newStatus)
+        {
+            if (bossFightIsActive.Value)
+            {
+                // Create a HP Bar for each boss that is in the Fight (If its active)
+                GameObject bossHealthBar = Instantiate(
+                    PlayerUIManager.instance.playerUIHudManager.bossHealthBarObject,
+                    PlayerUIManager.instance.playerUIHudManager.bossHealthBarParent
+                );
+
+                UI_Boss_HP_Bar bossHpBar = bossHealthBar.GetComponentInChildren<UI_Boss_HP_Bar>();
+                bossHpBar.EnableBossHPBar(this);
+            }
+        }
+
         private IEnumerator GetFogWallsFromWorldObjectManager()
         {
             while (WorldObjectManager.instance.fogWalls.Count == 0)
@@ -120,6 +145,8 @@ namespace KrazyKatgames
             {
                 characterNetworkManager.currentHealth.Value = 0;
                 isDead.Value = true;
+
+                bossFightIsActive.Value = false;
 
                 //  RESET ANY FLAGS HERE THAT NEED TO BE RESET
                 //  NOTHING YET
@@ -167,6 +194,8 @@ namespace KrazyKatgames
                 {
                     characterAnimatorManager.PlayTargetActionAnimation(awakenAnimation, true);
                 }
+
+                bossFightIsActive.Value = true;
                 hasBeenAwakened.Value = true;
                 currentState = idle;
 

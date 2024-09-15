@@ -9,11 +9,15 @@ namespace KrazyKatgames
         [SerializeField] UI_StatBar staminaBar;
         [SerializeField] UI_StatBar healthBar;
 
-
         [Header("Quick Slots")]
         [SerializeField] Image rightWeaponQuickSlotIcon;
         [SerializeField] Image leftWeaponQuickSlotIcon;
 
+
+        [Header("Boss Health Bar")]
+        public Transform bossHealthBarParent;
+        public GameObject bossHealthBarObject; 
+        
         public void SetNewStaminaValue(float oldValue, float newValue)
         {
             staminaBar.SetStat(Mathf.RoundToInt(newValue));
