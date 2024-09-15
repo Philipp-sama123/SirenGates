@@ -12,6 +12,12 @@ namespace KrazyKatgames
         [SerializeField] TextMeshProUGUI youDiedPopUpText;
         [SerializeField] CanvasGroup youDiedPopUpCanvasGroup; //  Allows us to set the alpha to fade over time
 
+        [Header("Boss Defeated Pop Up")]
+        [SerializeField] GameObject bossDefeatedPopupGameObject;
+        [SerializeField] TextMeshProUGUI bossDefeatedPopupBackgroundText;
+        [SerializeField] TextMeshProUGUI bossDefeatedPopupText;
+        [SerializeField] CanvasGroup bossDefeatedPopupCanvasGroup; //  Allows us to set the alpha to fade over time
+
         public void SendYouDiedPopUp()
         {
             //  ACTIVATE POST PROCESSING EFFECTS
@@ -23,6 +29,19 @@ namespace KrazyKatgames
             StartCoroutine(FadeInPopUpOverTime(youDiedPopUpCanvasGroup, 5));
             StartCoroutine(WaitThenFadeOutPopUpOverTime(youDiedPopUpCanvasGroup, 2, 5));
         }
+        public void SendBossDefeatedPopUp(string bossDefeatedMessage)
+        {
+            bossDefeatedPopupText.text = bossDefeatedMessage;
+            bossDefeatedPopupBackgroundText.text = bossDefeatedMessage;
+
+            bossDefeatedPopupGameObject.SetActive(true);
+            bossDefeatedPopupBackgroundText.characterSpacing = 0;
+
+            StartCoroutine(StretchPopUpTextOverTime(bossDefeatedPopupBackgroundText, 8, 19));
+            StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopupCanvasGroup, 5));
+            StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopupCanvasGroup, 2, 5));
+        }
+
 
         private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)
         {

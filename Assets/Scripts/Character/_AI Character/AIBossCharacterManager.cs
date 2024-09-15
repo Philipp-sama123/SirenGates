@@ -22,6 +22,9 @@ namespace KrazyKatgames
 
         [SerializeField] string sleepAnimation;
         [SerializeField] string awakenAnimation;
+
+        [Header("Boss Defeated Message")]
+        [SerializeField] string bossDefeatedMessage = "Great Foe Felled";
         //  WHEN THIS A.I IS SPAWNED, CHECK OUR SAVE FILE (DICTIONARY)
         //  IF THE SAVE FILE DOES NOT CONTAIN A BOSS MONSTER WITH THIS I.D ADD IT
         //  IF IT IS PRESENT, CHECK IF THE BOSS HAS BEEN DEFEATED
@@ -141,6 +144,8 @@ namespace KrazyKatgames
 
         public override IEnumerator ProcessDeathEvent(bool manuallySelectDeathAnimation = false)
         {
+            PlayerUIManager.instance.playerUIPopUpManager.SendBossDefeatedPopUp(bossDefeatedMessage);
+            
             if (IsOwner)
             {
                 characterNetworkManager.currentHealth.Value = 0;
