@@ -184,14 +184,5 @@ namespace KrazyKatgames
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
                 applyRootMotion);
         }
-
-
-        public virtual void DisableCanDoCombo()
-        {
-        }
-
-        public virtual void EnableCanDoCombo()
-        {
-        }
     }
 }

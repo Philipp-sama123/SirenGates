@@ -41,14 +41,20 @@ namespace KrazyKatgames
         public float charge_Attack_01_Modifier = 3f;
         public float charge_Attack_02_Modifier = 5f;
 
+        public float run_Attack_01_Modifier = 2.5f;
+        public float roll_Attack_01_Modifier = 2.5f;
+        public float backstep_Attack_01_Modifier = 2.5f;
+
         //  Crit Damage Modifier, etc
 
-        [Header("Stamina Costs")]
+        [Header("Stamina Costs Modifiers")]
         public int baseStaminaCost = 20;
         public float lightAttackStaminaCostMultiplier = 0.9f;
-        //  RUNNING ATTACK STAMINA COST MODIFIER
-        //  LIGHT ATTACK STAMINA COST MODIFIER
-        //  HEAVY ATTACK STAMINA COST MODIFIER ECT
+        public float heavyAttackStaminaCostMultiplier = 1.2f;
+        public float chargedAttackStaminaCostMultiplier = 1.5f;
+        public float rollingAttackStaminaCostMultiplier = .5f;
+        public float runningAttackStaminaCostMultiplier = .5f;
+        public float backstepAttackStaminaCostMultiplier = .5f;
 
 
         //  ITEM BASED ACTIONS (RB, RT, LB, LT)

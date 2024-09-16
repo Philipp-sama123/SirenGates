@@ -5,10 +5,17 @@ namespace KrazyKatgames
     [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Light Attack Action")]
     public class LightAttackWeaponItemAction : WeaponItemAction
     {
+        [Header("Light Attacks")]
         [SerializeField] private string light_Attack_01 = "Main_Light_Attack_01"; // Main Hand (Right) Light Attack
         [SerializeField] private string light_Attack_02 = "Main_Light_Attack_02";
         [SerializeField] private string light_Attack_03 = "Main_Light_Attack_03";
         [SerializeField] private string light_Attack_04 = "Main_Light_Attack_04";
+
+        [Header("Running Attacks")]
+        [SerializeField] private string run_attack_01 = "Main_Run_Attack_01";
+        [Header("Rolling Attacks")]
+        [SerializeField] private string roll_attack_01 = "Main_Roll_Attack_01";
+        [SerializeField] private string backstep_attack_01 = "Main_Backstep_Attack_01";
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             if (!playerPerformingAction.IsOwner)
@@ -16,10 +23,44 @@ namespace KrazyKatgames
 
             base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
 
-            if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
-            if (!playerPerformingAction.playerLocomotionManager.isGrounded) return;
+            if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
+                return;
 
+            if (!playerPerformingAction.playerLocomotionManager.isGrounded)
+                return;
+
+            if (playerPerformingAction.playerNetworkManager.isSprinting.Value)
+            {
+                PerformRunningAttack(playerPerformingAction, weaponPerformingAction);
+                return;
+            }
+            if (playerPerformingAction.playerCombatManager.canPerformRollingAttack)
+            {
+                PerformRollingAttack(playerPerformingAction, weaponPerformingAction);
+                return;
+            }
+            if (playerPerformingAction.playerCombatManager.canPerformBackstepAttack)
+            {
+                PerformBackstepAttack(playerPerformingAction, weaponPerformingAction);
+                return;
+            }
             PerformLightAttack(playerPerformingAction, weaponPerformingAction);
+        }
+        private void PerformBackstepAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            playerPerformingAction.characterCombatManager.DisableCanDoBackstepAttack();
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.BackstepAttack_01, backstep_attack_01, true);
+        }
+        private void PerformRollingAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            // for TW - Play two handed
+            playerPerformingAction.characterCombatManager.DisableCanDoRollingAttack();
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RollingAttack_01, roll_attack_01, true);
+        }
+        private void PerformRunningAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            // for TW - Play two handed
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RunningAttack01, run_attack_01, true);
         }
 
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)

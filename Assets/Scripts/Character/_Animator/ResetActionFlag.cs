@@ -13,11 +13,15 @@ namespace KrazyKatgames
             }
             //  THIS IS CALLED WHEN AN ACTION ENDS, AND THE STATE RETURNS TO "EMPTY"
             character.isPerformingAction = false;
+            
             character.characterAnimatorManager.applyRootMotion = false;
             character.characterLocomotionManager.canRotate = true;
             character.characterLocomotionManager.canMove = true;
             character.characterLocomotionManager.isRolling = false;
-            character.characterAnimatorManager.DisableCanDoCombo();
+            
+            character.characterCombatManager.DisableCanDoCombo();
+            character.characterCombatManager.DisableCanDoBackstepAttack();
+            character.characterCombatManager.DisableCanDoRollingAttack();
 
             if (character.IsOwner)
             {
