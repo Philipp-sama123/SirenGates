@@ -42,9 +42,16 @@ namespace KrazyKatgames
         [SerializeField] bool RB_Input = false;
 
         [Header("Trigger Inputs")]
-        [SerializeField]
-        private bool RT_Input = false;
-        private bool Hold_RT_Input = false;
+        [SerializeField] bool RT_Input = false;
+        [SerializeField] bool Hold_RT_Input = false;
+
+        [Header("Input queue")]
+        [SerializeField] private bool input_Que_Is_Active = false;
+        [SerializeField] float que_Input_Timer = 0.0f;
+        [SerializeField] float default_Que_Input_Time = 0.25f;
+
+        [SerializeField] bool que_RB_Input = false;
+        [SerializeField] bool que_RT_Input = false;
 
 
         private void Awake()
@@ -115,6 +122,7 @@ namespace KrazyKatgames
 
                 // Bumpers
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
+
                 // Triggers
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
 
@@ -129,9 +137,60 @@ namespace KrazyKatgames
                 //  RELEASING THE INPUT, SETS THE BOOL TO FALSE
                 playerControls.PlayerActions.Sprint.canceled += i => sprint_Input = false;
                 playerControls.PlayerActions.Hold_RT.canceled += i => Hold_RT_Input = false;
+
+                // Queued Inputs
+                playerControls.PlayerActions.Que_RB.performed += i => QueInput(ref que_RB_Input);
+                playerControls.PlayerActions.Que_RB.performed += i => QueInput(ref que_RT_Input);
             }
 
             playerControls.Enable();
+        }
+        private void QueInput(ref bool quedInput)
+        {
+            que_RB_Input = false;
+            que_RT_Input = false;
+            // que_LT_Input = false; 
+            // que_LB_Input = false; 
+
+            // Check for open UI Windows (!)
+            if (player.isPerformingAction || player.playerNetworkManager.isJumping.Value)
+            {
+                quedInput = true;
+                // Attempt this new Input for x amount of time
+                que_Input_Timer = default_Que_Input_Time;
+                input_Que_Is_Active = true;
+            }
+        }
+        private void ProcessQuedInputs()
+        {
+            if (player.isDead.Value)
+                return;
+
+            if (que_RB_Input)
+                RB_Input = true;
+
+            if (que_RT_Input)
+                RT_Input = true;
+        }
+        private void HandleQuedInputs()
+        {
+            if (input_Que_Is_Active)
+            {
+                // While time > 0, keep attempting to press the input
+                if (que_Input_Timer > 0)
+                {
+                    que_Input_Timer -= Time.deltaTime;
+                    ProcessQuedInputs();
+                }
+                else
+                {
+                    // Reset Qued Inputs
+                    que_RB_Input = false;
+                    que_RT_Input = false;
+
+                    input_Que_Is_Active = false;
+                }
+            }
         }
 
         private void OnDestroy()
@@ -176,6 +235,8 @@ namespace KrazyKatgames
 
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
+
+            HandleQuedInputs();
         }
 
         //  LOCK ON

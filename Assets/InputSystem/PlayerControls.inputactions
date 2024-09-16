@@ -296,9 +296,27 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Que_RB",
+                    "type": "Button",
+                    "id": "223c28fa-17be-4b26-bb3c-f8a54329ca4c",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "RT",
                     "type": "Button",
                     "id": "1b52f2b8-0a14-4225-8a46-ea6372730e68",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Que_RT",
+                    "type": "Button",
+                    "id": "a8c6f083-c5e3-4d4e-884e-1f17f092f757",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -599,6 +617,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "SwitchLeftWeapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af6a0d50-62df-4814-be02-d20b465a259f",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que_RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "507ccccb-82c7-42fe-a4e0-13090470b592",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que_RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f07f5ac6-7a43-4664-90b8-5e1755e41b52",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que_RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "414dd472-660f-4bd2-9712-924e5e53bdd8",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Que_RT",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
