@@ -69,16 +69,14 @@ namespace KrazyKatgames
         }
         public void HandleAllMovement()
         {
+            if (player.playerLocomotionManager.canMove || player.playerLocomotionManager.canRotate)
+                CalculateMovementDirection();
+
             HandleMovement();
             HandleRotation();
         }
         private void HandleMovement()
         {
-            if (!player.playerLocomotionManager.canMove)
-                return;
-
-            CalculateMovementDirection();
-
             if (player.playerLocomotionManager.isGrounded && !player.characterNetworkManager.isJumping.Value)
                 HandleGroundedMovement();
             else
@@ -112,6 +110,12 @@ namespace KrazyKatgames
         }
         private void HandleGroundedMovement()
         {
+            if (player.isDead.Value)
+                return;
+            
+            if (!player.playerLocomotionManager.canMove)
+                return;
+
             if (player.playerNetworkManager.isSprinting.Value)
             {
                 player.characterController.Move(moveDirection * sprintingSpeed * Time.deltaTime);
