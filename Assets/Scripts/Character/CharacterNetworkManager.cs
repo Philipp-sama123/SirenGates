@@ -38,14 +38,14 @@ namespace KrazyKatgames
         public NetworkVariable<bool> isChargingAttack = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Resources")]
-        public NetworkVariable<float> currentStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> maxStamina = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> currentHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> maxHealth = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<float> currentStamina = new(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> maxStamina = new(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> currentHealth = new(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> maxHealth = new(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Stats")]
-        public NetworkVariable<int> endurance = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> vitality = new(1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> endurance = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> vitality = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected virtual void Awake()
         {

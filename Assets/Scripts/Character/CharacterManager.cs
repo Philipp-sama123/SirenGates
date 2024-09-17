@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using HoaxGames;
@@ -19,6 +20,7 @@ namespace KrazyKatgames
         [HideInInspector] public CharacterCombatManager characterCombatManager;
         [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
+        [HideInInspector] public CharacterUIManager characterUIManager;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -39,7 +41,8 @@ namespace KrazyKatgames
             characterCombatManager = GetComponent<CharacterCombatManager>();
             characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
-
+            characterUIManager = GetComponent<CharacterUIManager>();
+            
             footIK = GetComponent<FootIK>();
         }
         protected virtual void Start()
@@ -122,6 +125,12 @@ namespace KrazyKatgames
                     Physics.IgnoreCollision(collider, otherCollider, true);
                 }
             }
+        }
+        protected virtual void OnEnable()
+        {
+        }
+        protected virtual void OnDisable()
+        {
         }
         public override void OnNetworkSpawn()
         {

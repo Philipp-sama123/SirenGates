@@ -56,7 +56,14 @@ namespace KrazyKatgames
 
             PlayerCamera.instance.HandleAllCameraActions();
         }
-
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+        }
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+        }
         public override void OnNetworkSpawn()
         {
             base.OnNetworkSpawn();
@@ -79,6 +86,10 @@ namespace KrazyKatgames
 
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
             }
+
+            // Only for other Players - show HP Bar
+            if (!IsOwner)
+                playerNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHPChanged;
 
             // Stats
             playerNetworkManager.currentHealth.OnValueChanged += playerNetworkManager.CheckHP;
@@ -205,6 +216,9 @@ namespace KrazyKatgames
 
                 playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
             }
+
+            if (!IsOwner)
+                playerNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
             // Stats
             playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
             // LockOn

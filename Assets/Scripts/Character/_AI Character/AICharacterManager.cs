@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -54,14 +55,27 @@ namespace KrazyKatgames
                 pursueTarget = Instantiate(pursueTarget);
                 combatStance = Instantiate(combatStance);
                 attack = Instantiate(attack);
-                
+
                 currentState = idle;
             }
 
             // Stats
             aiCharacterNetworkManager.currentHealth.OnValueChanged += aiCharacterNetworkManager.CheckHP;
         }
+        protected override void OnEnable()
+        {
+            base.OnEnable();
 
+            if (characterUIManager.hasFloatingHPBar)
+                aiCharacterNetworkManager.currentHealth.OnValueChanged += characterUIManager.OnHPChanged;
+        }
+        protected override void OnDisable()
+        {
+            base.OnDisable();
+
+            if (characterUIManager.hasFloatingHPBar)
+                aiCharacterNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
+        }
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
