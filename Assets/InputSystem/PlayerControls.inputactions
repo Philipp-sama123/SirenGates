@@ -296,6 +296,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "f7971d84-67d6-497d-9b35-bc6b056f9c1b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "Que_RB",
                     "type": "Button",
                     "id": "223c28fa-17be-4b26-bb3c-f8a54329ca4c",
@@ -661,6 +670,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Que_RT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "154180da-69a5-4e11-969e-3ac6316682ae",
+                    "path": "<Gamepad>/buttonNorth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "2cbe6dca-b56d-4b94-b670-96b7eba52c92",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

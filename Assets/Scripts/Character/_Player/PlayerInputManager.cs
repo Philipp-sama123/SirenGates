@@ -35,6 +35,7 @@ namespace KrazyKatgames
         [SerializeField] bool dodge_Input = false;
         [SerializeField] bool sprint_Input = false;
         [SerializeField] bool jump_Input = false;
+        [SerializeField] bool interaction_Input = false;
         [SerializeField] bool switch_Right_Weapon_Input = false;
         [SerializeField] bool switch_Left_Weapon_Input = false;
 
@@ -125,6 +126,9 @@ namespace KrazyKatgames
 
                 // Triggers
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
+                
+                // Interactions
+                playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
 
                 //  LOCK ON
                 playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
@@ -224,11 +228,15 @@ namespace KrazyKatgames
         {
             HandleLockOnInput();
             HandleLockOnSwitchTargetInput();
+            
             HandlePlayerMovementInput();
             HandleCameraMovementInput();
+            
             HandleDodgeInput();
             HandleSprintInput();
             HandleJumpInput();
+            HandleInteractionInput();
+            
             HandleRBInput();
             HandleRTInput();
             HandleChargeRTInput();
@@ -287,7 +295,6 @@ namespace KrazyKatgames
                 }
             }
         }
-
         private void HandleLockOnSwitchTargetInput()
         {
             if (lockOn_Left_Input)
@@ -362,7 +369,6 @@ namespace KrazyKatgames
 
             //  IF WE ARE LOCKED ON PASS THE HORIZONTAL MOVEMENT AS WELL
         }
-
         private void HandleCameraMovementInput()
         {
             cameraVertical_Input = camera_Input.y;
@@ -370,7 +376,6 @@ namespace KrazyKatgames
         }
 
         //  ACTION
-
         private void HandleDodgeInput()
         {
             if (dodge_Input)
@@ -381,8 +386,16 @@ namespace KrazyKatgames
 
                 player.playerLocomotionManager.AttemptToPerformDodge();
             }
-        }
+        }  
+        private void HandleInteractionInput()
+        {
+            if (interaction_Input)
+            {
+                interaction_Input = false;
 
+                player.playerInteractionManager.Interact();
+            }
+        }
         private void HandleSprintInput()
         {
             if (sprint_Input)
@@ -394,7 +407,6 @@ namespace KrazyKatgames
                 player.playerNetworkManager.isSprinting.Value = false;
             }
         }
-
         private void HandleJumpInput()
         {
             if (jump_Input)
@@ -407,7 +419,6 @@ namespace KrazyKatgames
                 player.playerLocomotionManager.AttemptToPerformJump();
             }
         }
-
         private void HandleRBInput()
         {
             if (RB_Input)

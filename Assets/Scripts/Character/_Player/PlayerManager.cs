@@ -18,13 +18,14 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerInventoryManager playerInventoryManager;
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
         [HideInInspector] public PlayerCombatManager playerCombatManager;
+        [HideInInspector] public PlayerInteractionManager playerInteractionManager;
 
         protected override void Awake()
         {
             base.Awake();
 
             //  DO MORE STUFF, ONLY FOR THE PLAYER
-
+            playerInteractionManager = GetComponent<PlayerInteractionManager>();
             playerLocomotionManager = GetComponent<PlayerLocomotionManager>();
             playerInventoryManager = GetComponent<PlayerInventoryManager>();
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();

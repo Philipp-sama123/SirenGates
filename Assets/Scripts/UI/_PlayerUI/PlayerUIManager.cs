@@ -13,6 +13,10 @@ namespace KrazyKatgames
         [Header("Network Join")]
         [SerializeField] bool startGameAsClient;
 
+        [Header("UI Flags")]
+        public bool menuWindowIsOpen = false;
+        public bool popupWindowIsOpen = false;
+        
         private void Awake()
         {
             if (instance == null)

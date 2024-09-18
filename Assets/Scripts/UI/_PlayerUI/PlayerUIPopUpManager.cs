@@ -6,6 +6,9 @@ namespace KrazyKatgames
 {
     public class PlayerUIPopUpManager : MonoBehaviour
     {
+        [Header("Message Pop Up")]
+        [SerializeField] TextMeshProUGUI popupMessageText;
+        [SerializeField] GameObject popupMessageGameObject;
         [Header("YOU DIED Pop Up")]
         [SerializeField] GameObject youDiedPopUpGameObject;
         [SerializeField] TextMeshProUGUI youDiedPopUpBackgroundText;
@@ -18,6 +21,12 @@ namespace KrazyKatgames
         [SerializeField] TextMeshProUGUI bossDefeatedPopupText;
         [SerializeField] CanvasGroup bossDefeatedPopupCanvasGroup; //  Allows us to set the alpha to fade over time
 
+        public void SendPlayerMessagePopup(string messageText)
+        {
+            PlayerUIManager.instance.popupWindowIsOpen = true;
+            popupMessageText.text = messageText;
+            popupMessageGameObject.SetActive(true);
+        }
         public void SendYouDiedPopUp()
         {
             //  ACTIVATE POST PROCESSING EFFECTS
@@ -41,8 +50,6 @@ namespace KrazyKatgames
             StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopupCanvasGroup, 5));
             StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopupCanvasGroup, 2, 5));
         }
-
-
         private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)
         {
             if (duration > 0f)
@@ -61,6 +68,12 @@ namespace KrazyKatgames
             }
         }
 
+        public void CloseAllPopupWindows()
+        {
+            popupMessageGameObject.SetActive(false);
+
+            PlayerUIManager.instance.popupWindowIsOpen = false;
+        }
         private IEnumerator FadeInPopUpOverTime(CanvasGroup canvas, float duration)
         {
             if (duration > 0)
@@ -81,7 +94,6 @@ namespace KrazyKatgames
 
             yield return null;
         }
-
         private IEnumerator WaitThenFadeOutPopUpOverTime(CanvasGroup canvas, float duration, float delay)
         {
             if (duration > 0)
