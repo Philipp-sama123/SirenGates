@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -246,11 +247,12 @@ namespace KrazyKatgames
         private void NewGame()
         {
             //  SAVES THE NEWLY CREATED CHARACTERS STATS, AND ITEMS (WHEN CREATION SCREEN IS ADDED)
-            SaveGame();
-            StartCoroutine(LoadWorldScene());
             // This is for setting the health and stamina on start  
             player.playerNetworkManager.currentHealth.Value = player.playerNetworkManager.maxHealth.Value;
             player.playerNetworkManager.currentStamina.Value = player.playerNetworkManager.maxStamina.Value;
+
+            SaveGame();
+            LoadWorldScene(worldSceneIndex);
         }
 
         public void LoadGame()
@@ -264,7 +266,7 @@ namespace KrazyKatgames
             saveFileDataWriter.saveFileName = saveFileName;
             currentCharacterData = saveFileDataWriter.LoadSaveFile();
 
-            StartCoroutine(LoadWorldScene());
+            LoadWorldScene(worldSceneIndex);
         }
 
         public void SaveGame()
@@ -330,17 +332,12 @@ namespace KrazyKatgames
             characterSlot10 = saveFileDataWriter.LoadSaveFile();
         }
 
-        public IEnumerator LoadWorldScene()
+        public void LoadWorldScene(int buildIndex)
         {
-            //  IF YOU JUST WANT 1 WORLD SCENE USE THIS
-            AsyncOperation loadOperation = SceneManager.LoadSceneAsync(worldSceneIndex);
-
-            //  IF YOU WANT TO USE DIFFERENT SCENES FOR LEVELS IN YOUR PROJECT USE THIS
-            //AsyncOperation loadOperation = SceneManager.LoadSceneAsync(currentCharacterData.sceneIndex);
+            string worldScene = SceneUtility.GetScenePathByBuildIndex(buildIndex);
+            NetworkManager.Singleton.SceneManager.LoadScene(worldScene, LoadSceneMode.Single);
 
             player.LoadGameDataFromCurrentCharacterData(ref currentCharacterData);
-
-            yield return null;
         }
 
         public int GetWorldSceneIndex()

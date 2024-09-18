@@ -1,9 +1,11 @@
 using System;
+using System.Collections;
+using Unity.Netcode;
 using UnityEngine;
 
 namespace KrazyKatgames
 {
-    public class Interactable : MonoBehaviour
+    public class Interactable : NetworkBehaviour
     {
         // What are interactables (?)
         public string interactableText;
@@ -27,7 +29,7 @@ namespace KrazyKatgames
                 return;
 
             Debug.Log("YOU HAVE INTERACTED!");
-            
+
             interactableCollider.enabled = false;
             player.playerInteractionManager.RemoveInteractionFromList(this);
             PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopupWindows();
