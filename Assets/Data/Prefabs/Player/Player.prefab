@@ -8914,7 +8914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 317645115
+  GlobalObjectIdHash: 2729144484
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -9089,6 +9089,7 @@ MonoBehaviour:
   playerInventoryManager: {fileID: 0}
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
+  playerInteractionManager: {fileID: 0}
 --- !u!114 &-6754247136792872320
 MonoBehaviour:
   m_ObjectHideFlags: 0

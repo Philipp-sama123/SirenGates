@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 2706292267473218691}
   - component: {fileID: 7123055654616059410}
   m_Layer: 0
-  m_Name: Player Camera (Left & Right)
+  m_Name: Player Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -172,7 +172,7 @@ MonoBehaviour:
   player: {fileID: 0}
   cameraObject: {fileID: 1265641316557239200}
   cameraPivotTransform: {fileID: 3700177007223093701}
-  cameraSmoothSpeed: 75
+  cameraSmoothSpeed: 2.5
   leftAndRightRotationSpeed: 220
   upAndDownRotationSpeed: 220
   minimumPivot: -30
@@ -186,7 +186,7 @@ MonoBehaviour:
   lockOnRadius: 20
   minimumViewableAngle: -50
   maximumViewableAngle: 50
-  lockOnTargetFollowSpeed: 0.5
+  lockOnTargetFollowSpeed: 1
   setCameraHeightSpeed: 0.05
   unlockedCameraHeight: 1
   lockedCameraHeight: 1.5

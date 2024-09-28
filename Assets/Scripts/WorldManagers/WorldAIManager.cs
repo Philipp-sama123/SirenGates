@@ -34,7 +34,7 @@ namespace KrazyKatgames
                 return;
 
             spawnedInCharacters.Add(character);
-            
+
             AIBossCharacterManager bossCharacter = character as AIBossCharacterManager;
 
             if (bossCharacter != null)
@@ -58,13 +58,23 @@ namespace KrazyKatgames
         {
             return spawnedInBosses.FirstOrDefault(boss => boss.bossID == ID);
         }
+        public void ResetAllCharacters()
+        {
+            DespawnAllCharacters();
 
+            // Respawn all ai characters
+            foreach (var spawner in aiCharacterSpawners)
+            {
+                spawner.AttemptToSpawnCharacter();
+            }
+        }
         private void DespawnAllCharacters()
         {
             foreach (var character in spawnedInCharacters)
             {
                 character.GetComponent<NetworkObject>().Despawn();
             }
+            spawnedInCharacters.Clear();
         }
 
         private void DisableAllCharacters()

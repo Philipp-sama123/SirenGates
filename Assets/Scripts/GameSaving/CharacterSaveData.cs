@@ -30,14 +30,18 @@ namespace KrazyKatgames
         public int endurance = 10;
         public int vitality = 10;
 
+        [Header("Sites Of Grace")]
+        public SerializableDictionary<int, bool> sitesOfGrace; // int is the id, bool the activation status
         [Header("Bosses")]
         public SerializableDictionary<int, bool> bossesAwakened;
         public SerializableDictionary<int, bool> bossesDefeated;
+        
 
         public CharacterSaveData()
         {
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
+            sitesOfGrace = new SerializableDictionary<int, bool>();
         }
     }
 }

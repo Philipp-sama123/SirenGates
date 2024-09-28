@@ -6,6 +6,9 @@ namespace KrazyKatgames
 {
     public class FogWallInteractable : Interactable
     {
+        [Header("Active")]
+        public NetworkVariable<bool> isActive = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
         [Header("Fog")]
         [SerializeField] GameObject[] fogGameObjects;
 
@@ -17,9 +20,6 @@ namespace KrazyKatgames
         [Header("Sound")]
         private AudioSource fogWallAudioSource;
         [SerializeField] AudioClip fogWallSFX;
-
-        [Header("Active")]
-        public NetworkVariable<bool> isActive = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         protected override void Awake()
         {
             base.Awake();
@@ -31,7 +31,7 @@ namespace KrazyKatgames
 
 
             // Face the fog wall 
-        
+
             Quaternion targetRotation = Quaternion.LookRotation(transform.right);
             player.transform.rotation = targetRotation;
 
@@ -87,9 +87,9 @@ namespace KrazyKatgames
         private void AllowPlayerThroughFogWallCollidersClientRpc(ulong playerObjectID)
         {
             PlayerManager player = NetworkManager.Singleton.SpawnManager.SpawnedObjects[playerObjectID].GetComponent<PlayerManager>();
-            
+
             fogWallAudioSource.PlayOneShot(fogWallSFX);
-            
+
             if (player != null)
             {
                 StartCoroutine(DisableCollisionForTime(player));

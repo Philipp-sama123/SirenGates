@@ -9,6 +9,7 @@ namespace KrazyKatgames
         [Header("Message Pop Up")]
         [SerializeField] TextMeshProUGUI popupMessageText;
         [SerializeField] GameObject popupMessageGameObject;
+        
         [Header("YOU DIED Pop Up")]
         [SerializeField] GameObject youDiedPopUpGameObject;
         [SerializeField] TextMeshProUGUI youDiedPopUpBackgroundText;
@@ -20,6 +21,12 @@ namespace KrazyKatgames
         [SerializeField] TextMeshProUGUI bossDefeatedPopupBackgroundText;
         [SerializeField] TextMeshProUGUI bossDefeatedPopupText;
         [SerializeField] CanvasGroup bossDefeatedPopupCanvasGroup; //  Allows us to set the alpha to fade over time
+
+        [Header("Site Of Grace Pop Up")]
+        [SerializeField] GameObject graceRestoredPopupGameObject;
+        [SerializeField] TextMeshProUGUI graceRestoredPopupBackgroundText;
+        [SerializeField] TextMeshProUGUI graceRestoredPopupText;
+        [SerializeField] CanvasGroup graceRestoredPopupCanvasGroup; //  Allows us to set the alpha to fade over time
 
         public void SendPlayerMessagePopup(string messageText)
         {
@@ -49,6 +56,18 @@ namespace KrazyKatgames
             StartCoroutine(StretchPopUpTextOverTime(bossDefeatedPopupBackgroundText, 8, 19));
             StartCoroutine(FadeInPopUpOverTime(bossDefeatedPopupCanvasGroup, 5));
             StartCoroutine(WaitThenFadeOutPopUpOverTime(bossDefeatedPopupCanvasGroup, 2, 5));
+        }
+        public void SendGraceRestoredPopUp(string graceRestoredMessage)
+        {
+            graceRestoredPopupText.text = graceRestoredMessage;
+            graceRestoredPopupBackgroundText.text = graceRestoredMessage;
+
+            graceRestoredPopupGameObject.SetActive(true);
+            graceRestoredPopupBackgroundText.characterSpacing = 0;
+
+            StartCoroutine(StretchPopUpTextOverTime(graceRestoredPopupBackgroundText, 8, 19));
+            StartCoroutine(FadeInPopUpOverTime(graceRestoredPopupCanvasGroup, 5));
+            StartCoroutine(WaitThenFadeOutPopUpOverTime(graceRestoredPopupCanvasGroup, 2, 5));
         }
         private IEnumerator StretchPopUpTextOverTime(TextMeshProUGUI text, float duration, float stretchAmount)
         {
