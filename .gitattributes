@@ -50,3 +50,7 @@
 *.lxo filter=lfs diff=lfs merge=lfs -text
 *.resS filter=lfs diff=lfs merge=lfs -text
 IOSBUILD_RS_25_11_NEW_LOOP/Data/** filter=lfs diff=lfs merge=lfs -text
+
+# Specific handling for Assets/Scenes/Scene_Level_1.unity
+Assets/Scenes/Scene_Level_1.unity merge=unityyamlmerge eol=lf
+
