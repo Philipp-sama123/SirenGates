@@ -126,7 +126,7 @@ namespace KrazyKatgames
 
                 // Triggers
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
-                
+
                 // Interactions
                 playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
 
@@ -228,15 +228,15 @@ namespace KrazyKatgames
         {
             HandleLockOnInput();
             HandleLockOnSwitchTargetInput();
-            
+
             HandlePlayerMovementInput();
             HandleCameraMovementInput();
-            
+
             HandleDodgeInput();
             HandleSprintInput();
             HandleJumpInput();
             HandleInteractionInput();
-            
+
             HandleRBInput();
             HandleRTInput();
             HandleChargeRTInput();
@@ -244,6 +244,7 @@ namespace KrazyKatgames
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
 
+            // TODO when this is active the 3rd Combo goes in the charged attack (!)
             HandleQuedInputs();
         }
 
@@ -386,7 +387,7 @@ namespace KrazyKatgames
 
                 player.playerLocomotionManager.AttemptToPerformDodge();
             }
-        }  
+        }
         private void HandleInteractionInput()
         {
             if (interaction_Input)
