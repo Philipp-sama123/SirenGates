@@ -13,6 +13,11 @@ namespace KrazyKatgames
             damageCollider = GetComponent<Collider>();
             bossCharacter = GetComponentInParent<AIBossCharacterManager>();
         }
+        protected override void GetBlockingDotValues(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = transform.position - bossCharacter.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+        }
 
         protected override void DamageTarget(CharacterManager damageTarget)
         {

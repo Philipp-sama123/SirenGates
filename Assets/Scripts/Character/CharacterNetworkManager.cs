@@ -31,6 +31,7 @@ namespace KrazyKatgames
 
 
         [Header("Flags")]
+        public NetworkVariable<bool> isBlocking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isInvulnerable = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -56,7 +57,6 @@ namespace KrazyKatgames
         {
             if (currentHealth.Value <= 0)
             {
-                Debug.LogWarning("StartCoroutine(character.ProcessDeathEvent" + newValue);
                 StartCoroutine(character.ProcessDeathEvent());
             }
             // Avoid Overhealing(!)

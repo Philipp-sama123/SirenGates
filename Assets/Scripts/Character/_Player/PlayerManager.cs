@@ -145,11 +145,11 @@ namespace KrazyKatgames
             currentCharacterData.yPosition = transform.position.y;
             currentCharacterData.zPosition = transform.position.z;
 
-            currentCharacterData.vitality = characterNetworkManager.vitality.Value;
-            currentCharacterData.endurance = characterNetworkManager.endurance.Value;
+            currentCharacterData.vitality = playerNetworkManager.vitality.Value;
+            currentCharacterData.endurance = playerNetworkManager.endurance.Value;
 
-            currentCharacterData.currentHealth = characterNetworkManager.currentHealth.Value;
-            currentCharacterData.currentStamina = characterNetworkManager.currentStamina.Value;
+            currentCharacterData.currentHealth = playerNetworkManager.currentHealth.Value;
+            currentCharacterData.currentStamina = playerNetworkManager.currentStamina.Value;
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -158,14 +158,14 @@ namespace KrazyKatgames
             Vector3 myPosition = new Vector3(currentCharacterData.xPosition, currentCharacterData.yPosition, currentCharacterData.zPosition);
             transform.position = myPosition;
 
-            characterNetworkManager.vitality.Value = currentCharacterData.vitality;
-            characterNetworkManager.endurance.Value = currentCharacterData.endurance;
+            playerNetworkManager.vitality.Value = currentCharacterData.vitality;
+            playerNetworkManager.endurance.Value = currentCharacterData.endurance;
 
             playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(currentCharacterData.endurance);
             playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(currentCharacterData.vitality);
 
-            characterNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
-            characterNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
+            playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
+            playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
 
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);

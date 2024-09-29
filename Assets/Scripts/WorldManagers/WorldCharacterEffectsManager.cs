@@ -9,6 +9,8 @@ namespace KrazyKatgames
 
         [Header("Take Damage Effect")]
         public TakeDamageEffect takeDamageEffect;
+        public TakeBlockedDamageEffect takeBlockedDamageEffect;
+        
         [SerializeField] List<InstantCharacterEffect> instantEffects;
 
         [Header("VFX")]

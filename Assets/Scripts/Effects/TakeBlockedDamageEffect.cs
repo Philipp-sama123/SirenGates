@@ -1,9 +1,13 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using KrazyKatgames;
 using UnityEngine;
 
 namespace KrazyKatgames
 {
-    [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Damage")]
-    public class TakeDamageEffect : InstantCharacterEffect
+    [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Blocked Damage")]
+    public class TakeBlockedDamageEffect : InstantCharacterEffect
     {
         [Header("Character Causing Damage")]
         public CharacterManager characterCausingDamage;
@@ -46,12 +50,15 @@ namespace KrazyKatgames
             if (character.characterNetworkManager.isInvulnerable.Value)
                 return;
             base.ProcessEffect(character);
-            
+
+            Debug.LogWarning("Hit was BLOCKED by " + character.name + " from: " +
+                             (characterCausingDamage != null ? characterCausingDamage.name : null));
+
             if (character.isDead.Value)
                 return;
 
             CalculateDamage(character);
-            PlayDirectionalBasedDamageAnimation(character);
+            PlayDirectionalBasedBlockingDamageAnimation(character);
             // ToDo: Check for invulnerability
 
             // Calculate Damage
@@ -71,8 +78,18 @@ namespace KrazyKatgames
             {
                 // ToDo: Check for Damage modifiers and modify base damage
             }
+            Debug.LogWarning("CalculateDamage ORIGINAL Physical Damage: " + physicalDamage);
+
+            physicalDamage -= physicalDamage * (1 / character.characterStatsManager.blockingPhysicalAbsorption);
+            magicDamage -= magicDamage * (1 / character.characterStatsManager.blockingMagicAbsorption);
+            fireDamage -= fireDamage * (1 / character.characterStatsManager.blockingFireAbsorption);
+            lightningDamage -= lightningDamage * (1 / character.characterStatsManager.blockingLightningAbsorption);
+            holyDamage -= holyDamage * (1 / character.characterStatsManager.blockingHolyAbsorption);
+
+            Debug.LogWarning("CalculateDamage AFTER BLOCKING Physical Damage: " + physicalDamage);
 
             finalDamageDealt = Mathf.RoundToInt(physicalDamage + magicDamage + fireDamage + lightningDamage + holyDamage);
+
             if (finalDamageDealt <= 0)
             {
                 finalDamageDealt = 1;
@@ -89,53 +106,45 @@ namespace KrazyKatgames
 
         private void PlayDamageSFX(CharacterManager character)
         {
-            AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
-            character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
-            character.characterSoundFXManager.PlayDamageGruntSoundFX();
+            // AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
+            //
+            // character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
+            // character.characterSoundFXManager.PlayDamageGruntSoundFX();
+            // get SFX based on blocking weapon (!)
         }
 
-        private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+        private void PlayDirectionalBasedBlockingDamageAnimation(CharacterManager character)
         {
             if (!character.IsOwner)
                 return;
             if (character.isDead.Value)
                 return;
 
-            //  TODO CALCULATE IF POISE IS BROKEN
-            poiseIsBroken = true;
-
-            if (angleHitFrom >= 145 && angleHitFrom <= 180)
+            // 1. Calculate Intensity based on poise damage (!)
+            DamageIntensity damageIntensity = WorldUtilityManager.Instance.GetDamageIntensityBasedOnPoiseDamage(poiseDamage);
+            switch (damageIntensity)
             {
-                damageAnimation =
-                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
-            }
-            else if (angleHitFrom <= -145 && angleHitFrom >= -180)
-            {
-                damageAnimation =
-                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.forward_Medium_Damage);
-            }
-            else if (angleHitFrom >= -45 && angleHitFrom <= 45)
-            {
-                damageAnimation =
-                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.backward_Medium_Damage);
-            }
-            else if (angleHitFrom >= -144 && angleHitFrom <= -45)
-            {
-                damageAnimation =
-                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.left_Medium_Damage);
-            }
-            else if (angleHitFrom >= 45 && angleHitFrom <= 144)
-            {
-                damageAnimation =
-                    character.characterAnimatorManager.GetRandomAnimationFromList(character.characterAnimatorManager.right_Medium_Damage);
+                case DamageIntensity.Ping:
+                    damageAnimation = "Block_Ping_01";
+                    break;
+                case DamageIntensity.Light:
+                    damageAnimation = "Block_Light_01";
+                    break;
+                case DamageIntensity.Medium:
+                    damageAnimation = "Block_Medium_01";
+                    break;
+                case DamageIntensity.Heavy:
+                    damageAnimation = "Block_Heavy_01";
+                    break;
+                case DamageIntensity.Colossal:
+                    damageAnimation = "Block_Colossal_01";
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
 
-            //  IF POISE IS BROKEN, PLAY A STAGGERING DAMAGE ANIMATION
-            if (poiseIsBroken)
-            {
-                character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
-                character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
-            }
+            character.characterAnimatorManager.lastDamageAnimationPlayed = damageAnimation;
+            character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
         }
     }
 }

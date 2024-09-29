@@ -19,7 +19,7 @@ namespace KrazyKatgames
         public float heavy_Attack_04_Modifier;
         public float charge_Attack_01_Modifier;
         public float charge_Attack_02_Modifier;
-        
+
         public float run_Attack_01_Modifier;
         public float roll_Attack_01_Modifier;
         public float backstep_Attack_01_Modifier;
@@ -46,6 +46,11 @@ namespace KrazyKatgames
 
                 DamageTarget(damageTarget);
             }
+        }
+        protected override void GetBlockingDotValues(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = transform.position - characterCausingDamage.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
         }
         protected override void DamageTarget(CharacterManager damageTarget)
         {
@@ -108,6 +113,7 @@ namespace KrazyKatgames
                 default:
                     break;
             }
+
             if (characterCausingDamage.IsOwner)
             {
                 damageTarget.characterNetworkManager.NotifyTheServerOfCharacterDamageServerRpc(

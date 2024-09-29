@@ -20,6 +20,11 @@ namespace KrazyKatgames
 
         [Header("Characters Damaged")]
         protected List<CharacterManager> charactersDamaged = new List<CharacterManager>();
+
+        [Header("Block")]
+        protected Vector3 directionFromAttackToDamageTarget;
+        protected float dotValueFromAttackToDamageTarget;
+
         protected virtual void Awake()
         {
             if (damageCollider == null)
@@ -39,9 +44,37 @@ namespace KrazyKatgames
                 //  FRIENDLY FIRE
                 //  BLOCKING
                 //  IS INVULNERABLE
-
+                ChekForBlock(damageTarget);
                 DamageTarget(damageTarget);
             }
+        }
+        protected virtual void ChekForBlock(CharacterManager damageTarget)
+        {
+            if (charactersDamaged.Contains(damageTarget))
+                return;
+
+            GetBlockingDotValues(damageTarget);
+            Debug.LogWarning("dotValueFromAttackToDamageTarget: " + dotValueFromAttackToDamageTarget);
+            // 1. Check if the Character is blocking
+            // 2. If Character is Blocking -> Check for the correct Direction to block (!)
+            if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget < 0.3f) // ToDo: extract to variable
+            {
+                charactersDamaged.Add(damageTarget);
+                TakeBlockedDamageEffect blockedDamageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeBlockedDamageEffect);
+                blockedDamageEffect.physicalDamage = physicalDamage;
+                blockedDamageEffect.magicDamage = magicDamage;
+                blockedDamageEffect.fireDamage = fireDamage;
+                blockedDamageEffect.holyDamage = holyDamage;
+                blockedDamageEffect.contactPoint = contactPoint;
+
+                // 3. Process Effect
+                damageTarget.characterEffectsManager.ProcessInstantEffect(blockedDamageEffect);
+            }
+        }
+        protected virtual void GetBlockingDotValues(CharacterManager damageTarget)
+        {
+            directionFromAttackToDamageTarget = transform.position - damageTarget.transform.position;
+            dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
         }
 
         protected virtual void DamageTarget(CharacterManager damageTarget)

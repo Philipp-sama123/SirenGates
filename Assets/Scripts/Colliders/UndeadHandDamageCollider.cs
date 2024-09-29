@@ -12,6 +12,13 @@ public class UndeadHandDamageCollider : DamageCollider
         damageCollider = GetComponent<Collider>();
         undeadCharacter = GetComponentInParent<AICharacterManager>();
     }
+
+    protected override void GetBlockingDotValues(CharacterManager damageTarget)
+    {
+        directionFromAttackToDamageTarget = transform.position - undeadCharacter.transform.position;
+        dotValueFromAttackToDamageTarget = Vector3.Dot(directionFromAttackToDamageTarget, damageTarget.transform.forward);
+    }
+
     protected override void DamageTarget(CharacterManager damageTarget)
     {
         if (charactersDamaged.Contains(damageTarget))

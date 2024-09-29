@@ -8835,7 +8835,6 @@ GameObject:
   - component: {fileID: 5787830570591793560}
   - component: {fileID: 106747563419026531}
   - component: {fileID: 3898277897904847606}
-  - component: {fileID: 4380024234962509894}
   - component: {fileID: 1251065776810463736}
   - component: {fileID: -6754247136792872320}
   - component: {fileID: 6501016363652720887}
@@ -8923,138 +8922,6 @@ MonoBehaviour:
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
   AutoObjectParentSync: 1
---- !u!114 &4380024234962509894
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8853214748901143767}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7ac0795422b483093a717d7ac03d526, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  isActive:
-    m_InternalValue: 1
-  isMoving:
-    m_InternalValue: 0
-  networkPosition:
-    m_InternalValue: {x: 0, y: 0, z: 0}
-  networkRotation:
-    m_InternalValue: {x: 0, y: 0, z: 0, w: 1}
-  networkPositionVelocity: {x: 0, y: 0, z: 0}
-  networkPositionSmoothTime: 0.1
-  networkRotationSmoothTime: 0.1
-  currentTargetNetworkObjectID:
-    m_InternalValue: 0
-  horizontalMovement:
-    m_InternalValue: 0
-  verticalMovement:
-    m_InternalValue: 0
-  moveAmount:
-    m_InternalValue: 0
-  isInvulnerable:
-    m_InternalValue: 0
-  isLockedOn:
-    m_InternalValue: 0
-  isSprinting:
-    m_InternalValue: 0
-  isJumping:
-    m_InternalValue: 0
-  isChargingAttack:
-    m_InternalValue: 0
-  currentStamina:
-    m_InternalValue: 0
-  maxStamina:
-    m_InternalValue: 0
-  currentHealth:
-    m_InternalValue: 0
-  maxHealth:
-    m_InternalValue: 0
-  endurance:
-    m_InternalValue: 10
-  vitality:
-    m_InternalValue: 10
-  characterName:
-    m_InternalValue:
-      utf8LengthInBytes: 9
-      bytes:
-        offset0000:
-          byte0000: 67
-          byte0001: 104
-          byte0002: 97
-          byte0003: 114
-          byte0004: 97
-          byte0005: 99
-          byte0006: 116
-          byte0007: 101
-          byte0008: 114
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        offset0016:
-          byte0000: 0
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        offset0032:
-          byte0000: 0
-          byte0001: 0
-          byte0002: 0
-          byte0003: 0
-          byte0004: 0
-          byte0005: 0
-          byte0006: 0
-          byte0007: 0
-          byte0008: 0
-          byte0009: 0
-          byte0010: 0
-          byte0011: 0
-          byte0012: 0
-          byte0013: 0
-          byte0014: 0
-          byte0015: 0
-        byte0048: 0
-        byte0049: 0
-        byte0050: 0
-        byte0051: 0
-        byte0052: 0
-        byte0053: 0
-        byte0054: 0
-        byte0055: 0
-        byte0056: 0
-        byte0057: 0
-        byte0058: 0
-        byte0059: 0
-        byte0060: 0
-        byte0061: 0
-  currentWeaponBeingUsed:
-    m_InternalValue: 0
-  currentRightHandWeaponID:
-    m_InternalValue: 0
-  currentLeftHandWeaponID:
-    m_InternalValue: 0
-  isUsingRightHand:
-    m_InternalValue: 0
-  isUsingLeftHand:
-    m_InternalValue: 0
 --- !u!114 &1251065776810463736
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9078,6 +8945,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isPerformingAction: 0
   characterGroup: 0
   footIK: {fileID: 0}
@@ -9162,6 +9030,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 2
+  blockingPhysicalAbsorption: 99
+  blockingFireAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
 --- !u!114 &1371228475571454881
 MonoBehaviour:
   m_ObjectHideFlags: 0

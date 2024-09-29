@@ -21,6 +21,7 @@ namespace KrazyKatgames
         [HideInInspector] public CharacterSoundFXManager characterSoundFXManager;
         [HideInInspector] public CharacterLocomotionManager characterLocomotionManager;
         [HideInInspector] public CharacterUIManager characterUIManager;
+        [HideInInspector] public CharacterStatsManager characterStatsManager;
 
         [Header("Flags")]
         public bool isPerformingAction = false;
@@ -42,6 +43,7 @@ namespace KrazyKatgames
             characterSoundFXManager = GetComponent<CharacterSoundFXManager>();
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterUIManager = GetComponent<CharacterUIManager>();
+            characterStatsManager = GetComponent<CharacterStatsManager>();
             
             footIK = GetComponent<FootIK>();
         }
