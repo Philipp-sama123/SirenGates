@@ -23,7 +23,8 @@ namespace KrazyKatgames
 
         public void AttemptToPerformAction(AICharacterManager aiCharacter)
         {
-            aiCharacter.characterAnimatorManager.PlayTargetAttackActionAnimation(attackType, attackAnimation, true);
+         //   aiCharacter.characterAnimatorManager.PlayTargetAttackActionAnimation(aiCharacter. ... , attackAnimation, true);
+            aiCharacter.characterAnimatorManager.PlayTargetActionAnimation(attackAnimation, true);
         }
     }
 }

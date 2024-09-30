@@ -4,8 +4,9 @@ namespace KrazyKatgames
 {
     public class WeaponItem : Item
     {
-        //  ANIMATOR CONTROLLER OVERRIDE (Change attack animations based on weapon you are currently using)
-
+        [Header("Animator Controller Override")]
+        public AnimatorOverrideController weaponAnimator; 
+        
         [Header("Weapon Model")]
         public GameObject weaponModel;
 

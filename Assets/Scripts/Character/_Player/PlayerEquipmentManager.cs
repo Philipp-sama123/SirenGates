@@ -50,8 +50,8 @@ namespace KrazyKatgames
 
         public void LoadWeaponsOnBothHands()
         {
-            LoadRightWeapon();
-            LoadLeftWeapon();
+            LoadRightWeapon(); // Main Weapon 
+            LoadLeftWeapon(); // Off Hand Weapon
         }
 
         //  RIGHT WEAPON
@@ -143,6 +143,9 @@ namespace KrazyKatgames
                 rightHandSlot.LoadWeapon(rightHandWeaponModel);
                 rightWeaponManager = rightHandWeaponModel.GetComponent<WeaponManager>();
                 rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+
+                // Animator Controller is always depending on the Right Weapon (!) its the Main Weapon (!)
+                player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
             }
         }
 

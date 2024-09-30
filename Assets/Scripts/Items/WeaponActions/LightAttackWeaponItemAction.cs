@@ -49,18 +49,21 @@ namespace KrazyKatgames
         private void PerformBackstepAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             playerPerformingAction.characterCombatManager.DisableCanDoBackstepAttack();
-            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.BackstepAttack_01, backstep_attack_01, true);
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.BackstepAttack_01,
+                backstep_attack_01, true);
         }
         private void PerformRollingAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             // for TW - Play two handed
             playerPerformingAction.characterCombatManager.DisableCanDoRollingAttack();
-            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RollingAttack_01, roll_attack_01, true);
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.RollingAttack_01,
+                roll_attack_01, true);
         }
         private void PerformRunningAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             // for TW - Play two handed
-            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.RunningAttack01, run_attack_01, true);
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.RunningAttack01,
+                run_attack_01, true);
         }
 
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
@@ -71,21 +74,25 @@ namespace KrazyKatgames
 
                 if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_01)
                 {
-                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack02, light_Attack_02, true);
+                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack02,
+                        light_Attack_02, true);
                 }
                 else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_02)
                 {
-                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack03, light_Attack_03, true);
+                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack03,
+                        light_Attack_03, true);
                 }
                 else if (playerPerformingAction.characterCombatManager.lastAttackAnimationPerformed == light_Attack_03)
                 {
-                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack04, light_Attack_04, true);
+                    playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack04,
+                        light_Attack_04, true);
                 }
             }
             else if (!playerPerformingAction.isPerformingAction) // remove this if you want to attack while doing an action
                 // also ToDo here: dodge attack, jump attack 
             {
-                playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(AttackType.LightAttack01, light_Attack_01, true);
+                playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01,
+                    light_Attack_01, true);
             }
         }
     }

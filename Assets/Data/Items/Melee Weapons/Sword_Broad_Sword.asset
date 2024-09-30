@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 9e6f65e6cb1f743e9886d87aec9b1c9e, type: 3}
   itemDescription: 
   itemID: 2
+  weaponAnimator: {fileID: 22100000, guid: 76307c41a462a43c4baad1c623fe96d1, type: 2}
   weaponModel: {fileID: 6397344720308477397, guid: 7531ce1a1db4c4df0824c27ef0c958fc, type: 3}
   strengthREQ: 10
   dexREQ: 0
@@ -37,8 +38,16 @@ MonoBehaviour:
   heavy_Attack_04_Modifier: 2.5
   charge_Attack_01_Modifier: 3
   charge_Attack_02_Modifier: 5
+  run_Attack_01_Modifier: 2.5
+  roll_Attack_01_Modifier: 2.5
+  backstep_Attack_01_Modifier: 2.5
   baseStaminaCost: 20
   lightAttackStaminaCostMultiplier: 1
+  heavyAttackStaminaCostMultiplier: 1.2
+  chargedAttackStaminaCostMultiplier: 1.5
+  rollingAttackStaminaCostMultiplier: 0.5
+  runningAttackStaminaCostMultiplier: 0.5
+  backstepAttackStaminaCostMultiplier: 0.5
   oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
   whooshes:

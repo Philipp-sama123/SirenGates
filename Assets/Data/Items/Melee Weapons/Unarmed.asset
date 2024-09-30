@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 207952239374147899f3f694dd4643ec, type: 3}
   itemDescription: 
   itemID: 0
+  weaponAnimator: {fileID: 22100000, guid: 9394fc701eb604dbcb74567600020049, type: 2}
   weaponModel: {fileID: 6397344720308477397, guid: b87356b08151043ad913f22d2acad671, type: 3}
   strengthREQ: 0
   dexREQ: 0
@@ -28,9 +29,25 @@ MonoBehaviour:
   lightningDamage: 0
   poiseDamage: 5
   light_attack_01_modifier: 1.1
+  light_attack_02_modifier: 1.2
+  light_attack_03_modifier: 1.3
+  light_attack_04_modifier: 1.5
   heavy_Attack_01_Modifier: 0
+  heavy_Attack_02_Modifier: 2
+  heavy_Attack_03_Modifier: 2.5
+  heavy_Attack_04_Modifier: 5
   charge_Attack_01_Modifier: 0
+  charge_Attack_02_Modifier: 5
+  run_Attack_01_Modifier: 2.5
+  roll_Attack_01_Modifier: 2.5
+  backstep_Attack_01_Modifier: 2.5
   baseStaminaCost: 5
   lightAttackStaminaCostMultiplier: 0.9
-  oh_RB_Action: {fileID: 11400000, guid: 82ac2184b24e24c9e811e3f225315065, type: 2}
-  oh_RT_Action: {fileID: 0}
+  heavyAttackStaminaCostMultiplier: 1.2
+  chargedAttackStaminaCostMultiplier: 1.5
+  rollingAttackStaminaCostMultiplier: 0.5
+  runningAttackStaminaCostMultiplier: 0.5
+  backstepAttackStaminaCostMultiplier: 0.5
+  oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
+  whooshes: []

@@ -78,8 +78,14 @@ namespace KrazyKatgames
         {
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
             player.playerCombatManager.currentWeaponBeingUsed = newWeapon;
+
+            if (!player.IsOwner)
+                return;
+
+            if (player.playerCombatManager.currentWeaponBeingUsed != null)
+                player.playerAnimatorManager.UpdateAnimatorController(player.playerCombatManager.currentWeaponBeingUsed.weaponAnimator);
         }
-       
+
         [ServerRpc] // Is a function called from a client, to the Server
         public void NotifyTheServerOfWeaponActionServerRpc(ulong clientID, int actionID, int weaponID)
         {

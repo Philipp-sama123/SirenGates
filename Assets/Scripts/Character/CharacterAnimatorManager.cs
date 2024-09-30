@@ -12,7 +12,7 @@ namespace KrazyKatgames
         int horizontal;
         [Header("Flags")]
         public bool applyRootMotion = false;
-        
+
         [Header("Damage Animations")]
         public string lastDamageAnimationPlayed;
 
@@ -161,6 +161,7 @@ namespace KrazyKatgames
                 applyRootMotion);
         }
         public virtual void PlayTargetAttackActionAnimation(
+            WeaponItem weapon,
             AttackType attackType,
             string targetAnimation,
             bool isPerformingAction,
@@ -168,14 +169,15 @@ namespace KrazyKatgames
             bool canRotate = false,
             bool canMove = false)
         {
-            character.characterCombatManager.currentAttackType = attackType;
-            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
             //ToDo's: 
             // Keep track of last performed for Combos
             // Keep track of current Attack Type
             // update AnimationSet to current Weapon Animations
             // Decide if the Attack can be parried 
             // Tell the Network --> in Attacking FLAG 
+            character.characterCombatManager.currentAttackType = attackType;
+            character.characterCombatManager.lastAttackAnimationPerformed = targetAnimation;
+            UpdateAnimatorController(weapon.weaponAnimator);
             character.characterAnimatorManager.applyRootMotion = applyRootMotion;
             character.animator.CrossFade(targetAnimation, 0.2f);
             character.isPerformingAction = isPerformingAction;
@@ -183,6 +185,10 @@ namespace KrazyKatgames
             character.characterLocomotionManager.canMove = canMove;
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
                 applyRootMotion);
+        }
+        public void UpdateAnimatorController(AnimatorOverrideController weaponController)
+        {
+            character.animator.runtimeAnimatorController = weaponController;
         }
     }
 }
