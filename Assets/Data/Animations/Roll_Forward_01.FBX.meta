@@ -106,7 +106,7 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
-      - time: 0.6939342
+      - time: 0.5955159
         functionName: EnableCanDoRollingAttack
         data: 
         objectReferenceParameter: {instanceID: 0}

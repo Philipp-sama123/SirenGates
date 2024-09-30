@@ -245,7 +245,7 @@ namespace KrazyKatgames
             HandleSwitchLeftWeaponInput();
 
             // TODO when this is active the 3rd Combo goes in the charged attack (!)
-            HandleQuedInputs();
+            // HandleQuedInputs();
         }
 
         //  LOCK ON
