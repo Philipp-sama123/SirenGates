@@ -17,6 +17,7 @@ MonoBehaviour:
   itemDescription: 
   itemID: 1
   weaponAnimator: {fileID: 22100000, guid: 76307c41a462a43c4baad1c623fe96d1, type: 2}
+  weaponModelType: 0
   weaponModel: {fileID: 6397344720308477397, guid: c941345bb8a724b39b07a688e5a625a0, type: 3}
   strengthREQ: 10
   dexREQ: 0
@@ -50,6 +51,7 @@ MonoBehaviour:
   backstepAttackStaminaCostMultiplier: 0.5
   oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
+  oh_LB_Action: {fileID: 11400000, guid: cee74e351a0fa4f6f9b91843049c871a, type: 2}
   whooshes:
   - {fileID: 8300000, guid: 21e8264c14c947c409efd695fe4c75f1, type: 3}
   - {fileID: 8300000, guid: 3a143d57745c31f41a6340667ab3c0ae, type: 3}

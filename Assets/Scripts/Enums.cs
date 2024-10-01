@@ -22,7 +22,8 @@ public enum CharacterSlot
 public enum WeaponModelSlot
 {
     RightHand,
-    LeftHand,
+    LeftHandWeaponSlot,
+    LeftHandShieldSlot,
     //Right Hips
     //Left Hips
     //Back
@@ -57,4 +58,11 @@ public enum DamageIntensity
     Medium, 
     Heavy, 
     Colossal
+}
+
+public enum WeaponModelType
+{
+    Weapon,
+    Shield
+    // maybe Item (?)
 }

@@ -31,6 +31,7 @@ namespace KrazyKatgames
 
 
         [Header("Flags")]
+        public NetworkVariable<bool> isAttacking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isBlocking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isInvulnerable = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -96,6 +97,12 @@ namespace KrazyKatgames
         {
             gameObject.SetActive(isActive.Value);
         }
+
+        public virtual void OnIsBlockingChanged(bool oldStatus, bool newStatus)
+        {
+            character.animator.SetBool("IsBlocking", isBlocking.Value);
+        }
+
         #region Action Animations
         // Is a function called from a client, to the Server
         [ServerRpc]

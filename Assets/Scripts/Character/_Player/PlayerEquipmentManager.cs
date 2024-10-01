@@ -1,4 +1,6 @@
+using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -6,8 +8,10 @@ namespace KrazyKatgames
     {
         PlayerManager player;
 
+        // For each new Weapon Type add here a new Slot:
         public WeaponModelInstantiationSlot rightHandSlot;
-        public WeaponModelInstantiationSlot leftHandSlot;
+        public WeaponModelInstantiationSlot leftHandWeaponSlot;
+        public WeaponModelInstantiationSlot leftHandShieldSlot;
 
         [SerializeField] WeaponManager rightWeaponManager;
         [SerializeField] WeaponManager leftWeaponManager;
@@ -41,9 +45,13 @@ namespace KrazyKatgames
                 {
                     rightHandSlot = weaponSlot;
                 }
-                else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHand)
+                else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandWeaponSlot)
                 {
-                    leftHandSlot = weaponSlot;
+                    leftHandWeaponSlot = weaponSlot;
+                }
+                else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandShieldSlot)
+                {
+                    leftHandShieldSlot = weaponSlot;
                 }
             }
         }
@@ -231,11 +239,25 @@ namespace KrazyKatgames
             if (player.playerInventoryManager.currentLeftHandWeapon != null)
             {
                 //  remove the old weapon
-                leftHandSlot.UnloadWeapon();
+                if (leftHandWeaponSlot.currentWeaponModel != null)
+                    leftHandWeaponSlot.UnloadWeapon();
+                if (leftHandShieldSlot.currentWeaponModel != null)
+                    leftHandShieldSlot.UnloadWeapon();
 
-                //  add the new one
                 leftHandWeaponModel = Instantiate(player.playerInventoryManager.currentLeftHandWeapon.weaponModel);
-                leftHandSlot.LoadWeapon(leftHandWeaponModel);
+
+                switch (player.playerInventoryManager.currentLeftHandWeapon.weaponModelType)
+                {
+                    case WeaponModelType.Weapon:
+                        leftHandWeaponSlot.LoadWeapon(leftHandWeaponModel);
+                        break;
+                    case WeaponModelType.Shield:
+                        leftHandShieldSlot.LoadWeapon(leftHandWeaponModel);
+                        break;
+                    default:
+                        throw new ArgumentOutOfRangeException();
+                }
+
                 leftWeaponManager = leftHandWeaponModel.GetComponent<WeaponManager>();
                 leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
             }

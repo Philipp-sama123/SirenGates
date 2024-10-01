@@ -11,13 +11,19 @@ namespace KrazyKatgames
         [SerializeField] private string heavy_Attack_04 = "Main_Heavy_Attack_04"; // Main Hand (Right) Heavy Attack
         public override void AttemptToPerformAction(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
+            base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
+            
             if (!playerPerformingAction.IsOwner)
                 return;
 
-            base.AttemptToPerformAction(playerPerformingAction, weaponPerformingAction);
-
-            if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0) return;
-            if (!playerPerformingAction.playerLocomotionManager.isGrounded) return;
+            if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
+                return;
+            
+            if (!playerPerformingAction.playerLocomotionManager.isGrounded) 
+                return;
+            
+            if (playerPerformingAction.IsOwner)
+                playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
 
             PerformHeavyAttack(playerPerformingAction, weaponPerformingAction);
         }

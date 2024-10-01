@@ -29,6 +29,9 @@ namespace KrazyKatgames
             if (!playerPerformingAction.playerLocomotionManager.isGrounded)
                 return;
 
+            if (playerPerformingAction.IsOwner)
+                playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
+
             if (playerPerformingAction.playerNetworkManager.isSprinting.Value)
             {
                 PerformRunningAttack(playerPerformingAction, weaponPerformingAction);

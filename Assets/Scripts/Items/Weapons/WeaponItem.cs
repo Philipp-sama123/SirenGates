@@ -5,8 +5,11 @@ namespace KrazyKatgames
     public class WeaponItem : Item
     {
         [Header("Animator Controller Override")]
-        public AnimatorOverrideController weaponAnimator; 
-        
+        public AnimatorOverrideController weaponAnimator;
+
+        [Header("Model Instantiation")]
+        public WeaponModelType weaponModelType;
+
         [Header("Weapon Model")]
         public GameObject weaponModel;
 
@@ -23,7 +26,13 @@ namespace KrazyKatgames
         public int holyDamage = 0;
         public int lightningDamage = 0;
 
-        //  Weapon Guard Absorption (Blocking power)
+        [Header("Weapon Blocking Absorptions")]
+        public float physicalBaseDamageAbsorption = 50;
+        public float fireBaseDamageAbsorption = 50;
+        public float magicBaseDamageAbsorption = 50;
+        public float lightningBaseDamageAbsorption = 50;
+        public float holyBaseDamageAbsorption = 50;
+        public float stability = 50; // reduces Stamina lost from blocking
 
         [Header("Weapon Poise")]
         public float poiseDamage = 10;
@@ -62,6 +71,8 @@ namespace KrazyKatgames
         [Header("Actions")]
         public WeaponItemAction oh_RB_Action; // One Handed Right Bumper Action // ToDo: OH Left Mouse Button (?)
         public WeaponItemAction oh_RT_Action; // One Handed Right Trigger Action // ToDo: OH Right Mouse Button (?)
+
+        public WeaponItemAction oh_LB_Action; // One Handed LEft Bumper Action //
         //  ASH OF WAR
 
         //  ToDo: blocking sfx

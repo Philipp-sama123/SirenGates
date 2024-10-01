@@ -13,12 +13,12 @@ namespace KrazyKatgames
             }
             //  THIS IS CALLED WHEN AN ACTION ENDS, AND THE STATE RETURNS TO "EMPTY"
             character.isPerformingAction = false;
-            
+
             character.characterAnimatorManager.applyRootMotion = false;
             character.characterLocomotionManager.canRotate = true;
             character.characterLocomotionManager.canMove = true;
             character.characterLocomotionManager.isRolling = false;
-            
+
             character.characterCombatManager.DisableCanDoCombo();
             character.characterCombatManager.DisableCanDoBackstepAttack();
             character.characterCombatManager.DisableCanDoRollingAttack();
@@ -28,6 +28,7 @@ namespace KrazyKatgames
                 // ToDo: maybe remove here
                 character.characterNetworkManager.isJumping.Value = false;
                 character.characterNetworkManager.isInvulnerable.Value = false;
+                character.characterNetworkManager.isAttacking.Value = false;
             }
         }
     }
