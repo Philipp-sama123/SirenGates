@@ -18,7 +18,7 @@ namespace KrazyKatgames
         [SerializeField] public AudioClip[] footStepsStone;
         [SerializeField] public AudioClip[] footStepsWood;
 
-        protected void Awake()
+        protected virtual void Awake()
         {
             audioSource = GetComponent<AudioSource>();
         }
@@ -54,6 +54,9 @@ namespace KrazyKatgames
                 PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
             else
                 Debug.LogWarning("NO attackGrunts Sound Effects!");
+        }
+        public virtual void PlayBlockSoundFX()
+        {
         }
     }
 }

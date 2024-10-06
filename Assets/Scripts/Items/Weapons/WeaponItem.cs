@@ -75,9 +75,11 @@ namespace KrazyKatgames
         public WeaponItemAction oh_LB_Action; // One Handed LEft Bumper Action //
         //  ASH OF WAR
 
-        //  ToDo: blocking sfx
 
         [Header("Whooshes")]
         public AudioClip[] whooshes;
+        
+        [Header("Blocking")]
+        public AudioClip[] blocking;
     }
 }

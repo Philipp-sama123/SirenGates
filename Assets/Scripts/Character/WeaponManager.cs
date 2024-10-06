@@ -18,6 +18,7 @@ namespace KrazyKatgames
             meleeDamageCollider.fireDamage = weapon.fireDamage;
             meleeDamageCollider.holyDamage = weapon.holyDamage;
             meleeDamageCollider.lightningDamage = weapon.lightningDamage;
+            meleeDamageCollider.poiseDamage = weapon.poiseDamage;
 
             meleeDamageCollider.light_Attack_01_Modifier = weapon.light_attack_01_modifier;
             meleeDamageCollider.light_Attack_02_Modifier = weapon.light_attack_02_modifier;
@@ -31,7 +32,7 @@ namespace KrazyKatgames
 
             meleeDamageCollider.charge_Attack_01_Modifier = weapon.charge_Attack_01_Modifier;
             meleeDamageCollider.charge_Attack_02_Modifier = weapon.charge_Attack_02_Modifier;
-            
+
             meleeDamageCollider.run_Attack_01_Modifier = weapon.run_Attack_01_Modifier;
             meleeDamageCollider.roll_Attack_01_Modifier = weapon.roll_Attack_01_Modifier;
             meleeDamageCollider.backstep_Attack_01_Modifier = weapon.backstep_Attack_01_Modifier;

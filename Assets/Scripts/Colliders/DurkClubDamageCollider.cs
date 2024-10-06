@@ -32,6 +32,9 @@ namespace KrazyKatgames
             damageEffect.fireDamage = fireDamage;
             damageEffect.holyDamage = holyDamage;
             damageEffect.contactPoint = contactPoint;
+            
+            damageEffect.poiseDamage = poiseDamage;
+            
             damageEffect.angleHitFrom = Vector3.SignedAngle(bossCharacter.transform.forward, damageTarget.transform.forward, Vector3.up);
 
             if (damageTarget.IsOwner)

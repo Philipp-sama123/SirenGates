@@ -36,6 +36,7 @@ namespace KrazyKatgames
                 player.playerStatsManager.blockingHolyAbsorption = player.playerCombatManager.currentWeaponBeingUsed.holyBaseDamageAbsorption;
                 player.playerStatsManager.blockingLightningAbsorption =
                     player.playerCombatManager.currentWeaponBeingUsed.lightningBaseDamageAbsorption;
+                player.playerStatsManager.blockingStability = player.playerCombatManager.currentWeaponBeingUsed.stability;
             }
         }
         public void SetCharacterActionHand(bool rightHandedAction)

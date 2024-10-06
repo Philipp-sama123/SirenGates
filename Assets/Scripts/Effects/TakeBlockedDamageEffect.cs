@@ -1,8 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using KrazyKatgames;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -20,6 +18,10 @@ namespace KrazyKatgames
         public float fireDamage = 0;
         public float lightningDamage = 0;
         public float holyDamage = 0;
+
+        [Header("Stamina")]
+        public float staminaDamage = 0;
+        public float finalStaminaDamage = 0;
 
         [Header("Final Damage")]
         private int finalDamageDealt = 0;
@@ -58,17 +60,41 @@ namespace KrazyKatgames
                 return;
 
             CalculateDamage(character);
+            CalculateStaminaDamage(character);
             PlayDirectionalBasedBlockingDamageAnimation(character);
             // ToDo: Check for invulnerability
-
-            // Calculate Damage
-            // Check Damage Direction
-            // Check for Buildups (poison,bleed, ....) 
             PlayDamageSFX(character);
             PlayDamageVFX(character);
-            // If Character is A.I. check for new target if character causing damage is present 
+            
+            CheckForGuardBreak(character);
+        }
+        private void CalculateStaminaDamage(CharacterManager character)
+        {
+            if (!character.IsOwner)
+                return;
+
+            finalStaminaDamage = staminaDamage;
+            float staminaDamageAbsorption = finalStaminaDamage * (character.characterStatsManager.blockingStability / 100);
+            float staminaDamageAfterAbsorption = finalStaminaDamage - staminaDamageAbsorption;
+            Debug.LogWarning(this.name + "CalculateStaminaDamage- staminaDamage: " + staminaDamageAfterAbsorption);
+
+            character.characterNetworkManager.currentStamina.Value -= staminaDamageAfterAbsorption;
         }
 
+        private void CheckForGuardBreak(CharacterManager character)
+        {
+            // if (character.characterNetworkManager.currentStamina.Value <= 0)
+            // Play SFX (!)
+
+            if (!character.IsOwner)
+                return;
+
+            if (character.characterNetworkManager.currentStamina.Value <= 0)
+            {
+                character.characterAnimatorManager.PlayTargetActionAnimation("Guard_Break_01", true);
+                character.characterNetworkManager.isBlocking.Value = false;
+            }
+        }
         private void CalculateDamage(CharacterManager character)
         {
             if (!character.IsOwner)
@@ -106,11 +132,7 @@ namespace KrazyKatgames
 
         private void PlayDamageSFX(CharacterManager character)
         {
-            // AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
-            //
-            // character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
-            // character.characterSoundFXManager.PlayDamageGruntSoundFX();
-            // get SFX based on blocking weapon (!)
+            character.characterSoundFXManager.PlayBlockSoundFX();
         }
 
         private void PlayDirectionalBasedBlockingDamageAnimation(CharacterManager character)

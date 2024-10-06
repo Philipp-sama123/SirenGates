@@ -28,6 +28,12 @@ MonoBehaviour:
   fireDamage: 0
   holyDamage: 0
   lightningDamage: 0
+  physicalBaseDamageAbsorption: 50
+  fireBaseDamageAbsorption: 50
+  magicBaseDamageAbsorption: 50
+  lightningBaseDamageAbsorption: 50
+  holyBaseDamageAbsorption: 50
+  stability: 50
   poiseDamage: 0
   light_attack_01_modifier: 1.1
   light_attack_02_modifier: 1.2
@@ -63,3 +69,14 @@ MonoBehaviour:
   - {fileID: 8300000, guid: b5413c82e54ce9649ba85eef1451bef6, type: 3}
   - {fileID: 8300000, guid: 32ef844aa2974a147a01f9d94e83aa51, type: 3}
   - {fileID: 8300000, guid: 31419d7a7fabaf2489866b8a08f24112, type: 3}
+  blocking:
+  - {fileID: 8300000, guid: 922af6738d5ba8a4f8c189b68567ea78, type: 3}
+  - {fileID: 8300000, guid: 77308395eaa471b47916fda42ee4fdaa, type: 3}
+  - {fileID: 8300000, guid: ee13953df82acef46a029ba221f32040, type: 3}
+  - {fileID: 8300000, guid: 806573556334cdc4e8b0fd15c618c947, type: 3}
+  - {fileID: 8300000, guid: 44e3dc1da56dd8a4fa46b52d0b253e00, type: 3}
+  - {fileID: 8300000, guid: 7114d46787f85a64ea603583be19d460, type: 3}
+  - {fileID: 8300000, guid: b0d4d985bea6e9242a19de244ff933db, type: 3}
+  - {fileID: 8300000, guid: e87184532d2271444b45358a17dc3b8e, type: 3}
+  - {fileID: 8300000, guid: d95006d7a7caeef42a109c69048759cb, type: 3}
+  - {fileID: 8300000, guid: 3d92f12f5c40c0749b0210565f948b9a, type: 3}

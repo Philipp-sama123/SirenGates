@@ -15,6 +15,9 @@ namespace KrazyKatgames
         public float lightningDamage = 0;
         public float holyDamage = 0;
 
+        [Header("Poise Damage")]
+        public float poiseDamage = 0;
+
         [Header("Contact Point")]
         protected Vector3 contactPoint;
 
@@ -54,7 +57,7 @@ namespace KrazyKatgames
                 return;
 
             GetBlockingDotValues(damageTarget);
-            Debug.LogWarning("dotValueFromAttackToDamageTarget: " + dotValueFromAttackToDamageTarget);
+            Debug.LogWarning("CHECK FOR BLOCK - dotValueFromAttackToDamageTarget: " + dotValueFromAttackToDamageTarget);
             // 1. Check if the Character is blocking
             // 2. If Character is Blocking -> Check for the correct Direction to block (!)
             if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget < 0.3f) // ToDo: extract to variable
@@ -65,6 +68,8 @@ namespace KrazyKatgames
                 blockedDamageEffect.magicDamage = magicDamage;
                 blockedDamageEffect.fireDamage = fireDamage;
                 blockedDamageEffect.holyDamage = holyDamage;
+                blockedDamageEffect.staminaDamage = poiseDamage; // ToDo: you can use a own variable (!)
+                blockedDamageEffect.poiseDamage = poiseDamage;
                 blockedDamageEffect.contactPoint = contactPoint;
 
                 // 3. Process Effect
@@ -92,6 +97,8 @@ namespace KrazyKatgames
             damageEffect.fireDamage = fireDamage;
             damageEffect.holyDamage = holyDamage;
             damageEffect.contactPoint = contactPoint;
+
+            damageEffect.poiseDamage = poiseDamage;
 
             damageTarget.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }
