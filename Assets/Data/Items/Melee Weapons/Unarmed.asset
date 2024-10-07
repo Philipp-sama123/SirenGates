@@ -28,6 +28,12 @@ MonoBehaviour:
   fireDamage: 0
   holyDamage: 0
   lightningDamage: 0
+  physicalBaseDamageAbsorption: 50
+  fireBaseDamageAbsorption: 50
+  magicBaseDamageAbsorption: 50
+  lightningBaseDamageAbsorption: 50
+  holyBaseDamageAbsorption: 50
+  stability: 50
   poiseDamage: 5
   light_attack_01_modifier: 1.1
   light_attack_02_modifier: 1.2
@@ -53,3 +59,14 @@ MonoBehaviour:
   oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: cee74e351a0fa4f6f9b91843049c871a, type: 2}
   whooshes: []
+  blocking:
+  - {fileID: 8300000, guid: 959799bfc8ff94c4696518a167666762, type: 3}
+  - {fileID: 8300000, guid: 44e23a784a24eeb418468abcd62d9c8a, type: 3}
+  - {fileID: 8300000, guid: c3a1685337e062145865c874a322e960, type: 3}
+  - {fileID: 8300000, guid: 157162ea990528e4da582225103bad5b, type: 3}
+  - {fileID: 8300000, guid: ca7f5ce966ccf3f4182ea938cdd043b6, type: 3}
+  - {fileID: 8300000, guid: d031016a5a4ef434db78d71059c79f82, type: 3}
+  - {fileID: 8300000, guid: 5046a99784496594480374e987b1dbb5, type: 3}
+  - {fileID: 8300000, guid: 4207c6fd43d722548bf640a8f09e1d7e, type: 3}
+  - {fileID: 8300000, guid: d8ab8f997b8ad5549b9ffc6af0739108, type: 3}
+  - {fileID: 8300000, guid: 6601edb7f51de04438bf452b58b8055f, type: 3}
