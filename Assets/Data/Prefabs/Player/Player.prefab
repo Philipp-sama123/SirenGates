@@ -8961,7 +8961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 317645115
+  GlobalObjectIdHash: 2729144484
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -9220,6 +9220,12 @@ MonoBehaviour:
   blockingMagicAbsorption: 0
   blockingLightningAbsorption: 0
   blockingHolyAbsorption: 0
+  blockingStability: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 25
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!114 &1371228475571454881
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9327,10 +9333,22 @@ MonoBehaviour:
   hit_Left_Medium_02: Hit_Left_Medium_02
   hit_Right_Medium_01: Hit_Right_Medium_01
   hit_Right_Medium_02: Hit_Right_Medium_02
+  hit_Forward_Ping_01: Hit_Forward_Ping_01
+  hit_Forward_Ping_02: Hit_Forward_Ping_02
+  hit_Backward_Ping_01: Hit_Backward_Ping_01
+  hit_Backward_Ping_02: Hit_Backward_Ping_02
+  hit_Left_Ping_01: Hit_Left_Ping_01
+  hit_Left_Ping_02: Hit_Left_Ping_02
+  hit_Right_Ping_01: Hit_Right_Ping_01
+  hit_Right_Ping_02: Hit_Right_Ping_02
   forward_Medium_Damage: []
   backward_Medium_Damage: []
   left_Medium_Damage: []
   right_Medium_Damage: []
+  forward_Ping_Damage: []
+  backward_Ping_Damage: []
+  left_Ping_Damage: []
+  right_Ping_Damage: []
 --- !u!114 &2980381444964915758
 MonoBehaviour:
   m_ObjectHideFlags: 0

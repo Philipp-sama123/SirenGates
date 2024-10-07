@@ -28,10 +28,27 @@ namespace KrazyKatgames
         [SerializeField] string hit_Right_Medium_01 = "Hit_Right_Medium_01";
         [SerializeField] string hit_Right_Medium_02 = "Hit_Right_Medium_02";
 
+        [SerializeField] string hit_Forward_Ping_01 = "Hit_Forward_Ping_01";
+        [SerializeField] string hit_Forward_Ping_02 = "Hit_Forward_Ping_02";
+
+        [SerializeField] string hit_Backward_Ping_01 = "Hit_Backward_Ping_01";
+        [SerializeField] string hit_Backward_Ping_02 = "Hit_Backward_Ping_02";
+
+        [SerializeField] string hit_Left_Ping_01 = "Hit_Left_Ping_01";
+        [SerializeField] string hit_Left_Ping_02 = "Hit_Left_Ping_02";
+
+        [SerializeField] string hit_Right_Ping_01 = "Hit_Right_Ping_01";
+        [SerializeField] string hit_Right_Ping_02 = "Hit_Right_Ping_02";
+
         public List<string> forward_Medium_Damage = new List<string>();
         public List<string> backward_Medium_Damage = new List<string>();
         public List<string> left_Medium_Damage = new List<string>();
         public List<string> right_Medium_Damage = new List<string>();
+        
+        public List<string> forward_Ping_Damage = new List<string>();
+        public List<string> backward_Ping_Damage = new List<string>();
+        public List<string> left_Ping_Damage = new List<string>();
+        public List<string> right_Ping_Damage = new List<string>();
 
 
         protected virtual void Awake()
@@ -53,7 +70,19 @@ namespace KrazyKatgames
             left_Medium_Damage.Add(hit_Left_Medium_02);
 
             right_Medium_Damage.Add(hit_Right_Medium_01);
-            right_Medium_Damage.Add(hit_Right_Medium_02);
+            right_Medium_Damage.Add(hit_Right_Medium_02);        
+            
+            forward_Ping_Damage.Add(hit_Forward_Ping_01);
+            forward_Ping_Damage.Add(hit_Forward_Ping_02);
+
+            backward_Ping_Damage.Add(hit_Backward_Ping_01);
+            backward_Ping_Damage.Add(hit_Backward_Ping_02);
+
+            left_Ping_Damage.Add(hit_Left_Ping_01);
+            left_Ping_Damage.Add(hit_Left_Ping_02);
+
+            right_Ping_Damage.Add(hit_Right_Ping_01);
+            right_Ping_Damage.Add(hit_Right_Ping_02);
         }
         public string GetRandomAnimationFromList(List<string> animationList)
         {

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -12,7 +13,6 @@ namespace KrazyKatgames
         private float staminaTickTimer = 0;
         [SerializeField] float staminaRegenerationDelay = 2;
 
-
         [Header("Blocking Absorptions")]
         public float blockingPhysicalAbsorption;
         public float blockingFireAbsorption;
@@ -21,6 +21,13 @@ namespace KrazyKatgames
         public float blockingHolyAbsorption;
         public float blockingStability;
 
+        [Header("Poise")]
+        public float totalPoiseDamage;
+        public float offensivePoiseBonus;
+        public float basePoiseDefense; // Poise Bonus gained from Armor/Talismans ect. 
+        public float defaultPoiseResetTime = 8; // Poise Bonus gained from Armor/Talismans ect. 
+        public float poiseResetTimer = 0; // Current Poise reset time. 
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
@@ -28,6 +35,10 @@ namespace KrazyKatgames
 
         protected virtual void Start()
         {
+        }
+        protected virtual void Update()
+        {
+            HandlePoiseResetTimer(); //ToDo: maybe to the same place as reset stamina
         }
         public int CalculateStaminaBasedOnEnduranceLevel(int endurance)
         {
@@ -87,6 +98,18 @@ namespace KrazyKatgames
             if (currentStaminaAmount < previousStaminaAmount)
             {
                 staminaRegenerationTimer = 0;
+            }
+        }
+
+        protected virtual void HandlePoiseResetTimer()
+        {
+            if (poiseResetTimer > 0)
+            {
+                poiseResetTimer -= Time.deltaTime;
+            }
+            else
+            {
+                totalPoiseDamage = 0;
             }
         }
     }
