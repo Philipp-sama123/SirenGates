@@ -47,6 +47,11 @@ namespace KrazyKatgames
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
 
+        [Header("Two Hand Inputs")]
+        [SerializeField] bool two_Hand_Input = false;
+        [SerializeField] bool two_Hand_Right_Weapon_Input = false;
+        [SerializeField] bool two_Hand_Left_Weapon_Input = false;
+
         [Header("Input queue")]
         [SerializeField] private bool input_Que_Is_Active = false;
         [SerializeField] float que_Input_Timer = 0.0f;
@@ -133,7 +138,17 @@ namespace KrazyKatgames
                 // Interactions
                 playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
 
-                //  LOCK ON
+                // Two Handing 
+                playerControls.PlayerActions.TwoHandWeapon.performed += i => two_Hand_Input = true;
+                playerControls.PlayerActions.TwoHandWeapon.canceled += i => two_Hand_Input = false;
+
+                playerControls.PlayerActions.TwoHandRightWeapon.performed += i => two_Hand_Right_Weapon_Input = true;
+                playerControls.PlayerActions.TwoHandRightWeapon.canceled += i => two_Hand_Right_Weapon_Input = false;
+
+                playerControls.PlayerActions.TwoHandLeftWeapon.performed += i => two_Hand_Left_Weapon_Input = true;
+                playerControls.PlayerActions.TwoHandLeftWeapon.canceled += i => two_Hand_Left_Weapon_Input = false;
+
+                // Lock On
                 playerControls.PlayerActions.LockOn.performed += i => lockOn_Input = true;
                 playerControls.PlayerActions.LockOnLeft.performed += i => lockOn_Left_Input = true;
                 playerControls.PlayerActions.LockOnRight.performed += i => lockOn_Right_Input = true;
@@ -249,10 +264,54 @@ namespace KrazyKatgames
             HandleSwitchRightWeaponInput();
             HandleSwitchLeftWeaponInput();
 
+            HandleTwoHandInput();
+
             // TODO when this is active the 3rd Combo goes in the charged attack (!)
             // HandleQuedInputs();
         }
+        // Two Handing Weapons 
+        private void HandleTwoHandInput()
+        {
+            if (!two_Hand_Input)
+                return;
 
+            if (two_Hand_Right_Weapon_Input)
+            {
+                RB_Input = false;
+                two_Hand_Right_Weapon_Input = false;
+                player.playerNetworkManager.isBlocking.Value = false;
+                if (player.playerNetworkManager.isTwoHandingWeapon.Value)
+                {
+                    // --> trigger "onValueChanged" function which un-two-hands the current weapon
+                    player.playerNetworkManager.isTwoHandingWeapon.Value = false;
+                    return;
+                }
+                else
+                {
+                    // --> trigger "onValueChanged" function which triggers a function to two hand right weapon
+                    player.playerNetworkManager.isTwoHandingRightWeapon.Value = true;
+                    return;
+                }
+            }  if (two_Hand_Left_Weapon_Input)
+            {
+                LB_Input = false;
+                two_Hand_Left_Weapon_Input = false;
+                player.playerNetworkManager.isBlocking.Value = false;
+                
+                if (player.playerNetworkManager.isTwoHandingWeapon.Value)
+                {
+                    // --> trigger "onValueChanged" function which un-two-hands the current weapon
+                    player.playerNetworkManager.isTwoHandingWeapon.Value = false;
+                    return;
+                }
+                else
+                {
+                    // --> trigger "onValueChanged" function which triggers a function to two hand right weapon
+                    player.playerNetworkManager.isTwoHandingLeftWeapon.Value = true;
+                    return;
+                }
+            }
+        }
         //  LOCK ON
         private void HandleLockOnInput()
         {
@@ -427,6 +486,9 @@ namespace KrazyKatgames
         }
         private void HandleRBInput()
         {
+            if (two_Hand_Input)
+                return;
+
             if (RB_Input)
             {
                 RB_Input = false;
@@ -443,6 +505,9 @@ namespace KrazyKatgames
         }
         private void HandleLBInput()
         {
+            if (two_Hand_Input)
+                return;
+
             if (LB_Input)
             {
                 LB_Input = false;

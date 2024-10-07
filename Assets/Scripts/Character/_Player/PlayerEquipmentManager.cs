@@ -8,16 +8,21 @@ namespace KrazyKatgames
     {
         PlayerManager player;
 
-        // For each new Weapon Type add here a new Slot:
+        [Header("Weapon Model Instantiation Slots")]
         public WeaponModelInstantiationSlot rightHandSlot;
         public WeaponModelInstantiationSlot leftHandWeaponSlot;
         public WeaponModelInstantiationSlot leftHandShieldSlot;
+        public WeaponModelInstantiationSlot backSlot;
+        // For each new Weapon Type add here a new Slot:
 
+        [Header("Weapon Models")]
+        public GameObject rightHandWeaponModel;
+        public GameObject leftHandWeaponModel;
+
+        [Header("Weapon Managers")]
         [SerializeField] WeaponManager rightWeaponManager;
         [SerializeField] WeaponManager leftWeaponManager;
 
-        public GameObject rightHandWeaponModel;
-        public GameObject leftHandWeaponModel;
 
         protected override void Awake()
         {
@@ -50,6 +55,10 @@ namespace KrazyKatgames
                     leftHandWeaponSlot = weaponSlot;
                 }
                 else if (weaponSlot.weaponSlot == WeaponModelSlot.LeftHandShieldSlot)
+                {
+                    leftHandShieldSlot = weaponSlot;
+                }
+                else if (weaponSlot.weaponSlot == WeaponModelSlot.BackSlot)
                 {
                     leftHandShieldSlot = weaponSlot;
                 }
@@ -295,5 +304,24 @@ namespace KrazyKatgames
             }
         }
         #endregion
+        // Two Handing (!)
+        public void UnTwoHandWeapon()
+        {
+            // Update AnimatorController to current MainHand Weapon
+            // Remove Strength Bonus (Two Handing a weapon makes your strength level (strength + (strength * 0.5))
+            // Un-Two Hand the Model and Move the model that isnt being two handed back to its hand - if there is any)
+            // Refresh Damage collider calculations (strength scaling would be effected since strength was removed)
+        }
+        public void TwoHandRightWeapon()
+        {
+            // 1. Check for untwohandable item (like unarmed) --> if attempt to two hand unarmed RETURN;
+            // 2. If returning and not two handing -> Reset BOOL status 
+            // 3. Place the non-two handed weapon model in the back slot or hip slot 
+            // 4. Place the two handed weapon model in the main (right hand) 
+        }
+        public void TwoHandLeftWeapon()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
