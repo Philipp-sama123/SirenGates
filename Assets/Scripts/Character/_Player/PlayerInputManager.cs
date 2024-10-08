@@ -415,7 +415,6 @@ namespace KrazyKatgames
 
             // WHY DO WE PASS 0 ON THE HORIZONTAL? BECAUSE WE ONLY WANT NON-STRAFING MOVEMENT
             // WE USE THE HORIZONTAL WHEN WE ARE STRAFING OR LOCKED ON
-
             if (player == null)
                 return;
 

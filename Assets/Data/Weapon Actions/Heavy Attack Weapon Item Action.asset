@@ -12,5 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d2867c9258341808982477e5c14c777, type: 3}
   m_Name: Heavy Attack Weapon Item Action
   m_EditorClassIdentifier: 
-  actionID: 0
+  actionID: 2
   heavy_Attack_01: Main_Heavy_Attack_01
+  heavy_Attack_02: Main_Heavy_Attack_02
+  th_heavy_Attack_01: TH_Heavy_Attack_01
+  th_heavy_Attack_02: TH_Heavy_Attack_02

@@ -189,7 +189,7 @@ MonoBehaviour:
   lockOnTargetFollowSpeed: 1
   setCameraHeightSpeed: 0.05
   unlockedCameraHeight: 1
-  lockedCameraHeight: 1.5
+  lockedCameraHeight: 1.25
   nearestLockOnTarget: {fileID: 0}
   leftLockOnTarget: {fileID: 0}
   rightLockOnTarget: {fileID: 0}
