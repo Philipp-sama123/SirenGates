@@ -292,12 +292,13 @@ namespace KrazyKatgames
                     player.playerNetworkManager.isTwoHandingRightWeapon.Value = true;
                     return;
                 }
-            }  if (two_Hand_Left_Weapon_Input)
+            }
+            if (two_Hand_Left_Weapon_Input)
             {
                 LB_Input = false;
                 two_Hand_Left_Weapon_Input = false;
                 player.playerNetworkManager.isBlocking.Value = false;
-                
+
                 if (player.playerNetworkManager.isTwoHandingWeapon.Value)
                 {
                     // --> trigger "onValueChanged" function which un-two-hands the current weapon
@@ -420,6 +421,9 @@ namespace KrazyKatgames
 
             if (moveAmount != 0)
                 player.playerNetworkManager.isMoving.Value = true;
+            else
+                player.playerNetworkManager.isMoving.Value = false;
+
             //  IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
 
             if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)

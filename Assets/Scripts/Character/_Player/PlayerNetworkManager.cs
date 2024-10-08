@@ -120,7 +120,7 @@ namespace KrazyKatgames
                 }
                 player.playerEquipmentManager.UnTwoHandWeapon();
             }
-            
+
             player.animator.SetBool("IsTwoHandingWeapon", isTwoHandingWeapon.Value);
         }
 
