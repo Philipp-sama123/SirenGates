@@ -9074,6 +9074,10 @@ MonoBehaviour:
     m_InternalValue: 10
   vitality:
     m_InternalValue: 10
+  strength:
+    m_InternalValue: 10
+  strengthModifier:
+    m_InternalValue: 10
   characterName:
     m_InternalValue:
       utf8LengthInBytes: 9
@@ -9197,6 +9201,7 @@ MonoBehaviour:
   playerEquipmentManager: {fileID: 0}
   playerCombatManager: {fileID: 0}
   playerInteractionManager: {fileID: 0}
+  playerEffectsManager: {fileID: 0}
 --- !u!114 &-6754247136792872320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9321,6 +9326,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  staticEffects: []
   effectToTest: {fileID: 11400000, guid: c5f78d5b072e24bd89034fad9e8b13ab, type: 2}
   processEffect: 1
 --- !u!114 &6576953863206392066
@@ -9360,7 +9366,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2e78555234b455a919dfcce2e45772f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rightHandSlot: {fileID: 0}
+  rightHandWeaponSlot: {fileID: 0}
   leftHandWeaponSlot: {fileID: 0}
   leftHandShieldSlot: {fileID: 0}
   backSlot: {fileID: 0}

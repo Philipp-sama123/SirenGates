@@ -19,6 +19,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerEquipmentManager playerEquipmentManager;
         [HideInInspector] public PlayerCombatManager playerCombatManager;
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
+        [HideInInspector] public PlayerEffectsManager playerEffectsManager;
 
         protected override void Awake()
         {
@@ -31,6 +32,7 @@ namespace KrazyKatgames
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerNetworkManager = GetComponent<PlayerNetworkManager>();
+            playerEffectsManager = GetComponent<PlayerEffectsManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
         }
@@ -199,12 +201,12 @@ namespace KrazyKatgames
             // Sync Weapons when joining (!)
             playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
             playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
-            
+
             // Sync Two Hand Status
-            playerNetworkManager.OnIsTwoHandingWeaponChanged(false,playerNetworkManager.isTwoHandingWeapon.Value);
-            playerNetworkManager.OnIsTwoHandingRightWeaponChanged(false,playerNetworkManager.isTwoHandingRightWeapon.Value);
-            playerNetworkManager.OnIsTwoHandingLeftWeaponChanged(false,playerNetworkManager.isTwoHandingLeftWeapon.Value);
-           
+            playerNetworkManager.OnIsTwoHandingWeaponChanged(false, playerNetworkManager.isTwoHandingWeapon.Value);
+            playerNetworkManager.OnIsTwoHandingRightWeaponChanged(false, playerNetworkManager.isTwoHandingRightWeapon.Value);
+            playerNetworkManager.OnIsTwoHandingLeftWeaponChanged(false, playerNetworkManager.isTwoHandingLeftWeapon.Value);
+
             // Sync Blocking Status
             playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
             // Sync Armor when joining (!)

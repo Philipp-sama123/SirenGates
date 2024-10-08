@@ -48,6 +48,10 @@ namespace KrazyKatgames
         [Header("Stats")]
         public NetworkVariable<int> endurance = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> vitality = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> strength = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+        [Header("Modifiers")]
+        public NetworkVariable<int> strengthModifier = new(10, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected virtual void Awake()
         {

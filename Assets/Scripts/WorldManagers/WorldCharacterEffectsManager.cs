@@ -11,7 +11,14 @@ namespace KrazyKatgames
         public TakeDamageEffect takeDamageEffect;
         public TakeBlockedDamageEffect takeBlockedDamageEffect;
         
+        [Header("Instant Effects")]
         [SerializeField] List<InstantCharacterEffect> instantEffects;
+        
+        [Header("Static Effects")]
+        [SerializeField] List<StaticCharacterEffect> staticEffects;
+
+        [Header("Two Hand")]
+        public TwoHandingEffect twoHandingEffect;
 
         [Header("VFX")]
         [SerializeField] public GameObject bloodSplatterVFX;
@@ -32,9 +39,15 @@ namespace KrazyKatgames
 
         private void GenerateEffectIDs()
         {
+            // instant effects
             for (int i = 0; i < instantEffects.Count; i++)
             {
                 instantEffects[i].instantEffectID = i;
+            }
+            // static effects
+            for (int i = 0; i < staticEffects.Count; i++)
+            {
+                staticEffects[i].staticEffectID = i;
             }
         }
     }

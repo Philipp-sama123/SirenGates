@@ -50,4 +50,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: c5f78d5b072e24bd89034fad9e8b13ab, type: 2}
   - {fileID: 11400000, guid: ab0569e45e9f94aca876d7d850e4d88f, type: 2}
   - {fileID: 11400000, guid: d3525f9499f18484a97d66bf7b0b1adc, type: 2}
+  staticEffects:
+  - {fileID: 11400000, guid: ea348a7cb5c94479b894e6b995e15a5d, type: 2}
+  twoHandingEffect: {fileID: 11400000, guid: ea348a7cb5c94479b894e6b995e15a5d, type: 2}
   bloodSplatterVFX: {fileID: 1620636520166436, guid: 97ad36ccf0f484e4dad745f179265f48, type: 3}

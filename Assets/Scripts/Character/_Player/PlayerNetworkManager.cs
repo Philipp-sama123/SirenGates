@@ -118,7 +118,14 @@ namespace KrazyKatgames
                     isTwoHandingLeftWeapon.Value = false;
                     isTwoHandingRightWeapon.Value = false;
                 }
+
                 player.playerEquipmentManager.UnTwoHandWeapon();
+                player.playerEffectsManager.RemoveStaticEffect(WorldCharacterEffectsManager.instance.twoHandingEffect.staticEffectID);
+            }
+            else
+            {
+                StaticCharacterEffect twoHandEffect = Instantiate(WorldCharacterEffectsManager.instance.twoHandingEffect);
+                player.playerEffectsManager.AddStaticEffect(twoHandEffect);
             }
 
             player.animator.SetBool("IsTwoHandingWeapon", isTwoHandingWeapon.Value);
