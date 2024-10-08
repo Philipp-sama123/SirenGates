@@ -61,7 +61,7 @@ namespace KrazyKatgames
                 }
                 else if (weaponSlot.weaponSlot == WeaponModelSlot.BackSlot)
                 {
-                    leftHandShieldSlot = weaponSlot;
+                    backSlot = weaponSlot;
                 }
             }
         }
@@ -308,6 +308,7 @@ namespace KrazyKatgames
         // Two Handing (!)
         public void UnTwoHandWeapon()
         {
+            Debug.LogWarning("PLAYER EQUIPMENT MANAGER: UnTwoHandWeapon");
             player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
 
             if (player.playerInventoryManager.currentLeftHandWeapon.weaponModelType == WeaponModelType.Weapon)
@@ -326,6 +327,8 @@ namespace KrazyKatgames
         }
         public void TwoHandRightWeapon()
         {
+            Debug.LogWarning("PLAYER EQUIPMENT MANAGER: TwoHandRightWeapon");
+
             // 1. Check for untwohandable item (like unarmed) --> if attempt to two hand unarmed RETURN;
             if (player.playerInventoryManager.currentRightHandWeapon == WorldItemDatabase.Instance.unarmedWeapon)
             {
@@ -342,7 +345,7 @@ namespace KrazyKatgames
 
             // add to hand strength bonus
 
-            backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
+            backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
         
             rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
             
@@ -351,6 +354,7 @@ namespace KrazyKatgames
         }
         public void TwoHandLeftWeapon()
         {
+            Debug.LogWarning("PLAYER EQUIPMENT MANAGER: TwoHandLeftWeapon");
             // 1. Check for untwohandable item (like unarmed) --> if attempt to two hand unarmed RETURN;
             if (player.playerInventoryManager.currentRightHandWeapon == WorldItemDatabase.Instance.unarmedWeapon)
             {
@@ -368,9 +372,12 @@ namespace KrazyKatgames
             // add to hand strength bonus
 
             // Place the non two handed weapon model in the back slot or hip slot
-            backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
+            backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
             leftHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
             // 4. Place the two handed weapon model in the main (right hand) 
+            
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }
     }
 }

@@ -70,6 +70,6 @@ public enum WeaponModelType
 public enum WeaponClass
 {
     Blade,
-    MediumShield,
+    Shield,
     StraightSword
 }

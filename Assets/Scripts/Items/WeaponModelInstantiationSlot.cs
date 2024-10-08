@@ -28,23 +28,28 @@ namespace KrazyKatgames
         public void PlaceWeaponModelInUnequippedSlot(GameObject weaponModel, WeaponClass weaponClass, PlayerManager player)
         {
             // TODO: Move Weapon on Back closer or move outward depending on chest equipment
+            Debug.LogWarning(
+                "WEAPON MODEL INSTANTIATION SLOT: PlaceWeaponModelInUnequippedSlot "
+                + weaponModel.name
+                + " Weapon Class "
+                + weaponClass);
 
             currentWeaponModel = weaponModel;
             weaponModel.transform.parent = transform;
-            
+
             switch (weaponClass)
             {
                 case WeaponClass.Blade:
-                    weaponModel.transform.localPosition = new Vector3(0.065f, 0f, -0.05f);
-                    weaponModel.transform.localRotation = Quaternion.Euler(195, 90, -0.25f);
+                    weaponModel.transform.localPosition = new Vector3();
+                    weaponModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     break;
                 case WeaponClass.StraightSword:
-                    weaponModel.transform.localPosition = new Vector3(0.065f, 0f, -0.05f);
-                    weaponModel.transform.localRotation = Quaternion.Euler(195, 90, -0.25f);
+                    weaponModel.transform.localPosition = new Vector3();
+                    weaponModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     break;
-                case WeaponClass.MediumShield:
-                    weaponModel.transform.localPosition = new Vector3(0.065f, 0f, -0.05f);
-                    weaponModel.transform.localRotation = Quaternion.Euler(195, 90, -0.25f);
+                case WeaponClass.Shield:
+                    weaponModel.transform.localPosition = new Vector3();
+                    weaponModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(weaponClass), weaponClass, null);
@@ -55,7 +60,7 @@ namespace KrazyKatgames
         {
             currentWeaponModel = weaponModel;
             weaponModel.transform.parent = transform;
-
+            Debug.LogWarning("WEAPON MODEL INSTANTIATION SLOT: PlaceWeaponModelIntoSlot " + gameObject.name);
             weaponModel.transform.localPosition = Vector3.zero;
             weaponModel.transform.localRotation = Quaternion.identity;
             weaponModel.transform.localScale = Vector3.one;
