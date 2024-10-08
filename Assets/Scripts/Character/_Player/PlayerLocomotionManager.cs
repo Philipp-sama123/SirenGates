@@ -249,13 +249,13 @@ namespace KrazyKatgames
                 Quaternion playerRotation = Quaternion.LookRotation(rollDirection);
                 player.transform.rotation = playerRotation;
 
-                player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true, true, true, false);
+                player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Forward_01", true, true, false, false);
                 player.playerLocomotionManager.isRolling = true; // ToDo: maybe just isRolling (!)
             }
             //  IF WE ARE STATIONARY, WE PERFORM A BACKSTEP
             else
             {
-                player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Backward_01", true, true, true, false);
+                player.playerAnimatorManager.PlayTargetActionAnimation("Roll_Backward_01", true, true, false, false);
             }
 
             player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;

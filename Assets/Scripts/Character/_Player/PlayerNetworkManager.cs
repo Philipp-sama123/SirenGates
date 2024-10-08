@@ -112,14 +112,23 @@ namespace KrazyKatgames
         public void OnIsTwoHandingWeaponChanged(bool oldStatus, bool newStatus)
         {
             if (!isTwoHandingWeapon.Value)
+            {
+                if (IsOwner)
+                {
+                    isTwoHandingLeftWeapon.Value = false;
+                    isTwoHandingRightWeapon.Value = false;
+                }
                 player.playerEquipmentManager.UnTwoHandWeapon();
+            }
+            
+            player.animator.SetBool("IsTwoHandingWeapon", isTwoHandingWeapon.Value);
         }
 
         public void OnIsTwoHandingRightWeaponChanged(bool oldStatus, bool newStatus)
         {
             if (!isTwoHandingRightWeapon.Value)
                 return;
-            
+
             if (IsOwner)
             {
                 currentWeaponBeingTwoHanded.Value = currentRightHandWeaponID.Value;
@@ -132,7 +141,7 @@ namespace KrazyKatgames
         {
             if (!isTwoHandingLeftWeapon.Value)
                 return;
-            
+
             if (IsOwner)
             {
                 currentWeaponBeingTwoHanded.Value = currentLeftHandWeaponID.Value;

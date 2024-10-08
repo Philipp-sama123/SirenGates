@@ -24,8 +24,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 238396694437937029}
   serializedVersion: 2
-  m_LocalRotation: {x: -0, y: 0.000000014901159, z: 0.00000013411044, w: 1}
-  m_LocalPosition: {x: -0.0009, y: -0.0002, z: -0.0002}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -500,7 +500,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1077866408061446225}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.50327563, y: 0.4976176, z: -0.5034573, w: -0.49560192}
+  m_LocalRotation: {x: -0.50326675, y: 0.49762684, z: -0.5034485, w: -0.49561042}
   m_LocalPosition: {x: 1.0186341e-10, y: 0.38115856, z: 0.0000000032582648}
   m_LocalScale: {x: 1, y: 0.9999999, z: 1.0000001}
   m_ConstrainProportionsScale: 0
@@ -518,8 +518,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 89.2194, y: 97.66588, z: -172.20833}
-  m_RotationOffset: {x: 88.90322, y: 90.01332, z: -179.99484}
+  m_RotationAtRest: {x: 89.22039, y: 97.68871, z: -172.18521}
+  m_RotationOffset: {x: 88.90429, y: 90.015396, z: -179.99269}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -2411,8 +2411,8 @@ SkinnedMeshRenderer:
   m_BlendShapeWeights:
   - 0
   - 0
-  - 100
   - 0
+  - 45
   m_RootBone: {fileID: 2465296961463204134}
   m_AABB:
     m_Center: {x: 0, y: 0.8, z: 0}
@@ -2443,7 +2443,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2273057391923775812}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.011561763, y: -0.48108876, z: 0.8765728, w: 0.006337247}
+  m_LocalRotation: {x: -0.011561833, y: -0.48108667, z: 0.8765739, w: 0.0063373214}
   m_LocalPosition: {x: -0.00000000466701, y: 0.07480115, z: -0.002928904}
   m_LocalScale: {x: 0.9999998, y: 1, z: 1.0000002}
   m_ConstrainProportionsScale: 0
@@ -2461,8 +2461,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 57.487236, y: -2.8118339, z: 177.62914}
-  m_RotationOffset: {x: -57.41149, y: 1.465335, z: -0.9105733}
+  m_RotationAtRest: {x: 57.48697, y: -2.8118339, z: 177.62914}
+  m_RotationOffset: {x: -57.411217, y: 1.4653478, z: -0.9105843}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -3143,7 +3143,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &6261715586548425221
 Transform:
   m_ObjectHideFlags: 0
@@ -3360,8 +3360,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3077082404855390416}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7069847, y: 0.00000013238537, z: 0.0000001324311, w: 0.7072289}
-  m_LocalPosition: {x: -0.0009001977, y: 0.074498475, z: -0.12810004}
+  m_LocalRotation: {x: -0.7069847, y: -0, z: 0, w: 0.7072289}
+  m_LocalPosition: {x: -0.00000019739993, y: 0.07469845, z: -0.12830001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5768,7 +5768,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5085068175307945647}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.8765737, y: -0.0063366094, z: -0.011563407, w: 0.48108703}
+  m_LocalRotation: {x: 0.8765748, y: -0.0063367663, z: -0.011563431, w: 0.481085}
   m_LocalPosition: {x: 0.0000000055983325, y: 0.07480115, z: 0.002928904}
   m_LocalScale: {x: 1, y: 1.0000001, z: 1.0000006}
   m_ConstrainProportionsScale: 0
@@ -5786,8 +5786,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 57.48701, y: -177.18794, z: -177.6291}
-  m_RotationOffset: {x: -57.411076, y: -1.4670649, z: 0.91260046}
+  m_RotationAtRest: {x: 57.48675, y: -177.18794, z: -177.6291}
+  m_RotationOffset: {x: -57.410812, y: -1.4670776, z: 0.91262203}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -6283,9 +6283,9 @@ SkinnedMeshRenderer:
   - {fileID: 2052034818132053865}
   - {fileID: 8643821512853502961}
   m_BlendShapeWeights:
+  - 0
+  - 0
   - 100
-  - 0
-  - 0
   m_RootBone: {fileID: 2465296961463204134}
   m_AABB:
     m_Center: {x: 0, y: 0.8, z: 0}
@@ -6871,6 +6871,52 @@ CapsuleCollider:
   m_Height: 0.3
   m_Direction: 1
   m_Center: {x: 0, y: 0.06, z: 0}
+--- !u!1 &5734395047171570550
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 887994355320851943}
+  - component: {fileID: 4823802946738128397}
+  m_Layer: 6
+  m_Name: BackSlot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &887994355320851943
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5734395047171570550}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0.5000004, y: 0.49999955, z: 0.49999967, w: 0.50000036}
+  m_LocalPosition: {x: -0.13031779, y: -0.020927073, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 3110569922095414935}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4823802946738128397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5734395047171570550}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5daf57e35afb40fb9432032ea7e7be26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponSlot: 3
+  currentWeaponModel: {fileID: 0}
 --- !u!1 &5871246403658672525
 GameObject:
   m_ObjectHideFlags: 0
@@ -7040,9 +7086,9 @@ SkinnedMeshRenderer:
   - {fileID: 2052034818132053865}
   - {fileID: 8643821512853502961}
   m_BlendShapeWeights:
+  - 0
+  - 0
   - 100
-  - 0
-  - 0
   m_RootBone: {fileID: 2465296961463204134}
   m_AABB:
     m_Center: {x: 0, y: 0.8, z: 0}
@@ -7216,6 +7262,7 @@ Transform:
   - {fileID: 2954690641047534330}
   - {fileID: 2172813622170744930}
   - {fileID: 8037777477425991926}
+  - {fileID: 887994355320851943}
   - {fileID: 7951244616357434422}
   m_Father: {fileID: 2465296961463204134}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -7267,7 +7314,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6311610219680616257}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.5032483, y: -0.4976476, z: 0.5034227, w: -0.49563462}
+  m_LocalRotation: {x: -0.50324136, y: -0.49765572, z: 0.50341606, w: -0.4956402}
   m_LocalPosition: {x: -5.820766e-10, y: 0.38115853, z: -0.000000009081305}
   m_LocalScale: {x: 1.0000001, y: 1.0000004, z: 1}
   m_ConstrainProportionsScale: 0
@@ -7285,8 +7332,8 @@ RotationConstraint:
   m_Enabled: 1
   serializedVersion: 2
   m_Weight: 0.5
-  m_RotationAtRest: {x: 89.225685, y: -97.75656, z: 172.11815}
-  m_RotationOffset: {x: 88.91002, y: -90.02704, z: 179.98161}
+  m_RotationAtRest: {x: 89.2272, y: -97.781555, z: 172.0929}
+  m_RotationOffset: {x: 88.91146, y: -90.033676, z: 179.97487}
   m_AffectRotationX: 1
   m_AffectRotationY: 1
   m_AffectRotationZ: 1
@@ -8961,7 +9008,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2729144484
+  GlobalObjectIdHash: 317645115
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -9105,6 +9152,14 @@ MonoBehaviour:
   isUsingRightHand:
     m_InternalValue: 0
   isUsingLeftHand:
+    m_InternalValue: 0
+  currentWeaponBeingTwoHanded:
+    m_InternalValue: 0
+  isTwoHandingWeapon:
+    m_InternalValue: 0
+  isTwoHandingRightWeapon:
+    m_InternalValue: 0
+  isTwoHandingLeftWeapon:
     m_InternalValue: 0
 --- !u!114 &1251065776810463736
 MonoBehaviour:
@@ -9282,6 +9337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentRightHandWeapon: {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
+  currentTwoHandWeapon: {fileID: 0}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
   - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
@@ -9307,10 +9363,11 @@ MonoBehaviour:
   rightHandSlot: {fileID: 0}
   leftHandWeaponSlot: {fileID: 0}
   leftHandShieldSlot: {fileID: 0}
-  rightWeaponManager: {fileID: 0}
-  leftWeaponManager: {fileID: 0}
+  backSlot: {fileID: 0}
   rightHandWeaponModel: {fileID: 0}
   leftHandWeaponModel: {fileID: 0}
+  rightWeaponManager: {fileID: 0}
+  leftWeaponManager: {fileID: 0}
 --- !u!114 &964620063594327577
 MonoBehaviour:
   m_ObjectHideFlags: 0

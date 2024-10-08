@@ -12,6 +12,9 @@ namespace KrazyKatgames
 
         [Header("Weapon Model")]
         public GameObject weaponModel;
+        
+        [Header("Weapon Class")]
+        public WeaponClass weaponClass;
 
         [Header("Weapon Requirements")]
         public int strengthREQ = 0;

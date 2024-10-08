@@ -55,9 +55,9 @@ public enum AttackType
 public enum DamageIntensity
 {
     Ping,
-    Light, 
-    Medium, 
-    Heavy, 
+    Light,
+    Medium,
+    Heavy,
     Colossal
 }
 
@@ -66,4 +66,10 @@ public enum WeaponModelType
     Weapon,
     Shield
     // maybe Item (?)
+}
+public enum WeaponClass
+{
+    Blade,
+    MediumShield,
+    StraightSword
 }
