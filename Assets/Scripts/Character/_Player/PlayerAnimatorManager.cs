@@ -1,6 +1,6 @@
 
 using UnityEngine;
-
+// ToDo: Clean up the animation states of the player -> DEFAULT 1H Locomotion (!) not unarmed (!)
 namespace KrazyKatgames
 {
     public class PlayerAnimatorManager : CharacterAnimatorManager
