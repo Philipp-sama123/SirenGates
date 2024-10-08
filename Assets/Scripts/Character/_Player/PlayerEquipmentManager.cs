@@ -345,7 +345,7 @@ namespace KrazyKatgames
 
             // add to hand strength bonus
 
-            backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
+            backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
         
             rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
             
@@ -372,7 +372,7 @@ namespace KrazyKatgames
             // add to hand strength bonus
 
             // Place the non two handed weapon model in the back slot or hip slot
-            backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
+            backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
             leftHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
             // 4. Place the two handed weapon model in the main (right hand) 
             

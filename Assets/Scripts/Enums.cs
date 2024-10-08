@@ -71,5 +71,7 @@ public enum WeaponClass
 {
     Blade,
     Shield,
-    StraightSword
+    StraightSword,
+    Fist,
+    // ... todo more (!)
 }
