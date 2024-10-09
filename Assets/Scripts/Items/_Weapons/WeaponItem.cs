@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace KrazyKatgames
 {
-    public class WeaponItem : Item
+    public class WeaponItem : EquipmentItem
     {
         [Header("Animator Controller Override")]
         public AnimatorOverrideController weaponAnimator;

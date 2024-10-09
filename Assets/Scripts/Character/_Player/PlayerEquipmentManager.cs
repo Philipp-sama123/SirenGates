@@ -24,6 +24,9 @@ namespace KrazyKatgames
         [SerializeField] WeaponManager rightWeaponManager;
         [SerializeField] WeaponManager leftWeaponManager;
 
+        [Header("DEBUGGING")]
+        [SerializeField]
+        private bool equipNewItem = false;
 
         protected override void Awake()
         {
@@ -41,6 +44,60 @@ namespace KrazyKatgames
             LoadWeaponsOnBothHands();
         }
 
+        private void Update()
+        {
+            if (equipNewItem)
+            {
+                equipNewItem = false;
+                DebugEquipNewItems();
+            }
+        }
+        private void DebugEquipNewItems()
+        {
+            Debug.LogWarning("Equip New Items!");
+
+            if (player.playerInventoryManager.headEquipment != null)
+                LoadHeadEquipment(player.playerInventoryManager.headEquipment);
+            else
+                Debug.LogWarning("No Head Equipment in inventory assigned");
+            if (player.playerInventoryManager.handEquipment != null)
+                LoadHandEquipment(player.playerInventoryManager.handEquipment);
+            else
+                Debug.LogWarning("No Hand Equipment in inventory assigned");
+            if (player.playerInventoryManager.bodyEquipment != null)
+                LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
+            else
+                Debug.LogWarning("No Body Equipment in inventory assigned");
+            if (player.playerInventoryManager.legEquipment != null)
+                LoadLegEquipment(player.playerInventoryManager.legEquipment);
+            else
+                Debug.LogWarning("No Leg Equipment in inventory assigned");
+        }
+        // Equipment
+        public void LoadHeadEquipment(HeadEquipmentItem equipment)
+        {
+            // 1. Unload old head Equipment (if any) 
+            // 2. if equipment is null -> set equipment in inventory to null and return
+            // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
+            // 4. set current head equipment to the equipment passed in to this fct
+            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
+            // 6. Load the Equipment model 
+            // 7. calculate total equipment load 
+            // 8. calculate total armor absorption
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+        public void LoadHandEquipment(HandEquipmentItem equipment)
+        {
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+        public void LoadBodyEquipment(BodyEquipmentItem equipment)
+        {
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+        public void LoadLegEquipment(LegEquipmentItem equipment)
+        {
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
         private void InitializeWeaponSlots()
         {
             WeaponModelInstantiationSlot[] weaponSlots = GetComponentsInChildren<WeaponModelInstantiationSlot>();
@@ -319,11 +376,11 @@ namespace KrazyKatgames
             {
                 leftHandShieldSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
             }
-            
+
             rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
-            
-            rightWeaponManager.SetWeaponDamage(player,player.playerInventoryManager.currentRightHandWeapon);
-            leftWeaponManager.SetWeaponDamage(player,player.playerInventoryManager.currentLeftHandWeapon);
+
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }
         public void TwoHandRightWeapon()
         {
@@ -346,11 +403,11 @@ namespace KrazyKatgames
             // add to hand strength bonus
 
             backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
-        
+
             rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
-            
-            rightWeaponManager.SetWeaponDamage(player,player.playerInventoryManager.currentRightHandWeapon);
-            leftWeaponManager.SetWeaponDamage(player,player.playerInventoryManager.currentLeftHandWeapon);
+
+            rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
+            leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }
         public void TwoHandLeftWeapon()
         {
@@ -375,7 +432,7 @@ namespace KrazyKatgames
             backSlot.PlaceWeaponModelInUnequippedSlot(rightHandWeaponModel, player.playerInventoryManager.currentRightHandWeapon.weaponClass, player);
             leftHandWeaponSlot.PlaceWeaponModelIntoSlot(leftHandWeaponModel);
             // 4. Place the two handed weapon model in the main (right hand) 
-            
+
             rightWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentRightHandWeapon);
             leftWeaponManager.SetWeaponDamage(player, player.playerInventoryManager.currentLeftHandWeapon);
         }

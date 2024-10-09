@@ -20,6 +20,19 @@ namespace KrazyKatgames
         public float blockingLightningAbsorption;
         public float blockingHolyAbsorption;
         public float blockingStability;
+        
+        [Header("Armor Absorption")]
+        public float armorPhysicalDamageAbsorption;
+        public float armorMagicDamageAbsorption;
+        public float armorFireDamageAbsorption;
+        public float armorHolyDamageAbsorption;
+        public float armorLightningDamageAbsorption;
+
+        [Header("Armor Resistances")]
+        public float armorImmunity;
+        public float armorRobustness;
+        public float armorFocus;
+        public float armorVitality;
 
         [Header("Poise")]
         public float totalPoiseDamage;
