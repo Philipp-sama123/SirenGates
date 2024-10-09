@@ -105,7 +105,15 @@ namespace KrazyKatgames
             playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+          
+            // Blocking
             playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
+
+            // Armor
+            playerNetworkManager.headEquipmentID.OnValueChanged += playerNetworkManager.OnHeadEquipmentChanged;
+            playerNetworkManager.handEquipmentID.OnValueChanged += playerNetworkManager.OnHandEquipmentChanged;
+            playerNetworkManager.bodyEquipmentID.OnValueChanged += playerNetworkManager.OnBodyEquipmentChanged;
+            playerNetworkManager.legEquipmentID.OnValueChanged += playerNetworkManager.OnLegEquipmentChanged;
 
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandingWeaponChanged;
@@ -209,8 +217,12 @@ namespace KrazyKatgames
 
             // Sync Blocking Status
             playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
-            // Sync Armor when joining (!)
-            // ToDo: Armor
+
+            // Sync Armor
+            playerNetworkManager.OnHeadEquipmentChanged(-1, playerNetworkManager.headEquipmentID.Value);
+            playerNetworkManager.OnBodyEquipmentChanged(-1, playerNetworkManager.bodyEquipmentID.Value);
+            playerNetworkManager.OnLegEquipmentChanged(-1, playerNetworkManager.legEquipmentID.Value);
+            playerNetworkManager.OnHandEquipmentChanged(-1, playerNetworkManager.handEquipmentID.Value);
 
             // Update Lock on
             if (playerNetworkManager.isLockedOn.Value)
@@ -245,6 +257,13 @@ namespace KrazyKatgames
             playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+            // Blocking
+            playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
+            // Armor
+            playerNetworkManager.headEquipmentID.OnValueChanged -= playerNetworkManager.OnHeadEquipmentChanged;
+            playerNetworkManager.handEquipmentID.OnValueChanged -= playerNetworkManager.OnHandEquipmentChanged;
+            playerNetworkManager.bodyEquipmentID.OnValueChanged -= playerNetworkManager.OnBodyEquipmentChanged;
+            playerNetworkManager.legEquipmentID.OnValueChanged -= playerNetworkManager.OnLegEquipmentChanged;
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingWeaponChanged;
             playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;

@@ -1609,7 +1609,7 @@ MonoBehaviour:
   groundLayer:
     serializedVersion: 2
     m_Bits: 0
-  groundCheckSphereRadius: 1
+  groundCheckSphereRadius: 0.1
   yVelocity: {x: 0, y: 0, z: 0}
   groundedYVelocity: -20
   fallStartYVelocity: -5
@@ -1654,6 +1654,22 @@ MonoBehaviour:
   equipNewItem: 0
   hairObject: {fileID: 385565085002158958}
   hairObjects: []
+  underwearObject: {fileID: 2388935209412806452}
+  underwearObjects: []
+  maskObject: {fileID: 8371628575308825081}
+  maskObjects: []
+  attachmentObject: {fileID: 3623691064649984404}
+  attachmentObjects: []
+  pantsObject: {fileID: 3257780758269299458}
+  pantsObjects: []
+  outfitObject: {fileID: 8371415560935683977}
+  outfitObjects: []
+  hoodObject: {fileID: 1846579045909407489}
+  hoodObjects: []
+  cloakObject: {fileID: 2655287068431734652}
+  cloakObjects: []
+  bagpackObject: {fileID: 2273211085787259428}
+  bagpackObjects: []
 --- !u!114 &3116477504449518663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3460,7 +3476,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8660998174640181062}
   m_Layer: 6
-  m_Name: Hoods
+  m_Name: Hood
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3568,7 +3584,6 @@ Transform:
   - {fileID: 3649661061630488829}
   - {fileID: 2186635164901672046}
   - {fileID: 7893264158093187743}
-  - {fileID: 5038247937301927624}
   - {fileID: 7413528306567503048}
   - {fileID: 7712320826443603555}
   - {fileID: 7104854265501454335}
@@ -4042,7 +4057,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5511844327416140659}
   m_Layer: 6
-  m_Name: Bagpacks
+  m_Name: Bagpack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5131,7 +5146,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7104854265501454335}
   m_Layer: 6
-  m_Name: Pants
+  m_Name: Pant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5902,7 +5917,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7712320826443603555}
   m_Layer: 6
-  m_Name: Attachments
+  m_Name: Attachment
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8929,7 +8944,7 @@ GameObject:
   - component: {fileID: 5639490890536725864}
   - component: {fileID: 354474603769502253}
   m_Layer: 6
-  m_Name: P03_BackPack
+  m_Name: P03_BackPack_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10681,7 +10696,7 @@ GameObject:
   - component: {fileID: 8439421964370045246}
   - component: {fileID: 2334132790502038269}
   m_Layer: 6
-  m_Name: P03_Cloak
+  m_Name: P03_Cloak_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12480,7 +12495,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8162280170718555344}
   m_Layer: 6
-  m_Name: Outfits
+  m_Name: Outfit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12501,6 +12516,7 @@ Transform:
   m_Children:
   - {fileID: 1470560215709849006}
   - {fileID: 8530584244012289284}
+  - {fileID: 4853728460289319477}
   m_Father: {fileID: 8185120339365889800}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8371628575308825081
@@ -12750,38 +12766,6 @@ Transform:
   - {fileID: 4751790275260611233}
   m_Father: {fileID: 3566789608128487505}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &8690006908702472197
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 5038247937301927624}
-  m_Layer: 6
-  m_Name: Shirt
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &5038247937301927624
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8690006908702472197}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 4853728460289319477}
-  m_Father: {fileID: 8185120339365889800}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8692303985473517083
 GameObject:
   m_ObjectHideFlags: 0
@@ -12982,7 +12966,7 @@ GameObject:
   - component: {fileID: 4853728460289319477}
   - component: {fileID: 5523452900617116597}
   m_Layer: 6
-  m_Name: P03_Shirt
+  m_Name: P03_Outfit_03
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -13001,7 +12985,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 5038247937301927624}
+  m_Father: {fileID: 8162280170718555344}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!137 &5523452900617116597
 SkinnedMeshRenderer:

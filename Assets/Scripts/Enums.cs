@@ -71,12 +71,11 @@ public enum EquipmentModelType
 {
     Hair,
     Underwear,
-    Shirt,
     Mask,
     Attachment,
     Pants,
     Outfit,
-    Food,
+    Hood,
     Cloak,
     Bagpack
 }

@@ -477,24 +477,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1018578223762713509, guid: ad92b907161ff4c10966b4c2b2e94135, type: 3}
   m_PrefabInstance: {fileID: 1779322557}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &113024055 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2247863161401084596, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
-  m_PrefabInstance: {fileID: 8433597523956926983}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &113024059
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 113024055}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ed59cbbe9a584bf69a86e8b8010c0bab, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  players: []
 --- !u!224 &152760406 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1018578223762713509, guid: ad92b907161ff4c10966b4c2b2e94135, type: 3}
@@ -6422,17 +6404,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldNetworkManager
       objectReference: {fileID: 0}
-    - target: {fileID: 5127525055630682276, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
-      propertyPath: NetworkConfig.PlayerPrefab
-      value: 
-      objectReference: {fileID: 660066827974133361, guid: 62701a1b050724c499549768248548ff, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 2247863161401084596, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 113024059}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 14bd6f303130d450e8634965c98f3d7a, type: 3}
 --- !u!1001 &8509652350799540377
 PrefabInstance:

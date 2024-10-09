@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -16,30 +14,89 @@ namespace KrazyKatgames
             switch (equipmentModelType)
             {
                 case EquipmentModelType.Hair:
+                    foreach (var model in player.playerEquipmentManager.hairObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Underwear:
-                    break;
-                case EquipmentModelType.Shirt:
+                    foreach (var model in player.playerEquipmentManager.underwearObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Mask:
+                    foreach (var model in player.playerEquipmentManager.maskObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
-                case EquipmentModelType.Attachment:
+                case EquipmentModelType.Attachment: // ToDo: make multiple
+                    foreach (var model in player.playerEquipmentManager.attachmentObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Pants:
+                    foreach (var model in player.playerEquipmentManager.attachmentObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Outfit:
+                    foreach (var model in player.playerEquipmentManager.outfitObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
-                case EquipmentModelType.Food:
+                case EquipmentModelType.Hood:
+                    foreach (var model in player.playerEquipmentManager.hoodObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Cloak:
+                    foreach (var model in player.playerEquipmentManager.cloakObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 case EquipmentModelType.Bagpack:
+                    foreach (var model in player.playerEquipmentManager.bagpackObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
         }
-
-   
     }
 }

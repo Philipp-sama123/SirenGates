@@ -36,15 +36,27 @@ namespace KrazyKatgames
         public GameObject underwearObject;
         public GameObject[] underwearObjects;
 
-        // underwearObject,
-        // shirtObject,
-        // maskObject,
-        // attachmentObject,
-        // pantsObject,
-        // outfitObject,
-        // hoodObject,
-        // cloakObject,
-        // bagpackObject;
+        public GameObject maskObject;
+        public GameObject[] maskObjects;
+
+        public GameObject attachmentObject;
+        public GameObject[] attachmentObjects;
+
+        public GameObject pantsObject;
+        public GameObject[] pantsObjects;
+
+        public GameObject outfitObject;
+        public GameObject[] outfitObjects;
+
+        public GameObject hoodObject;
+        public GameObject[] hoodObjects;
+
+        public GameObject cloakObject;
+        public GameObject[] cloakObjects;
+
+        public GameObject bagpackObject;
+        public GameObject[] bagpackObjects;
+
         protected override void Awake()
         {
             base.Awake();
@@ -60,6 +72,70 @@ namespace KrazyKatgames
                 hairObjectsList.Add(child.gameObject);
             }
             hairObjects = hairObjectsList.ToArray();
+
+            List<GameObject> underwearObjectsList = new List<GameObject>();
+
+            foreach (Transform child in underwearObject.transform)
+            {
+                underwearObjectsList.Add(child.gameObject);
+            }
+            underwearObjects = underwearObjectsList.ToArray();
+
+            List<GameObject> maskObjectsList = new List<GameObject>();
+
+            foreach (Transform child in maskObject.transform)
+            {
+                maskObjectsList.Add(child.gameObject);
+            }
+            maskObjects = maskObjectsList.ToArray();
+
+            List<GameObject> attachmentObjectsList = new List<GameObject>();
+
+            foreach (Transform child in attachmentObject.transform)
+            {
+                attachmentObjectsList.Add(child.gameObject);
+            }
+            attachmentObjects = attachmentObjectsList.ToArray();
+
+            List<GameObject> pantsObjectsList = new List<GameObject>();
+
+            foreach (Transform child in pantsObject.transform)
+            {
+                pantsObjectsList.Add(child.gameObject);
+            }
+            pantsObjects = pantsObjectsList.ToArray();
+
+            List<GameObject> outfitObjectsList = new List<GameObject>();
+
+            foreach (Transform child in outfitObject.transform)
+            {
+                outfitObjectsList.Add(child.gameObject);
+            }
+            outfitObjects = outfitObjectsList.ToArray();
+
+            List<GameObject> hoodObjectsList = new List<GameObject>();
+
+            foreach (Transform child in hoodObject.transform)
+            {
+                hoodObjectsList.Add(child.gameObject);
+            }
+            hoodObjects = hoodObjectsList.ToArray();
+
+            List<GameObject> cloakObjectsList = new List<GameObject>();
+
+            foreach (Transform child in cloakObject.transform)
+            {
+                cloakObjectsList.Add(child.gameObject);
+            }
+            cloakObjects = cloakObjectsList.ToArray();
+
+            List<GameObject> bagpackObjectsList = new List<GameObject>();
+
+            foreach (Transform child in bagpackObject.transform)
+            {
+                bagpackObjectsList.Add(child.gameObject);
+            }
+            bagpackObjects = bagpackObjectsList.ToArray();
         }
 
         protected override void Start()
@@ -80,43 +156,43 @@ namespace KrazyKatgames
         private void DebugEquipNewItems()
         {
             Debug.LogWarning("Equip New Items!");
-
-            if (player.playerInventoryManager.headEquipment != null)
-                LoadHeadEquipment(player.playerInventoryManager.headEquipment);
-            else
-                Debug.LogWarning("No Head Equipment in inventory assigned");
-            if (player.playerInventoryManager.handEquipment != null)
-                LoadHandEquipment(player.playerInventoryManager.handEquipment);
-            else
-                Debug.LogWarning("No Hand Equipment in inventory assigned");
-            if (player.playerInventoryManager.bodyEquipment != null)
-                LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
-            else
-                Debug.LogWarning("No Body Equipment in inventory assigned");
-            if (player.playerInventoryManager.legEquipment != null)
-                LoadLegEquipment(player.playerInventoryManager.legEquipment);
-            else
-                Debug.LogWarning("No Leg Equipment in inventory assigned");
+            LoadHeadEquipment(player.playerInventoryManager.headEquipment);
+            LoadHandEquipment(player.playerInventoryManager.handEquipment);
+            LoadBodyEquipment(player.playerInventoryManager.bodyEquipment);
+            LoadLegEquipment(player.playerInventoryManager.legEquipment);
         }
         // Equipment
         public void LoadHeadEquipment(HeadEquipmentItem equipment)
         {
-            // 1. Unload old head Equipment (if any) 
             UnloadHeadEquipment();
+
             if (equipment == null)
             {
+                if (player.IsOwner)
+                    player.playerNetworkManager.headEquipmentID.Value = -1; // will never be an ID so null (!)
+
                 player.playerInventoryManager.headEquipment = null;
                 return;
             }
-            // 2. if equipment is null -> set equipment in inventory to null and return
             // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
-            // 4. set current head equipment to the equipment passed in to this fct
-            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
-            // 6. Load the Equipment model 
-            // 7. calculate total equipment load 
+            // TODO
 
-            // 8. calculate total armor absorption
+            player.playerInventoryManager.headEquipment = equipment;
+
+            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
+            // TODO
+            foreach (var model in equipment.equipmentModels)
+            {
+                model.LoadModel(player);
+            }
+
+            // 7. calculate total equipment load 
+            // TODO
+
             player.playerStatsManager.CalculateTotalArmorAbsorption();
+
+            if (player.IsOwner)
+                player.playerNetworkManager.headEquipmentID.Value = equipment.itemID;
         }
         public void UnloadHeadEquipment()
         {

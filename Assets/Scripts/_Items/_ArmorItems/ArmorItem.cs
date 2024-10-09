@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -23,5 +21,6 @@ namespace KrazyKatgames
         public float poise;
 
         //  ARMOR MODELS
+        public EquipmentModel[] equipmentModels;
     }
 }
