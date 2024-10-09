@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -28,6 +29,22 @@ namespace KrazyKatgames
         [SerializeField]
         private bool equipNewItem = false;
 
+        [Header("Equipment Models")]
+        public GameObject hairObject;
+        public GameObject[] hairObjects;
+
+        public GameObject underwearObject;
+        public GameObject[] underwearObjects;
+
+        // underwearObject,
+        // shirtObject,
+        // maskObject,
+        // attachmentObject,
+        // pantsObject,
+        // outfitObject,
+        // hoodObject,
+        // cloakObject,
+        // bagpackObject;
         protected override void Awake()
         {
             base.Awake();
@@ -35,6 +52,14 @@ namespace KrazyKatgames
             player = GetComponent<PlayerManager>();
 
             InitializeWeaponSlots();
+
+            List<GameObject> hairObjectsList = new List<GameObject>();
+
+            foreach (Transform child in hairObject.transform)
+            {
+                hairObjectsList.Add(child.gameObject);
+            }
+            hairObjects = hairObjectsList.ToArray();
         }
 
         protected override void Start()
@@ -77,14 +102,28 @@ namespace KrazyKatgames
         public void LoadHeadEquipment(HeadEquipmentItem equipment)
         {
             // 1. Unload old head Equipment (if any) 
+            UnloadHeadEquipment();
+            if (equipment == null)
+            {
+                player.playerInventoryManager.headEquipment = null;
+                return;
+            }
             // 2. if equipment is null -> set equipment in inventory to null and return
             // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
             // 4. set current head equipment to the equipment passed in to this fct
             // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
             // 6. Load the Equipment model 
             // 7. calculate total equipment load 
+
             // 8. calculate total armor absorption
             player.playerStatsManager.CalculateTotalArmorAbsorption();
+        }
+        public void UnloadHeadEquipment()
+        {
+            foreach (var model in hairObjects)
+            {
+                model.SetActive(false);
+            }
         }
         public void LoadHandEquipment(HandEquipmentItem equipment)
         {

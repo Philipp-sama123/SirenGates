@@ -67,6 +67,19 @@ public enum WeaponModelType
     Shield
     // maybe Item (?)
 }
+public enum EquipmentModelType 
+{
+    Hair,
+    Underwear,
+    Shirt,
+    Mask,
+    Attachment,
+    Pants,
+    Outfit,
+    Food,
+    Cloak,
+    Bagpack
+}
 public enum WeaponClass
 {
     Blade,
