@@ -76,7 +76,8 @@ public enum WearableModelType
     Outfit,
     Hood,
     Cloak,
-    Bagpack
+    Bagpack,
+    ShoesAndGloves,
 }
 public enum WeaponClass
 {

@@ -35,6 +35,7 @@ namespace KrazyKatgames
         public NetworkVariable<int> underwearEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         // TODO (!)
         public NetworkVariable<int> hoodEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> shoesAndGlovesEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> maskEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> bagpackEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> hairEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -242,6 +243,21 @@ namespace KrazyKatgames
             else
             {
                 player.playerEquipmentManager.LoadHoodEquipment(null);
+            }
+        }
+        public void OnShoesAndGlovesEquipmentChanged(int oldValue, int newValue)
+        {
+            if (IsOwner)
+                return;
+
+            ShoesAndGlovesWearableItem equipment = WorldItemDatabase.Instance.GetShoesAndGlovesEquipmentByID(shoesAndGlovesEquipmentID.Value);
+            if (equipment != null)
+            {
+                player.playerEquipmentManager.LoadShoesAndGlovesEquipment(Instantiate(equipment));
+            }
+            else
+            {
+                player.playerEquipmentManager.LoadShoesAndGlovesEquipment(null);
             }
         }
 

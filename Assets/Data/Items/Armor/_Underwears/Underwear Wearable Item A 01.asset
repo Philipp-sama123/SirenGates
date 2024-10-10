@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c43cac7faad4ef3b0d71e9ecfe8d42d, type: 3}
+  m_Name: Underwear Wearable Item A 01
+  m_EditorClassIdentifier: 
+  itemName: Underwear Equipment
+  itemIcon: {fileID: 0}
+  itemDescription: 
+  itemID: 8
+  itemWeight: 2
+  physicalDamageAbsorption: 5
+  magicDamageAbsorption: 5
+  fireDamageAbsorption: 5
+  holyDamageAbsorption: 5
+  lightningDamageAbsorption: 5
+  immunity: 10
+  robustness: 5
+  focus: 5
+  vitality: 5
+  poise: 5
+  wearableModels:
+  - {fileID: 11400000, guid: 13bb445106ff244889f7c24e97c4839c, type: 2}

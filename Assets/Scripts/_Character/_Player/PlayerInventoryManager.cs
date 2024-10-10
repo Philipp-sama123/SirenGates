@@ -16,6 +16,7 @@ namespace KrazyKatgames
         public OutfitWearableItem outfitWearable;
         public UnderwearWearableItem underwearWearable;
         public HoodWearableItem hoodWearable;
+        public ShoesAndGlovesWearableItem shoesAndGlovesWearable;
         
         [Header("Quick Slots")]
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];

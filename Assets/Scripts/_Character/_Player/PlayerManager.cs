@@ -118,6 +118,7 @@ namespace KrazyKatgames
             playerNetworkManager.outfitEquipmentID.OnValueChanged += playerNetworkManager.OnOutfitEquipmentChanged;
             playerNetworkManager.underwearEquipmentID.OnValueChanged += playerNetworkManager.OnUnderwearEquipmentChanged;
             playerNetworkManager.hoodEquipmentID.OnValueChanged += playerNetworkManager.OnHoodEquipmentChanged;
+            playerNetworkManager.shoesAndGlovesEquipmentID.OnValueChanged += playerNetworkManager.OnShoesAndGlovesEquipmentChanged;
 
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandingWeaponChanged;
@@ -228,6 +229,7 @@ namespace KrazyKatgames
             playerNetworkManager.OnUnderwearEquipmentChanged(-1, playerNetworkManager.underwearEquipmentID.Value);
             playerNetworkManager.OnPantsEquipmentChanged(-1, playerNetworkManager.pantsEquipmentID.Value);
             playerNetworkManager.OnHoodEquipmentChanged(-1, playerNetworkManager.hoodEquipmentID.Value);
+            playerNetworkManager.OnShoesAndGlovesEquipmentChanged(-1, playerNetworkManager.shoesAndGlovesEquipmentID.Value);
 
             // Update Lock on
             if (playerNetworkManager.isLockedOn.Value)
@@ -270,7 +272,7 @@ namespace KrazyKatgames
             playerNetworkManager.outfitEquipmentID.OnValueChanged -= playerNetworkManager.OnOutfitEquipmentChanged;
             playerNetworkManager.underwearEquipmentID.OnValueChanged -= playerNetworkManager.OnUnderwearEquipmentChanged;
             playerNetworkManager.hoodEquipmentID.OnValueChanged -= playerNetworkManager.OnHoodEquipmentChanged;
-
+            playerNetworkManager.shoesAndGlovesEquipmentID.OnValueChanged -= playerNetworkManager.OnShoesAndGlovesEquipmentChanged;
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingWeaponChanged;
             playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;

@@ -9,7 +9,6 @@ namespace KrazyKatgames
     {
         PlayerManager player;
 
-        [FormerlySerializedAs("rightHandSlot")]
         [Header("Weapon Model Instantiation Slots")]
         [HideInInspector] public WeaponModelInstantiationSlot rightHandWeaponSlot;
         [HideInInspector] public WeaponModelInstantiationSlot leftHandWeaponSlot;
@@ -49,6 +48,9 @@ namespace KrazyKatgames
 
         public GameObject bagpackObject;
         [HideInInspector] public GameObject[] bagpackObjects;
+
+        public GameObject shoesAndGlovesObject;
+        [HideInInspector] public GameObject[] shoesAndGlovesObjects;
 
         [Header("DEBUGGING")]
         [SerializeField]
@@ -125,6 +127,14 @@ namespace KrazyKatgames
                 bagpackObjectsList.Add(child.gameObject);
             }
             bagpackObjects = bagpackObjectsList.ToArray();
+
+            List<GameObject> shoesAndGlovesObjectsList = new List<GameObject>();
+
+            foreach (Transform child in shoesAndGlovesObject.transform)
+            {
+                shoesAndGlovesObjectsList.Add(child.gameObject);
+            }
+            shoesAndGlovesObjects = shoesAndGlovesObjectsList.ToArray();
         }
 
         protected override void Start()
@@ -150,27 +160,27 @@ namespace KrazyKatgames
             LoadOutfitEquipment(player.playerInventoryManager.outfitWearable);
             LoadUnderwearEquipment(player.playerInventoryManager.underwearWearable);
             LoadHoodEquipment(player.playerInventoryManager.hoodWearable);
+            LoadShoesAndGlovesEquipment(player.playerInventoryManager.shoesAndGlovesWearable);
         }
-        public void LoadHoodEquipment(HoodWearableItem wearable)
+        public void LoadShoesAndGlovesEquipment(ShoesAndGlovesWearableItem wearable)
         {
-            UnloadHoodEquipment();
+            UnloadShoesAndGlovesEquipment();
 
             if (wearable == null)
             {
                 if (player.IsOwner)
-                    player.playerNetworkManager.hoodEquipmentID.Value = -1; // will never be an ID so null (!)
+                    player.playerNetworkManager.shoesAndGlovesEquipmentID.Value = -1; // will never be an ID so null (!)
 
-                player.playerInventoryManager.hoodWearable = null;
+                player.playerInventoryManager.shoesAndGlovesWearable = null;
                 return;
             }
             // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
             // TODO
 
-            player.playerInventoryManager.hoodWearable = wearable;
+            player.playerInventoryManager.shoesAndGlovesWearable = wearable;
 
             // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
             // TODO
-            player.playerBodyManager.DisableHairForHood();
 
             foreach (var model in wearable.wearableModels)
             {
@@ -183,12 +193,42 @@ namespace KrazyKatgames
             player.playerStatsManager.CalculateTotalArmorAbsorption();
 
             if (player.IsOwner)
+                player.playerNetworkManager.shoesAndGlovesEquipmentID.Value = wearable.itemID;
+        }
+        private void UnloadShoesAndGlovesEquipment()
+        {
+            foreach (var model in shoesAndGlovesObjects)
+            {
+                model.SetActive(false);
+            }
+        }
+        public void LoadHoodEquipment(HoodWearableItem wearable)
+        {
+            UnloadHoodEquipment();
+            if (wearable == null)
+            {
+                if (player.IsOwner)
+                    player.playerNetworkManager.hoodEquipmentID.Value = -1; // will never be an ID so null (!)
+
+                player.playerInventoryManager.hoodWearable = null;
+                return;
+            }
+            // ToDo: if you have an "onitemsequippedcall" on equipment run here (!) 
+
+            player.playerInventoryManager.hoodWearable = wearable;
+            player.playerBodyManager.DisableHairForHood();
+
+            foreach (var model in wearable.wearableModels)
+            {
+                model.LoadModel(player);
+            }
+            player.playerStatsManager.CalculateTotalArmorAbsorption();
+            if (player.IsOwner)
                 player.playerNetworkManager.hoodEquipmentID.Value = wearable.itemID;
         }
         private void UnloadHoodEquipment()
         {
             player.playerBodyManager.EnableHairForHood();
-
             foreach (var model in hoodObjects)
             {
                 model.SetActive(false);
@@ -206,23 +246,13 @@ namespace KrazyKatgames
                 player.playerInventoryManager.cloakWearable = null;
                 return;
             }
-            // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
-            // TODO
-
             player.playerInventoryManager.pantsWearable = wearable;
 
-            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
-            // TODO
             foreach (var model in wearable.wearableModels)
             {
                 model.LoadModel(player);
             }
-
-            // 7. calculate total equipment load 
-            // TODO
-
             player.playerStatsManager.CalculateTotalArmorAbsorption();
-
             if (player.IsOwner)
                 player.playerNetworkManager.pantsEquipmentID.Value = wearable.itemID;
         }
@@ -246,21 +276,11 @@ namespace KrazyKatgames
                 player.playerInventoryManager.cloakWearable = null;
                 return;
             }
-            // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
-            // TODO
-
             player.playerInventoryManager.cloakWearable = wearable;
-
-            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
-            // TODO
             foreach (var model in wearable.wearableModels)
             {
                 model.LoadModel(player);
             }
-
-            // 7. calculate total equipment load 
-            // TODO
-
             player.playerStatsManager.CalculateTotalArmorAbsorption();
 
             if (player.IsOwner)
@@ -272,8 +292,6 @@ namespace KrazyKatgames
             {
                 model.SetActive(false);
             }
-            // Re-enable hair 
-            // 
         }
         public void LoadUnderwearEquipment(UnderwearWearableItem wearable)
         {
@@ -287,20 +305,11 @@ namespace KrazyKatgames
                 player.playerInventoryManager.underwearWearable = null;
                 return;
             }
-            // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
-            // TODO
-
             player.playerInventoryManager.underwearWearable = wearable;
-
-            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
-            // TODO
             foreach (var model in wearable.wearableModels)
             {
                 model.LoadModel(player);
             }
-
-            // 7. calculate total equipment load 
-            // TODO
 
             player.playerStatsManager.CalculateTotalArmorAbsorption();
 
@@ -326,20 +335,12 @@ namespace KrazyKatgames
                 player.playerInventoryManager.outfitWearable = null;
                 return;
             }
-            // 3. if you have an "onitemsequippedcall" on equipment run here (!) 
-            // TODO
-
             player.playerInventoryManager.outfitWearable = wearable;
 
-            // 5. If you need to check for head equipment type to disable certain body features (hoods disabling hair f.e.(!)) do it now
-            // TODO
             foreach (var model in wearable.wearableModels)
             {
                 model.LoadModel(player);
             }
-
-            // 7. calculate total equipment load 
-            // TODO
 
             player.playerStatsManager.CalculateTotalArmorAbsorption();
 

@@ -1,6 +1,4 @@
-using System;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -86,8 +84,18 @@ namespace KrazyKatgames
                         }
                     }
                     break;
+                case WearableModelType.ShoesAndGloves:
+                    foreach (var model in player.playerEquipmentManager.shoesAndGlovesObjects)
+                    {
+                        if (model.gameObject.name == equipmentName)
+                        {
+                            model.gameObject.SetActive(true);
+                        }
+                    }
+                    break;
                 default:
-                    throw new ArgumentOutOfRangeException();
+                    Debug.LogError("Dude how did u do dis?");
+                    return;
             }
         }
     }

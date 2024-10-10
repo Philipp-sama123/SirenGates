@@ -53,12 +53,41 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6ce9a6712e1f9457a82f1bc97c608452, type: 2}
   cloakEquipment:
   - {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
+  - {fileID: 11400000, guid: e331d8c56aad44b148bf3a95eacfa028, type: 2}
+  - {fileID: 11400000, guid: 20a5b485ba2ea482784e1724ceeea136, type: 2}
+  - {fileID: 11400000, guid: 202d0189aaf304caa91559c6efadf4ce, type: 2}
   pantsEquipment:
   - {fileID: 11400000, guid: 21f166ad8eda14be6b3792790a75b6fd, type: 2}
+  - {fileID: 11400000, guid: f388e0ae6b18e4c9981933b23585c061, type: 2}
+  - {fileID: 11400000, guid: 9c75bd8afe07d4eeeab8a23579e12f75, type: 2}
+  - {fileID: 11400000, guid: f81a5779f68504c87bd0e1f1af00f7a6, type: 2}
+  - {fileID: 11400000, guid: 8b11a7ee27c5f4169b6b1bb8a0d94f1c, type: 2}
+  - {fileID: 11400000, guid: c64480f0f32a94e689a94bca91c25b32, type: 2}
+  - {fileID: 11400000, guid: f477dc291f84b4ff4bafb85c2169675d, type: 2}
+  - {fileID: 11400000, guid: 4d91c70e254494599911593d6cacef5b, type: 2}
   outfitWearable:
   - {fileID: 11400000, guid: 1a28d6876f8a84c0bad818bf4bc9f2a0, type: 2}
+  - {fileID: 11400000, guid: 68e361d1b20c24767b0e03efcfae95d0, type: 2}
+  - {fileID: 11400000, guid: 9858edae7f88d422187035bc4d84533f, type: 2}
+  - {fileID: 11400000, guid: d8422e9c87f9e4a888f08795e263dac5, type: 2}
+  - {fileID: 11400000, guid: 5452d6a6c6c654ac5b9e7f732ff05ab5, type: 2}
+  - {fileID: 11400000, guid: d439c8b82158f4af1a0bf02a22281bf6, type: 2}
+  - {fileID: 11400000, guid: 6e6d2deec3a804afd87224ba8a189f68, type: 2}
+  - {fileID: 11400000, guid: a3ba277553a8044a0948e89fa798291d, type: 2}
   underwearEquipment:
   - {fileID: 11400000, guid: 79e08db6303b24934b10c4391a539a86, type: 2}
+  - {fileID: 11400000, guid: 57346de40719343ecbda68e6fd7c5d91, type: 2}
+  - {fileID: 11400000, guid: 84381a81a93a74bae8a20ab8fc6e9e7e, type: 2}
+  - {fileID: 11400000, guid: 4b170bed62f904aed910ab917084aab3, type: 2}
+  - {fileID: 11400000, guid: 26bcb65717dd747fe9fce5e258db160a, type: 2}
+  - {fileID: 11400000, guid: 28787fb7436a047efbe97e747e917663, type: 2}
+  - {fileID: 11400000, guid: 8d3935bb589e24c4b963d3008a6ea6df, type: 2}
+  - {fileID: 11400000, guid: fa7825fce9448470aa7dec3a51d06faa, type: 2}
   hoodEquipment:
   - {fileID: 11400000, guid: 9066cd802715f43fb8647a411877cd12, type: 2}
   - {fileID: 11400000, guid: ba447f3b98eb94281be04cb42e151863, type: 2}
+  - {fileID: 11400000, guid: a30d2ca814c814c388eb7e4cf4693688, type: 2}
+  shoesAndGlovesEquipment:
+  - {fileID: 11400000, guid: 6da5a6edc29244cac9fc11f62df042f5, type: 2}
+  - {fileID: 11400000, guid: a5d6d2a744270496ca4b3a0d8f2ee982, type: 2}
+  - {fileID: 11400000, guid: 0a8a1cb61a2d54201a5b44fb574ae106, type: 2}

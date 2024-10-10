@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -28,6 +27,9 @@ namespace KrazyKatgames
 
         [Header("Hood Equipment")]
         [SerializeField] List<HoodWearableItem> hoodEquipment = new();
+
+        [Header("Shoes And Gloves Equipment")]
+        [SerializeField] List<ShoesAndGlovesWearableItem> shoesAndGlovesEquipment = new();
 
         //  A List of all the items in Game
         [Header("Items")]
@@ -108,6 +110,10 @@ namespace KrazyKatgames
         public HoodWearableItem GetHoodEquipmentByID(int ID)
         {
             return hoodEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
+        }
+        public ShoesAndGlovesWearableItem GetShoesAndGlovesEquipmentByID(int ID)
+        {
+            return shoesAndGlovesEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
         }
     }
 }
