@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 56cf73648e9242419afb84d9c1db3bcc, type: 3}
-  m_Name: Body Equipment Item
+  m_Name: Outfit Wearable Item
   m_EditorClassIdentifier: 
   itemName: Body Equipment
   itemIcon: {fileID: 0}
   itemDescription: 
-  itemID: 0
+  itemID: 7
   itemWeight: 10
   physicalDamageAbsorption: 5
   magicDamageAbsorption: 4
@@ -27,3 +27,5 @@ MonoBehaviour:
   focus: 20
   vitality: 20
   poise: 25
+  wearableModels:
+  - {fileID: 11400000, guid: 44b4da57bb794467ca8ed144ad5c5e12, type: 2}

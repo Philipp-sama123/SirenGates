@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -13,17 +14,20 @@ namespace KrazyKatgames
         [Header("Weapons")]
         [SerializeField] List<WeaponItem> weapons = new();
 
-        [Header("Head Equipment")]
-        [SerializeField] List<HeadEquipmentItem> headEquipment = new();
+        [Header("Cloak Equipment")]
+        [SerializeField] List<CloakWearableItem> cloakEquipment = new();
 
-        [Header("Hand Equipment")]
-        [SerializeField] List<HandEquipmentItem> handEquipment = new();
+        [Header("Pants Equipment")]
+        [SerializeField] List<PantsWearableItem> pantsEquipment = new();
 
-        [Header("Body Equipment")]
-        [SerializeField] List<BodyEquipmentItem> bodyEquipment = new();
+        [Header("Outfit Equipment")]
+        [SerializeField] List<OutfitWearableItem> outfitWearable = new();
 
-        [Header("Leg Equipment")]
-        [SerializeField] List<LegEquipmentItem> legEquipment = new();
+        [Header("Underwear Equipment")]
+        [SerializeField] List<UnderwearWearableItem> underwearEquipment = new();
+
+        [Header("Hood Equipment")]
+        [SerializeField] List<HoodWearableItem> hoodEquipment = new();
 
         //  A List of all the items in Game
         [Header("Items")]
@@ -46,22 +50,27 @@ namespace KrazyKatgames
                 items.Add(weapon);
             }
             //  add all headEquipment to weapons list
-            foreach (var item in headEquipment)
+            foreach (var item in cloakEquipment)
             {
                 items.Add(item);
             }
             //  add all handEquipment to weapons list
-            foreach (var item in handEquipment)
+            foreach (var item in pantsEquipment)
             {
                 items.Add(item);
             }
             //  add all bodyEquipment to weapons list
-            foreach (var item in bodyEquipment)
+            foreach (var item in outfitWearable)
             {
                 items.Add(item);
             }
             //  add all legEquipment to weapons list
-            foreach (var item in legEquipment)
+            foreach (var item in underwearEquipment)
+            {
+                items.Add(item);
+            }
+            //  add all hoodEquipment to weapons list
+            foreach (var item in hoodEquipment)
             {
                 items.Add(item);
             }
@@ -72,26 +81,33 @@ namespace KrazyKatgames
                 items[i].itemID = i;
             }
         }
-
+        private void Start()
+        {
+            DontDestroyOnLoad(this);
+        }
         public WeaponItem GetWeaponByID(int ID)
         {
             return weapons.FirstOrDefault(weapon => weapon.itemID == ID);
         }
-        public HeadEquipmentItem GetHeadEquipmentByID(int ID)
+        public CloakWearableItem GetCloakEquipmentByID(int ID)
         {
-            return headEquipment.FirstOrDefault(weapon => weapon.itemID == ID);
+            return cloakEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
         }
-        public HandEquipmentItem GetHandEquipmentByID(int ID)
+        public PantsWearableItem GetPantsEquipmentByID(int ID)
         {
-            return handEquipment.FirstOrDefault(weapon => weapon.itemID == ID);
+            return pantsEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
         }
-        public BodyEquipmentItem GetBodyEquipmentByID(int ID)
+        public OutfitWearableItem GetOutfitEquipmentByID(int ID)
         {
-            return bodyEquipment.FirstOrDefault(weapon => weapon.itemID == ID);
+            return outfitWearable.FirstOrDefault(wearable => wearable.itemID == ID);
         }
-        public LegEquipmentItem GetLegEquipmentByID(int ID)
+        public UnderwearWearableItem GetUnderwearEquipmentByID(int ID)
         {
-            return legEquipment.FirstOrDefault(weapon => weapon.itemID == ID);
+            return underwearEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
+        }
+        public HoodWearableItem GetHoodEquipmentByID(int ID)
+        {
+            return hoodEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
         }
     }
 }

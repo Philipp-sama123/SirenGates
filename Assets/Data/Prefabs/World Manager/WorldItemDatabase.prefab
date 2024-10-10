@@ -51,12 +51,14 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 7d0831cb87ef44af086d40c49ff73aee, type: 2}
   - {fileID: 11400000, guid: 9d5f752c647ee4ede82c45fe2e15b4bd, type: 2}
   - {fileID: 11400000, guid: 6ce9a6712e1f9457a82f1bc97c608452, type: 2}
-  headEquipment:
+  cloakEquipment:
   - {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
-  - {fileID: 11400000, guid: cb0d0a336d0b9450f86a0681bb57da06, type: 2}
-  handEquipment:
-  - {fileID: 11400000, guid: 79e08db6303b24934b10c4391a539a86, type: 2}
-  bodyEquipment:
-  - {fileID: 11400000, guid: 1a28d6876f8a84c0bad818bf4bc9f2a0, type: 2}
-  legEquipment:
+  pantsEquipment:
   - {fileID: 11400000, guid: 21f166ad8eda14be6b3792790a75b6fd, type: 2}
+  outfitWearable:
+  - {fileID: 11400000, guid: 1a28d6876f8a84c0bad818bf4bc9f2a0, type: 2}
+  underwearEquipment:
+  - {fileID: 11400000, guid: 79e08db6303b24934b10c4391a539a86, type: 2}
+  hoodEquipment:
+  - {fileID: 11400000, guid: 9066cd802715f43fb8647a411877cd12, type: 2}
+  - {fileID: 11400000, guid: ba447f3b98eb94281be04cb42e151863, type: 2}

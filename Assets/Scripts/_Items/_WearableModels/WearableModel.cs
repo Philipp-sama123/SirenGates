@@ -1,28 +1,20 @@
 using System;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
-    [CreateAssetMenu(menuName = "Equipment Model")]
-    public class EquipmentModel : ScriptableObject
+    [CreateAssetMenu(menuName = "Wearable Model")]
+    public class WearableModel : ScriptableObject
     {
-        public EquipmentModelType equipmentModelType;
+        public WearableModelType wearableModelType;
         public string equipmentName;
 
         public void LoadModel(PlayerManager player)
         {
-            switch (equipmentModelType)
+            switch (wearableModelType)
             {
-                case EquipmentModelType.Hair:
-                    foreach (var model in player.playerEquipmentManager.hairObjects)
-                    {
-                        if (model.gameObject.name == equipmentName)
-                        {
-                            model.gameObject.SetActive(true);
-                        }
-                    }
-                    break;
-                case EquipmentModelType.Underwear:
+                case WearableModelType.Underwear:
                     foreach (var model in player.playerEquipmentManager.underwearObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -31,7 +23,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Mask:
+                case WearableModelType.Mask:
                     foreach (var model in player.playerEquipmentManager.maskObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -40,7 +32,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Attachment: // ToDo: make multiple
+                case WearableModelType.Attachment: // ToDo: make multiple
                     foreach (var model in player.playerEquipmentManager.attachmentObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -49,8 +41,8 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Pants:
-                    foreach (var model in player.playerEquipmentManager.attachmentObjects)
+                case WearableModelType.Pants:
+                    foreach (var model in player.playerEquipmentManager.pantsObjects)
                     {
                         if (model.gameObject.name == equipmentName)
                         {
@@ -58,7 +50,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Outfit:
+                case WearableModelType.Outfit:
                     foreach (var model in player.playerEquipmentManager.outfitObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -67,7 +59,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Hood:
+                case WearableModelType.Hood:
                     foreach (var model in player.playerEquipmentManager.hoodObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -76,7 +68,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Cloak:
+                case WearableModelType.Cloak:
                     foreach (var model in player.playerEquipmentManager.cloakObjects)
                     {
                         if (model.gameObject.name == equipmentName)
@@ -85,7 +77,7 @@ namespace KrazyKatgames
                         }
                     }
                     break;
-                case EquipmentModelType.Bagpack:
+                case WearableModelType.Bagpack:
                     foreach (var model in player.playerEquipmentManager.bagpackObjects)
                     {
                         if (model.gameObject.name == equipmentName)

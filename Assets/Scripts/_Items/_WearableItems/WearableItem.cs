@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
-    public class ArmorItem : EquipmentItem
+    public class WearableItem : EquipmentItem
     {
         [Header("Equipment Absorption Bonus")]
         public float physicalDamageAbsorption;
@@ -21,6 +22,6 @@ namespace KrazyKatgames
         public float poise;
 
         //  ARMOR MODELS
-        public EquipmentModel[] equipmentModels;
+        public WearableModel[] wearableModels;
     }
 }

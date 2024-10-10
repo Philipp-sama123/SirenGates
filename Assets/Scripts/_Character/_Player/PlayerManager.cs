@@ -1,4 +1,5 @@
 using System.Collections;
+using MyNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
@@ -20,6 +21,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerCombatManager playerCombatManager;
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
+        [HideInInspector] public PlayerBodyManager playerBodyManager;
 
         protected override void Awake()
         {
@@ -35,6 +37,7 @@ namespace KrazyKatgames
             playerEffectsManager = GetComponent<PlayerEffectsManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
+            playerBodyManager = GetComponent<PlayerBodyManager>();
         }
 
         protected override void Update()
@@ -105,15 +108,16 @@ namespace KrazyKatgames
             playerNetworkManager.currentRightHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentRightHandWeaponIDChange;
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
-          
+
             // Blocking
             playerNetworkManager.isBlocking.OnValueChanged += playerNetworkManager.OnIsBlockingChanged;
 
             // Armor
-            playerNetworkManager.headEquipmentID.OnValueChanged += playerNetworkManager.OnHeadEquipmentChanged;
-            playerNetworkManager.handEquipmentID.OnValueChanged += playerNetworkManager.OnHandEquipmentChanged;
-            playerNetworkManager.bodyEquipmentID.OnValueChanged += playerNetworkManager.OnBodyEquipmentChanged;
-            playerNetworkManager.legEquipmentID.OnValueChanged += playerNetworkManager.OnLegEquipmentChanged;
+            playerNetworkManager.cloakEquipmentID.OnValueChanged += playerNetworkManager.OnCloakEquipmentChanged;
+            playerNetworkManager.pantsEquipmentID.OnValueChanged += playerNetworkManager.OnPantsEquipmentChanged;
+            playerNetworkManager.outfitEquipmentID.OnValueChanged += playerNetworkManager.OnOutfitEquipmentChanged;
+            playerNetworkManager.underwearEquipmentID.OnValueChanged += playerNetworkManager.OnUnderwearEquipmentChanged;
+            playerNetworkManager.hoodEquipmentID.OnValueChanged += playerNetworkManager.OnHoodEquipmentChanged;
 
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged += playerNetworkManager.OnIsTwoHandingWeaponChanged;
@@ -219,10 +223,11 @@ namespace KrazyKatgames
             playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
 
             // Sync Armor
-            playerNetworkManager.OnHeadEquipmentChanged(-1, playerNetworkManager.headEquipmentID.Value);
-            playerNetworkManager.OnBodyEquipmentChanged(-1, playerNetworkManager.bodyEquipmentID.Value);
-            playerNetworkManager.OnLegEquipmentChanged(-1, playerNetworkManager.legEquipmentID.Value);
-            playerNetworkManager.OnHandEquipmentChanged(-1, playerNetworkManager.handEquipmentID.Value);
+            playerNetworkManager.OnCloakEquipmentChanged(-1, playerNetworkManager.cloakEquipmentID.Value);
+            playerNetworkManager.OnOutfitEquipmentChanged(-1, playerNetworkManager.outfitEquipmentID.Value);
+            playerNetworkManager.OnUnderwearEquipmentChanged(-1, playerNetworkManager.underwearEquipmentID.Value);
+            playerNetworkManager.OnPantsEquipmentChanged(-1, playerNetworkManager.pantsEquipmentID.Value);
+            playerNetworkManager.OnHoodEquipmentChanged(-1, playerNetworkManager.hoodEquipmentID.Value);
 
             // Update Lock on
             if (playerNetworkManager.isLockedOn.Value)
@@ -260,10 +265,12 @@ namespace KrazyKatgames
             // Blocking
             playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
             // Armor
-            playerNetworkManager.headEquipmentID.OnValueChanged -= playerNetworkManager.OnHeadEquipmentChanged;
-            playerNetworkManager.handEquipmentID.OnValueChanged -= playerNetworkManager.OnHandEquipmentChanged;
-            playerNetworkManager.bodyEquipmentID.OnValueChanged -= playerNetworkManager.OnBodyEquipmentChanged;
-            playerNetworkManager.legEquipmentID.OnValueChanged -= playerNetworkManager.OnLegEquipmentChanged;
+            playerNetworkManager.cloakEquipmentID.OnValueChanged -= playerNetworkManager.OnCloakEquipmentChanged;
+            playerNetworkManager.pantsEquipmentID.OnValueChanged -= playerNetworkManager.OnPantsEquipmentChanged;
+            playerNetworkManager.outfitEquipmentID.OnValueChanged -= playerNetworkManager.OnOutfitEquipmentChanged;
+            playerNetworkManager.underwearEquipmentID.OnValueChanged -= playerNetworkManager.OnUnderwearEquipmentChanged;
+            playerNetworkManager.hoodEquipmentID.OnValueChanged -= playerNetworkManager.OnHoodEquipmentChanged;
+
             // Two Handing 
             playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingWeaponChanged;
             playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;

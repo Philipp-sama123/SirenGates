@@ -6417,11 +6417,19 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 105501102732492116, guid: 62701a1b050724c499549768248548ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 660066827974133361, guid: 62701a1b050724c499549768248548ff, type: 3}
       propertyPath: m_Name
       value: MainPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 660066827974133361, guid: 62701a1b050724c499549768248548ff, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4453180912928568013, guid: 62701a1b050724c499549768248548ff, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
@@ -6467,6 +6475,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6709102773318114287, guid: 62701a1b050724c499549768248548ff, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9198196221807699561, guid: 62701a1b050724c499549768248548ff, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

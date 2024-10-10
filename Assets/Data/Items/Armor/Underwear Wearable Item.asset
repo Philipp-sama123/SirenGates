@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9c43cac7faad4ef3b0d71e9ecfe8d42d, type: 3}
-  m_Name: Hand Equipment Item
+  m_Name: Underwear Wearable Item
   m_EditorClassIdentifier: 
-  itemName: Hand Equipment
+  itemName: Underwear Equipment
   itemIcon: {fileID: 0}
   itemDescription: 
-  itemID: 0
+  itemID: 8
   itemWeight: 2
   physicalDamageAbsorption: 5
   magicDamageAbsorption: 5
@@ -27,3 +27,5 @@ MonoBehaviour:
   focus: 5
   vitality: 5
   poise: 5
+  wearableModels:
+  - {fileID: 11400000, guid: 13bb445106ff244889f7c24e97c4839c, type: 2}

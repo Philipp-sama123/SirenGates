@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 860d0a6fc9f4946afbc8d9026cc7cf47, type: 3}
-  m_Name: Hair A Model
+  m_Name: Hood_02
   m_EditorClassIdentifier: 
-  equipmentModelType: 0
-  equipmentName: P03_Hair_A
+  wearableModelType: 5
+  equipmentName: P03_Hood_02

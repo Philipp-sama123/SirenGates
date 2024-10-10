@@ -39,80 +39,80 @@ namespace KrazyKatgames
             basePoiseDefense = 0;
 
             //  Head Equipment
-            if (player.playerInventoryManager.headEquipment != null)
+            if (player.playerInventoryManager.cloakWearable != null)
             {
                 //  Damage Resistance
-                armorPhysicalDamageAbsorption += player.playerInventoryManager.headEquipment.physicalDamageAbsorption;
-                armorMagicDamageAbsorption += player.playerInventoryManager.headEquipment.magicDamageAbsorption;
-                armorFireDamageAbsorption += player.playerInventoryManager.headEquipment.fireDamageAbsorption;
-                armorHolyDamageAbsorption += player.playerInventoryManager.headEquipment.holyDamageAbsorption;
-                armorLightningDamageAbsorption += player.playerInventoryManager.headEquipment.lightningDamageAbsorption;
+                armorPhysicalDamageAbsorption += player.playerInventoryManager.cloakWearable.physicalDamageAbsorption;
+                armorMagicDamageAbsorption += player.playerInventoryManager.cloakWearable.magicDamageAbsorption;
+                armorFireDamageAbsorption += player.playerInventoryManager.cloakWearable.fireDamageAbsorption;
+                armorHolyDamageAbsorption += player.playerInventoryManager.cloakWearable.holyDamageAbsorption;
+                armorLightningDamageAbsorption += player.playerInventoryManager.cloakWearable.lightningDamageAbsorption;
 
                 //  Status Effect Resistance
-                armorRobustness += player.playerInventoryManager.headEquipment.robustness;
-                armorVitality += player.playerInventoryManager.headEquipment.vitality;
-                armorImmunity += player.playerInventoryManager.headEquipment.immunity;
-                armorFocus += player.playerInventoryManager.headEquipment.focus;
+                armorRobustness += player.playerInventoryManager.cloakWearable.robustness;
+                armorVitality += player.playerInventoryManager.cloakWearable.vitality;
+                armorImmunity += player.playerInventoryManager.cloakWearable.immunity;
+                armorFocus += player.playerInventoryManager.cloakWearable.focus;
 
                 //  Poise
-                basePoiseDefense += player.playerInventoryManager.headEquipment.poise;
+                basePoiseDefense += player.playerInventoryManager.cloakWearable.poise;
             }
             //  Body Equipment
-            if (player.playerInventoryManager.bodyEquipment != null)
+            if (player.playerInventoryManager.outfitWearable != null)
             {
                 //  Damage Resistance
-                armorPhysicalDamageAbsorption += player.playerInventoryManager.bodyEquipment.physicalDamageAbsorption;
-                armorMagicDamageAbsorption += player.playerInventoryManager.bodyEquipment.magicDamageAbsorption;
-                armorFireDamageAbsorption += player.playerInventoryManager.bodyEquipment.fireDamageAbsorption;
-                armorHolyDamageAbsorption += player.playerInventoryManager.bodyEquipment.holyDamageAbsorption;
-                armorLightningDamageAbsorption += player.playerInventoryManager.bodyEquipment.lightningDamageAbsorption;
+                armorPhysicalDamageAbsorption += player.playerInventoryManager.outfitWearable.physicalDamageAbsorption;
+                armorMagicDamageAbsorption += player.playerInventoryManager.outfitWearable.magicDamageAbsorption;
+                armorFireDamageAbsorption += player.playerInventoryManager.outfitWearable.fireDamageAbsorption;
+                armorHolyDamageAbsorption += player.playerInventoryManager.outfitWearable.holyDamageAbsorption;
+                armorLightningDamageAbsorption += player.playerInventoryManager.outfitWearable.lightningDamageAbsorption;
 
                 //  Status Effect Resistance
-                armorRobustness += player.playerInventoryManager.bodyEquipment.robustness;
-                armorVitality += player.playerInventoryManager.bodyEquipment.vitality;
-                armorImmunity += player.playerInventoryManager.bodyEquipment.immunity;
-                armorFocus += player.playerInventoryManager.bodyEquipment.focus;
+                armorRobustness += player.playerInventoryManager.outfitWearable.robustness;
+                armorVitality += player.playerInventoryManager.outfitWearable.vitality;
+                armorImmunity += player.playerInventoryManager.outfitWearable.immunity;
+                armorFocus += player.playerInventoryManager.outfitWearable.focus;
 
                 //  Poise
-                basePoiseDefense += player.playerInventoryManager.bodyEquipment.poise;
+                basePoiseDefense += player.playerInventoryManager.outfitWearable.poise;
             }
             //  Leg Equipment
-            if (player.playerInventoryManager.legEquipment != null)
+            if (player.playerInventoryManager.underwearWearable != null)
             {
                 //  Damage Resistance
-                armorPhysicalDamageAbsorption += player.playerInventoryManager.legEquipment.physicalDamageAbsorption;
-                armorMagicDamageAbsorption += player.playerInventoryManager.legEquipment.magicDamageAbsorption;
-                armorFireDamageAbsorption += player.playerInventoryManager.legEquipment.fireDamageAbsorption;
-                armorHolyDamageAbsorption += player.playerInventoryManager.legEquipment.holyDamageAbsorption;
-                armorLightningDamageAbsorption += player.playerInventoryManager.legEquipment.lightningDamageAbsorption;
+                armorPhysicalDamageAbsorption += player.playerInventoryManager.underwearWearable.physicalDamageAbsorption;
+                armorMagicDamageAbsorption += player.playerInventoryManager.underwearWearable.magicDamageAbsorption;
+                armorFireDamageAbsorption += player.playerInventoryManager.underwearWearable.fireDamageAbsorption;
+                armorHolyDamageAbsorption += player.playerInventoryManager.underwearWearable.holyDamageAbsorption;
+                armorLightningDamageAbsorption += player.playerInventoryManager.underwearWearable.lightningDamageAbsorption;
 
                 //  Status Effect Resistance
-                armorRobustness += player.playerInventoryManager.legEquipment.robustness;
-                armorVitality += player.playerInventoryManager.legEquipment.vitality;
-                armorImmunity += player.playerInventoryManager.legEquipment.immunity;
-                armorFocus += player.playerInventoryManager.legEquipment.focus;
+                armorRobustness += player.playerInventoryManager.underwearWearable.robustness;
+                armorVitality += player.playerInventoryManager.underwearWearable.vitality;
+                armorImmunity += player.playerInventoryManager.underwearWearable.immunity;
+                armorFocus += player.playerInventoryManager.underwearWearable.focus;
 
                 //  Poise
-                basePoiseDefense += player.playerInventoryManager.legEquipment.poise;
+                basePoiseDefense += player.playerInventoryManager.underwearWearable.poise;
             }
             //  Hand Equipment
-            if (player.playerInventoryManager.handEquipment != null)
+            if (player.playerInventoryManager.pantsWearable != null)
             {
                 //  Damage Resistance
-                armorPhysicalDamageAbsorption += player.playerInventoryManager.handEquipment.physicalDamageAbsorption;
-                armorMagicDamageAbsorption += player.playerInventoryManager.handEquipment.magicDamageAbsorption;
-                armorFireDamageAbsorption += player.playerInventoryManager.handEquipment.fireDamageAbsorption;
-                armorHolyDamageAbsorption += player.playerInventoryManager.handEquipment.holyDamageAbsorption;
-                armorLightningDamageAbsorption += player.playerInventoryManager.handEquipment.lightningDamageAbsorption;
+                armorPhysicalDamageAbsorption += player.playerInventoryManager.pantsWearable.physicalDamageAbsorption;
+                armorMagicDamageAbsorption += player.playerInventoryManager.pantsWearable.magicDamageAbsorption;
+                armorFireDamageAbsorption += player.playerInventoryManager.pantsWearable.fireDamageAbsorption;
+                armorHolyDamageAbsorption += player.playerInventoryManager.pantsWearable.holyDamageAbsorption;
+                armorLightningDamageAbsorption += player.playerInventoryManager.pantsWearable.lightningDamageAbsorption;
 
                 //  Status Effect Resistance
-                armorRobustness += player.playerInventoryManager.handEquipment.robustness;
-                armorVitality += player.playerInventoryManager.handEquipment.vitality;
-                armorImmunity += player.playerInventoryManager.handEquipment.immunity;
-                armorFocus += player.playerInventoryManager.handEquipment.focus;
+                armorRobustness += player.playerInventoryManager.pantsWearable.robustness;
+                armorVitality += player.playerInventoryManager.pantsWearable.vitality;
+                armorImmunity += player.playerInventoryManager.pantsWearable.immunity;
+                armorFocus += player.playerInventoryManager.pantsWearable.focus;
 
                 //  Poise
-                basePoiseDefense += player.playerInventoryManager.handEquipment.poise;
+                basePoiseDefense += player.playerInventoryManager.pantsWearable.poise;
             }
         }
     }

@@ -988,6 +988,7 @@ GameObject:
   - component: {fileID: 7363204386608695541}
   - component: {fileID: 7250149935263112068}
   - component: {fileID: 2253335603420346551}
+  - component: {fileID: 4345308655415886031}
   m_Layer: 6
   m_Name: MainPlayer
   m_TagString: Untagged
@@ -1492,6 +1493,22 @@ MonoBehaviour:
     m_InternalValue: 0
   isTwoHandingLeftWeapon:
     m_InternalValue: 0
+  cloakEquipmentID:
+    m_InternalValue: 0
+  pantsEquipmentID:
+    m_InternalValue: 0
+  outfitEquipmentID:
+    m_InternalValue: 0
+  underwearEquipmentID:
+    m_InternalValue: 0
+  hoodEquipmentID:
+    m_InternalValue: 0
+  maskEquipmentID:
+    m_InternalValue: 0
+  bagpackEquipmentID:
+    m_InternalValue: 0
+  hairEquipmentID:
+    m_InternalValue: 0
 --- !u!114 &7109522340935310977
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1507,10 +1524,11 @@ MonoBehaviour:
   currentRightHandWeapon: {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
   currentLeftHandWeapon: {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
   currentTwoHandWeapon: {fileID: 0}
-  headEquipment: {fileID: 0}
-  handEquipment: {fileID: 0}
-  bodyEquipment: {fileID: 0}
-  legEquipment: {fileID: 0}
+  cloakWearable: {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
+  pantsWearable: {fileID: 11400000, guid: 21f166ad8eda14be6b3792790a75b6fd, type: 2}
+  outfitWearable: {fileID: 11400000, guid: 1a28d6876f8a84c0bad818bf4bc9f2a0, type: 2}
+  underwearWearable: {fileID: 11400000, guid: 79e08db6303b24934b10c4391a539a86, type: 2}
+  hoodWearable: {fileID: 11400000, guid: ba447f3b98eb94281be04cb42e151863, type: 2}
   weaponsInRightHandSlots:
   - {fileID: 11400000, guid: f1f159b62ad494b9cbf9d3821c6bdbbd, type: 2}
   - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
@@ -1651,9 +1669,6 @@ MonoBehaviour:
   leftHandWeaponModel: {fileID: 0}
   rightWeaponManager: {fileID: 0}
   leftWeaponManager: {fileID: 0}
-  equipNewItem: 0
-  hairObject: {fileID: 385565085002158958}
-  hairObjects: []
   underwearObject: {fileID: 2388935209412806452}
   underwearObjects: []
   maskObject: {fileID: 8371628575308825081}
@@ -1670,6 +1685,7 @@ MonoBehaviour:
   cloakObjects: []
   bagpackObject: {fileID: 2273211085787259428}
   bagpackObjects: []
+  equipNewItem: 0
 --- !u!114 &3116477504449518663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1737,6 +1753,20 @@ MonoBehaviour:
   footStepsDirt: []
   footStepsStone: []
   footStepsWood: []
+--- !u!114 &4345308655415886031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 660066827974133361}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e7aea43f1e3c491d95fb71d0bdcd745, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hairSkinnedMeshRenderer: {fileID: 8195736546582231971}
+  hairForCloak_BlendShapeIndex: 0
 --- !u!1 &701932332409716892
 GameObject:
   m_ObjectHideFlags: 0
@@ -2474,7 +2504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &5970008141658175939
 Transform:
   m_ObjectHideFlags: 0
@@ -10701,7 +10731,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1983699749932982470
 Transform:
   m_ObjectHideFlags: 0
@@ -11317,7 +11347,10 @@ SkinnedMeshRenderer:
   - {fileID: 5786799646962751650}
   - {fileID: 5996085595679339396}
   - {fileID: 3497857922823917394}
-  m_BlendShapeWeights: []
+  m_BlendShapeWeights:
+  - 0
+  - 0
+  - 0
   m_RootBone: {fileID: 2573311598260444053}
   m_AABB:
     m_Center: {x: 0, y: 0.8, z: 0}

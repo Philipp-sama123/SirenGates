@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -10,10 +11,11 @@ namespace KrazyKatgames
         public WeaponItem currentTwoHandWeapon;
 
         [Header("Armor")]
-        public HeadEquipmentItem headEquipment;
-        public HandEquipmentItem handEquipment;
-        public BodyEquipmentItem bodyEquipment;
-        public LegEquipmentItem legEquipment;
+        public CloakWearableItem cloakWearable;
+        public PantsWearableItem pantsWearable;
+        public OutfitWearableItem outfitWearable;
+        public UnderwearWearableItem underwearWearable;
+        public HoodWearableItem hoodWearable;
         
         [Header("Quick Slots")]
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];

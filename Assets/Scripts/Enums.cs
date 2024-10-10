@@ -67,9 +67,8 @@ public enum WeaponModelType
     Shield
     // maybe Item (?)
 }
-public enum EquipmentModelType 
+public enum WearableModelType 
 {
-    Hair,
     Underwear,
     Mask,
     Attachment,

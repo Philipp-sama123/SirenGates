@@ -1,6 +1,7 @@
 using Unity.Collections;
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace KrazyKatgames
 {
@@ -28,10 +29,15 @@ namespace KrazyKatgames
             new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Armor")] // ToDo (!)
-        public NetworkVariable<int> headEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> handEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> bodyEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<int> legEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> cloakEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> pantsEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> outfitEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> underwearEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        // TODO (!)
+        public NetworkVariable<int> hoodEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> maskEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> bagpackEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> hairEquipmentID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected override void Awake()
         {
@@ -163,64 +169,79 @@ namespace KrazyKatgames
             player.playerInventoryManager.currentTwoHandWeapon = player.playerInventoryManager.currentLeftHandWeapon;
             player.playerEquipmentManager.TwoHandLeftWeapon();
         }
-        public void OnHeadEquipmentChanged(int oldValue, int newValue)
+        public void OnCloakEquipmentChanged(int oldValue, int newValue)
         {
             if (IsOwner)
                 return;
 
-            HeadEquipmentItem equipment = WorldItemDatabase.Instance.GetHeadEquipmentByID(headEquipmentID.Value);
+            CloakWearableItem equipment = WorldItemDatabase.Instance.GetCloakEquipmentByID(cloakEquipmentID.Value);
             if (equipment != null)
             {
-                player.playerEquipmentManager.LoadHeadEquipment(Instantiate(equipment));
+                player.playerEquipmentManager.LoadCloakEquipment(Instantiate(equipment));
             }
             else
             {
-                player.playerEquipmentManager.LoadHeadEquipment(null);
+                player.playerEquipmentManager.LoadCloakEquipment(null);
             }
         }
-        public void OnHandEquipmentChanged(int oldValue, int newValue)
+        public void OnPantsEquipmentChanged(int oldValue, int newValue)
         {
             if (IsOwner)
                 return;
 
-            HandEquipmentItem equipment = WorldItemDatabase.Instance.GetHandEquipmentByID(handEquipmentID.Value);
-            if (equipment != null)
+            PantsWearableItem wearable = WorldItemDatabase.Instance.GetPantsEquipmentByID(pantsEquipmentID.Value);
+            if (wearable != null)
             {
-                player.playerEquipmentManager.LoadHandEquipment(Instantiate(equipment));
+                player.playerEquipmentManager.LoadPantsEquipment(Instantiate(wearable));
             }
             else
             {
-                player.playerEquipmentManager.LoadHandEquipment(null);
+                player.playerEquipmentManager.LoadUnderwearEquipment((UnderwearWearableItem)null);
             }
         }
-        public void OnBodyEquipmentChanged(int oldValue, int newValue)
+        public void OnOutfitEquipmentChanged(int oldValue, int newValue)
         {
             if (IsOwner)
                 return;
 
-            BodyEquipmentItem equipment = WorldItemDatabase.Instance.GetBodyEquipmentByID(handEquipmentID.Value);
+            OutfitWearableItem equipment = WorldItemDatabase.Instance.GetOutfitEquipmentByID(pantsEquipmentID.Value);
             if (equipment != null)
             {
-                player.playerEquipmentManager.LoadBodyEquipment(Instantiate(equipment));
+                player.playerEquipmentManager.LoadOutfitEquipment(Instantiate(equipment));
             }
             else
             {
-                player.playerEquipmentManager.LoadBodyEquipment(null);
+                player.playerEquipmentManager.LoadOutfitEquipment(null);
             }
         }
-        public void OnLegEquipmentChanged(int oldValue, int newValue)
+        public void OnUnderwearEquipmentChanged(int oldValue, int newValue)
         {
             if (IsOwner)
                 return;
 
-            LegEquipmentItem equipment = WorldItemDatabase.Instance.GetLegEquipmentByID(handEquipmentID.Value);
+            UnderwearWearableItem equipment = WorldItemDatabase.Instance.GetUnderwearEquipmentByID(underwearEquipmentID.Value);
             if (equipment != null)
             {
-                player.playerEquipmentManager.LoadLegEquipment(Instantiate(equipment));
+                player.playerEquipmentManager.LoadUnderwearEquipment(Instantiate(equipment));
             }
             else
             {
-                player.playerEquipmentManager.LoadLegEquipment(null);
+                player.playerEquipmentManager.LoadUnderwearEquipment(null);
+            }
+        }
+        public void OnHoodEquipmentChanged(int oldValue, int newValue)
+        {
+            if (IsOwner)
+                return;
+
+            HoodWearableItem equipment = WorldItemDatabase.Instance.GetHoodEquipmentByID(hoodEquipmentID.Value);
+            if (equipment != null)
+            {
+                player.playerEquipmentManager.LoadHoodEquipment(Instantiate(equipment));
+            }
+            else
+            {
+                player.playerEquipmentManager.LoadHoodEquipment(null);
             }
         }
 
