@@ -35,8 +35,31 @@ namespace KrazyKatgames
         [Header("Bosses")]
         public SerializableDictionary<int, bool> bossesAwakened;
         public SerializableDictionary<int, bool> bossesDefeated;
-        
 
+        [Header("Equipment")]
+        public int underwearEquipment;
+        public int maskEquipment;
+        public int pantsEquipment;
+        public int outfitEquipment;
+        public int hoodEquipment;
+        public int cloakEquipment;
+        public int bagpackEquipment;
+        public int shoesAndGlovesEquipment;
+
+        [Header("Weapons")]
+        public int rightWeaponIndex;
+        public int rightWeapon01;
+        public int rightWeapon02;
+        public int rightWeapon03;
+
+        public int leftWeaponIndex;
+        public int leftWeapon01;
+        public int leftWeapon02;
+        public int leftWeapon03;
+
+        // also a list maybe ... 
+        //  public List<int> rightWeapons; 
+        //  public List<int> leftWeapons; 
         public CharacterSaveData()
         {
             bossesAwakened = new SerializableDictionary<int, bool>();

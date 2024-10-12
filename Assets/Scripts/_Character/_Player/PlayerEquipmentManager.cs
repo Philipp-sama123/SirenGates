@@ -149,12 +149,12 @@ namespace KrazyKatgames
             if (equipNewItem)
             {
                 equipNewItem = false;
-                DebugEquipNewItems();
+                EquipWearables();
             }
         }
-        private void DebugEquipNewItems()
+        public void EquipWearables()
         {
-            Debug.LogWarning("Equip New Items!");
+            Debug.LogWarning("EquipWearables!!");
             LoadCloakEquipment(player.playerInventoryManager.cloakWearable);
             LoadPantsEquipment(player.playerInventoryManager.pantsWearable);
             LoadOutfitEquipment(player.playerInventoryManager.outfitWearable);

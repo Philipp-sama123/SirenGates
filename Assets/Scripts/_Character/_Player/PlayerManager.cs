@@ -171,6 +171,27 @@ namespace KrazyKatgames
 
             currentCharacterData.currentHealth = playerNetworkManager.currentHealth.Value;
             currentCharacterData.currentStamina = playerNetworkManager.currentStamina.Value;
+
+            // Equipment
+            currentCharacterData.pantsEquipment = playerNetworkManager.pantsEquipmentID.Value;
+            currentCharacterData.underwearEquipment = playerNetworkManager.underwearEquipmentID.Value;
+            currentCharacterData.outfitEquipment = playerNetworkManager.outfitEquipmentID.Value;
+            currentCharacterData.hoodEquipment = playerNetworkManager.hoodEquipmentID.Value;
+            currentCharacterData.cloakEquipment = playerNetworkManager.cloakEquipmentID.Value;
+            currentCharacterData.shoesAndGlovesEquipment = playerNetworkManager.shoesAndGlovesEquipmentID.Value;
+            currentCharacterData.bagpackEquipment = playerNetworkManager.bagpackEquipmentID.Value;
+            currentCharacterData.maskEquipment = playerNetworkManager.maskEquipmentID.Value;
+
+            // Weapons
+            currentCharacterData.rightWeaponIndex = playerInventoryManager.rightHandWeaponIndex;
+            currentCharacterData.rightWeapon01 = playerInventoryManager.weaponsInRightHandSlots[0].itemID; // They should always default to (unarmed)
+            currentCharacterData.rightWeapon02 = playerInventoryManager.weaponsInRightHandSlots[1].itemID; // They should always default to (unarmed)
+            currentCharacterData.rightWeapon03 = playerInventoryManager.weaponsInRightHandSlots[2].itemID; // They should always default to (unarmed)
+
+            currentCharacterData.leftWeaponIndex = playerInventoryManager.leftHandWeaponIndex;
+            currentCharacterData.leftWeapon01 = playerInventoryManager.weaponsInLeftHandSlots[0].itemID; // They should always default to (unarmed)
+            currentCharacterData.leftWeapon02 = playerInventoryManager.weaponsInLeftHandSlots[1].itemID; // They should always default to (unarmed)
+            currentCharacterData.leftWeapon03 = playerInventoryManager.weaponsInLeftHandSlots[2].itemID; // They should always default to (unarmed)
         }
 
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
@@ -190,6 +211,129 @@ namespace KrazyKatgames
 
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
+
+            // Equipment
+            if (WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment) != null)
+            {
+                UnderwearWearableItem underwear =
+                    Instantiate(WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment));
+                playerInventoryManager.underwearWearable = underwear;
+            }
+            else
+            {
+                playerInventoryManager.underwearWearable = null;
+            }
+            if (WorldItemDatabase.Instance.GetCloakEquipmentByID(currentCharacterData.cloakEquipment))
+            {
+                CloakWearableItem cloak = Instantiate(WorldItemDatabase.Instance.GetCloakEquipmentByID(currentCharacterData.cloakEquipment));
+                playerInventoryManager.cloakWearable = cloak;
+            }
+            else
+            {
+                playerInventoryManager.cloakWearable = null;
+            }
+            if (WorldItemDatabase.Instance.GetHoodEquipmentByID(currentCharacterData.hoodEquipment))
+            {
+                HoodWearableItem hood = Instantiate(WorldItemDatabase.Instance.GetHoodEquipmentByID(currentCharacterData.hoodEquipment));
+                playerInventoryManager.hoodWearable = hood;
+            }
+            else
+            {
+                playerInventoryManager.hoodWearable = null;
+            }
+            if (WorldItemDatabase.Instance.GetOutfitEquipmentByID(currentCharacterData.outfitEquipment))
+            {
+                OutfitWearableItem outfit = Instantiate(WorldItemDatabase.Instance.GetOutfitEquipmentByID(currentCharacterData.outfitEquipment));
+                playerInventoryManager.outfitWearable = outfit;
+            }
+            else
+            {
+                playerInventoryManager.outfitWearable = null;
+            }
+            if (WorldItemDatabase.Instance.GetPantsEquipmentByID(currentCharacterData.pantsEquipment))
+            {
+                PantsWearableItem pants = Instantiate(WorldItemDatabase.Instance.GetPantsEquipmentByID(currentCharacterData.pantsEquipment));
+                playerInventoryManager.pantsWearable = pants;
+            }
+            else
+            {
+                playerInventoryManager.pantsWearable = null;
+            }
+            if (WorldItemDatabase.Instance.GetShoesAndGlovesEquipmentByID(currentCharacterData.shoesAndGlovesEquipment))
+            {
+                ShoesAndGlovesWearableItem shoesAndGloves =
+                    Instantiate(WorldItemDatabase.Instance.GetShoesAndGlovesEquipmentByID(currentCharacterData.shoesAndGlovesEquipment));
+                playerInventoryManager.shoesAndGlovesWearable = shoesAndGloves;
+            }
+            else
+            {
+                playerInventoryManager.shoesAndGlovesWearable = null;
+            }
+
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon01) != null)
+            {
+                WeaponItem rightWeapon01 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon01));
+                playerInventoryManager.weaponsInRightHandSlots[0] = rightWeapon01;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[0] = null;
+            }
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon02) != null)
+            {
+                WeaponItem rightWeapon02 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon02));
+                playerInventoryManager.weaponsInRightHandSlots[1] = rightWeapon02;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[1] = null;
+            }
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon03) != null)
+            {
+                WeaponItem rightWeapon03 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon03));
+                playerInventoryManager.weaponsInRightHandSlots[2] = rightWeapon03;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInRightHandSlots[2] = null;
+            }
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon01) != null)
+            {
+                WeaponItem leftWeapon01 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon01));
+                playerInventoryManager.weaponsInLeftHandSlots[0] = leftWeapon01;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInLeftHandSlots[0] = null;
+            }
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon02) != null)
+            {
+                WeaponItem leftWeapon02 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon02));
+                playerInventoryManager.weaponsInLeftHandSlots[1] = leftWeapon02;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInLeftHandSlots[1] = null;
+            }
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon03) != null)
+            {
+                WeaponItem leftWeapon03 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon03));
+                playerInventoryManager.weaponsInLeftHandSlots[2] = leftWeapon03;
+            }
+            else
+            {
+                playerInventoryManager.weaponsInLeftHandSlots[2] = null;
+            }
+            playerEquipmentManager.EquipWearables();
+
+            playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
+            playerNetworkManager.currentRightHandWeaponID.Value =
+                playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+
+            playerInventoryManager.leftHandWeaponIndex = currentCharacterData.leftWeaponIndex;
+            Debug.LogWarning("currentCharacterData.leftWeaponIndex " + currentCharacterData.leftWeaponIndex);
+            playerNetworkManager.currentLeftHandWeaponID.Value =
+                playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex].itemID;
         }
         private void OnClientConnectedCallback(ulong clientID)
         {
