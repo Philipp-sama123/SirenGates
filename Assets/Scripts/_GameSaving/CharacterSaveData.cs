@@ -32,9 +32,13 @@ namespace KrazyKatgames
 
         [Header("Sites Of Grace")]
         public SerializableDictionary<int, bool> sitesOfGrace; // int is the id, bool the activation status
+        
         [Header("Bosses")]
         public SerializableDictionary<int, bool> bossesAwakened;
         public SerializableDictionary<int, bool> bossesDefeated;
+        
+        [Header("World Items")]
+        public SerializableDictionary<int, bool> worldItemsLooted; // world items and looted status
 
         [Header("Equipment")]
         public int underwearEquipment;
@@ -65,6 +69,7 @@ namespace KrazyKatgames
             bossesAwakened = new SerializableDictionary<int, bool>();
             bossesDefeated = new SerializableDictionary<int, bool>();
             sitesOfGrace = new SerializableDictionary<int, bool>();
+            worldItemsLooted = new SerializableDictionary<int, bool>();
         }
     }
 }

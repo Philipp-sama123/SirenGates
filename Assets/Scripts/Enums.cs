@@ -87,3 +87,9 @@ public enum WeaponClass
     Fist,
     // ... todo more (!)
 }
+
+public enum ItemPickUpType
+{
+    WorldSpawn, 
+    CharacterDrop,
+}

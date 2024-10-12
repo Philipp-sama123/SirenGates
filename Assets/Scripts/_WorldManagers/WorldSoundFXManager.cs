@@ -16,6 +16,9 @@ namespace KrazyKatgames
 
         [Header("Damage Sounds")]
         public AudioClip[] physicalDamageSFX;
+        
+        [Header("Pick Up Sounds")]
+        public AudioClip pickUpItemSFX;
 
         private void Awake()
         {

@@ -22,6 +22,7 @@ namespace KrazyKatgames
         [HideInInspector] public PlayerInteractionManager playerInteractionManager;
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
         [HideInInspector] public PlayerBodyManager playerBodyManager;
+        [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
 
         protected override void Awake()
         {
@@ -34,6 +35,7 @@ namespace KrazyKatgames
             playerEquipmentManager = GetComponent<PlayerEquipmentManager>();
             playerAnimatorManager = GetComponent<PlayerAnimatorManager>();
             playerNetworkManager = GetComponent<PlayerNetworkManager>();
+            playerSoundFXManager = GetComponent<PlayerSoundFXManager>();
             playerEffectsManager = GetComponent<PlayerEffectsManager>();
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
