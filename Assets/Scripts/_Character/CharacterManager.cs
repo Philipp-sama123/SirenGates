@@ -44,7 +44,7 @@ namespace KrazyKatgames
             characterLocomotionManager = GetComponent<CharacterLocomotionManager>();
             characterUIManager = GetComponent<CharacterUIManager>();
             characterStatsManager = GetComponent<CharacterStatsManager>();
-            
+
             footIK = GetComponent<FootIK>();
         }
         protected virtual void Start()

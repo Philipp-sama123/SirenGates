@@ -44,7 +44,7 @@ namespace KrazyKatgames
         public List<string> backward_Medium_Damage = new List<string>();
         public List<string> left_Medium_Damage = new List<string>();
         public List<string> right_Medium_Damage = new List<string>();
-        
+
         public List<string> forward_Ping_Damage = new List<string>();
         public List<string> backward_Ping_Damage = new List<string>();
         public List<string> left_Ping_Damage = new List<string>();
@@ -70,8 +70,8 @@ namespace KrazyKatgames
             left_Medium_Damage.Add(hit_Left_Medium_02);
 
             right_Medium_Damage.Add(hit_Right_Medium_01);
-            right_Medium_Damage.Add(hit_Right_Medium_02);        
-            
+            right_Medium_Damage.Add(hit_Right_Medium_02);
+
             forward_Ping_Damage.Add(hit_Forward_Ping_01);
             forward_Ping_Damage.Add(hit_Forward_Ping_02);
 
