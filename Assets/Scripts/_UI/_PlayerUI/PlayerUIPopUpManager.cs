@@ -1,6 +1,8 @@
 using System.Collections;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace KrazyKatgames
 {
@@ -9,7 +11,13 @@ namespace KrazyKatgames
         [Header("Message Pop Up")]
         [SerializeField] TextMeshProUGUI popupMessageText;
         [SerializeField] GameObject popupMessageGameObject;
-        
+
+        [Header("Item Pop Up")]
+        [SerializeField] GameObject itemPopupGameObject;
+        [SerializeField] Image itemIcon;
+        [SerializeField] TextMeshProUGUI itemName;
+        [SerializeField] TextMeshProUGUI itemAmount;
+
         [Header("YOU DIED Pop Up")]
         [SerializeField] GameObject youDiedPopUpGameObject;
         [SerializeField] TextMeshProUGUI youDiedPopUpBackgroundText;
@@ -27,12 +35,34 @@ namespace KrazyKatgames
         [SerializeField] TextMeshProUGUI graceRestoredPopupBackgroundText;
         [SerializeField] TextMeshProUGUI graceRestoredPopupText;
         [SerializeField] CanvasGroup graceRestoredPopupCanvasGroup; //  Allows us to set the alpha to fade over time
+        
+        public void CloseAllPopupWindows()
+        {
+            popupMessageGameObject.SetActive(false);
+            itemPopupGameObject.SetActive(false);
 
+            PlayerUIManager.instance.popupWindowIsOpen = false;
+        }
         public void SendPlayerMessagePopup(string messageText)
         {
             PlayerUIManager.instance.popupWindowIsOpen = true;
             popupMessageText.text = messageText;
             popupMessageGameObject.SetActive(true);
+        }
+
+        public void SendItemPopUp(Item item, int amount)
+        {
+            itemAmount.enabled = false;
+            itemIcon.sprite = item.itemIcon;
+            itemName.text = item.itemName;
+
+            if (amount > 0)
+            {
+                itemAmount.enabled = true;
+                itemAmount.text = "x" + amount.ToString();
+            }
+            itemPopupGameObject.SetActive(true);
+            PlayerUIManager.instance.popupWindowIsOpen = true;
         }
         public void SendYouDiedPopUp()
         {
@@ -86,13 +116,7 @@ namespace KrazyKatgames
                 }
             }
         }
-
-        public void CloseAllPopupWindows()
-        {
-            popupMessageGameObject.SetActive(false);
-
-            PlayerUIManager.instance.popupWindowIsOpen = false;
-        }
+        
         private IEnumerator FadeInPopUpOverTime(CanvasGroup canvas, float duration)
         {
             if (duration > 0)

@@ -51,6 +51,8 @@ namespace KrazyKatgames
         }
         public void Interact()
         {
+            PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopupWindows();
+            
             if (currentInteractableActions.Count == 0)
                 return;
             

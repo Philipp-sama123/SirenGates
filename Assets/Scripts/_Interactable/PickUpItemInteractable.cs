@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -25,12 +24,13 @@ namespace KrazyKatgames
         public override void Interact(PlayerManager player)
         {
             base.Interact(player);
-            
+
             player.playerSoundFXManager.PlaySoundFX(WorldSoundFXManager.instance.pickUpItemSFX);
 
             player.playerInventoryManager.AddItemToInventory(item);
 
             // Display a UI Pop Up 
+            PlayerUIManager.instance.playerUIPopUpManager.SendItemPopUp(item, 1); // TODO:
 
             if (pickUpType == ItemPickUpType.WorldSpawn)
             {
