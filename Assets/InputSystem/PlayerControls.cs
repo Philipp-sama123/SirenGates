@@ -442,6 +442,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Open Character Menu"",
+                    ""type"": ""Button"",
+                    ""id"": ""1ace9d8a-b116-4d1f-9685-86a3540f5061"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -840,6 +849,28 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""Two Hand Weapon"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5ec14d21-796a-4345-9dcb-8f59d5d823a5"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Character Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""94f8a6c5-59b3-4092-b210-af54717e176b"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Open Character Menu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -911,6 +942,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_LockOnRight = m_PlayerActions.FindAction("LockOnRight", throwIfNotFound: true);
         m_PlayerActions_SwitchRightWeapon = m_PlayerActions.FindAction("SwitchRightWeapon", throwIfNotFound: true);
         m_PlayerActions_SwitchLeftWeapon = m_PlayerActions.FindAction("SwitchLeftWeapon", throwIfNotFound: true);
+        m_PlayerActions_OpenCharacterMenu = m_PlayerActions.FindAction("Open Character Menu", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_X = m_UI.FindAction("X", throwIfNotFound: true);
@@ -1085,6 +1117,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_LockOnRight;
     private readonly InputAction m_PlayerActions_SwitchRightWeapon;
     private readonly InputAction m_PlayerActions_SwitchLeftWeapon;
+    private readonly InputAction m_PlayerActions_OpenCharacterMenu;
     public struct PlayerActionsActions
     {
         private @PlayerControls m_Wrapper;
@@ -1107,6 +1140,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @LockOnRight => m_Wrapper.m_PlayerActions_LockOnRight;
         public InputAction @SwitchRightWeapon => m_Wrapper.m_PlayerActions_SwitchRightWeapon;
         public InputAction @SwitchLeftWeapon => m_Wrapper.m_PlayerActions_SwitchLeftWeapon;
+        public InputAction @OpenCharacterMenu => m_Wrapper.m_PlayerActions_OpenCharacterMenu;
         public InputActionMap Get() { return m_Wrapper.m_PlayerActions; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -1170,6 +1204,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLeftWeapon.started += instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.performed += instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.canceled += instance.OnSwitchLeftWeapon;
+            @OpenCharacterMenu.started += instance.OnOpenCharacterMenu;
+            @OpenCharacterMenu.performed += instance.OnOpenCharacterMenu;
+            @OpenCharacterMenu.canceled += instance.OnOpenCharacterMenu;
         }
 
         private void UnregisterCallbacks(IPlayerActionsActions instance)
@@ -1228,6 +1265,9 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @SwitchLeftWeapon.started -= instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.performed -= instance.OnSwitchLeftWeapon;
             @SwitchLeftWeapon.canceled -= instance.OnSwitchLeftWeapon;
+            @OpenCharacterMenu.started -= instance.OnOpenCharacterMenu;
+            @OpenCharacterMenu.performed -= instance.OnOpenCharacterMenu;
+            @OpenCharacterMenu.canceled -= instance.OnOpenCharacterMenu;
         }
 
         public void RemoveCallbacks(IPlayerActionsActions instance)
@@ -1319,6 +1359,7 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnLockOnRight(InputAction.CallbackContext context);
         void OnSwitchRightWeapon(InputAction.CallbackContext context);
         void OnSwitchLeftWeapon(InputAction.CallbackContext context);
+        void OnOpenCharacterMenu(InputAction.CallbackContext context);
     }
     public interface IUIActions
     {

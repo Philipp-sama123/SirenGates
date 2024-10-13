@@ -420,6 +420,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
+                },
+                {
+                    "name": "Open Character Menu",
+                    "type": "Button",
+                    "id": "1ace9d8a-b116-4d1f-9685-86a3540f5061",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -816,6 +825,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Two Hand Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5ec14d21-796a-4345-9dcb-8f59d5d823a5",
+                    "path": "<Gamepad>/start",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "94f8a6c5-59b3-4092-b210-af54717e176b",
+                    "path": "<Keyboard>/escape",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Open Character Menu",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

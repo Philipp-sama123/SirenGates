@@ -9,6 +9,8 @@ namespace KrazyKatgames
         public static PlayerUIManager instance;
         [HideInInspector] public PlayerUIHudManager playerUIHudManager;
         [HideInInspector] public PlayerUIPopUpManager playerUIPopUpManager;
+        [HideInInspector] public PlayerUIEquipmentManager playerUIEquipmentManager;
+        [HideInInspector] public PlayerUICharacterMenuManager playerUICharacterMenuManager;
 
         [Header("Network Join")]
         [SerializeField] bool startGameAsClient;
@@ -30,6 +32,8 @@ namespace KrazyKatgames
 
             playerUIHudManager = GetComponentInChildren<PlayerUIHudManager>();
             playerUIPopUpManager = GetComponentInChildren<PlayerUIPopUpManager>();
+            playerUIEquipmentManager = GetComponentInChildren<PlayerUIEquipmentManager>();
+            playerUICharacterMenuManager = GetComponentInChildren<PlayerUICharacterMenuManager>();
         }
 
         private void Start()
@@ -47,6 +51,12 @@ namespace KrazyKatgames
                 //  WE THEN RESTART, AS A CLIENT
                 NetworkManager.Singleton.StartClient();
             }
+        }
+
+        public void CloseAllMenuWindows()
+        {
+            playerUICharacterMenuManager.CloseCharacterMenu();
+            playerUIEquipmentManager.CloseEquipmentManagerMenu();
         }
     }
 }

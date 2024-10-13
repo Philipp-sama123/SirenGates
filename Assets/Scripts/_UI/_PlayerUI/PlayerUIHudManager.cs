@@ -5,6 +5,8 @@ namespace KrazyKatgames
 {
     public class PlayerUIHudManager : MonoBehaviour
     {
+        [SerializeField] CanvasGroup[] canvasGroups;
+
         [Header("Stat Bars")]
         [SerializeField] UI_StatBar staminaBar;
         [SerializeField] UI_StatBar healthBar;
@@ -16,8 +18,34 @@ namespace KrazyKatgames
 
         [Header("Boss Health Bar")]
         public Transform bossHealthBarParent;
-        public GameObject bossHealthBarObject; 
-        
+        public GameObject bossHealthBarObject;
+
+
+        public void ToggleHUD(bool status)
+        {
+            // ToDo: Fade in and out (!)
+            if (status)
+            {
+                foreach (var canvasGroup in canvasGroups)
+                {
+                    canvasGroup.alpha = 1;
+                }
+            }
+            else
+            {
+                foreach (var canvasGroup in canvasGroups)
+                {
+                    canvasGroup.alpha = 0;
+                }
+            }
+        }
+        public void RefreshHUD()
+        {
+            healthBar.gameObject.SetActive(false);
+            healthBar.gameObject.SetActive(true);
+            staminaBar.gameObject.SetActive(false);
+            staminaBar.gameObject.SetActive(true);
+        }
         public void SetNewStaminaValue(float oldValue, float newValue)
         {
             staminaBar.SetStat(Mathf.RoundToInt(newValue));
@@ -33,13 +61,6 @@ namespace KrazyKatgames
         public void SetMaxHealthValue(int maxStamina)
         {
             healthBar.SetMaxStat(maxStamina);
-        }
-        public void RefreshHUD()
-        {
-            healthBar.gameObject.SetActive(false);
-            healthBar.gameObject.SetActive(true);
-            staminaBar.gameObject.SetActive(false);
-            staminaBar.gameObject.SetActive(true);
         }
         public void SetRightWeaponQuickSlotIcon(int weaponID)
         {

@@ -60,6 +60,10 @@ namespace KrazyKatgames
         [SerializeField] bool que_RB_Input = false;
         [SerializeField] bool que_RT_Input = false;
 
+        [Header("UI Inputs")]
+        [SerializeField] bool closeMenuInput = false;
+        [SerializeField] bool openMenuInput = false;
+
 
         private void Awake()
         {
@@ -163,6 +167,10 @@ namespace KrazyKatgames
                 // Queued Inputs
                 playerControls.PlayerActions.Que_RB.performed += i => QueInput(ref que_RB_Input);
                 playerControls.PlayerActions.Que_RB.performed += i => QueInput(ref que_RT_Input);
+
+                // UI Inputs 
+                playerControls.PlayerActions.Dodge.performed += i => closeMenuInput = true;
+                playerControls.PlayerActions.OpenCharacterMenu.performed += i => openMenuInput = true;
             }
 
             playerControls.Enable();
@@ -268,6 +276,9 @@ namespace KrazyKatgames
 
             // TODO when this is active the 3rd Combo goes in the charged attack (!)
             // HandleQuedInputs();
+
+            HandleCloseUIInput();
+            HandleOpenCharacterMenuInput();
         }
         // Two Handing Weapons 
         private void HandleTwoHandInput()
@@ -480,8 +491,10 @@ namespace KrazyKatgames
             if (jump_Input)
             {
                 jump_Input = false;
-
+                
                 //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
 
                 //  ATTEMPT TO PERFORM JUMP
                 player.playerLocomotionManager.AttemptToPerformJump();
@@ -565,6 +578,29 @@ namespace KrazyKatgames
             {
                 switch_Left_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchLeftWeapon();
+            }
+        }
+        private void HandleCloseUIInput()
+        {
+            if (closeMenuInput)
+            {
+                closeMenuInput = false;
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                {
+                    PlayerUIManager.instance.CloseAllMenuWindows();
+                }
+            }
+        }
+        private void HandleOpenCharacterMenuInput()
+        {
+            if (openMenuInput)
+            {
+                openMenuInput = false;
+
+                PlayerUIManager.instance.playerUIPopUpManager.CloseAllPopupWindows();
+                PlayerUIManager.instance.CloseAllMenuWindows();
+
+                PlayerUIManager.instance.playerUICharacterMenuManager.OpenCharacterMenu();
             }
         }
     }
