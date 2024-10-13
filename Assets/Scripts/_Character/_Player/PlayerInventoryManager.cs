@@ -18,7 +18,7 @@ namespace KrazyKatgames
         public UnderwearWearableItem underwearWearable;
         public HoodWearableItem hoodWearable;
         public ShoesAndGlovesWearableItem shoesAndGlovesWearable;
-        
+
         [Header("Quick Slots")]
         public WeaponItem[] weaponsInRightHandSlots = new WeaponItem[3];
         public int rightHandWeaponIndex = 0;
@@ -33,10 +33,18 @@ namespace KrazyKatgames
             itemsInInventory.Add(item);
         }
 
-        public void RemoveItemFromInventory()
+        public void RemoveItemFromInventory(Item item)
         {
+            itemsInInventory.Remove(item);
+
+            for (int i = itemsInInventory.Count - 1; i > -1; i--)
+            {
+                if (itemsInInventory[i] == null)
+                {
+                    itemsInInventory.RemoveAt(i);
+                }
+            }
             // ToDo: Add Server RPC that creates it for others when dropped (!)
         }
-
     }
 }

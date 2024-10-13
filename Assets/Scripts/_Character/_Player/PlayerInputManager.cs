@@ -568,6 +568,10 @@ namespace KrazyKatgames
         {
             if (switch_Right_Weapon_Input)
             {
+                //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
+                
                 switch_Right_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchRightWeapon();
             }
@@ -576,6 +580,10 @@ namespace KrazyKatgames
         {
             if (switch_Left_Weapon_Input)
             {
+                //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
+                if (PlayerUIManager.instance.menuWindowIsOpen)
+                    return;
+                
                 switch_Left_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchLeftWeapon();
             }

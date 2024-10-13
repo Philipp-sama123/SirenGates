@@ -93,3 +93,14 @@ public enum ItemPickUpType
     WorldSpawn, 
     CharacterDrop,
 }
+
+//  USED TO DETERMINE WHICH EQUIPMENT SLOT IS CURRENTLY SELECTED (HELMET, BODY, LEGS, HANDS, RIGHT WEAPON 01, TALISMAN 02, ECT)
+public enum EquipmentType
+{
+    RightWeapon01,
+    RightWeapon02,
+    RightWeapon03,
+    LeftWeapon01,
+    LeftWeapon02,
+    LeftWeapon03,
+}
