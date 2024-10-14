@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Hood Wearable Item 01
   m_EditorClassIdentifier: 
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: ef8a85c4837e2504da41d6b86e7085ad, type: 3}
   itemDescription: 
-  itemID: 0
+  itemID: 33
   itemWeight: 0
   physicalDamageAbsorption: 0
   magicDamageAbsorption: 0

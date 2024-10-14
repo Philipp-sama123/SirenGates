@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Shoes And Gloves Wearable Item 03
   m_EditorClassIdentifier: 
   itemName: 
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: b0f092eeff8b44d66a1e9ba7f0ac3e37, type: 3}
   itemDescription: 
   itemID: 0
   itemWeight: 0

@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Underwear Wearable Item A 02
   m_EditorClassIdentifier: 
   itemName: Underwear Equipment
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: ee51af6be5ef04b8b8f2ebc3fbba81e1, type: 3}
   itemDescription: 
-  itemID: 8
+  itemID: 26
   itemWeight: 2
   physicalDamageAbsorption: 5
   magicDamageAbsorption: 5

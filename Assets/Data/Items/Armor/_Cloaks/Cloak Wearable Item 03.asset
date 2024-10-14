@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Cloak Wearable Item 03
   m_EditorClassIdentifier: 
   itemName: Head Equipment
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 6ec7034babe8141a29ce36d207ddc872, type: 3}
   itemDescription: 
-  itemID: 5
+  itemID: 7
   itemWeight: 2
   physicalDamageAbsorption: 10
   magicDamageAbsorption: 15

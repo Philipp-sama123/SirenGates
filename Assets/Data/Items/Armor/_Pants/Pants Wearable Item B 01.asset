@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Pants Wearable Item B 01
   m_EditorClassIdentifier: 
   itemName: Leg Equipment
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 3c402bf2daa064d1786997d506ce4236, type: 3}
   itemDescription: 
-  itemID: 0
+  itemID: 12
   itemWeight: 2
   physicalDamageAbsorption: 2
   magicDamageAbsorption: 2

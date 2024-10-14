@@ -187,34 +187,94 @@ namespace KrazyKatgames
                     break;
                 // TODO : Armor (!)
 
-                // case EquipmentType.Cloak:
-                //
-                //     //  IF OUR CURRENT EQUIPMENT IN THIS SLOT, IS NOT A NULL ITEM, ADD IT TO OUR INVENTORY
-                //     equippedItem = player.playerInventoryManager.Cloak;
-                //
-                //     if (equippedItem != null)
-                //     {
-                //         player.playerInventoryManager.AddItemToInventory(equippedItem);
-                //     }
-                //
-                //     //  THEN ASSIGN THE SLOT OUR NEW ITEM
-                //     player.playerInventoryManager.CloakEquipment = currentItem as CloakEquipmentItem;
-                //
-                //     //  THEN REMOVE THE NEW ITEM FROM OUR INVENTORY
-                //     player.playerInventoryManager.RemoveItemFromInventory(currentItem);
-                //
-                //     //  RE-EQUIP NEW ITEM
-                //     player.playerEquipmentManager.LoadCloakEquipment(player.playerInventoryManager.headEquipment);
-                //
-                //     //  REFRESHES EQUIPMENT WINDOW
-                //     PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
-                //
-                //     break;
+                case EquipmentType.Cloak:
+
+                    //  IF OUR CURRENT EQUIPMENT IN THIS SLOT, IS NOT A NULL ITEM, ADD IT TO OUR INVENTORY
+                    equippedItem = player.playerInventoryManager.cloakWearable;
+
+                    if (equippedItem != null)
+                    {
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+                    }
+
+                    //  THEN ASSIGN THE SLOT OUR NEW ITEM
+                    player.playerInventoryManager.cloakWearable = currentItem as CloakWearableItem;
+
+                    //  THEN REMOVE THE NEW ITEM FROM OUR INVENTORY
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+
+                    //  RE-EQUIP NEW ITEM
+                    player.playerEquipmentManager.LoadCloakEquipment(player.playerInventoryManager.cloakWearable);
+
+                    //  REFRESHES EQUIPMENT WINDOW
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+
+                    break;
+                case EquipmentType.Underwear:
+                    equippedItem = player.playerInventoryManager.underwearWearable;
+
+                    if (equippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+
+                    player.playerInventoryManager.underwearWearable = currentItem as UnderwearWearableItem;
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+                    player.playerEquipmentManager.LoadUnderwearEquipment(player.playerInventoryManager.underwearWearable);
+
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+                    break;
+                case EquipmentType.Pants:
+                    equippedItem = player.playerInventoryManager.pantsWearable;
+
+                    if (equippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+
+                    player.playerInventoryManager.pantsWearable = currentItem as PantsWearableItem;
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+                    player.playerEquipmentManager.LoadPantsEquipment(player.playerInventoryManager.pantsWearable);
+
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+                    break;
+                case EquipmentType.Outfit:
+                    equippedItem = player.playerInventoryManager.outfitWearable;
+
+                    if (equippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+
+                    player.playerInventoryManager.outfitWearable = currentItem as OutfitWearableItem;
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+                    player.playerEquipmentManager.LoadOutfitEquipment(player.playerInventoryManager.outfitWearable);
+
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+                    break;
+                case EquipmentType.Hood:
+                    equippedItem = player.playerInventoryManager.hoodWearable;
+
+                    if (equippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+
+                    player.playerInventoryManager.hoodWearable = currentItem as HoodWearableItem;
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+                    player.playerEquipmentManager.LoadHoodEquipment(player.playerInventoryManager.hoodWearable);
+
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+                    break;
+                case EquipmentType.ShoesAndGloves:
+                    equippedItem = player.playerInventoryManager.shoesAndGlovesWearable;
+
+                    if (equippedItem != null)
+                        player.playerInventoryManager.AddItemToInventory(equippedItem);
+
+                    player.playerInventoryManager.shoesAndGlovesWearable = currentItem as ShoesAndGlovesWearableItem;
+                    player.playerInventoryManager.RemoveItemFromInventory(currentItem);
+                    player.playerEquipmentManager.LoadShoesAndGlovesEquipment(player.playerInventoryManager.shoesAndGlovesWearable);
+
+                    PlayerUIManager.instance.playerUIEquipmentManager.RefreshMenu();
+                    break;
                 default:
                     break;
             }
 
-          PlayerUIManager.instance.playerUIEquipmentManager.SelectLastSelectedEquipmentSlot();
+            PlayerUIManager.instance.playerUIEquipmentManager.SelectLastSelectedEquipmentSlot();
         }
     }
 }

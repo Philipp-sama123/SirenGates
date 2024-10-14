@@ -97,10 +97,17 @@ public enum ItemPickUpType
 //  USED TO DETERMINE WHICH EQUIPMENT SLOT IS CURRENTLY SELECTED (HELMET, BODY, LEGS, HANDS, RIGHT WEAPON 01, TALISMAN 02, ECT)
 public enum EquipmentType
 {
-    RightWeapon01, // 0
-    RightWeapon02, // 1
-    RightWeapon03, // 2
-    LeftWeapon01, // 3
-    LeftWeapon02, // 4
-    LeftWeapon03, // 5
+    RightWeapon01,  // 0
+    RightWeapon02,  // 1
+    RightWeapon03,  // 2
+    LeftWeapon01,   // 3
+    LeftWeapon02,   // 4
+    LeftWeapon03,   // 5
+    Underwear,      // 6
+    Pants,          // 7
+    Outfit,         // 8
+    Hood,           // 9 
+    Cloak,          // 10
+    ShoesAndGloves, // 11
+    // more to come
 }

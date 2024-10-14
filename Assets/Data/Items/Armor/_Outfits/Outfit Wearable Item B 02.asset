@@ -13,9 +13,9 @@ MonoBehaviour:
   m_Name: Outfit Wearable Item B 02
   m_EditorClassIdentifier: 
   itemName: Body Equipment
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: e3f92cd5365c14a22b1c3319c5581aa5, type: 3}
   itemDescription: 
-  itemID: 7
+  itemID: 19
   itemWeight: 10
   physicalDamageAbsorption: 5
   magicDamageAbsorption: 4
