@@ -333,6 +333,7 @@ GameObject:
   - component: {fileID: 3028592903165530856}
   - component: {fileID: 3721673547114438048}
   - component: {fileID: 8050521277827301360}
+  - component: {fileID: 8341162398042340990}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -399,6 +400,19 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!114 &8341162398042340990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 380154244981404807}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c09ae13ab36fd4d7fa15913580382f50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unequipItemInput: 0
 --- !u!1 &574114109837436330
 GameObject:
   m_ObjectHideFlags: 0
@@ -6092,7 +6106,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6109,7 +6123,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3784524433008567707}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
 --- !u!114 &1171844436330418459 stripped
 MonoBehaviour:
@@ -6122,6 +6139,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &1337232287145411253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+  m_PrefabInstance: {fileID: 1026394088980901597}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3784524433008567707
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1337232287145411253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 5
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!224 &5369982917903494060 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4951840828227700081, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
@@ -6233,7 +6284,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6250,8 +6301,45 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8500758760316783759}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+--- !u!1 &366870241567203961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+  m_PrefabInstance: {fileID: 1848680197235035665}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &8500758760316783759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 366870241567203961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 4
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!114 &565928985775845847 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2196984427030675398, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
@@ -6374,7 +6462,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6395,6 +6483,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 3476447577296451164}
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7138504756808349900}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
 --- !u!1 &81793332674358170 stripped
 GameObject:
@@ -6413,6 +6504,51 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1da1b635b9a4f998b551373f8a4d80b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7138504756808349900
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 81793332674358170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!114 &283552479051692084 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2196984427030675398, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
@@ -6535,7 +6671,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6552,7 +6688,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3715863363192243007}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
 --- !u!114 &28707061073903407 stripped
 MonoBehaviour:
@@ -6565,6 +6704,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &191415130328181889 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+  m_PrefabInstance: {fileID: 2168691413747794153}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3715863363192243007
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 191415130328181889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!224 &6530436780488476056 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4951840828227700081, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
@@ -6676,7 +6849,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6693,7 +6866,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9085654864731620724}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
 --- !u!114 &4416302193708710327 stripped
 MonoBehaviour:
@@ -6706,6 +6882,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4576832127610087961 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+  m_PrefabInstance: {fileID: 2536822641335158385}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &9085654864731620724
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4576832127610087961}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 3
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!224 &7461587443464700672 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4951840828227700081, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
@@ -6930,7 +7140,7 @@ PrefabInstance:
       objectReference: {fileID: 5760893896137725806}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 7042375113885147488, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
@@ -6947,7 +7157,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 4465771309825895954}
   m_SourcePrefab: {fileID: 100100000, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
 --- !u!114 &3244036554961999537 stripped
 MonoBehaviour:
@@ -6960,6 +7173,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &3443237139190777119 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2067352693344054376, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}
+  m_PrefabInstance: {fileID: 3708823957057448311}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4465771309825895954
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3443237139190777119}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Delegates:
+  - eventID: 9
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 5760893896137725806}
+          m_TargetAssemblyTypeName: KrazyKatgames.PlayerUIEquipmentManager, Assembly-CSharp
+          m_MethodName: SelectEquipmentSlot
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 2
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!224 &8628926857667406854 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4951840828227700081, guid: f4ae5ec35cd5e43cdb177243f1a823d6, type: 3}

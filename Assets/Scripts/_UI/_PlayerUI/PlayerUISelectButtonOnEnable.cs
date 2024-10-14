@@ -17,7 +17,7 @@ namespace KrazyKatgames
         private void OnEnable()
         {
             button.Select();
-            //button.OnSelect(null); // on older versions of unity .Select would sometimes not fire "OnSelected" events on the button so using this afterwards fixed that
+            button.OnSelect(null); // on older versions of unity .Select would sometimes not fire "OnSelected" events on the button so using this afterwards fixed that
         }
     }
 }

@@ -92,7 +92,6 @@ namespace KrazyKatgames
             WeaponItem newWeapon = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(newID));
             player.playerInventoryManager.currentRightHandWeapon = newWeapon;
             player.playerEquipmentManager.LoadRightWeapon();
-
             if (player.IsOwner)
             {
                 PlayerUIManager.instance.playerUIHudManager.SetRightWeaponQuickSlotIcon(newID);

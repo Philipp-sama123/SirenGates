@@ -16,9 +16,11 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 207952239374147899f3f694dd4643ec, type: 3}
   itemDescription: 
   itemID: 0
+  itemWeight: 0
   weaponAnimator: {fileID: 22100000, guid: 9394fc701eb604dbcb74567600020049, type: 2}
   weaponModelType: 0
   weaponModel: {fileID: 6397344720308477397, guid: b87356b08151043ad913f22d2acad671, type: 3}
+  weaponClass: 3
   strengthREQ: 0
   dexREQ: 0
   intREQ: 0
