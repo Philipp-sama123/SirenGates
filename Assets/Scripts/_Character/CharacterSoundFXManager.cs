@@ -40,7 +40,6 @@ namespace KrazyKatgames
         {
             audioSource.PlayOneShot(WorldSoundFXManager.instance.rollSFX);
         }
-
         public virtual void PlayDamageGruntSoundFX()
         {
             if (damageGrunts.Length > 0)
@@ -55,6 +54,11 @@ namespace KrazyKatgames
             else
                 Debug.LogWarning("NO attackGrunts Sound Effects!");
         }
+        public virtual void PlayStanceBreakSoundFX()
+        {
+            audioSource.PlayOneShot(WorldSoundFXManager.instance.stanceBreakSFX);
+        }
+
         public virtual void PlayBlockSoundFX()
         {
         }

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace KrazyKatgames
@@ -5,6 +6,12 @@ namespace KrazyKatgames
     public class AICharacterCombatManager : CharacterCombatManager
     {
         protected AICharacterManager aiCharacter;
+
+        [Header("Recovery Timer")]
+        public float actionRecoveryTimer = 0;
+
+        [Header("Pivot")]
+        [SerializeField] public bool enablePivot = true;
 
         [Header("Target Information")]
         public float distanceFromTarget;
@@ -16,20 +23,82 @@ namespace KrazyKatgames
         public float minimumFOV = -35;
         public float maximumFOV = 35;
 
-        [Header("Recovery Timer")]
-        public float actionRecoveryTimer = 0;
-
         [Header("Attack Rotation Speed")]
         public float attackRotationSpeed = 5f;
 
-        [Header("Pivot")]
-        [SerializeField] public bool enablePivot = true;
+        [Header("Stance")]
+        public float maxStance = 150;
+        public float currentStance;
+        [SerializeField] float stanceRegeneratedPerSecond = 15;
+        [SerializeField] bool ignoreStanceBreak = false;
+
+        [Header("Stance Timer")]
+        [SerializeField] float stanceRegenerationTimer = 0;
+        [SerializeField] float defaultTimeUntilStanceRegenerates = 10;
+        private float stanceTickTimer = 0;
 
         protected override void Awake()
         {
             base.Awake();
             aiCharacter = GetComponent<AICharacterManager>();
             lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
+        }
+        private void FixedUpdate()
+        {
+            HandleStanceBreak();
+        }
+        private void HandleStanceBreak()
+        {
+            if (!aiCharacter.IsOwner)
+                return;
+            if (aiCharacter.isDead.Value)
+                return;
+
+            if (stanceRegenerationTimer > 0)
+            {
+                stanceRegenerationTimer -= Time.deltaTime;
+            }
+            else
+            {
+                stanceRegenerationTimer = 0;
+
+                if (currentStance < maxStance)
+                {
+                    stanceTickTimer += Time.deltaTime;
+                    if (stanceTickTimer >= 1)
+                    {
+                        stanceTickTimer = 0;
+                        currentStance += stanceRegeneratedPerSecond;
+                    }
+                }
+                else
+                {
+                    currentStance = maxStance;
+                }
+            }
+            if (currentStance <= 0)
+            {
+                // if in a high intensity animation --> like launch in the air -> DON'T play stance break animation 
+                DamageIntensity previousDamageIntensity = WorldUtilityManager.Instance.GetDamageIntensityBasedOnPoiseDamage(previousPoiseDamageTaken);
+                if (previousDamageIntensity == DamageIntensity.Colossal)
+                {
+                    currentStance = 1;
+                    return;
+                }
+                // ToDo: if backstabbed/riposted do not play the stance break animation
+                currentStance = maxStance;
+
+                if (ignoreStanceBreak)
+                    return;
+
+                aiCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("StanceBreak_01", true);
+            }
+        }
+
+        public void DamageStance(int stanceDamage)
+        {
+            stanceRegenerationTimer = defaultTimeUntilStanceRegenerates;
+            currentStance -= stanceDamage;
         }
         public void FindATargetViaLineOfSight(AICharacterManager aiCharacter)
         {
@@ -75,7 +144,7 @@ namespace KrazyKatgames
                             targetsDirection = targetCharacter.transform.position - transform.position;
                             viewableAngle = WorldUtilityManager.Instance.GetAngleOfTarget(transform, targetsDirection);
                             aiCharacter.characterCombatManager.SetTarget(targetCharacter);
-                            
+
                             if (enablePivot)
                                 PivotTowardsTarget(aiCharacter);
                         }

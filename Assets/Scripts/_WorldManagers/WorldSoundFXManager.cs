@@ -13,6 +13,7 @@ namespace KrazyKatgames
 
         [Header("Action Sounds")]
         public AudioClip rollSFX;
+        public AudioClip stanceBreakSFX;
 
         [Header("Damage Sounds")]
         public AudioClip[] physicalDamageSFX;

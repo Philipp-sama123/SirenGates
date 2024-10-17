@@ -10,6 +10,9 @@ namespace KrazyKatgames
         [Header("Last Attack Animation Performed")]
         public string lastAttackAnimationPerformed;
 
+        [Header("Previous Poise Damage Taken")]
+        public float previousPoiseDamageTaken;
+        
         [Header("Attack Target")]
         public CharacterManager currentTarget;
 
@@ -56,7 +59,13 @@ namespace KrazyKatgames
             if (character.IsOwner)
                 character.characterNetworkManager.isInvulnerable.Value = false;
         }
-
+        public void EnableIsRipostable()
+        {
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.isRipostable.Value = true;
+            }
+        }
         public void EnableCanDoRollingAttack()
         {
             canPerformRollingAttack = true;
@@ -73,7 +82,7 @@ namespace KrazyKatgames
         {
             canPerformBackstepAttack = false;
         }
-        
+
         public virtual void DisableCanDoCombo()
         {
         }

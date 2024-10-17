@@ -42,9 +42,9 @@ namespace KrazyKatgames
 
         public override void ProcessEffect(CharacterManager character)
         {
-            // don't do anything if character is invulnerable
             if (character.characterNetworkManager.isInvulnerable.Value)
                 return;
+
             base.ProcessEffect(character);
 
             if (character.isDead.Value)
@@ -52,13 +52,11 @@ namespace KrazyKatgames
 
             CalculateDamage(character);
             PlayDirectionalBasedDamageAnimation(character);
-            // ToDo: Check for invulnerability
-
-            // Calculate Damage
-            // Check Damage Direction
-            // Check for Buildups (poison,bleed, ....) 
+            // ToDo: Check for Buildups (poison,bleed, ....) 
             PlayDamageSFX(character);
             PlayDamageVFX(character);
+            
+            CalculateStanceDamage(character); // Run this after all other functions that would attempt to play an animation (!)
             // If Character is A.I. check for new target if character causing damage is present 
         }
 
@@ -78,9 +76,10 @@ namespace KrazyKatgames
                 finalDamageDealt = 1;
             }
 
-            character.characterNetworkManager.currentHealth.Value -= finalDamageDealt;
-            // subtract poise damage from the character total 
+            character.characterNetworkManager.currentHealth.Value -= finalDamageDealt; // subtract poise damage from the character total 
             character.characterStatsManager.totalPoiseDamage -= poiseDamage;
+
+            character.characterCombatManager.previousPoiseDamageTaken = poiseDamage; // store previous poise damage taken for future interactions
 
             float remainingPoise = character.characterStatsManager.basePoiseDefense
                                    + character.characterStatsManager.offensivePoiseBonus
@@ -93,6 +92,18 @@ namespace KrazyKatgames
             character.characterStatsManager.poiseResetTimer = character.characterStatsManager.defaultPoiseResetTime;
         }
 
+        private void CalculateStanceDamage(CharacterManager character)
+        {
+            AICharacterManager aiCharacter = character as AICharacterManager;
+
+            // You can optionally give Weapons their own stance damage values, or use poise damage
+            int stanceDamage = Mathf.RoundToInt(poiseDamage);
+
+            if (aiCharacter != null)
+            {
+                aiCharacter.aiCharacterCombatManager.DamageStance(stanceDamage);
+            }
+        }
         private void PlayDamageVFX(CharacterManager character)
         {
             character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);

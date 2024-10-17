@@ -38,6 +38,7 @@ namespace KrazyKatgames
         public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isJumping = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isChargingAttack = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isRipostable = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Resources")]
         public NetworkVariable<float> currentStamina = new(100, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -152,9 +153,31 @@ namespace KrazyKatgames
                 PerformAttackActionAnimationFromServer(animationId, applyRootMotion);
             }
         }
+
         private void PerformAttackActionAnimationFromServer(string animationId, bool applyRootMotion)
         {
             character.animator.CrossFade(animationId, 0.2f);
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
+        }
+        [ServerRpc]
+        public void NotifyTheServerOfInstantActionAnimationServerRpc(ulong clientId, string animationId, bool applyRootMotion)
+        {
+            if (IsServer)
+            {
+                PlayInstantActionAnimationForAllClientsClientRpc(clientId, animationId, applyRootMotion);
+            }
+        }
+        [ClientRpc]
+        public void PlayInstantActionAnimationForAllClientsClientRpc(ulong clientId, string animationId, bool applyRootMotion)
+        {
+            if (clientId != NetworkManager.Singleton.LocalClientId)
+            {
+                PerformInstantActionAnimationFromServer(animationId, applyRootMotion);
+            }
+        }
+        private void PerformInstantActionAnimationFromServer(string animationId, bool applyRootMotion)
+        {
+            character.animator.Play(animationId);
             character.characterAnimatorManager.applyRootMotion = applyRootMotion;
         }
         #endregion

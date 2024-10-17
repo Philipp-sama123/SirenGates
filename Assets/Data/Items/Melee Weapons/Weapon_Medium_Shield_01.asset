@@ -16,6 +16,7 @@ MonoBehaviour:
   itemIcon: {fileID: 21300000, guid: 153ddf09ae4964b6d9f21e0e6fd97610, type: 3}
   itemDescription: 
   itemID: 3
+  itemWeight: 0
   weaponAnimator: {fileID: 22100000, guid: 19296887674024f2f9c5a771fa67ea2e, type: 2}
   weaponModelType: 1
   weaponModel: {fileID: 6397344720308477397, guid: 635a3c424ff764276917089cf528e6ba, type: 3}
@@ -25,17 +26,17 @@ MonoBehaviour:
   intREQ: 0
   faithREQ: 0
   physicalDamage: 20
-  magicDamage: 0
-  fireDamage: 0
-  holyDamage: 0
-  lightningDamage: 0
+  magicDamage: 1
+  fireDamage: 1
+  holyDamage: 1
+  lightningDamage: 1
   physicalBaseDamageAbsorption: 100
   fireBaseDamageAbsorption: 50
   magicBaseDamageAbsorption: 50
   lightningBaseDamageAbsorption: 50
   holyBaseDamageAbsorption: 50
   stability: 75
-  poiseDamage: 0
+  poiseDamage: 25
   light_attack_01_modifier: 1.1
   light_attack_02_modifier: 1.2
   light_attack_03_modifier: 1.3

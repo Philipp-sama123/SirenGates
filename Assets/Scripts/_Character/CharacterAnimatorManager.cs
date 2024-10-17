@@ -219,5 +219,21 @@ namespace KrazyKatgames
         {
             character.animator.runtimeAnimatorController = weaponController;
         }
+        public void PlayTargetActionAnimationInstantly(
+            string targetAnimation,
+            bool isPerformingAction,
+            bool applyRootMotion = true,
+            bool canRotate = false,
+            bool canMove = false)
+        {
+            character.characterAnimatorManager.applyRootMotion = applyRootMotion;
+            character.animator.Play(targetAnimation);
+            character.isPerformingAction = isPerformingAction;
+            character.characterLocomotionManager.canRotate = canRotate;
+            character.characterLocomotionManager.canMove = canMove;
+
+            //  TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
+            character.characterNetworkManager.NotifyTheServerOfInstantActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
+                applyRootMotion);      }
     }
 }
