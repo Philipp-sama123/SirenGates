@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class DurkStompCollider : DamageCollider
     {

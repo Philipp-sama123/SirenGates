@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WeaponManager : MonoBehaviour
     {

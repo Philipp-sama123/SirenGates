@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class UI_EquipmentInventorySlot : MonoBehaviour
     {

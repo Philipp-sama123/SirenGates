@@ -1,4 +1,4 @@
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class AICharacterLocomotionManager : CharacterLocomotionManager
     {

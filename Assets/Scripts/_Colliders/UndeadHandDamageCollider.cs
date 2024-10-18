@@ -1,4 +1,4 @@
-using KrazyKatgames;
+using KrazyKatGames;
 using UnityEngine;
 
 public class UndeadHandDamageCollider : DamageCollider

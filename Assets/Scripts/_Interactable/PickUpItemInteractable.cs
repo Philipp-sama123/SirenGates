@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PickUpItemInteractable : Interactable
     {

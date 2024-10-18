@@ -1,6 +1,6 @@
 using Unity.Netcode;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class AICharacterNetworkManager : CharacterNetworkManager
     {

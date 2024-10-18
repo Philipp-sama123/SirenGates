@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class UI_Boss_HP_Bar : UI_StatBar
     {

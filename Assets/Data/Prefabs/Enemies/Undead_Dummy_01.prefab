@@ -1995,6 +1995,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 0
 --- !u!135 &678489998484542314
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -5136,6 +5137,10 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  isAttacking:
+    m_InternalValue: 0
+  isBlocking:
+    m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
   isLockedOn:
@@ -5145,6 +5150,10 @@ MonoBehaviour:
   isJumping:
     m_InternalValue: 0
   isChargingAttack:
+    m_InternalValue: 0
+  isRipostable:
+    m_InternalValue: 0
+  isBeingCriticallyDamaged:
     m_InternalValue: 0
   currentStamina:
     m_InternalValue: 100
@@ -5157,6 +5166,10 @@ MonoBehaviour:
   endurance:
     m_InternalValue: 10
   vitality:
+    m_InternalValue: 10
+  strength:
+    m_InternalValue: 10
+  strengthModifier:
     m_InternalValue: 10
 --- !u!114 &8439402142563016341
 MonoBehaviour:
@@ -5181,6 +5194,7 @@ MonoBehaviour:
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
   characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isPerformingAction: 0
   characterGroup: 1
   footIK: {fileID: 0}
@@ -5233,6 +5247,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  criticalBloodSplatterVFX: {fileID: 0}
+  staticEffects: []
 --- !u!114 &9000439784585813718
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5304,6 +5320,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 2
+  blockingPhysicalAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
+  blockingStability: 0
+  armorPhysicalDamageAbsorption: 0
+  armorMagicDamageAbsorption: 0
+  armorFireDamageAbsorption: 0
+  armorHolyDamageAbsorption: 0
+  armorLightningDamageAbsorption: 0
+  armorImmunity: 0
+  armorRobustness: 0
+  armorFocus: 0
+  armorVitality: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 0
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!114 &6866360928223709062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5326,10 +5362,22 @@ MonoBehaviour:
   hit_Left_Medium_02: Hit_Left_Medium_02
   hit_Right_Medium_01: Hit_Right_Medium_01
   hit_Right_Medium_02: Hit_Right_Medium_02
+  hit_Forward_Ping_01: Hit_Forward_Ping_01
+  hit_Forward_Ping_02: Hit_Forward_Ping_02
+  hit_Backward_Ping_01: Hit_Backward_Ping_01
+  hit_Backward_Ping_02: Hit_Backward_Ping_02
+  hit_Left_Ping_01: Hit_Left_Ping_01
+  hit_Left_Ping_02: Hit_Left_Ping_02
+  hit_Right_Ping_01: Hit_Right_Ping_01
+  hit_Right_Ping_02: Hit_Right_Ping_02
   forward_Medium_Damage: []
   backward_Medium_Damage: []
   left_Medium_Damage: []
   right_Medium_Damage: []
+  forward_Ping_Damage: []
+  backward_Ping_Damage: []
+  left_Ping_Damage: []
+  right_Ping_Damage: []
 --- !u!114 &6926194295564093448
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5343,23 +5391,35 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttackAnimationPerformed: 
+  previousPoiseDamageTaken: 0
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 0}
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
+  canBlock: 1
+  criticalAttackDistanceCheck: 1
+  minMaxAngleToRiposte: 90
+  pendingCriticalDamage: 0
+  actionRecoveryTimer: 0
+  enablePivot: 1
   distanceFromTarget: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
   minimumFOV: -35
   maximumFOV: 35
-  actionRecoveryTimer: 0
   attackRotationSpeed: 5
-  enablePivot: 1
+  maxStance: 10
+  currentStance: 10
+  stanceRegeneratedPerSecond: 15
+  ignoreStanceBreak: 0
+  stanceRegenerationTimer: 0
+  defaultTimeUntilStanceRegenerates: 10
   rightHandDamageCollider: {fileID: 5342221314257230645}
   leftHandDamageCollider: {fileID: 543124090038122149}
   baseDamage: 25
+  basePoiseDamage: 15
   attack01DamageModifier: 1
   attack02DamageModifier: 1.4
 --- !u!114 &8203157729254877973
@@ -5964,6 +6024,7 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 0
 --- !u!135 &2384063456748304113
 SphereCollider:
   m_ObjectHideFlags: 0

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Wearable Model")]
     public class WearableModel : ScriptableObject

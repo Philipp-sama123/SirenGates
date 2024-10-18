@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class AICharacterCombatManager : CharacterCombatManager
     {
@@ -28,7 +28,7 @@ namespace KrazyKatgames
 
         [Header("Stance")]
         public float maxStance = 150;
-        public float currentStance;
+        public float currentStance = 150;
         [SerializeField] float stanceRegeneratedPerSecond = 15;
         [SerializeField] bool ignoreStanceBreak = false;
 
@@ -51,6 +51,7 @@ namespace KrazyKatgames
         {
             if (!aiCharacter.IsOwner)
                 return;
+
             if (aiCharacter.isDead.Value)
                 return;
 

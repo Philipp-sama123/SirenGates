@@ -3,7 +3,7 @@ using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerNetworkManager : CharacterNetworkManager
     {

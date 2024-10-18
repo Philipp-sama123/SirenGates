@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class DamageCollider : MonoBehaviour
     {

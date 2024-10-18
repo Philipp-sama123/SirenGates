@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class CharacterEffectsManager : MonoBehaviour
     {
@@ -14,8 +14,8 @@ namespace KrazyKatgames
         CharacterManager character;
 
         [Header("VFX")]
-        [SerializeField]
-        private GameObject bloodSplatterVFX;
+        [SerializeField] GameObject bloodSplatterVFX;
+        [SerializeField] GameObject criticalBloodSplatterVFX;
 
         [Header("Static Effects")]
         [SerializeField] List<StaticCharacterEffect> staticEffects;
@@ -39,6 +39,18 @@ namespace KrazyKatgames
             else
             {
                 GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.bloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+        }
+        public void PlayCriticalBloodSplatterVFX(Vector3 contactPoint)
+        {
+            if (criticalBloodSplatterVFX != null)
+            {
+                GameObject bloodSplatter = Instantiate(criticalBloodSplatterVFX, contactPoint, Quaternion.identity);
+            }
+            else
+            {
+                GameObject bloodSplatter = Instantiate(WorldCharacterEffectsManager.instance.criticalBloodSplatterVFX, contactPoint,
+                    Quaternion.identity);
             }
         }
         public void AddStaticEffect(StaticCharacterEffect effect)

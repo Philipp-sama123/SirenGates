@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/ Test Action")]
     public class WeaponItemAction : ScriptableObject

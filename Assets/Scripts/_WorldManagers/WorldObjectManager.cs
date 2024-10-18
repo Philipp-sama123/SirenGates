@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Unity.Netcode;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WorldObjectManager : MonoBehaviour
     {

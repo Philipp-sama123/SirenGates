@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WeaponModelInstantiationSlot : MonoBehaviour
     {

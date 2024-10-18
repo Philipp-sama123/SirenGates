@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Damage")]
     public class TakeDamageEffect : InstantCharacterEffect
@@ -18,7 +18,7 @@ namespace KrazyKatgames
         public float holyDamage = 0;
 
         [Header("Final Damage")]
-        private int finalDamageDealt = 0;
+        public int finalDamageDealt = 0;
 
         [Header("Poise")] // Also a future ToDo: 
         public float poiseDamage = 0;
@@ -55,12 +55,12 @@ namespace KrazyKatgames
             // ToDo: Check for Buildups (poison,bleed, ....) 
             PlayDamageSFX(character);
             PlayDamageVFX(character);
-            
+
             CalculateStanceDamage(character); // Run this after all other functions that would attempt to play an animation (!)
             // If Character is A.I. check for new target if character causing damage is present 
         }
 
-        private void CalculateDamage(CharacterManager character)
+        protected virtual void CalculateDamage(CharacterManager character)
         {
             if (!character.IsOwner)
                 return;
@@ -91,8 +91,7 @@ namespace KrazyKatgames
             // since Character is hit --> Reset Poise Timer (!)
             character.characterStatsManager.poiseResetTimer = character.characterStatsManager.defaultPoiseResetTime;
         }
-
-        private void CalculateStanceDamage(CharacterManager character)
+        protected void CalculateStanceDamage(CharacterManager character)
         {
             AICharacterManager aiCharacter = character as AICharacterManager;
 
@@ -104,19 +103,17 @@ namespace KrazyKatgames
                 aiCharacter.aiCharacterCombatManager.DamageStance(stanceDamage);
             }
         }
-        private void PlayDamageVFX(CharacterManager character)
+        protected void PlayDamageVFX(CharacterManager character)
         {
             character.characterEffectsManager.PlayBloodSplatterVFX(contactPoint);
         }
-
-        private void PlayDamageSFX(CharacterManager character)
+        protected void PlayDamageSFX(CharacterManager character)
         {
             AudioClip physicalDamageSFX = WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.physicalDamageSFX);
             character.characterSoundFXManager.PlaySoundFX(physicalDamageSFX);
             character.characterSoundFXManager.PlayDamageGruntSoundFX();
         }
-
-        private void PlayDirectionalBasedDamageAnimation(CharacterManager character)
+        protected void PlayDirectionalBasedDamageAnimation(CharacterManager character)
         {
             if (!character.IsOwner)
                 return;

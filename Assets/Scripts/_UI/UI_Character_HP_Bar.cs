@@ -2,7 +2,7 @@ using System;
 using TMPro;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     // identically to UI_Stats_Bar -> except this one appears and disappears (will always face the camera) 
     public class UI_Character_HP_Bar : UI_StatBar

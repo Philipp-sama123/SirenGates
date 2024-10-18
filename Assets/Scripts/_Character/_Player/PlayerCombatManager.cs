@@ -1,7 +1,7 @@
 using Unity.Netcode;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerCombatManager : CharacterCombatManager
     {
@@ -36,6 +36,67 @@ namespace KrazyKatgames
             }
         }
 
+        public override void AttemptRiposte(RaycastHit hit)
+        {
+            base.AttemptRiposte(hit);
+
+            CharacterManager targetCharacter = hit.transform.GetComponent<CharacterManager>();
+
+            if (targetCharacter == null)
+                return;
+
+            if (!targetCharacter.characterNetworkManager.isRipostable.Value)
+                return;
+
+            if (targetCharacter.characterNetworkManager.isBeingCriticallyDamaged.Value)
+                return;
+            Debug.LogWarning("Attempting riposte AFTER IF CHECKS (!)");
+
+            // just riposte with melee weapon
+            MeleeWeaponItem riposteWeapon;
+            MeleeWeaponDamageCollider riposteCollider;
+            // ToDo: check if two handing weapon (!)
+
+            riposteWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
+            riposteCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+
+            character.characterAnimatorManager.PlayTargetActionAnimationInstantly("Riposte_01", true);
+
+            //  isInvulnerable while riposting
+            if (character.IsOwner)
+                character.characterNetworkManager.isInvulnerable.Value = true;
+
+            // 1.Create a new Damage Effext
+            TakeCriticalDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeCriticalDamageEffect);
+
+            // 2. Apply Damage values
+            damageEffect.physicalDamage = riposteCollider.physicalDamage;
+            damageEffect.holyDamage = riposteCollider.holyDamage;
+            damageEffect.fireDamage = riposteCollider.fireDamage;
+            damageEffect.lightningDamage = riposteCollider.lightningDamage;
+            damageEffect.magicDamage = riposteCollider.magicDamage;
+            damageEffect.poiseDamage = riposteCollider.poiseDamage;
+
+            // 3. multiply with riposte modifiers
+            damageEffect.physicalDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+            damageEffect.holyDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+            damageEffect.fireDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+            damageEffect.lightningDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+            damageEffect.magicDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+            damageEffect.poiseDamage *= riposteWeapon.riposte_Attack_01_Modifier;
+
+            // 4. send server rpc to play the animation properly on the client side
+            targetCharacter.characterNetworkManager.NotifyTheServerOfRiposteServerRpc(
+                targetCharacter.NetworkObjectId,
+                character.NetworkObjectId,
+                "Riposted_01",
+                riposteWeapon.itemID,
+                damageEffect.physicalDamage,
+                damageEffect.magicDamage,
+                damageEffect.fireDamage,
+                damageEffect.holyDamage,
+                damageEffect.poiseDamage);
+        }
         public override void SetTarget(CharacterManager newTarget)
         {
             base.SetTarget(newTarget);
@@ -44,6 +105,7 @@ namespace KrazyKatgames
                 PlayerCamera.instance.SetLockCameraHeight();
             }
         }
+
         #region Animation Events
         public override void EnableCanDoCombo()
         {
@@ -123,7 +185,7 @@ namespace KrazyKatgames
                 default:
                     break;
             }
-            Debug.LogWarning("For " + player.name + " staminaDeducted -" + staminaDeducted);
+            Debug.Log("-- DrainStaminaBasedOnAttack -- For " + player.name + " staminaDeducted -" + staminaDeducted);
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
         }
         #endregion

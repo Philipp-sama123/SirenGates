@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WorldCharacterEffectsManager : MonoBehaviour
     {
@@ -10,10 +10,11 @@ namespace KrazyKatgames
         [Header("Take Damage Effect")]
         public TakeDamageEffect takeDamageEffect;
         public TakeBlockedDamageEffect takeBlockedDamageEffect;
-        
+        public TakeCriticalDamageEffect takeCriticalDamageEffect;
+
         [Header("Instant Effects")]
         [SerializeField] List<InstantCharacterEffect> instantEffects;
-        
+
         [Header("Static Effects")]
         [SerializeField] List<StaticCharacterEffect> staticEffects;
 
@@ -21,7 +22,8 @@ namespace KrazyKatgames
         public TwoHandingEffect twoHandingEffect;
 
         [Header("VFX")]
-        [SerializeField] public GameObject bloodSplatterVFX;
+        public GameObject bloodSplatterVFX;
+        public GameObject criticalBloodSplatterVFX;
 
         private void Awake()
         {
@@ -35,6 +37,10 @@ namespace KrazyKatgames
             }
 
             GenerateEffectIDs();
+        }
+        private void Start()
+        {
+            DontDestroyOnLoad(gameObject);
         }
 
         private void GenerateEffectIDs()

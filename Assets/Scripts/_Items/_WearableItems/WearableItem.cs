@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WearableItem : EquipmentItem
     {

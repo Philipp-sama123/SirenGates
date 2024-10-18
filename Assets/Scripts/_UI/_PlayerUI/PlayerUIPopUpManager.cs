@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerUIPopUpManager : MonoBehaviour
     {

@@ -241,4 +241,6 @@ MonoBehaviour:
   bossIntroPlayer: {fileID: 2328059167390218281}
   bossLoopPlayer: {fileID: 7169822256141281474}
   rollSFX: {fileID: 8300000, guid: e3298d0844ac746e0b20c76413abb353, type: 3}
+  stanceBreakSFX: {fileID: 8300000, guid: 922af6738d5ba8a4f8c189b68567ea78, type: 3}
   physicalDamageSFX: []
+  pickUpItemSFX: {fileID: 0}

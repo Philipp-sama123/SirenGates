@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class UI_StatBar : MonoBehaviour
     {

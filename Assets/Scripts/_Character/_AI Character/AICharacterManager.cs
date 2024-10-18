@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class AICharacterManager : CharacterManager
     {

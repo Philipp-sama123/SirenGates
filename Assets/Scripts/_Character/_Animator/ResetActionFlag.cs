@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class ResetActionFlag : StateMachineBehaviour
     {
@@ -29,6 +29,7 @@ namespace KrazyKatgames
                 character.characterNetworkManager.isInvulnerable.Value = false;
                 character.characterNetworkManager.isAttacking.Value = false;
                 character.characterNetworkManager.isRipostable.Value = false;
+                character.characterNetworkManager.isBeingCriticallyDamaged.Value = false;
             }
         }
     }

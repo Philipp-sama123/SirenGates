@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Effects/Static Effects/Two Handing Effect")]
     public class TwoHandingEffect : StaticCharacterEffect

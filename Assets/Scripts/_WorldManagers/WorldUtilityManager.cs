@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WorldUtilityManager : MonoBehaviour
     {
@@ -32,12 +32,10 @@ namespace KrazyKatgames
         {
             return characterLayers;
         }
-
         public LayerMask GetEnviroLayers()
         {
             return enviroLayers;
         }
-
         public bool CanIDamageThisTarget(CharacterGroup attackingCharacter, CharacterGroup targetCharacter)
         {
             if (attackingCharacter == CharacterGroup.Team01)
@@ -74,7 +72,6 @@ namespace KrazyKatgames
 
             return viewableAngle;
         }
-
         public DamageIntensity GetDamageIntensityBasedOnPoiseDamage(float poiseDamage)
         {
             // small items
@@ -97,6 +94,28 @@ namespace KrazyKatgames
                 damageIntensity = DamageIntensity.Colossal;
 
             return damageIntensity;
+        }
+        public Vector3 GetRipostingPositionBasedOnWeaponClass(WeaponClass weaponClass)
+        {
+            Vector3 position = new Vector3(0.1f, 0, 0.5f); //new Vector3(0.11f, 0, 0.7f);
+            switch (weaponClass)
+            {
+                case WeaponClass.Blade:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.Shield:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.StraightSword:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.Fist:
+                    // ToDo: Change position depending on the animation
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(weaponClass), weaponClass, null);
+            }
+            return position;
         }
     }
 }

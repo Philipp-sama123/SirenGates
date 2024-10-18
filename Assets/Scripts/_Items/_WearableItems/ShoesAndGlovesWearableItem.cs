@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Items/Wearable/Shoes and Gloves")]
     public class ShoesAndGlovesWearableItem : WearableItem

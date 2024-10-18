@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using Unity.Netcode;
 
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerManager : CharacterManager
     {

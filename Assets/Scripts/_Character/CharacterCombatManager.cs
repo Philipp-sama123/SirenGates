@@ -1,18 +1,19 @@
+using System.Collections;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class CharacterCombatManager : NetworkBehaviour
     {
-        private CharacterManager character;
+        protected CharacterManager character;
 
         [Header("Last Attack Animation Performed")]
         public string lastAttackAnimationPerformed;
 
         [Header("Previous Poise Damage Taken")]
         public float previousPoiseDamageTaken;
-        
+
         [Header("Attack Target")]
         public CharacterManager currentTarget;
 
@@ -26,6 +27,12 @@ namespace KrazyKatgames
         public bool canPerformRollingAttack = false;
         public bool canPerformBackstepAttack = false;
         public bool canBlock = true;
+
+        [Header("Critical Attack")]
+        private Transform riposteReceiverTransform;
+        [SerializeField] private float criticalAttackDistanceCheck = 1f;
+        [SerializeField] private int minMaxAngleToRiposte = 90;
+        public int pendingCriticalDamage;
 
         protected virtual void Awake()
         {
@@ -48,6 +55,88 @@ namespace KrazyKatgames
                 }
             }
         }
+        // used to attempt riposte
+        public virtual void AttemptCriticalAttack()
+        {
+            if (character.isPerformingAction)
+                return;
+
+            if (character.characterNetworkManager.currentStamina.Value >= 0)
+            {
+                RaycastHit[] hits = Physics.RaycastAll(
+                    character.characterCombatManager.lockOnTransform.transform.position,
+                    character.transform.TransformDirection(Vector3.forward),
+                    criticalAttackDistanceCheck,
+                    WorldUtilityManager.Instance.GetCharacterLayers()
+                );
+
+                for (int i = 0; i < hits.Length; i++)
+                {
+                    RaycastHit hit = hits[i];
+
+                    CharacterManager targetCharacter = hit.transform.GetComponent<CharacterManager>();
+
+                    if (targetCharacter != null)
+                    {
+                        if (targetCharacter == character)
+                            continue;
+
+                        if (!WorldUtilityManager.Instance.CanIDamageThisTarget(character.characterGroup, targetCharacter.characterGroup))
+                            continue;
+
+                        Vector3 directionFromCharacterToTarget = character.transform.position - targetCharacter.transform.position;
+                        float targetViewableAngle =
+                            Vector3.SignedAngle(directionFromCharacterToTarget, targetCharacter.transform.forward, Vector3.up);
+
+                        if (targetCharacter.characterNetworkManager.isRipostable.Value)
+                        {
+                            if (targetViewableAngle >= -minMaxAngleToRiposte && targetViewableAngle <= minMaxAngleToRiposte)
+                            {
+                                AttemptRiposte(hit);
+                                return;
+                            }
+                        }
+                    }
+                    // ToDo: Backstab check
+                }
+            }
+        }
+        public virtual void AttemptRiposte(RaycastHit hit)
+        {
+            Debug.LogWarning("Attempting riposte");
+        }
+
+        public virtual void ApplyCriticalDamage()
+        {
+            character.characterEffectsManager.PlayCriticalBloodSplatterVFX(character.characterCombatManager.lockOnTransform.transform.position);
+            character.characterSoundFXManager.PlayCriticalStrikeSoundFX();
+            
+            if (character.IsOwner)
+            {
+                character.characterNetworkManager.currentHealth.Value -= pendingCriticalDamage;
+            }
+        }
+        public IEnumerator ForceMoveEnemyCharacterToRipostePosition(CharacterManager enemyCharacter, Vector3 ripostePosition)
+        {
+            float timer = 0;
+            while (timer < 0.5f)
+            {
+                timer += Time.deltaTime;
+                if (riposteReceiverTransform == null)
+                {
+                    GameObject riposteTransformObject = new GameObject("Riposte Transform");
+                    riposteTransformObject.transform.parent = transform;
+                    riposteTransformObject.transform.position = Vector3.zero;
+                    riposteReceiverTransform = riposteTransformObject.transform;
+                }
+                riposteReceiverTransform.localPosition = ripostePosition;
+                enemyCharacter.transform.position = riposteReceiverTransform.position;
+
+                transform.rotation = Quaternion.LookRotation(-enemyCharacter.transform.forward);
+                yield return null;
+            }
+        }
+
         #region Animation Events
         public void EnableIsInvulnerable()
         {

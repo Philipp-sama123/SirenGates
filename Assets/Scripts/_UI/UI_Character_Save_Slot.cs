@@ -1,7 +1,7 @@
 using TMPro;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class UI_Character_Save_Slot : MonoBehaviour
     {

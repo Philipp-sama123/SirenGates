@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerUISelectButtonOnEnable : MonoBehaviour
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerEquipmentManager : CharacterEquipmentManager
     {
@@ -21,8 +21,8 @@ namespace KrazyKatgames
         [HideInInspector] public GameObject leftHandWeaponModel;
 
         [Header("Weapon Managers")]
-        [SerializeField] WeaponManager rightWeaponManager;
-        [SerializeField] WeaponManager leftWeaponManager;
+        public WeaponManager rightWeaponManager;
+        public WeaponManager leftWeaponManager;
 
         [Header("Equipment Models")]
         public GameObject underwearObject;
@@ -154,7 +154,6 @@ namespace KrazyKatgames
         }
         public void EquipWearables()
         {
-            Debug.LogWarning("EquipWearables!!");
             LoadCloakEquipment(player.playerInventoryManager.cloakWearable);
             LoadPantsEquipment(player.playerInventoryManager.pantsWearable);
             LoadOutfitEquipment(player.playerInventoryManager.outfitWearable);

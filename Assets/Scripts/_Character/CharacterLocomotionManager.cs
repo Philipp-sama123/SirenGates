@@ -1,7 +1,7 @@
 using HoaxGames;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class CharacterLocomotionManager : MonoBehaviour
     {

@@ -1,4 +1,4 @@
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class PlayerStatsManager : CharacterStatsManager
     {

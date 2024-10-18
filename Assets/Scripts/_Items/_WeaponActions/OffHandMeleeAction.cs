@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Actions/Weapon Actions/Off Hand Action")]
     public class OffHandMeleeAction : WeaponItemAction

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Stamina Damage")]
     public class TakeStaminaDamageEffect : InstantCharacterEffect

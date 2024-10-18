@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "Character Effects/Instant Effects/Take Blocked Damage")]
     public class TakeBlockedDamageEffect : InstantCharacterEffect

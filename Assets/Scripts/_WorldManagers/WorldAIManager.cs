@@ -4,7 +4,7 @@ using Unity.Netcode;
 using UnityEngine;
 using System.Linq;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WorldAIManager : MonoBehaviour
     {

@@ -4,7 +4,7 @@ using UnityEngine;
 using Unity.Netcode;
 using UnityEngine.InputSystem.XR.Haptics;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class AIBossCharacterManager : AICharacterManager
     {

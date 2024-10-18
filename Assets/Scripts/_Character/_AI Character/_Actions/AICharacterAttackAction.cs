@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     [CreateAssetMenu(menuName = "A.I/Actions/Attack")]
     public class AICharacterAttackAction : ScriptableObject

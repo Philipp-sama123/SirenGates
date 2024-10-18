@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
-using KrazyKatgames;
+using KrazyKatGames;
 using UnityEngine;
 
 public class AIUndeadCombatManager : AICharacterCombatManager

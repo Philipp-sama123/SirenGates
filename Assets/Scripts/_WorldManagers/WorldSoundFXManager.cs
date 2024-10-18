@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class WorldSoundFXManager : MonoBehaviour
     {
@@ -11,15 +11,14 @@ namespace KrazyKatgames
         [SerializeField] AudioSource bossIntroPlayer;
         [SerializeField] AudioSource bossLoopPlayer;
 
-        [Header("Action Sounds")]
-        public AudioClip rollSFX;
-        public AudioClip stanceBreakSFX;
-
         [Header("Damage Sounds")]
         public AudioClip[] physicalDamageSFX;
-        
-        [Header("Pick Up Sounds")]
+
+        [Header("Action Sounds")]
+        public AudioClip rollSFX;
         public AudioClip pickUpItemSFX;
+        public AudioClip stanceBreakSFX;
+        public AudioClip criticalStrikeSFX;
 
         private void Awake()
         {

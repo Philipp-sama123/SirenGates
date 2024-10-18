@@ -5,7 +5,7 @@ using HoaxGames;
 using Unity.Netcode;
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class CharacterManager : NetworkBehaviour
     {
@@ -140,12 +140,16 @@ namespace KrazyKatgames
 
             animator.SetBool("IsMoving", characterNetworkManager.isMoving.Value);
             characterNetworkManager.OnIsActiveChanged(false, characterNetworkManager.isActive.Value);
+            
+            isDead.OnValueChanged += characterNetworkManager.OnIsDeadChanged;
             characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
             characterNetworkManager.isActive.OnValueChanged += characterNetworkManager.OnIsActiveChanged;
         }
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
+            
+            isDead.OnValueChanged -= characterNetworkManager.OnIsDeadChanged;
             characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
             characterNetworkManager.isActive.OnValueChanged -= characterNetworkManager.OnIsActiveChanged;
         }

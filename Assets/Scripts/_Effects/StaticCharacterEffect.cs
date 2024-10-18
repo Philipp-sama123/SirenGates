@@ -1,7 +1,7 @@
 
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class StaticCharacterEffect : ScriptableObject
     {

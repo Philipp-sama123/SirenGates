@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace KrazyKatgames
+namespace KrazyKatGames
 {
     public class CharacterSoundFXManager : MonoBehaviour
     {
@@ -45,14 +45,14 @@ namespace KrazyKatgames
             if (damageGrunts.Length > 0)
                 PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(damageGrunts));
             else
-                Debug.LogWarning("NO damageGrunt Sound Effects!");
+                Debug.Log("MISSING SFX: damageGrunt!");
         }
         public virtual void PlayAttackGruntSoundFX()
         {
             if (attackGrunts.Length > 0)
                 PlaySoundFX(WorldSoundFXManager.instance.ChooseRandomSFXFromArray(attackGrunts));
             else
-                Debug.LogWarning("NO attackGrunts Sound Effects!");
+                Debug.Log("MISSING SFX: attackGrunt!");
         }
         public virtual void PlayStanceBreakSoundFX()
         {
@@ -61,6 +61,10 @@ namespace KrazyKatgames
 
         public virtual void PlayBlockSoundFX()
         {
+        }
+        public void PlayCriticalStrikeSoundFX()
+        {
+            audioSource.PlayOneShot(WorldSoundFXManager.instance.criticalStrikeSFX);
         }
     }
 }
