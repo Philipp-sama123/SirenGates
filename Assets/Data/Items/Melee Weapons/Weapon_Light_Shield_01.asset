@@ -15,11 +15,11 @@ MonoBehaviour:
   itemName: Small Shield
   itemIcon: {fileID: 21300000, guid: 153ddf09ae4964b6d9f21e0e6fd97610, type: 3}
   itemDescription: Small shield dude
-  itemID: 3
+  itemID: 4
   itemWeight: 0
   weaponAnimator: {fileID: 22100000, guid: 19296887674024f2f9c5a771fa67ea2e, type: 2}
   weaponModelType: 1
-  weaponModel: {fileID: 6397344720308477397, guid: 635a3c424ff764276917089cf528e6ba, type: 3}
+  weaponModel: {fileID: 6397344720308477397, guid: f20f4dda619e34f2a8c57d847168276f, type: 3}
   weaponClass: 4
   strengthREQ: 10
   dexREQ: 0

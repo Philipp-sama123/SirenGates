@@ -14,19 +14,31 @@ namespace KrazyKatGames
 
         [Header("Weapon Slots")]
         [SerializeField] Image rightHandSlot01;
+        private Button rightHandSlot01Button;
         [SerializeField] Image rightHandSlot02;
+        private Button rightHandSlot02Button;
         [SerializeField] Image rightHandSlot03;
+        private Button rightHandSlot03Button;
         [SerializeField] Image leftHandSlot01;
+        private Button leftHandSlot01Button;
         [SerializeField] Image leftHandSlot02;
+        private Button leftHandSlot02Button;
         [SerializeField] Image leftHandSlot03;
+        private Button leftHandSlot03Button;
 
         [Header("Equipment Slots")]
         [SerializeField] Image underwearSlot;
+        private Button underwearSlotButton;
         [SerializeField] Image pantsSlot;
+        private Button pantsSlotButton;
         [SerializeField] Image outfitSlot;
+        private Button outfitSlotButton;
         [SerializeField] Image hoodSlot;
+        private Button hoodSlotButton;
         [SerializeField] Image cloakSlot;
+        private Button cloakSlotButton;
         [SerializeField] Image shoesAndGlovesSlot;
+        private Button shoesAndGlovesSlotButton;
 
         //  THIS INVENTORY POPULATES WITH RELATED ITEMS WHEN CHANGING EQUIPMENT
         [Header("Equipment Inventory")]
@@ -36,11 +48,28 @@ namespace KrazyKatGames
         [SerializeField] GameObject equipmentInventorySlotPrefab;
         [SerializeField] Transform equipmentInventoryContentWindow;
         [SerializeField] Item currentSelectedItem;
+        private void Awake()
+        {
+            rightHandSlot01Button = rightHandSlot01.GetComponentInParent<Button>(true);
+            rightHandSlot02Button = rightHandSlot02.GetComponentInParent<Button>(true);
+            rightHandSlot03Button = rightHandSlot03.GetComponentInParent<Button>(true);
 
+            leftHandSlot01Button = leftHandSlot01.GetComponentInParent<Button>(true);
+            leftHandSlot02Button = leftHandSlot02.GetComponentInParent<Button>(true);
+            leftHandSlot03Button = leftHandSlot03.GetComponentInParent<Button>(true);
+
+            underwearSlotButton = underwearSlot.GetComponentInParent<Button>(true);
+            pantsSlotButton = pantsSlot.GetComponentInParent<Button>(true);
+            outfitSlotButton = outfitSlot.GetComponentInParent<Button>(true);
+            hoodSlotButton = hoodSlot.GetComponentInParent<Button>(true);
+            cloakSlotButton = cloakSlot.GetComponentInParent<Button>(true);
+            shoesAndGlovesSlotButton = shoesAndGlovesSlot.GetComponentInParent<Button>(true);
+        }
 
         public void OpenEquipmentManagerMenu()
         {
             PlayerUIManager.instance.menuWindowIsOpen = true;
+            ToggleEquipmentButtons(true);
             menu.SetActive(true);
             equipmentInventoryWindow.SetActive(false);
 
@@ -51,6 +80,23 @@ namespace KrazyKatGames
         {
             ClearEquipmentInventory();
             RefreshEquipmentSlotIcons();
+        }
+        private void ToggleEquipmentButtons(bool isEnabled)
+        {
+            rightHandSlot01Button.enabled = isEnabled;
+            rightHandSlot02Button.enabled = isEnabled;
+            rightHandSlot03Button.enabled = isEnabled;
+
+            leftHandSlot01Button.enabled = isEnabled;
+            leftHandSlot02Button.enabled = isEnabled;
+            leftHandSlot03Button.enabled = isEnabled;
+
+            underwearSlotButton.enabled = isEnabled;
+            pantsSlotButton.enabled = isEnabled;
+            outfitSlotButton.enabled = isEnabled;
+            cloakSlotButton.enabled = isEnabled;
+            hoodSlotButton.enabled = isEnabled;
+            shoesAndGlovesSlotButton.enabled = isEnabled;
         }
         public void CloseEquipmentManagerMenu()
         {
@@ -185,6 +231,7 @@ namespace KrazyKatGames
         }
         public void LoadEquipmentInventory()
         {
+            ToggleEquipmentButtons(false);
             equipmentInventoryWindow.SetActive(true);
 
             switch (currentSelectedEquipmentSlot)
@@ -246,6 +293,9 @@ namespace KrazyKatGames
 
             if (weaponsInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -282,6 +332,9 @@ namespace KrazyKatGames
 
             if (underwearInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -318,6 +371,9 @@ namespace KrazyKatGames
 
             if (shoesAndGlovesInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -354,6 +410,9 @@ namespace KrazyKatGames
 
             if (hoodsInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -390,6 +449,9 @@ namespace KrazyKatGames
 
             if (cloaksInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -426,6 +488,9 @@ namespace KrazyKatGames
 
             if (outfitsInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -462,6 +527,9 @@ namespace KrazyKatGames
 
             if (pantsInInventory.Count <= 0)
             {
+                // ToDo: send a popup that he has no item type in inventory 
+                equipmentInventoryWindow.SetActive(false);
+                ToggleEquipmentButtons(true);
                 RefreshMenu();
                 return;
             }
@@ -493,7 +561,8 @@ namespace KrazyKatGames
         public void SelectLastSelectedEquipmentSlot()
         {
             Button lastSelectedButton = null;
-
+            ToggleEquipmentButtons(true);
+            
             switch (currentSelectedEquipmentSlot)
             {
                 case EquipmentType.RightWeapon01:
@@ -541,6 +610,8 @@ namespace KrazyKatGames
                 lastSelectedButton.Select();
                 lastSelectedButton.OnSelect(null);
             }
+
+            equipmentInventoryWindow.SetActive(false);
         }
         public void UnEquipSelectedItem()
         {

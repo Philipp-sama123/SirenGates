@@ -45,22 +45,22 @@ namespace KrazyKatGames
         {
             if (playerPerformingAction.isPerformingAction)
             {
-                Debug.LogWarning("can not perform AshOfWar (!) " + this.name + " isPerformingAction (!)");
+                Debug.LogWarning("can not perform AshOfWar (!) isPerformingAction (!)");
                 return false;
             }
             if (playerPerformingAction.playerNetworkManager.isJumping.Value)
             {
-                Debug.LogWarning("can not perform AshOfWar (!) " + this.name + " Jumping (!)");
+                Debug.LogWarning("can not perform AshOfWar (!) Jumping (!)");
                 return false;
             }
             if (!playerPerformingAction.playerLocomotionManager.isGrounded)
             {
-                Debug.LogWarning("can not perform AshOfWar (!) " + this.name + " is not GROUNDED (!)");
+                Debug.LogWarning("can not perform AshOfWar (!) is not GROUNDED (!)");
                 return false;
             }
             if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
             {
-                Debug.LogWarning("can not perform AshOfWar (!) " + this.name + " out of STAMINA (!)");
+                Debug.LogWarning("can not perform AshOfWar (!) out of STAMINA (!)");
                 return false;
             }
             return true;
