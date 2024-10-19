@@ -187,6 +187,7 @@ namespace KrazyKatGames
         #endregion
 
         #region Damage
+        // Character Damage
         [ServerRpc(RequireOwnership = false)]
         public void NotifyTheServerOfCharacterDamageServerRpc(
             ulong damagedCharacterID,
@@ -258,6 +259,7 @@ namespace KrazyKatGames
             damagedCharacter.characterEffectsManager.ProcessInstantEffect(damageEffect);
         }
 
+        // Riposte
         [ServerRpc(RequireOwnership = false)]
         public void NotifyTheServerOfRiposteServerRpc(
             ulong damagedCharacterID,
@@ -316,7 +318,7 @@ namespace KrazyKatGames
 
             if (damagedCharacter.IsOwner)
                 damagedCharacter.characterNetworkManager.isBeingCriticallyDamaged.Value = true;
-            
+
             damageEffect.physicalDamage = physicalDamage;
             damageEffect.magicDamage = magicDamage;
             damageEffect.fireDamage = fireDamage;
@@ -332,6 +334,83 @@ namespace KrazyKatGames
                 characterCausingDamage,
                 WorldUtilityManager.Instance.GetRipostingPositionBasedOnWeaponClass(weapon.weaponClass))
             );
+        }
+
+        // BackStab
+        [ServerRpc(RequireOwnership = false)]
+        public void NotifyTheServerOfBackStabServerRpc(
+            ulong damagedCharacterID,
+            ulong characterCausingDamageID,
+            string criticalDamageAnimation,
+            int weaponID,
+            float physicalDamage,
+            float magicDamage,
+            float fireDamage,
+            float holyDamage,
+            float poiseDamage
+        )
+        {
+            if (IsServer)
+            {
+                NotifyTheServerOfBackStabClientRpc(damagedCharacterID, characterCausingDamageID, criticalDamageAnimation, weaponID, physicalDamage,
+                    magicDamage, fireDamage,
+                    holyDamage, poiseDamage);
+            }
+        }
+        [ClientRpc]
+        public void NotifyTheServerOfBackStabClientRpc(
+            ulong damagedCharacterID,
+            ulong characterCausingDamageID,
+            string criticalDamageAnimation,
+            int weaponID,
+            float physicalDamage,
+            float magicDamage,
+            float fireDamage,
+            float holyDamage,
+            float poiseDamage
+        )
+        {
+            ProcessBackStabFromServer(damagedCharacterID, characterCausingDamageID, criticalDamageAnimation, weaponID, physicalDamage, magicDamage,
+                fireDamage, holyDamage,
+                poiseDamage);
+        }
+        public void ProcessBackStabFromServer(
+            ulong damagedCharacterID,
+            ulong characterCausingDamageID,
+            string criticalDamageAnimation,
+            int weaponID,
+            float physicalDamage,
+            float magicDamage,
+            float fireDamage,
+            float holyDamage,
+            float poiseDamage
+        )
+        {
+            CharacterManager damagedCharacter = NetworkManager.Singleton.SpawnManager.SpawnedObjects[damagedCharacterID].gameObject.
+                GetComponent<CharacterManager>();
+            CharacterManager characterCausingDamage = NetworkManager.Singleton.SpawnManager.SpawnedObjects[characterCausingDamageID].gameObject.
+                GetComponent<CharacterManager>();
+            WeaponItem weapon = WorldItemDatabase.Instance.GetWeaponByID(weaponID);
+            TakeCriticalDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeCriticalDamageEffect);
+
+            if (damagedCharacter.IsOwner)
+                damagedCharacter.characterNetworkManager.isBeingCriticallyDamaged.Value = true;
+
+            damageEffect.physicalDamage = physicalDamage;
+            damageEffect.magicDamage = magicDamage;
+            damageEffect.fireDamage = fireDamage;
+            damageEffect.holyDamage = holyDamage;
+            damageEffect.poiseDamage = poiseDamage;
+            damageEffect.characterCausingDamage = characterCausingDamage;
+
+            damagedCharacter.characterEffectsManager.ProcessInstantEffect(damageEffect);
+            damagedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly(criticalDamageAnimation, true);
+
+            // Move the enemy to a proper backstab position
+            // StartCoroutine(damagedCharacter.characterCombatManager.ForceMoveEnemyCharacterToBackStabPosition(
+            //     characterCausingDamage,
+            //     WorldUtilityManager.Instance.GetBackStabPositionBasedOnWeaponClass(weapon.weaponClass))
+            // );
         }
         #endregion
     }

@@ -117,5 +117,27 @@ namespace KrazyKatGames
             }
             return position;
         }
+        public Vector3 GetBackStabPositionBasedOnWeaponClass(WeaponClass weaponClass)
+        {
+            Vector3 position = new Vector3(0.12f, 0, 0.74f); //new Vector3(0.11f, 0, 0.7f);
+            switch (weaponClass)
+            {
+                case WeaponClass.Blade:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.Shield:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.StraightSword:
+                    // ToDo: Change position depending on the animation
+                    break;
+                case WeaponClass.Fist:
+                    // ToDo: Change position depending on the animation
+                    break;
+                default:
+                    throw new ArgumentOutOfRangeException(nameof(weaponClass), weaponClass, null);
+            }
+            return position;
+        }
     }
 }

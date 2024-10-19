@@ -92,7 +92,7 @@ namespace KrazyKatGames
                 isDead.Value = true;
 
                 // if in air -- air death animation()!
-                if (!manuallySelectDeathAnimation)
+                if (!manuallySelectDeathAnimation && !characterNetworkManager.isBeingCriticallyDamaged.Value)
                 {
                     characterAnimatorManager.PlayTargetActionAnimation("Death_01", true);
                 }
@@ -140,7 +140,7 @@ namespace KrazyKatGames
 
             animator.SetBool("IsMoving", characterNetworkManager.isMoving.Value);
             characterNetworkManager.OnIsActiveChanged(false, characterNetworkManager.isActive.Value);
-            
+
             isDead.OnValueChanged += characterNetworkManager.OnIsDeadChanged;
             characterNetworkManager.isMoving.OnValueChanged += characterNetworkManager.OnIsMovingChanged;
             characterNetworkManager.isActive.OnValueChanged += characterNetworkManager.OnIsActiveChanged;
@@ -148,7 +148,7 @@ namespace KrazyKatGames
         public override void OnNetworkDespawn()
         {
             base.OnNetworkDespawn();
-            
+
             isDead.OnValueChanged -= characterNetworkManager.OnIsDeadChanged;
             characterNetworkManager.isMoving.OnValueChanged -= characterNetworkManager.OnIsMovingChanged;
             characterNetworkManager.isActive.OnValueChanged -= characterNetworkManager.OnIsActiveChanged;

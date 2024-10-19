@@ -27,9 +27,11 @@ namespace KrazyKatGames
         public bool canPerformRollingAttack = false;
         public bool canPerformBackstepAttack = false;
         public bool canBlock = true;
+        public bool canBeBackStabbed = true;
 
         [Header("Critical Attack")]
         private Transform riposteReceiverTransform;
+        private Transform backStabReceiverTransform;
         [SerializeField] private float criticalAttackDistanceCheck = 1f;
         [SerializeField] private int minMaxAngleToRiposte = 90;
         public int pendingCriticalDamage;
@@ -96,21 +98,38 @@ namespace KrazyKatGames
                                 return;
                             }
                         }
+                        // ToDo: Backstab check
+                        if (targetCharacter.characterCombatManager.canBeBackStabbed)
+                        {
+                            if (targetViewableAngle <= 180 && targetViewableAngle >= 145) // ToDo: make variables for this (!)
+                            {
+                                AttemptBackStab(hit);
+                                return;
+                            }
+                            if (targetViewableAngle >= -180 && targetViewableAngle <= -145)
+                            {
+                                AttemptBackStab(hit);
+                                return;
+                            }
+                        }
                     }
-                    // ToDo: Backstab check
                 }
             }
         }
+        public virtual void AttemptBackStab(RaycastHit hit)
+        {
+            Debug.LogWarning("Attempting BackStab");
+        }
         public virtual void AttemptRiposte(RaycastHit hit)
         {
-            Debug.LogWarning("Attempting riposte");
+            Debug.LogWarning("Attempting Riposte");
         }
 
         public virtual void ApplyCriticalDamage()
         {
             character.characterEffectsManager.PlayCriticalBloodSplatterVFX(character.characterCombatManager.lockOnTransform.transform.position);
             character.characterSoundFXManager.PlayCriticalStrikeSoundFX();
-            
+
             if (character.IsOwner)
             {
                 character.characterNetworkManager.currentHealth.Value -= pendingCriticalDamage;
@@ -137,6 +156,26 @@ namespace KrazyKatGames
             }
         }
 
+        public IEnumerator ForceMoveEnemyCharacterToBackStabPosition(CharacterManager enemyCharacter, Vector3 backStabPosition)
+        {
+            float timer = 0;
+            while (timer < 0.5f)
+            {
+                timer += Time.deltaTime;
+                if (backStabReceiverTransform == null)
+                {
+                    GameObject backStabTransformObject = new GameObject("Backstab Transform");
+                    backStabTransformObject.transform.parent = transform;
+                    backStabTransformObject.transform.position = Vector3.zero;
+                    backStabReceiverTransform = backStabTransformObject.transform;
+                }
+                backStabReceiverTransform.localPosition = backStabPosition;
+                enemyCharacter.transform.position = backStabReceiverTransform.position;
+
+                transform.rotation = Quaternion.LookRotation(enemyCharacter.transform.forward);
+                yield return null;
+            }
+        }
         #region Animation Events
         public void EnableIsInvulnerable()
         {

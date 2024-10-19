@@ -5398,6 +5398,7 @@ MonoBehaviour:
   canPerformRollingAttack: 0
   canPerformBackstepAttack: 0
   canBlock: 1
+  canBeBackStabbed: 1
   criticalAttackDistanceCheck: 1
   minMaxAngleToRiposte: 90
   pendingCriticalDamage: 0

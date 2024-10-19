@@ -55,10 +55,17 @@ namespace KrazyKatGames
             // just riposte with melee weapon
             MeleeWeaponItem riposteWeapon;
             MeleeWeaponDamageCollider riposteCollider;
-            // ToDo: check if two handing weapon (!)
 
-            riposteWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
-            riposteCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                riposteWeapon = player.playerInventoryManager.currentLeftHandWeapon as MeleeWeaponItem;
+                riposteCollider = player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider;
+            }
+            else
+            {
+                riposteWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
+                riposteCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            }
 
             character.characterAnimatorManager.PlayTargetActionAnimationInstantly("Riposte_01", true);
 
@@ -91,6 +98,74 @@ namespace KrazyKatGames
                 character.NetworkObjectId,
                 "Riposted_01",
                 riposteWeapon.itemID,
+                damageEffect.physicalDamage,
+                damageEffect.magicDamage,
+                damageEffect.fireDamage,
+                damageEffect.holyDamage,
+                damageEffect.poiseDamage);
+        }
+        public override void AttemptBackStab(RaycastHit hit)
+        {
+            base.AttemptBackStab(hit);
+
+            CharacterManager targetCharacter = hit.transform.GetComponent<CharacterManager>();
+
+            if (targetCharacter == null)
+                return;
+
+            if (!targetCharacter.characterCombatManager.canBeBackStabbed)
+                return;
+
+            if (targetCharacter.characterNetworkManager.isBeingCriticallyDamaged.Value)
+                return;
+
+            Debug.LogWarning("Attempting BackStab AFTER IF CHECKS (!)");
+
+            // just riposte with melee weapon
+            MeleeWeaponItem backStabWeapon;
+            MeleeWeaponDamageCollider backStabCollider;
+
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                backStabWeapon = player.playerInventoryManager.currentLeftHandWeapon as MeleeWeaponItem;
+                backStabCollider = player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider;
+            }
+            else
+            {
+                backStabWeapon = player.playerInventoryManager.currentRightHandWeapon as MeleeWeaponItem;
+                backStabCollider = player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider;
+            }
+            character.characterAnimatorManager.PlayTargetActionAnimationInstantly("BackStab_01", true);
+
+            //  isInvulnerable while riposting
+            if (character.IsOwner)
+                character.characterNetworkManager.isInvulnerable.Value = true;
+
+            // 1.Create a new Damage Effext
+            TakeCriticalDamageEffect damageEffect = Instantiate(WorldCharacterEffectsManager.instance.takeCriticalDamageEffect);
+
+            // 2. Apply Damage values
+            damageEffect.physicalDamage = backStabCollider.physicalDamage;
+            damageEffect.holyDamage = backStabCollider.holyDamage;
+            damageEffect.fireDamage = backStabCollider.fireDamage;
+            damageEffect.lightningDamage = backStabCollider.lightningDamage;
+            damageEffect.magicDamage = backStabCollider.magicDamage;
+            damageEffect.poiseDamage = backStabCollider.poiseDamage;
+
+            // 3. multiply with riposte modifiers
+            damageEffect.physicalDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+            damageEffect.holyDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+            damageEffect.fireDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+            damageEffect.lightningDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+            damageEffect.magicDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+            damageEffect.poiseDamage *= backStabWeapon.backStab__Attack_01_Modifier;
+
+            // 4. send server rpc to play the animation properly on the client side
+            targetCharacter.characterNetworkManager.NotifyTheServerOfBackStabServerRpc(
+                targetCharacter.NetworkObjectId,
+                character.NetworkObjectId,
+                "BackStabbed_01",
+                backStabWeapon.itemID,
                 damageEffect.physicalDamage,
                 damageEffect.magicDamage,
                 damageEffect.fireDamage,
