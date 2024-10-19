@@ -4775,12 +4775,12 @@ GameObject:
   - component: {fileID: 6265452835546319259}
   - component: {fileID: 6171604851503328497}
   - component: {fileID: 9000439784585813718}
-  - component: {fileID: 5500948303809527625}
   - component: {fileID: 3156296404296441345}
   - component: {fileID: 1723301941932351450}
   - component: {fileID: 6866360928223709062}
   - component: {fileID: 6926194295564093448}
   - component: {fileID: 8203157729254877973}
+  - component: {fileID: 3857213833581081459}
   m_Layer: 6
   m_Name: Undead_Dummy_01
   m_TagString: Untagged
@@ -4845,7 +4845,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 2609465003
+  GlobalObjectIdHash: 1156288020
   InScenePlacedSourceGlobalObjectIdHash: 2729144484
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -5137,9 +5137,13 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
-  isAttacking:
-    m_InternalValue: 0
   isBlocking:
+    m_InternalValue: 0
+  isParrying:
+    m_InternalValue: 0
+  isParryable:
+    m_InternalValue: 0
+  isAttacking:
     m_InternalValue: 0
   isInvulnerable:
     m_InternalValue: 0
@@ -5201,6 +5205,7 @@ MonoBehaviour:
   characterName: 
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterNetworkManager: {fileID: 0}
+  aiCharacterInventoryManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
   navMeshAgent: {fileID: 0}
   currentState: {fileID: 11400000, guid: 86d959ea59b3245b6b10224f6a57b053, type: 2}
@@ -5259,18 +5264,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f375070d238a47ab90bee8b1f95fce3e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &5500948303809527625
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4413532425802017334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9cb1248ea7c4034b19906190808b768, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &3156296404296441345
@@ -5437,6 +5430,24 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hasFloatingHPBar: 1
   characterHPBar: {fileID: 7410025562114966726}
+--- !u!114 &3857213833581081459
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4413532425802017334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1336c7c483ef43deb10fa31c19a22778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemChance: 25
+  droppableItems:
+  - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
+  - {fileID: 11400000, guid: 28787fb7436a047efbe97e747e917663, type: 2}
+  - {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
+  - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
 --- !u!1 &4448061770091362231
 GameObject:
   m_ObjectHideFlags: 0

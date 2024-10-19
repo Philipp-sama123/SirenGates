@@ -20,7 +20,6 @@ namespace KrazyKatGames
         {
             return false;
         }
-
         protected virtual void DeductStaminaCost(PlayerManager playerPerformingAction)
         {
             playerPerformingAction.playerNetworkManager.currentStamina.Value -= staminaCost;

@@ -14944,7 +14944,7 @@ GameObject:
   - component: {fileID: 6556924102397891775}
   - component: {fileID: 254663848298063660}
   m_Layer: 12
-  m_Name: Item Pick Up
+  m_Name: World Item Pick Up Interactable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -14978,7 +14978,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 3048655644
+  GlobalObjectIdHash: 2628211221
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -15001,10 +15001,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   interactableText: Pick up this Item
   interactableCollider: {fileID: 254663848298063660}
-  hostOnlyInteractable: 1
+  hostOnlyInteractable: 0
   pickUpType: 0
   item: {fileID: 11400000, guid: 6ce9a6712e1f9457a82f1bc97c608452, type: 2}
-  itemID: 0
+  itemID:
+    m_InternalValue: 0
+  networkPosition:
+    m_InternalValue: {x: 0, y: 0, z: 0}
+  worldSpawnInteractableID: 0
   hasBeenLooted: 0
 --- !u!135 &254663848298063660
 SphereCollider:

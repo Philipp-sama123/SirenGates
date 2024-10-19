@@ -4627,6 +4627,7 @@ MonoBehaviour:
   LB_Input: 0
   RT_Input: 0
   Hold_RT_Input: 0
+  LT_Input: 0
   two_Hand_Input: 0
   two_Hand_Right_Weapon_Input: 0
   two_Hand_Left_Weapon_Input: 0

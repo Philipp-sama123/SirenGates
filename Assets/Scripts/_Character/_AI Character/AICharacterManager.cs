@@ -11,6 +11,7 @@ namespace KrazyKatGames
 
         [HideInInspector] public AICharacterCombatManager aiCharacterCombatManager;
         [HideInInspector] public AICharacterNetworkManager aiCharacterNetworkManager;
+        [HideInInspector] public AICharacterInventoryManager aiCharacterInventoryManager;
         [HideInInspector] public AICharacterLocomotionManager aiCharacterLocomotionManager;
 
         [Header("NavMesh Agent")]
@@ -31,6 +32,7 @@ namespace KrazyKatGames
             base.Awake();
             aiCharacterCombatManager = GetComponent<AICharacterCombatManager>();
             aiCharacterNetworkManager = GetComponent<AICharacterNetworkManager>();
+            aiCharacterInventoryManager = GetComponent<AICharacterInventoryManager>();
             aiCharacterLocomotionManager = GetComponent<AICharacterLocomotionManager>();
 
             navMeshAgent = GetComponentInChildren<NavMeshAgent>();

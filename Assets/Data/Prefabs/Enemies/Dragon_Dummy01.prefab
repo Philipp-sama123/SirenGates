@@ -453,6 +453,7 @@ GameObject:
   - component: {fileID: 2795365797051128723}
   - component: {fileID: 5425321624010506178}
   - component: {fileID: 7269520422693172400}
+  - component: {fileID: 6708679349891719293}
   m_Layer: 20
   m_Name: Dragon_Dummy01
   m_TagString: Animal
@@ -512,7 +513,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  GlobalObjectIdHash: 1008184931
+  GlobalObjectIdHash: 2488696849
   InScenePlacedSourceGlobalObjectIdHash: 0
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
@@ -552,6 +553,16 @@ MonoBehaviour:
     m_InternalValue: 0
   moveAmount:
     m_InternalValue: 0
+  isBlocking:
+    m_InternalValue: 0
+  isParrying:
+    m_InternalValue: 0
+  isParryable:
+    m_InternalValue: 0
+  isAttacking:
+    m_InternalValue: 0
+  isInvulnerable:
+    m_InternalValue: 0
   isLockedOn:
     m_InternalValue: 0
   isSprinting:
@@ -559,6 +570,10 @@ MonoBehaviour:
   isJumping:
     m_InternalValue: 0
   isChargingAttack:
+    m_InternalValue: 0
+  isRipostable:
+    m_InternalValue: 0
+  isBeingCriticallyDamaged:
     m_InternalValue: 0
   currentStamina:
     m_InternalValue: 0
@@ -572,6 +587,10 @@ MonoBehaviour:
     m_InternalValue: 1
   vitality:
     m_InternalValue: 1
+  strength:
+    m_InternalValue: 10
+  strengthModifier:
+    m_InternalValue: 10
 --- !u!114 &4258998950123329502
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -594,10 +613,22 @@ MonoBehaviour:
   hit_Left_Medium_02: Hit_Left_Medium_02
   hit_Right_Medium_01: Hit_Right_Medium_01
   hit_Right_Medium_02: Hit_Right_Medium_02
+  hit_Forward_Ping_01: Hit_Forward_Ping_01
+  hit_Forward_Ping_02: Hit_Forward_Ping_02
+  hit_Backward_Ping_01: Hit_Backward_Ping_01
+  hit_Backward_Ping_02: Hit_Backward_Ping_02
+  hit_Left_Ping_01: Hit_Left_Ping_01
+  hit_Left_Ping_02: Hit_Left_Ping_02
+  hit_Right_Ping_01: Hit_Right_Ping_01
+  hit_Right_Ping_02: Hit_Right_Ping_02
   forward_Medium_Damage: []
   backward_Medium_Damage: []
   left_Medium_Damage: []
   right_Medium_Damage: []
+  forward_Ping_Damage: []
+  backward_Ping_Damage: []
+  left_Ping_Damage: []
+  right_Ping_Damage: []
 --- !u!114 &3353419473527133302
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -612,6 +643,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   staminaRegenerationAmount: 2
   staminaRegenerationDelay: 2
+  blockingPhysicalAbsorption: 0
+  blockingFireAbsorption: 0
+  blockingMagicAbsorption: 0
+  blockingLightningAbsorption: 0
+  blockingHolyAbsorption: 0
+  blockingStability: 0
+  armorPhysicalDamageAbsorption: 0
+  armorMagicDamageAbsorption: 0
+  armorFireDamageAbsorption: 0
+  armorHolyDamageAbsorption: 0
+  armorLightningDamageAbsorption: 0
+  armorImmunity: 0
+  armorRobustness: 0
+  armorFocus: 0
+  armorVitality: 0
+  totalPoiseDamage: 0
+  offensivePoiseBonus: 0
+  basePoiseDefense: 0
+  defaultPoiseResetTime: 8
+  poiseResetTimer: 0
 --- !u!114 &1551937102897070554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -637,6 +688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bloodSplatterVFX: {fileID: 0}
+  criticalBloodSplatterVFX: {fileID: 0}
+  staticEffects: []
 --- !u!114 &7862137403115635512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -670,6 +723,10 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 9e2ac8f28c06b4471ba74fc983dd46cc, type: 3}
   - {fileID: 8300000, guid: 088ec727f44fc4561be6cebc9c384edc, type: 3}
   - {fileID: 8300000, guid: d2b839810584c4748a38b8bf4b879d87, type: 3}
+  footSteps: []
+  footStepsDirt: []
+  footStepsStone: []
+  footStepsWood: []
 --- !u!54 &8029416257252681117
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -736,25 +793,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lastAttackAnimationPerformed: 
+  previousPoiseDamageTaken: 0
   currentTarget: {fileID: 0}
   currentAttackType: 0
   lockOnTransform: {fileID: 0}
+  canPerformRollingAttack: 0
+  canPerformBackstepAttack: 0
+  canBlock: 1
+  canBeBackStabbed: 1
+  criticalAttackDistanceCheck: 1
+  minMaxAngleToRiposte: 90
+  pendingCriticalDamage: 0
+  actionRecoveryTimer: 0
+  enablePivot: 1
   distanceFromTarget: 0
   viewableAngle: 0
   targetsDirection: {x: 0, y: 0, z: 0}
   detectionRadius: 15
   minimumFOV: -35
   maximumFOV: 35
-  actionRecoveryTimer: 0
   attackRotationSpeed: 5
+  maxStance: 150
+  currentStance: 150
+  stanceRegeneratedPerSecond: 15
+  ignoreStanceBreak: 0
+  stanceRegenerationTimer: 0
+  defaultTimeUntilStanceRegenerates: 10
   clubDamageCollider: {fileID: 0}
-  durksStompingFoot: {fileID: 0}
+  stompCollider: {fileID: 0}
   stompAttackAOERadius: 1.5
   baseDamage: 25
+  basePoiseDamage: 25
   attack01DamageModifier: 1
   attack02DamageModifier: 1.4
   attack03DamageModifier: 1.6
   stompDamage: 25
+  durkImpactVFX: {fileID: 0}
 --- !u!114 &2795365797051128723
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -777,9 +851,12 @@ MonoBehaviour:
   characterCombatManager: {fileID: 0}
   characterSoundFXManager: {fileID: 0}
   characterLocomotionManager: {fileID: 0}
+  characterUIManager: {fileID: 0}
+  characterStatsManager: {fileID: 0}
   isPerformingAction: 0
   characterGroup: 1
   footIK: {fileID: 0}
+  characterName: 
   aiCharacterCombatManager: {fileID: 0}
   aiCharacterNetworkManager: {fileID: 0}
   aiCharacterLocomotionManager: {fileID: 0}
@@ -790,9 +867,22 @@ MonoBehaviour:
   combatStance: {fileID: 11400000, guid: b7cbd29e36d3f418f9fbe87ccad97e1b, type: 2}
   attack: {fileID: 11400000, guid: 51bf4c5ba06ce4419a8e69109976d74b, type: 2}
   bossID: 0
-  hasBeenDefeated: 0
-  hasBeenAwakened: 0
+  bossIntroClip: {fileID: 0}
+  bossBattleLoopClip: {fileID: 0}
+  sleepState: {fileID: 0}
+  bossFightIsActive:
+    m_InternalValue: 0
+  hasBeenDefeated:
+    m_InternalValue: 0
+  hasBeenAwakened:
+    m_InternalValue: 0
   fogWalls: []
+  sleepAnimation: 
+  awakenAnimation: 
+  bossDefeatedMessage: Great Foe Felled
+  minimumHealthPercentToShift: 50
+  phaseShiftAnimation: Phase_Change_01
+  phase02CombatStanceState: {fileID: 0}
   wakeBossUp: 0
 --- !u!114 &5425321624010506178
 MonoBehaviour:
@@ -916,6 +1006,24 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6708679349891719293
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 930394034859247514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1336c7c483ef43deb10fa31c19a22778, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropItemChance: 25
+  droppableItems:
+  - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
+  - {fileID: 11400000, guid: 28787fb7436a047efbe97e747e917663, type: 2}
+  - {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
+  - {fileID: 11400000, guid: a109f0b9b12f649ce947f4acc2b2d714, type: 2}
 --- !u!1 &940579240817261481
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,6 +10,8 @@ namespace KrazyKatGames
 
         public WeaponItem unarmedWeapon;
 
+        public GameObject pickUpItemPrefab;
+
         [Header("Weapons")]
         [SerializeField] List<WeaponItem> weapons = new();
 
@@ -94,6 +96,10 @@ namespace KrazyKatGames
         private void Start()
         {
             DontDestroyOnLoad(this);
+        }
+        public Item GetItemByID(int ID)
+        {
+            return items.FirstOrDefault(item => item.itemID == ID);
         }
         public WeaponItem GetWeaponByID(int ID)
         {
