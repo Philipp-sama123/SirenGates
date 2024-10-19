@@ -31,6 +31,9 @@ namespace KrazyKatGames
         [Header("Shoes And Gloves Equipment")]
         [SerializeField] List<ShoesAndGlovesWearableItem> shoesAndGlovesEquipment = new();
 
+        [Header("Ashes of War")]
+        [SerializeField] List<AshOfWar> ashesOfWar = new();
+
         //  A List of all the items in Game
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -46,33 +49,38 @@ namespace KrazyKatGames
                 Destroy(gameObject);
             }
 
-            //  add all weapons to weapons list
+            //  add all Weapons to weapons list
             foreach (var weapon in weapons)
             {
                 items.Add(weapon);
             }
-            //  add all headEquipment to weapons list
+            //  add all Cloak Equipment to weapons list
             foreach (var item in cloakEquipment)
             {
                 items.Add(item);
             }
-            //  add all handEquipment to weapons list
+            //  add all Pant Equipment to weapons list
             foreach (var item in pantsEquipment)
             {
                 items.Add(item);
             }
-            //  add all bodyEquipment to weapons list
+            //  add all Outfit Equipment to weapons list
             foreach (var item in outfitWearable)
             {
                 items.Add(item);
             }
-            //  add all legEquipment to weapons list
+            //  add all Underwear Equipment to weapons list
             foreach (var item in underwearEquipment)
             {
                 items.Add(item);
             }
-            //  add all hoodEquipment to weapons list
+            //  add all Hood Equipment to weapons list
             foreach (var item in hoodEquipment)
+            {
+                items.Add(item);
+            }
+            // add all ashes of war
+            foreach (var item in ashesOfWar)
             {
                 items.Add(item);
             }
@@ -114,6 +122,10 @@ namespace KrazyKatGames
         public ShoesAndGlovesWearableItem GetShoesAndGlovesEquipmentByID(int ID)
         {
             return shoesAndGlovesEquipment.FirstOrDefault(wearable => wearable.itemID == ID);
+        }
+        public AshOfWar GetAshOfWarByID(int ID)
+        {
+            return ashesOfWar.FirstOrDefault(ashOfWar => ashOfWar.itemID == ID);
         }
     }
 }

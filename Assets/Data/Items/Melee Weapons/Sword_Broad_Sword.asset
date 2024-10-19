@@ -60,6 +60,7 @@ MonoBehaviour:
   oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
   oh_LB_Action: {fileID: 11400000, guid: cee74e351a0fa4f6f9b91843049c871a, type: 2}
+  ashOfWarAction: {fileID: 11400000, guid: 0fe9230f21588448ca293c46078d6e8e, type: 2}
   whooshes:
   - {fileID: 8300000, guid: 557a575e1ecef9a42ab17c93ff4c7792, type: 3}
   - {fileID: 8300000, guid: cd92c78a530e4a94ab7e57f7e6f91b0e, type: 3}
@@ -115,3 +116,4 @@ MonoBehaviour:
   - {fileID: 8300000, guid: d8ab8f997b8ad5549b9ffc6af0739108, type: 3}
   - {fileID: 8300000, guid: 6601edb7f51de04438bf452b58b8055f, type: 3}
   riposte_Attack_01_Modifier: 2.5
+  backStab__Attack_01_Modifier: 2

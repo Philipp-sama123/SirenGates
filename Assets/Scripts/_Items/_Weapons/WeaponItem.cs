@@ -12,7 +12,7 @@ namespace KrazyKatGames
 
         [Header("Weapon Model")]
         public GameObject weaponModel;
-        
+
         [Header("Weapon Class")]
         public WeaponClass weaponClass;
 
@@ -74,14 +74,12 @@ namespace KrazyKatGames
         [Header("Actions")]
         public WeaponItemAction oh_RB_Action; // One Handed Right Bumper Action // ToDo: OH Left Mouse Button (?)
         public WeaponItemAction oh_RT_Action; // One Handed Right Trigger Action // ToDo: OH Right Mouse Button (?)
-
         public WeaponItemAction oh_LB_Action; // One Handed LEft Bumper Action //
-        //  ASH OF WAR
-
+        public AshOfWar ashOfWarAction; //Button 1
 
         [Header("Whooshes")]
         public AudioClip[] whooshes;
-        
+
         [Header("Blocking")]
         public AudioClip[] blocking;
     }

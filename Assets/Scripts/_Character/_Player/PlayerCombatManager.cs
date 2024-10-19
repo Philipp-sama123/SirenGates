@@ -264,5 +264,13 @@ namespace KrazyKatGames
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
         }
         #endregion
+        public WeaponItem SelectWeaponToPerformAshOfWar()
+        {
+            // ToDo: select actually a weapon (!)
+            WeaponItem selectedWeapon = player.playerInventoryManager.currentLeftHandWeapon;
+            player.playerNetworkManager.SetCharacterActionHand(false);
+            player.playerNetworkManager.currentWeaponBeingUsed.Value = selectedWeapon.itemID;
+            return selectedWeapon;
+        }
     }
 }

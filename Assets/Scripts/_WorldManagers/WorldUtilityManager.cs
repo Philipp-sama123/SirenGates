@@ -103,7 +103,7 @@ namespace KrazyKatGames
                 case WeaponClass.Blade:
                     // ToDo: Change position depending on the animation
                     break;
-                case WeaponClass.Shield:
+                case WeaponClass.MediumShield:
                     // ToDo: Change position depending on the animation
                     break;
                 case WeaponClass.StraightSword:
@@ -125,7 +125,7 @@ namespace KrazyKatGames
                 case WeaponClass.Blade:
                     // ToDo: Change position depending on the animation
                     break;
-                case WeaponClass.Shield:
+                case WeaponClass.MediumShield:
                     // ToDo: Change position depending on the animation
                     break;
                 case WeaponClass.StraightSword:

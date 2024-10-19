@@ -47,7 +47,7 @@ namespace KrazyKatGames
                     weaponModel.transform.localPosition = new Vector3();
                     weaponModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     break;
-                case WeaponClass.Shield:
+                case WeaponClass.MediumShield:
                     weaponModel.transform.localPosition = new Vector3(0.1f,0.25f,0f);
                     weaponModel.transform.localRotation = Quaternion.Euler(320, 15, 40);
                     break;

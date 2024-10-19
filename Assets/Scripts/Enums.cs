@@ -82,9 +82,10 @@ public enum WearableModelType
 public enum WeaponClass
 {
     Blade,
-    Shield,
+    MediumShield,
     StraightSword,
     Fist,
+    LightShield,
     // ... todo more (!)
 }
 

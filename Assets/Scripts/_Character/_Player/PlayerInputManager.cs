@@ -47,6 +47,8 @@ namespace KrazyKatGames
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
 
+        [SerializeField] bool LT_Input = false;
+
         [Header("Two Hand Inputs")]
         [SerializeField] bool two_Hand_Input = false;
         [SerializeField] bool two_Hand_Right_Weapon_Input = false;
@@ -138,6 +140,7 @@ namespace KrazyKatGames
 
                 // Triggers
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
+                playerControls.PlayerActions.LT.performed += i => LT_Input = true;
 
                 // Interactions
                 playerControls.PlayerActions.Interact.performed += i => interaction_Input = true;
@@ -175,6 +178,66 @@ namespace KrazyKatGames
 
             playerControls.Enable();
         }
+        private void OnDestroy()
+        {
+            //  IF WE DESTROY THIS OBJECT, UNSUBSCRIBE FROM THIS EVENT
+            SceneManager.activeSceneChanged -= OnSceneChange;
+        }
+
+        //  IF WE MINIMIZE OR LOWER THE WINDOW, STOP ADJUSTING INPUTS
+        private void OnApplicationFocus(bool focus)
+        {
+            if (enabled)
+            {
+                if (focus)
+                {
+                    playerControls.Enable();
+                }
+                else
+                {
+                    playerControls.Disable();
+                }
+            }
+        }
+
+        private void Update()
+        {
+            HandleAllInputs();
+        }
+
+        private void HandleAllInputs()
+        {
+            HandleLockOnInput();
+            HandleLockOnSwitchTargetInput();
+
+            HandlePlayerMovementInput();
+            HandleCameraMovementInput();
+
+            HandleDodgeInput();
+            HandleSprintInput();
+            HandleJumpInput();
+            HandleInteractionInput();
+
+            HandleRBInput();
+            HandleLBInput();
+
+            HandleRTInput();
+            HandleChargeRTInput();
+
+            HandleLTInput();
+
+            HandleSwitchRightWeaponInput();
+            HandleSwitchLeftWeaponInput();
+
+            HandleTwoHandInput();
+
+            // TODO when this is active the 3rd Combo goes in the charged attack (!)
+            // HandleQuedInputs();
+
+            HandleCloseUIInput();
+            HandleOpenCharacterMenuInput();
+        }
+        // Input Queing
         private void QueInput(ref bool quedInput)
         {
             que_RB_Input = false;
@@ -223,63 +286,6 @@ namespace KrazyKatGames
             }
         }
 
-        private void OnDestroy()
-        {
-            //  IF WE DESTROY THIS OBJECT, UNSUBSCRIBE FROM THIS EVENT
-            SceneManager.activeSceneChanged -= OnSceneChange;
-        }
-
-        //  IF WE MINIMIZE OR LOWER THE WINDOW, STOP ADJUSTING INPUTS
-        private void OnApplicationFocus(bool focus)
-        {
-            if (enabled)
-            {
-                if (focus)
-                {
-                    playerControls.Enable();
-                }
-                else
-                {
-                    playerControls.Disable();
-                }
-            }
-        }
-
-        private void Update()
-        {
-            HandleAllInputs();
-        }
-
-        private void HandleAllInputs()
-        {
-            HandleLockOnInput();
-            HandleLockOnSwitchTargetInput();
-
-            HandlePlayerMovementInput();
-            HandleCameraMovementInput();
-
-            HandleDodgeInput();
-            HandleSprintInput();
-            HandleJumpInput();
-            HandleInteractionInput();
-
-            HandleRBInput();
-            HandleLBInput();
-
-            HandleRTInput();
-            HandleChargeRTInput();
-
-            HandleSwitchRightWeaponInput();
-            HandleSwitchLeftWeaponInput();
-
-            HandleTwoHandInput();
-
-            // TODO when this is active the 3rd Combo goes in the charged attack (!)
-            // HandleQuedInputs();
-
-            HandleCloseUIInput();
-            HandleOpenCharacterMenuInput();
-        }
         // Two Handing Weapons 
         private void HandleTwoHandInput()
         {
@@ -491,7 +497,7 @@ namespace KrazyKatGames
             if (jump_Input)
             {
                 jump_Input = false;
-                
+
                 //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
                 if (PlayerUIManager.instance.menuWindowIsOpen)
                     return;
@@ -564,6 +570,18 @@ namespace KrazyKatGames
                 }
             }
         }
+        private void HandleLTInput()
+        {
+            if (LT_Input)
+            {
+                LT_Input = false;
+
+
+                WeaponItem weaponPerformingAshOfWar = player.playerCombatManager.SelectWeaponToPerformAshOfWar();
+
+                weaponPerformingAshOfWar.ashOfWarAction.AttemptToPerformAction(player);
+            }
+        }
         private void HandleSwitchRightWeaponInput()
         {
             if (switch_Right_Weapon_Input)
@@ -571,7 +589,7 @@ namespace KrazyKatGames
                 //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
                 if (PlayerUIManager.instance.menuWindowIsOpen)
                     return;
-                
+
                 switch_Right_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchRightWeapon();
             }
@@ -583,7 +601,7 @@ namespace KrazyKatGames
                 //  IF WE HAVE A UI WINDOW OPEN, SIMPLY RETURN WITHOUT DOING ANYTHING
                 if (PlayerUIManager.instance.menuWindowIsOpen)
                     return;
-                
+
                 switch_Left_Weapon_Input = false;
                 player.playerEquipmentManager.SwitchLeftWeapon();
             }
