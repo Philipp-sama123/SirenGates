@@ -187,6 +187,16 @@ namespace KrazyKatGames
             if (character.IsOwner)
                 character.characterNetworkManager.isInvulnerable.Value = false;
         }
+        public void EnableIsParrying()
+        {
+            if (character.IsOwner)
+                character.characterNetworkManager.isParrying.Value = true;
+        }
+        public void DisableIsParrying()
+        {
+            if (character.IsOwner)
+                character.characterNetworkManager.isParrying.Value = false;
+        }      
         public void EnableIsRipostable()
         {
             if (character.IsOwner)
@@ -219,5 +229,9 @@ namespace KrazyKatGames
         {
         }
         #endregion
+        public virtual void CloseAllDamageColliders()
+        {
+            
+        }
     }
 }

@@ -15,7 +15,6 @@ namespace KrazyKatGames
 
         public virtual void AttemptToPerformAction(PlayerManager playerPerformingAction)
         {
-            Debug.LogWarning("PERFORMED(!)");
         }
         public virtual bool CanIUseThisAbility(PlayerManager playerPerformingAction)
         {

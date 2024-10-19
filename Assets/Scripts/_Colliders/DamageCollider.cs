@@ -43,15 +43,13 @@ namespace KrazyKatGames
             if (damageTarget != null)
             {
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
-
-                //  FRIENDLY FIRE
-                //  BLOCKING
-                //  IS INVULNERABLE
-                ChekForBlock(damageTarget);
+                
+                CheckForBlock(damageTarget);
+                CheckForParry(damageTarget);
                 DamageTarget(damageTarget);
             }
         }
-        protected virtual void ChekForBlock(CharacterManager damageTarget)
+        protected virtual void CheckForBlock(CharacterManager damageTarget)
         {
             if (charactersDamaged.Contains(damageTarget))
                 return;
@@ -75,6 +73,12 @@ namespace KrazyKatGames
                 // 3. Process Effect
                 damageTarget.characterEffectsManager.ProcessInstantEffect(blockedDamageEffect);
             }
+        }
+
+
+        protected virtual void CheckForParry(CharacterManager damageTarget)
+        {
+            Debug.LogWarning("CheckForParry!!");
         }
         protected virtual void GetBlockingDotValues(CharacterManager damageTarget)
         {

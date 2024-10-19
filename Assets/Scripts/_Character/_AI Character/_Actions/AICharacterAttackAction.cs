@@ -6,7 +6,8 @@ namespace KrazyKatGames
     public class AICharacterAttackAction : ScriptableObject
     {
         [Header("Attack")]
-        [SerializeField] private string attackAnimation;
+        public string attackAnimation;
+        public bool isParryable = true;
 
         [Header("Combo Action")]
         public AICharacterAttackAction comboAction; // The combo action of this attack action
@@ -23,8 +24,8 @@ namespace KrazyKatGames
 
         public void AttemptToPerformAction(AICharacterManager aiCharacter)
         {
-         //   aiCharacter.characterAnimatorManager.PlayTargetAttackActionAnimation(aiCharacter. ... , attackAnimation, true);
             aiCharacter.characterAnimatorManager.PlayTargetActionAnimation(attackAnimation, true);
+            aiCharacter.aiCharacterNetworkManager.isParryable.Value = isParryable;
         }
     }
 }

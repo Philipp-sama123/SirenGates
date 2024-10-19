@@ -31,8 +31,10 @@ namespace KrazyKatGames
 
 
         [Header("Flags")]
-        public NetworkVariable<bool> isAttacking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isBlocking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isParrying = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isParryable = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isAttacking = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isInvulnerable = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isLockedOn = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isSprinting = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -411,6 +413,34 @@ namespace KrazyKatGames
             //     characterCausingDamage,
             //     WorldUtilityManager.Instance.GetBackStabPositionBasedOnWeaponClass(weapon.weaponClass))
             // );
+        }
+        // Parry
+        [ServerRpc(RequireOwnership = false)]
+        public void NotifyServerOfParryServerRpc(ulong parriedClientID)
+        {
+            if (IsServer)
+            {
+                NotifyServerOfParryClientRpc(parriedClientID);
+            }
+        }
+        [ClientRpc]
+        protected void NotifyServerOfParryClientRpc(ulong parriedClientID)
+        {
+            ProcessParryFromServer(parriedClientID);
+        }
+
+        protected void ProcessParryFromServer(ulong parriedClientID)
+        {
+            CharacterManager parriedCharacter = NetworkManager.Singleton.SpawnManager.SpawnedObjects[parriedClientID].gameObject.
+                GetComponent<CharacterManager>();
+
+            if (parriedCharacter == null)
+                return;
+            // close all damage collders
+            if (parriedCharacter.IsOwner)
+            {
+                parriedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("Parried_01", true);
+            }
         }
         #endregion
     }

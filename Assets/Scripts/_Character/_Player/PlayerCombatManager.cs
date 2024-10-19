@@ -272,5 +272,12 @@ namespace KrazyKatGames
             player.playerNetworkManager.currentWeaponBeingUsed.Value = selectedWeapon.itemID;
             return selectedWeapon;
         }
+        public override void CloseAllDamageColliders()
+        {
+            base.CloseAllDamageColliders();
+        
+            player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
+            player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
+        }
     }
 }

@@ -40,11 +40,34 @@ namespace KrazyKatGames
 
                 contactPoint = other.gameObject.GetComponent<Collider>().ClosestPointOnBounds(transform.position);
 
-                //  FRIENDLY FIRE
-                //  BLOCKING
-                //  IS INVULNERABLE
+                //  Friendly Fire
+                if (!WorldUtilityManager.Instance.CanIDamageThisTarget(characterCausingDamage.characterGroup, damageTarget.characterGroup))
+                    return;
 
-                DamageTarget(damageTarget);
+                //  Parrying
+                CheckForParry(damageTarget);
+
+                //  Blocking
+                CheckForBlock(damageTarget);
+
+                //  Invulnerability
+                if (!damageTarget.characterNetworkManager.isInvulnerable.Value)
+                    DamageTarget(damageTarget);
+            }
+        }
+        protected override void CheckForParry(CharacterManager damageTarget)
+        {
+            if (charactersDamaged.Contains(damageTarget))
+                return;
+            if (!characterCausingDamage.characterNetworkManager.isParryable.Value)
+                return;
+            if (!damageTarget.IsOwner)
+                return;
+            if (damageTarget.characterNetworkManager.isParrying.Value)
+            {
+                charactersDamaged.Add(damageTarget);
+                damageTarget.characterNetworkManager.NotifyServerOfParryServerRpc(characterCausingDamage.NetworkObjectId);
+                damageTarget.characterAnimatorManager.PlayTargetActionAnimationInstantly("Parry_Land_01", true);
             }
         }
         protected override void GetBlockingDotValues(CharacterManager damageTarget)
@@ -67,9 +90,9 @@ namespace KrazyKatGames
             damageEffect.fireDamage = fireDamage;
             damageEffect.holyDamage = holyDamage;
             damageEffect.contactPoint = contactPoint;
-            
+
             damageEffect.poiseDamage = poiseDamage;
-            
+
             damageEffect.angleHitFrom = Vector3.SignedAngle(characterCausingDamage.transform.forward, damageTarget.transform.forward, Vector3.up);
 
             switch (characterCausingDamage.characterCombatManager.currentAttackType)
