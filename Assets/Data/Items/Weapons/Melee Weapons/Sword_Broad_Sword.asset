@@ -1,0 +1,119 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0ce6a69c62fd4c85a0a574d295892cd7, type: 3}
+  m_Name: Sword_Broad_Sword
+  m_EditorClassIdentifier: 
+  itemName: 
+  itemIcon: {fileID: 21300000, guid: 9e6f65e6cb1f743e9886d87aec9b1c9e, type: 3}
+  itemDescription: 
+  itemID: 2
+  itemWeight: 0
+  weaponAnimator: {fileID: 22100000, guid: 76307c41a462a43c4baad1c623fe96d1, type: 2}
+  weaponModelType: 0
+  weaponModel: {fileID: 6397344720308477397, guid: 7531ce1a1db4c4df0824c27ef0c958fc, type: 3}
+  weaponClass: 0
+  strengthREQ: 10
+  dexREQ: 0
+  intREQ: 0
+  faithREQ: 0
+  physicalDamage: 20
+  magicDamage: 1
+  fireDamage: 1
+  holyDamage: 1
+  lightningDamage: 1
+  physicalBaseDamageAbsorption: 50
+  fireBaseDamageAbsorption: 50
+  magicBaseDamageAbsorption: 50
+  lightningBaseDamageAbsorption: 50
+  holyBaseDamageAbsorption: 50
+  stability: 50
+  poiseDamage: 100
+  light_attack_01_modifier: 1
+  light_attack_02_modifier: 1.2
+  light_attack_03_modifier: 1.3
+  light_attack_04_modifier: 1.5
+  heavy_Attack_01_Modifier: 1.5
+  heavy_Attack_02_Modifier: 2
+  heavy_Attack_03_Modifier: 2.5
+  heavy_Attack_04_Modifier: 2.5
+  charge_Attack_01_Modifier: 3
+  charge_Attack_02_Modifier: 5
+  run_Attack_01_Modifier: 2.5
+  roll_Attack_01_Modifier: 2.5
+  backstep_Attack_01_Modifier: 2.5
+  baseStaminaCost: 20
+  lightAttackStaminaCostMultiplier: 1
+  heavyAttackStaminaCostMultiplier: 1.2
+  chargedAttackStaminaCostMultiplier: 1.5
+  rollingAttackStaminaCostMultiplier: 0.5
+  runningAttackStaminaCostMultiplier: 0.5
+  backstepAttackStaminaCostMultiplier: 0.5
+  oh_RB_Action: {fileID: 11400000, guid: d87bac6971fa84c9086f2bff8fa689c7, type: 2}
+  oh_RT_Action: {fileID: 11400000, guid: 8a73632dae6ab42f5a9950654a7f6347, type: 2}
+  oh_LB_Action: {fileID: 11400000, guid: cee74e351a0fa4f6f9b91843049c871a, type: 2}
+  ashOfWarAction: {fileID: 11400000, guid: 0fe9230f21588448ca293c46078d6e8e, type: 2}
+  whooshes:
+  - {fileID: 8300000, guid: 557a575e1ecef9a42ab17c93ff4c7792, type: 3}
+  - {fileID: 8300000, guid: cd92c78a530e4a94ab7e57f7e6f91b0e, type: 3}
+  - {fileID: 8300000, guid: 534aaf9828948ec4f8129467301f47f6, type: 3}
+  - {fileID: 8300000, guid: d24e771eaabe4fa49a6dac5ae3e7f30a, type: 3}
+  - {fileID: 8300000, guid: 68f2d6c6fe287de42be7077c587113d0, type: 3}
+  - {fileID: 8300000, guid: 1857ec0f3e57fd64091eda6066a53e97, type: 3}
+  - {fileID: 8300000, guid: ac40151cebf025f44b483187e1966510, type: 3}
+  - {fileID: 8300000, guid: a49723976682c7b4a86b87e7563eacfc, type: 3}
+  - {fileID: 8300000, guid: ffb91135175e73a45af5d8407a1dbc8d, type: 3}
+  - {fileID: 8300000, guid: 58e0b1ad133ce2b4db0abcba418352b5, type: 3}
+  - {fileID: 8300000, guid: 8b80df3ad07f6c94da52fa18a6cfe5b2, type: 3}
+  - {fileID: 8300000, guid: 1a9425ff6b6c10c4cb4bc65fdc46c89e, type: 3}
+  - {fileID: 8300000, guid: d48515c3e071c774b8adf4ac141e090b, type: 3}
+  - {fileID: 8300000, guid: 6c6445bdef5298941a5f6ba2983f7a84, type: 3}
+  - {fileID: 8300000, guid: ae0de499fade4f24eb747774eef38451, type: 3}
+  - {fileID: 8300000, guid: 7424db1a2caf69046b0ce28bcad27502, type: 3}
+  - {fileID: 8300000, guid: c848c9e5713cc4b42a014762e5def61c, type: 3}
+  - {fileID: 8300000, guid: a9cd5de55bb39e0438769148be15bf02, type: 3}
+  - {fileID: 8300000, guid: 51d0d8c7067f1274585e0e477b9c2f33, type: 3}
+  - {fileID: 8300000, guid: 0ddfb4568a5a6ab4eb139037d6900f00, type: 3}
+  - {fileID: 8300000, guid: e673dbfcfbac5c4428e45df9ed6cc64d, type: 3}
+  - {fileID: 8300000, guid: 55986bb89e9b1c24081317b3271c226d, type: 3}
+  - {fileID: 8300000, guid: 374899b028c1d39449ce5fde006e71c0, type: 3}
+  - {fileID: 8300000, guid: d9c8e22439cc840479fd1d929218d4fb, type: 3}
+  - {fileID: 8300000, guid: 1bce8d4d0417f1b48a81ebcad9f6ec60, type: 3}
+  - {fileID: 8300000, guid: 6b9a7caf1ed0c3a4d8edf3e357badd79, type: 3}
+  - {fileID: 8300000, guid: c1e887f33100ef24cb7b0452ac0db3fc, type: 3}
+  - {fileID: 8300000, guid: 95a614b09e19c7c469f42f3e682453be, type: 3}
+  - {fileID: 8300000, guid: 233b3f51fe6fb004893db4969e49d4db, type: 3}
+  - {fileID: 8300000, guid: 5db1693df8cf35a49bee4eb253cf9e9e, type: 3}
+  - {fileID: 8300000, guid: 29e168773acb07b4ea97b3435002e497, type: 3}
+  - {fileID: 8300000, guid: 2de9b8cf8c2f1824099e28963e0acf04, type: 3}
+  - {fileID: 8300000, guid: a8825b39f089f6346bdb6088adc9d5a2, type: 3}
+  - {fileID: 8300000, guid: 3d1b9222824225e40ac5c3af03be8656, type: 3}
+  - {fileID: 8300000, guid: fd45eb5d467cea047b0fd220118deac6, type: 3}
+  - {fileID: 8300000, guid: 5469a741f291c6942be677f4d4b54aa1, type: 3}
+  - {fileID: 8300000, guid: 714d68c6c0ca85640bc2bce875009347, type: 3}
+  - {fileID: 8300000, guid: 14bb3a07ceb0ac04a85e9a63959e1eb9, type: 3}
+  - {fileID: 8300000, guid: c86ad0d12f399f14c9c4681320199453, type: 3}
+  - {fileID: 8300000, guid: d9a4473e8b9dabf46b215bd77a2fab31, type: 3}
+  - {fileID: 8300000, guid: 9663f496b9ead3b4c9210542ac177dbc, type: 3}
+  - {fileID: 8300000, guid: d493420372c8dfa47b2244ddf0c38929, type: 3}
+  blocking:
+  - {fileID: 8300000, guid: 959799bfc8ff94c4696518a167666762, type: 3}
+  - {fileID: 8300000, guid: 44e23a784a24eeb418468abcd62d9c8a, type: 3}
+  - {fileID: 8300000, guid: c3a1685337e062145865c874a322e960, type: 3}
+  - {fileID: 8300000, guid: 157162ea990528e4da582225103bad5b, type: 3}
+  - {fileID: 8300000, guid: ca7f5ce966ccf3f4182ea938cdd043b6, type: 3}
+  - {fileID: 8300000, guid: d031016a5a4ef434db78d71059c79f82, type: 3}
+  - {fileID: 8300000, guid: 5046a99784496594480374e987b1dbb5, type: 3}
+  - {fileID: 8300000, guid: 4207c6fd43d722548bf640a8f09e1d7e, type: 3}
+  - {fileID: 8300000, guid: d8ab8f997b8ad5549b9ffc6af0739108, type: 3}
+  - {fileID: 8300000, guid: 6601edb7f51de04438bf452b58b8055f, type: 3}
+  riposte_Attack_01_Modifier: 2.5
+  backStab__Attack_01_Modifier: 2

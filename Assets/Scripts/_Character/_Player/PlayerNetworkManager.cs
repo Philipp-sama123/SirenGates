@@ -16,6 +16,7 @@ namespace KrazyKatGames
         public NetworkVariable<int> currentWeaponBeingUsed = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentRightHandWeaponID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentLeftHandWeaponID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> currentSpellID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isUsingRightHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isUsingLeftHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
@@ -119,6 +120,11 @@ namespace KrazyKatGames
 
             if (player.playerCombatManager.currentWeaponBeingUsed != null)
                 player.playerAnimatorManager.UpdateAnimatorController(player.playerCombatManager.currentWeaponBeingUsed.weaponAnimator);
+        }
+        public void OnCurrentSpellIDChange(int oldID, int newID)
+        {
+            SpellItem newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
+            player.playerInventoryManager.currentSpell = newSpell;
         }
         public void OnIsTwoHandingWeaponChanged(bool oldStatus, bool newStatus)
         {

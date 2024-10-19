@@ -36,6 +36,9 @@ namespace KrazyKatGames
         [Header("Ashes of War")]
         [SerializeField] List<AshOfWar> ashesOfWar = new();
 
+        [Header("Spells")]
+        [SerializeField] List<SpellItem> spells = new();
+
         //  A List of all the items in Game
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -87,6 +90,12 @@ namespace KrazyKatGames
                 items.Add(item);
             }
 
+            // add spells
+            foreach (var item in spells)
+            {
+                items.Add(item);
+            }
+
             //  assign all of the items a unique ID
             for (int i = 0; i < items.Count; i++)
             {
@@ -132,6 +141,10 @@ namespace KrazyKatGames
         public AshOfWar GetAshOfWarByID(int ID)
         {
             return ashesOfWar.FirstOrDefault(ashOfWar => ashOfWar.itemID == ID);
+        }
+        public SpellItem GetSpellByID(int ID)
+        {
+            return spells.FirstOrDefault(spell => spell.itemID == ID);
         }
     }
 }

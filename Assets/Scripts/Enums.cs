@@ -112,3 +112,10 @@ public enum EquipmentType
     ShoesAndGloves, // 11
     // more to come
 }
+
+//  USED TO DETERMINE WHICH ITEM (CATALYST) IS NEEDED TO CAST SPELL
+public enum SpellClass
+{
+    Incantation,
+    Sorcery
+}

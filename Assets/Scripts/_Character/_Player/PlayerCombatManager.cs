@@ -264,6 +264,21 @@ namespace KrazyKatGames
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
         }
         #endregion
+        public void InstantiateSpellWarmUpFX()
+        {
+            if(player.playerInventoryManager.currentSpell==null)
+                return;
+            
+            player.playerInventoryManager.currentSpell.InstantiateWarmUpSpellFX(player);
+        }
+        public void InstantiateSpellReleaseFX()
+        {
+            if(player.playerInventoryManager.currentSpell==null)
+                return;
+            
+            player.playerInventoryManager.currentSpell.InstantiateReleaseFX(player);
+            
+        }
         public WeaponItem SelectWeaponToPerformAshOfWar()
         {
             // ToDo: select actually a weapon (!)
@@ -275,7 +290,7 @@ namespace KrazyKatGames
         public override void CloseAllDamageColliders()
         {
             base.CloseAllDamageColliders();
-        
+
             player.playerEquipmentManager.rightWeaponManager.meleeDamageCollider.DisableDamageCollider();
             player.playerEquipmentManager.leftWeaponManager.meleeDamageCollider.DisableDamageCollider();
         }
