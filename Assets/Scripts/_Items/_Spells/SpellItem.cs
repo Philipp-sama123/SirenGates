@@ -36,10 +36,6 @@ namespace KrazyKatGames
         {
 
         }
-        public virtual void InstantiateReleaseFX(PlayerManager player)
-        {
-
-        }
         public virtual bool CanICastThisSpell(PlayerManager player)
         {
             return true;

@@ -329,7 +329,7 @@ namespace KrazyKatGames
             damageEffect.characterCausingDamage = characterCausingDamage;
 
             damagedCharacter.characterEffectsManager.ProcessInstantEffect(damageEffect);
-            
+
             if (damagedCharacter.IsOwner)
                 damagedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly(criticalDamageAnimation, true);
 
@@ -443,6 +443,21 @@ namespace KrazyKatGames
             {
                 parriedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("Parried_01", true);
             }
+        }
+        // used to cancel Effect if Poise is Broken
+        [ServerRpc]
+        public void CancelAllAttemptedActionsServerRpc()
+        {
+            if (IsServer)
+            {
+                CancelAllAttemptedActionsClientRpc();
+            }
+        }
+        [ClientRpc]
+        public void CancelAllAttemptedActionsClientRpc()
+        {
+            if (character.characterEffectsManager.activeSpellWarmUpFX != null)
+                Destroy(character.characterEffectsManager.activeSpellWarmUpFX);
         }
         #endregion
     }

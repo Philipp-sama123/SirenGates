@@ -87,6 +87,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6944471466442162482}
+  - component: {fileID: 3380045389360997703}
   m_Layer: 0
   m_Name: WeaponModel
   m_TagString: Untagged
@@ -110,6 +111,18 @@ Transform:
   - {fileID: 3564029624808768423}
   m_Father: {fileID: 4043076432055813711}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3380045389360997703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7715907157130959752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 992d0cbf6a9c547f9ab6395205be0410, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8353882962717979380
 GameObject:
   m_ObjectHideFlags: 0
@@ -161,8 +174,21 @@ MonoBehaviour:
   fireDamage: 0
   lightningDamage: 0
   holyDamage: 0
+  poiseDamage: 0
   characterCausingDamage: {fileID: 0}
   light_Attack_01_Modifier: 0
+  light_Attack_02_Modifier: 0
+  light_Attack_03_Modifier: 0
+  light_Attack_04_Modifier: 0
+  heavy_Attack_01_Modifier: 0
+  heavy_Attack_02_Modifier: 0
+  heavy_Attack_03_Modifier: 0
+  heavy_Attack_04_Modifier: 0
+  charge_Attack_01_Modifier: 0
+  charge_Attack_02_Modifier: 0
+  run_Attack_01_Modifier: 0
+  roll_Attack_01_Modifier: 0
+  backstep_Attack_01_Modifier: 0
 --- !u!135 &2935684975653119593
 SphereCollider:
   m_ObjectHideFlags: 0

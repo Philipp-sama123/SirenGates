@@ -20,11 +20,27 @@ namespace KrazyKatGames
         [Header("Static Effects")]
         [SerializeField] List<StaticCharacterEffect> staticEffects;
 
+        [Header("Current Active FX")]
+        public GameObject activeSpellWarmUpFX; 
+
+        [Header("Debug Delete Later")]
+        [SerializeField] InstantCharacterEffect effectToTest;
+        [SerializeField] bool processEffect = false;
+
         protected virtual void Awake()
         {
             character = GetComponent<CharacterManager>();
         }
 
+        protected virtual void Update()
+        {
+            if (processEffect)
+            {
+                processEffect = false;
+                InstantCharacterEffect effect = Instantiate(effectToTest);
+                ProcessInstantEffect(effect);
+            }
+        }
         public virtual void ProcessInstantEffect(InstantCharacterEffect effect)
         {
             effect.ProcessEffect(character);

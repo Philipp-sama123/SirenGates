@@ -180,8 +180,9 @@ namespace KrazyKatGames
 
             if (poiseIsBroken)
             {
-                //restrict Movement and Actions (--> isStunned)
+                // restrict Movement and Actions 
                 character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
+                character.characterCombatManager.CancelAllAttemptedActions(); 
             }
             else
             {
