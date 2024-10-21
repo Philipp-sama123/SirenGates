@@ -124,7 +124,8 @@ namespace KrazyKatGames
         public void OnCurrentSpellIDChange(int oldID, int newID)
         {
             SpellItem newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
-            player.playerInventoryManager.currentSpell = newSpell;
+            if (newSpell != null)
+                player.playerInventoryManager.currentSpell = newSpell;
         }
         public void OnIsTwoHandingWeaponChanged(bool oldStatus, bool newStatus)
         {

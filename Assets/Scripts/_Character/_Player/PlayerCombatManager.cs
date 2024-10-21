@@ -26,7 +26,7 @@ namespace KrazyKatGames
             {
                 //  PERFORM THE ACTION
                 weaponAction.AttemptToPerformAction(player, weaponPerformingAction);
-
+                // ToDo: if you wanna keep this here to send info about the action --> buuut do all the checks if the RPC should be send before -> so just if the action actually is fired
                 //  NOTIFY THE SERVER WE HAVE PERFORMED THE ACTION, SO WE PERFORM IT FROM THERE PERSPECTIVE ALSO}
                 player.playerNetworkManager.NotifyTheServerOfWeaponActionServerRpc(
                     NetworkManager.Singleton.LocalClientId,
@@ -266,18 +266,17 @@ namespace KrazyKatGames
         #endregion
         public void InstantiateSpellWarmUpFX()
         {
-            if(player.playerInventoryManager.currentSpell==null)
+            if (player.playerInventoryManager.currentSpell == null)
                 return;
-            
+
             player.playerInventoryManager.currentSpell.InstantiateWarmUpSpellFX(player);
         }
         public void InstantiateSpellReleaseFX()
         {
-            if(player.playerInventoryManager.currentSpell==null)
+            if (player.playerInventoryManager.currentSpell == null)
                 return;
-            
+
             player.playerInventoryManager.currentSpell.InstantiateReleaseFX(player);
-            
         }
         public WeaponItem SelectWeaponToPerformAshOfWar()
         {

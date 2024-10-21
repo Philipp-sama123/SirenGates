@@ -329,7 +329,9 @@ namespace KrazyKatGames
             damageEffect.characterCausingDamage = characterCausingDamage;
 
             damagedCharacter.characterEffectsManager.ProcessInstantEffect(damageEffect);
-            damagedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly(criticalDamageAnimation, true);
+            
+            if (damagedCharacter.IsOwner)
+                damagedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly(criticalDamageAnimation, true);
 
             // Move the enemy to a proper riposte position
             StartCoroutine(damagedCharacter.characterCombatManager.ForceMoveEnemyCharacterToRipostePosition(
