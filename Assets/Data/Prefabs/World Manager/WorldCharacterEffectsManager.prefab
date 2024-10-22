@@ -56,4 +56,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: ea348a7cb5c94479b894e6b995e15a5d, type: 2}
   twoHandingEffect: {fileID: 11400000, guid: ea348a7cb5c94479b894e6b995e15a5d, type: 2}
   bloodSplatterVFX: {fileID: 8007369982305464528, guid: 3d4955de7e0eb4533962b301e7eb9f64, type: 3}
-  criticalBloodSplatterVFX: {fileID: 2834077435049808890, guid: 5c4e7bcb8bfc44c6599de65f65fb9aed, type: 3}
+  criticalBloodSplatterVFX: {fileID: 2834077435049808890, guid: 8ba23dd226073164c8c474b331d956a5, type: 3}

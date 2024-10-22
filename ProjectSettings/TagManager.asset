@@ -19,7 +19,7 @@ TagManager:
   - DamageCollider
   - EventTrigger
   - Interactable
-  - 
+  - Projectile (Pass Through Character)
   - 
   - 
   - 

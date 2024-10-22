@@ -234,9 +234,9 @@ namespace KrazyKatGames
             
         }
         // destroy things like "Arrow", "Spell WarmUp FX" when the Character is Poise broken
-        public void CancelAllAttemptedActions()
+        public void DestroyAllCurrentActionFX()
         {
-            character.characterNetworkManager.CancelAllAttemptedActionsServerRpc();
+            character.characterNetworkManager.DestroyAllCurrentActionFXServerRpc();
         }
     }
 }

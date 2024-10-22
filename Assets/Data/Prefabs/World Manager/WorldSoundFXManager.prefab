@@ -45,7 +45,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -141,7 +141,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -240,7 +240,28 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bossIntroPlayer: {fileID: 2328059167390218281}
   bossLoopPlayer: {fileID: 7169822256141281474}
+  physicalDamageSFX:
+  - {fileID: 8300000, guid: 71fd5b8d4d7e0c54395983805c6a63b1, type: 3}
+  - {fileID: 8300000, guid: 612f742e5b7b83345a0eabdb03117665, type: 3}
+  - {fileID: 8300000, guid: 519c626e2c5efd74a85eae451c74914a, type: 3}
+  - {fileID: 8300000, guid: b6992463d057884419abd7787e2fd218, type: 3}
+  - {fileID: 8300000, guid: a8d593e94a683164088c10bb9949554f, type: 3}
+  - {fileID: 8300000, guid: c1ba75a694aeed44395a87e3eb2e42cb, type: 3}
+  - {fileID: 8300000, guid: 61904fc2b5575ba48af614e54c73b57a, type: 3}
+  - {fileID: 8300000, guid: 3d87441acb6e7f348a24c4efda75f6d8, type: 3}
+  - {fileID: 8300000, guid: 3723e9d8f859621479aa415b910b6df3, type: 3}
+  - {fileID: 8300000, guid: 5761b9e38203b9b40ae26116658983eb, type: 3}
+  - {fileID: 8300000, guid: 43cf24515a8c5664e9386a304780af93, type: 3}
+  - {fileID: 8300000, guid: 955969dcd0d884142a1c50ad9a5d0740, type: 3}
+  - {fileID: 8300000, guid: f6d4629ac52b3894c8c27986ad3fe8dd, type: 3}
+  - {fileID: 8300000, guid: affeec08f4ba8264d8940ada81b41d14, type: 3}
+  - {fileID: 8300000, guid: e6a80c1f856319241a0095a74ef27925, type: 3}
+  - {fileID: 8300000, guid: 1a9271e413f98dd4ea9f08b25fe5d7f4, type: 3}
+  - {fileID: 8300000, guid: be79177ae9b549a4db8788301f589b32, type: 3}
+  - {fileID: 8300000, guid: b187bdb1e738c874894684f65f25b996, type: 3}
+  - {fileID: 8300000, guid: aeb2e54cc11f0374d810ded46e9a531e, type: 3}
+  - {fileID: 8300000, guid: 80657bd3aee59be48ab2860785c95d82, type: 3}
   rollSFX: {fileID: 8300000, guid: e3298d0844ac746e0b20c76413abb353, type: 3}
+  pickUpItemSFX: {fileID: 8300000, guid: 603bccede55204d2085dc8ef616ee2d9, type: 3}
   stanceBreakSFX: {fileID: 8300000, guid: 922af6738d5ba8a4f8c189b68567ea78, type: 3}
-  physicalDamageSFX: []
-  pickUpItemSFX: {fileID: 0}
+  criticalStrikeSFX: {fileID: 8300000, guid: 7f201eda78c46cf4a926babf9f61b888, type: 3}

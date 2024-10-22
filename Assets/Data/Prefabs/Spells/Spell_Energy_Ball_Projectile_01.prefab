@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8032986471929441046}
   - component: {fileID: 3751608013834913407}
   - component: {fileID: 2401592948032562408}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Smoke
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4924,7 +4924,7 @@ GameObject:
   - component: {fileID: 8150404066831155363}
   - component: {fileID: 8726065185599331338}
   - component: {fileID: 4456792062672469419}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Spell_Energy_Ball_Projectile_01
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -10077,7 +10077,7 @@ GameObject:
   - component: {fileID: 3147537571117986159}
   - component: {fileID: 134490744029735679}
   - component: {fileID: 2768044790743542329}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Glow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -15048,7 +15048,7 @@ GameObject:
   - component: {fileID: 31366973433176942}
   - component: {fileID: 411010826630519360}
   - component: {fileID: 3112708538285308791}
-  m_Layer: 0
+  m_Layer: 13
   m_Name: Shine
   m_TagString: Untagged
   m_Icon: {fileID: 0}

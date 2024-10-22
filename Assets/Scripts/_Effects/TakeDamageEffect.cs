@@ -182,7 +182,7 @@ namespace KrazyKatGames
             {
                 // restrict Movement and Actions 
                 character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
-                character.characterCombatManager.CancelAllAttemptedActions(); 
+                character.characterCombatManager.DestroyAllCurrentActionFX(); 
             }
             else
             {

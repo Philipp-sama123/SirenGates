@@ -446,15 +446,15 @@ namespace KrazyKatGames
         }
         // used to cancel Effect if Poise is Broken
         [ServerRpc]
-        public void CancelAllAttemptedActionsServerRpc()
+        public void DestroyAllCurrentActionFXServerRpc()
         {
             if (IsServer)
             {
-                CancelAllAttemptedActionsClientRpc();
+                DestroyAllCurrentActionFXClientRpc();
             }
         }
         [ClientRpc]
-        public void CancelAllAttemptedActionsClientRpc()
+        public void DestroyAllCurrentActionFXClientRpc()
         {
             if (character.characterEffectsManager.activeSpellWarmUpFX != null)
                 Destroy(character.characterEffectsManager.activeSpellWarmUpFX);
