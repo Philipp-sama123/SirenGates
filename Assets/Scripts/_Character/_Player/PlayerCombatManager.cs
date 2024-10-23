@@ -260,7 +260,6 @@ namespace KrazyKatGames
                 default:
                     break;
             }
-            Debug.Log("-- DrainStaminaBasedOnAttack -- For " + player.name + " staminaDeducted -" + staminaDeducted);
             player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaDeducted);
         }
         #endregion

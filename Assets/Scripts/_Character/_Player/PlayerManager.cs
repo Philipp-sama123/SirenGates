@@ -393,7 +393,7 @@ namespace KrazyKatGames
                 playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
 
             playerInventoryManager.leftHandWeaponIndex = currentCharacterData.leftWeaponIndex;
-            Debug.LogWarning("currentCharacterData.leftWeaponIndex " + currentCharacterData.leftWeaponIndex);
+
             playerNetworkManager.currentLeftHandWeaponID.Value =
                 playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex].itemID;
         }

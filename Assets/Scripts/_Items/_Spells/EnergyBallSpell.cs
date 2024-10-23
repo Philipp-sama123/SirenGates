@@ -49,8 +49,6 @@ namespace KrazyKatGames
 
             // 3. "Save" the WarmUpFX as a Variable so it can be destroyed if the player is knocked out of the Animation
             player.playerEffectsManager.activeSpellWarmUpFX = instantiatedWarmUpSpellFX;
-
-            Debug.Log("INSTANTIATED FX");
         }
         public override void SuccessfullyChargeSpell(PlayerManager player)
         {
@@ -72,7 +70,7 @@ namespace KrazyKatGames
             }
             // Save the charge up fx 
             player.playerEffectsManager.activeSpellWarmUpFX = instantiatedChargeSpellFX;
-            
+
             instantiatedChargeSpellFX.transform.parent = spellInstantiationLocation.transform;
             instantiatedChargeSpellFX.transform.localPosition = Vector3.zero;
             instantiatedChargeSpellFX.transform.localRotation = Quaternion.identity;
@@ -137,8 +135,6 @@ namespace KrazyKatGames
             Vector3 forwardVelocityVector = instantiatedReleaseSpellFX.transform.forward * forwardVelocity;
             Vector3 totalVelocity = upwardVelocityVector + forwardVelocityVector;
             spellRigidbody.velocity = totalVelocity;
-
-            Debug.Log("CASTED SPELL");
         }
         public override void SuccessfullyCastSpellFullCharged(PlayerManager player)
         {
@@ -187,8 +183,6 @@ namespace KrazyKatGames
             Vector3 forwardVelocityVector = instantiatedReleaseSpellFX.transform.forward * forwardVelocity;
             Vector3 totalVelocity = upwardVelocityVector + forwardVelocityVector;
             spellRigidbody.velocity = totalVelocity;
-
-            Debug.Log("CASTED SPELL");
         }
 
         public override bool CanICastThisSpell(PlayerManager player)
