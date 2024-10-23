@@ -59,7 +59,7 @@ MonoBehaviour:
   backstepAttackStaminaCostMultiplier: 0.5
   oh_RB_Action: {fileID: 11400000, guid: 81cf98cb784b94d9aa326ccca258b399, type: 2}
   oh_RT_Action: {fileID: 11400000, guid: 81cf98cb784b94d9aa326ccca258b399, type: 2}
-  oh_LB_Action: {fileID: 0}
+  oh_LB_Action: {fileID: 11400000, guid: 81cf98cb784b94d9aa326ccca258b399, type: 2}
   ashOfWarAction: {fileID: 0}
   whooshes: []
   blocking: []

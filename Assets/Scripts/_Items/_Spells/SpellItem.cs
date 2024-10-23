@@ -13,7 +13,9 @@ namespace KrazyKatGames
 
         [Header("Spell FX")]
         [SerializeField] protected GameObject spellCastWarmUpFX;
+        [SerializeField] protected GameObject spellChargeFX;
         [SerializeField] protected GameObject spellCastReleaseFX;
+        [SerializeField] protected GameObject spellCastReleaseFXFullCharged;
         // ToDo: full charge vfx of the spell
 
         [Header("Animations")]
@@ -23,18 +25,21 @@ namespace KrazyKatGames
         [Header("Sound FX")]
         public AudioClip warmUpSoundFX;
         public AudioClip releaseSoundFX;
-        
+
         public virtual void AttemptToCastSpell(PlayerManager player)
         {
-
         }
         public virtual void SuccessfullyCastSpell(PlayerManager player)
         {
-
+        }
+        public virtual void SuccessfullyChargeSpell(PlayerManager player)
+        {
+        }
+        public virtual void SuccessfullyCastSpellFullCharged(PlayerManager player)
+        {
         }
         public virtual void InstantiateWarmUpSpellFX(PlayerManager player)
         {
-
         }
         public virtual bool CanICastThisSpell(PlayerManager player)
         {

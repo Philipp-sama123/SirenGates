@@ -52,24 +52,16 @@ namespace KrazyKatGames
 
             Debug.Log("INSTANTIATED FX");
         }
-
-        public override void SuccessfullyCastSpell(PlayerManager player)
+        public override void SuccessfullyChargeSpell(PlayerManager player)
         {
-            base.SuccessfullyCastSpell(player);
+            base.SuccessfullyChargeSpell(player);
 
-            // 1. Destroy ANY warm up fx from this spell 
             if (player.IsOwner)
                 player.playerCombatManager.DestroyAllCurrentActionFX();
 
-            // 2. Get any Colliders from the Caster 
-            Collider[] characterColliders = player.GetComponentsInChildren<Collider>();
-            Collider characterCollisionCollider = player.GetComponent<Collider>();
-
-            // 3. Instantiate the Projectile
             SpellInstantiationLocation spellInstantiationLocation;
-            GameObject instantiatedReleaseSpellFX = Instantiate(spellCastReleaseFX);
+            GameObject instantiatedChargeSpellFX = Instantiate(spellChargeFX);
 
-            // 4. Instantiate Warm up on the proper place (staff or hand (?))
             if (player.playerNetworkManager.isUsingRightHand.Value)
             {
                 spellInstantiationLocation = player.playerEquipmentManager.rightWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
@@ -78,18 +70,112 @@ namespace KrazyKatGames
             {
                 spellInstantiationLocation = player.playerEquipmentManager.leftWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
             }
-            // 5. Use the List of Colliders from the Caster and apply the ignorePhysics thingy with the Collider from the Projectile 
-            // ToDo (!)
+            // Save the charge up fx 
+            player.playerEffectsManager.activeSpellWarmUpFX = instantiatedChargeSpellFX;
+            
+            instantiatedChargeSpellFX.transform.parent = spellInstantiationLocation.transform;
+            instantiatedChargeSpellFX.transform.localPosition = Vector3.zero;
+            instantiatedChargeSpellFX.transform.localRotation = Quaternion.identity;
+        }
+        public override void SuccessfullyCastSpell(PlayerManager player)
+        {
+            base.SuccessfullyCastSpell(player);
+
+            // 1. Destroy ANY warm up fx from this spell 
+            if (player.IsOwner)
+                player.playerCombatManager.DestroyAllCurrentActionFX();
+
+            // 2. Instantiate the Projectile
+            SpellInstantiationLocation spellInstantiationLocation;
+            GameObject instantiatedReleaseSpellFX = Instantiate(spellCastReleaseFX);
+
+            // 3. Instantiate Warm up on the proper place (staff or hand (?))
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                spellInstantiationLocation = player.playerEquipmentManager.rightWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
+            }
+            else
+            {
+                spellInstantiationLocation = player.playerEquipmentManager.leftWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
+            }
+
             instantiatedReleaseSpellFX.transform.parent = spellInstantiationLocation.transform;
             instantiatedReleaseSpellFX.transform.localPosition = Vector3.zero;
             instantiatedReleaseSpellFX.transform.localRotation = Quaternion.identity;
             instantiatedReleaseSpellFX.transform.parent = null;
 
-            // 5. Apply Damage to the Projectiles Damage Collider 
-            // 6. Set the Projectiles Velocity and Direction
+            // 4. Apply Damage to the Projectiles Damage Collider 
+            EnergyBallManager energyBallManager = instantiatedReleaseSpellFX.GetComponent<EnergyBallManager>();
+            energyBallManager.InitializeEnergyBall(player);
+
+            #region Optional Ignore Collision
+            // Use the List of Colliders from the Caster and apply the ignorePhysics thingy with the Collider from the Projectile 
+            // ... for now not needed actually 
+            // Get any Colliders from the Caster 
+            // Collider[] characterColliders = player.GetComponentsInChildren<Collider>();
+            // Collider characterCollisionCollider = player.GetComponent<Collider>();
+
+            // Physics.IgnoreCollision(characterCollisionCollider, energyBallManager.damageCollider.damageCollider, true);
+            // foreach (var collider in characterColliders)
+            // {
+            //     Physics.IgnoreCollision(characterCollisionCollider, collider, true);
+            // }
+            #endregion
+
+            // 5. Set the Projectiles Velocity and Direction
             if (player.playerNetworkManager.isLockedOn.Value)
             {
-                instantiatedReleaseSpellFX.transform.LookAt(player.playerCombatManager.transform.position);
+                instantiatedReleaseSpellFX.transform.LookAt(player.playerCombatManager.currentTarget.transform.position);
+            }
+            else
+            {
+                Vector3 forwardDirection = player.transform.forward;
+                instantiatedReleaseSpellFX.transform.forward = forwardDirection;
+            }
+            Rigidbody spellRigidbody = instantiatedReleaseSpellFX.GetComponent<Rigidbody>();
+            Vector3 upwardVelocityVector = instantiatedReleaseSpellFX.transform.up * upwardVelocity;
+            Vector3 forwardVelocityVector = instantiatedReleaseSpellFX.transform.forward * forwardVelocity;
+            Vector3 totalVelocity = upwardVelocityVector + forwardVelocityVector;
+            spellRigidbody.velocity = totalVelocity;
+
+            Debug.Log("CASTED SPELL");
+        }
+        public override void SuccessfullyCastSpellFullCharged(PlayerManager player)
+        {
+            base.SuccessfullyCastSpellFullCharged(player);
+
+            // 1. Destroy ANY warm up fx from this spell 
+            if (player.IsOwner)
+                player.playerCombatManager.DestroyAllCurrentActionFX();
+
+            // 2. Instantiate the Projectile
+            SpellInstantiationLocation spellInstantiationLocation;
+            GameObject instantiatedReleaseSpellFX = Instantiate(spellCastReleaseFXFullCharged);
+
+            // 3. Instantiate Warm up on the proper place (staff or hand (?))
+            if (player.playerNetworkManager.isUsingRightHand.Value)
+            {
+                spellInstantiationLocation = player.playerEquipmentManager.rightWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
+            }
+            else
+            {
+                spellInstantiationLocation = player.playerEquipmentManager.leftWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
+            }
+
+            instantiatedReleaseSpellFX.transform.parent = spellInstantiationLocation.transform;
+            instantiatedReleaseSpellFX.transform.localPosition = Vector3.zero;
+            instantiatedReleaseSpellFX.transform.localRotation = Quaternion.identity;
+            instantiatedReleaseSpellFX.transform.parent = null;
+
+            // 4. Apply Damage to the Projectiles Damage Collider 
+            EnergyBallManager energyBallManager = instantiatedReleaseSpellFX.GetComponent<EnergyBallManager>();
+            energyBallManager.isFullyCharged = true;
+            energyBallManager.InitializeEnergyBall(player);
+
+            // 5. Set the Projectiles Velocity and Direction
+            if (player.playerNetworkManager.isLockedOn.Value)
+            {
+                instantiatedReleaseSpellFX.transform.LookAt(player.playerCombatManager.currentTarget.transform.position);
             }
             else
             {

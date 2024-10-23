@@ -29,6 +29,10 @@ namespace KrazyKatGames
         public NetworkVariable<bool> isTwoHandingLeftWeapon =
             new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
+        [Header("Spells")]
+        public NetworkVariable<bool> isChargingRightSpell = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isChargingLeftSpell = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
         [Header("Armor")] // ToDo (!)
         public NetworkVariable<int> cloakEquipmentID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> pantsEquipmentID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -126,6 +130,15 @@ namespace KrazyKatGames
             SpellItem newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
             if (newSpell != null)
                 player.playerInventoryManager.currentSpell = newSpell;
+        }
+
+        public void OnIsChargingRightSpellChanged(bool oldStatus, bool newStatus)
+        {
+            player.animator.SetBool("IsChargingRightSpell", isChargingRightSpell.Value);
+        }
+        public void OnIsChargingLeftSpellChanged(bool oldStatus, bool newStatus)
+        {
+            player.animator.SetBool("IsChargingLeftSpell", isChargingLeftSpell.Value);
         }
         public void OnIsTwoHandingWeaponChanged(bool oldStatus, bool newStatus)
         {

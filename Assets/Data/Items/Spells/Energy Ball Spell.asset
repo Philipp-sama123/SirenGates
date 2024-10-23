@@ -19,8 +19,12 @@ MonoBehaviour:
   SpellClass: 0
   spellSlotsUsed: 1
   spellCastWarmUpFX: {fileID: 5556046879170063695, guid: bedc11493b02f494ea52cd3d27f23a57, type: 3}
+  spellChargeFX: {fileID: 1120835270511274, guid: 83a087ef6319c407898ef6da04653a40, type: 3}
   spellCastReleaseFX: {fileID: 4150650995022997676, guid: 7582a27821f084b4db04535ab46fa7f8, type: 3}
+  spellCastReleaseFXFullCharged: {fileID: 4150650995022997676, guid: 692aaa8026ae64800aaae0676127ef00, type: 3}
   mainHandSpellAnimation: Spell_Main_Fire_Ball_Start_01
   offHandSpellAnimation: Spell_Off_Fire_Ball_Start_01
   warmUpSoundFX: {fileID: 0}
   releaseSoundFX: {fileID: 0}
+  upwardVelocity: 3
+  forwardVelocity: 5

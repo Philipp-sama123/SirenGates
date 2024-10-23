@@ -271,12 +271,26 @@ namespace KrazyKatGames
 
             player.playerInventoryManager.currentSpell.InstantiateWarmUpSpellFX(player);
         }
-        public void SuccessfullyCastSpellFX()
+        public void SuccessfullyCastSpell()
         {
             if (player.playerInventoryManager.currentSpell == null)
                 return;
 
             player.playerInventoryManager.currentSpell.SuccessfullyCastSpell(player);
+        }
+        public void SuccessfullyChargeSpell()
+        {
+            if (player.playerInventoryManager.currentSpell == null)
+                return;
+
+            player.playerInventoryManager.currentSpell.SuccessfullyChargeSpell(player);
+        }
+        public void SuccessfullyCastSpellFullCharged()
+        {
+            if (player.playerInventoryManager.currentSpell == null)
+                return;
+
+            player.playerInventoryManager.currentSpell.SuccessfullyCastSpellFullCharged(player);
         }
         public WeaponItem SelectWeaponToPerformAshOfWar()
         {

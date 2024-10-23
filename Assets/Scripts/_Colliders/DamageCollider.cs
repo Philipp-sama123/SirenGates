@@ -6,7 +6,7 @@ namespace KrazyKatGames
     public class DamageCollider : MonoBehaviour
     {
         [Header("Collider")]
-        [SerializeField] protected Collider damageCollider;
+        public Collider damageCollider;
 
         [Header("Damage")]
         public float physicalDamage = 0; // (TO DO, SPLIT INTO "Standard", "Strike", "Slash" and "Pierce")

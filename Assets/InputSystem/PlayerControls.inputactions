@@ -296,6 +296,15 @@
                     "initialStateCheck": false
                 },
                 {
+                    "name": "Hold_RB",
+                    "type": "Button",
+                    "id": "a69fe2f4-6332-48b1-b335-62372ed5e04f",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
                     "name": "UseItem",
                     "type": "Button",
                     "id": "a5110976-251c-4fdb-8b4d-9b7be481ddb3",
@@ -311,6 +320,15 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Hold_LB",
+                    "type": "Button",
+                    "id": "16e6e582-eba5-4420-8569-8895248dc316",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
                     "initialStateCheck": false
                 },
                 {
@@ -909,6 +927,50 @@
                     "processors": "",
                     "groups": "",
                     "action": "LT",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "62bcd441-5a6a-49b0-b669-ae5b4e1c0d71",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b2c60698-5cca-427a-ace9-0d44dd142dc1",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_RB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "09442ab3-945b-436a-978c-18711bb47ef7",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_LB",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b9865930-f82a-4aae-ba65-6a7b187e76c3",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Hold_LB",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -43,6 +43,9 @@ namespace KrazyKatGames
         [SerializeField] bool RB_Input = false;
         [SerializeField] bool LB_Input = false;
 
+        [SerializeField] bool Hold_RB_Input = false;
+        [SerializeField] bool Hold_LB_Input = false;
+
         [Header("Trigger Inputs")]
         [SerializeField] bool RT_Input = false;
         [SerializeField] bool Hold_RT_Input = false;
@@ -137,6 +140,11 @@ namespace KrazyKatGames
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 playerControls.PlayerActions.LB.performed += i => LB_Input = true;
                 playerControls.PlayerActions.LB.canceled += i => player.playerNetworkManager.isBlocking.Value = false;
+                // hold
+                playerControls.PlayerActions.Hold_RB.performed += i => Hold_RB_Input = true;
+                playerControls.PlayerActions.Hold_RB.canceled += i => Hold_RB_Input = false;
+                playerControls.PlayerActions.Hold_LB.performed += i => Hold_LB_Input = true;
+                playerControls.PlayerActions.Hold_LB.canceled += i => Hold_LB_Input = false;
 
                 // Triggers
                 playerControls.PlayerActions.RT.performed += i => RT_Input = true;
@@ -220,6 +228,9 @@ namespace KrazyKatGames
 
             HandleRBInput();
             HandleLBInput();
+            
+            HandleHoldRBInput();
+            HandleHoldLBInput();
 
             HandleRTInput();
             HandleChargeRTInput();
@@ -236,6 +247,28 @@ namespace KrazyKatGames
 
             HandleCloseUIInput();
             HandleOpenCharacterMenuInput();
+        }
+        private void HandleHoldRBInput()
+        {
+            if (Hold_RB_Input)
+            {
+                player.playerNetworkManager.isChargingRightSpell.Value = true;
+            }
+            else
+            {
+                player.playerNetworkManager.isChargingRightSpell.Value = false;
+            }
+        }
+        private void HandleHoldLBInput()
+        {
+            if (Hold_LB_Input)
+            {
+                player.playerNetworkManager.isChargingLeftSpell.Value = true;
+            }
+            else
+            {
+                player.playerNetworkManager.isChargingLeftSpell.Value = false;
+            }
         }
         // Input Queing
         private void QueInput(ref bool quedInput)

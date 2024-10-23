@@ -318,6 +318,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
+                    ""name"": ""Hold_RB"",
+                    ""type"": ""Button"",
+                    ""id"": ""a69fe2f4-6332-48b1-b335-62372ed5e04f"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
                     ""name"": ""UseItem"",
                     ""type"": ""Button"",
                     ""id"": ""a5110976-251c-4fdb-8b4d-9b7be481ddb3"",
@@ -333,6 +342,15 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Hold_LB"",
+                    ""type"": ""Button"",
+                    ""id"": ""16e6e582-eba5-4420-8569-8895248dc316"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
                     ""initialStateCheck"": false
                 },
                 {
@@ -933,6 +951,50 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
                     ""action"": ""LT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""62bcd441-5a6a-49b0-b669-ae5b4e1c0d71"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b2c60698-5cca-427a-ace9-0d44dd142dc1"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_RB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""09442ab3-945b-436a-978c-18711bb47ef7"",
+                    ""path"": ""<Gamepad>/leftShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b9865930-f82a-4aae-ba65-6a7b187e76c3"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Hold_LB"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -990,8 +1052,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         m_PlayerActions_Sprint = m_PlayerActions.FindAction("Sprint", throwIfNotFound: true);
         m_PlayerActions_Jump = m_PlayerActions.FindAction("Jump", throwIfNotFound: true);
         m_PlayerActions_RB = m_PlayerActions.FindAction("RB", throwIfNotFound: true);
+        m_PlayerActions_Hold_RB = m_PlayerActions.FindAction("Hold_RB", throwIfNotFound: true);
         m_PlayerActions_UseItem = m_PlayerActions.FindAction("UseItem", throwIfNotFound: true);
         m_PlayerActions_LB = m_PlayerActions.FindAction("LB", throwIfNotFound: true);
+        m_PlayerActions_Hold_LB = m_PlayerActions.FindAction("Hold_LB", throwIfNotFound: true);
         m_PlayerActions_TwoHandWeapon = m_PlayerActions.FindAction("Two Hand Weapon", throwIfNotFound: true);
         m_PlayerActions_TwoHandRightWeapon = m_PlayerActions.FindAction("Two Hand Right Weapon", throwIfNotFound: true);
         m_PlayerActions_TwoHandLeftWeapon = m_PlayerActions.FindAction("Two Hand Left Weapon", throwIfNotFound: true);
@@ -1167,8 +1231,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerActions_Sprint;
     private readonly InputAction m_PlayerActions_Jump;
     private readonly InputAction m_PlayerActions_RB;
+    private readonly InputAction m_PlayerActions_Hold_RB;
     private readonly InputAction m_PlayerActions_UseItem;
     private readonly InputAction m_PlayerActions_LB;
+    private readonly InputAction m_PlayerActions_Hold_LB;
     private readonly InputAction m_PlayerActions_TwoHandWeapon;
     private readonly InputAction m_PlayerActions_TwoHandRightWeapon;
     private readonly InputAction m_PlayerActions_TwoHandLeftWeapon;
@@ -1192,8 +1258,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         public InputAction @Sprint => m_Wrapper.m_PlayerActions_Sprint;
         public InputAction @Jump => m_Wrapper.m_PlayerActions_Jump;
         public InputAction @RB => m_Wrapper.m_PlayerActions_RB;
+        public InputAction @Hold_RB => m_Wrapper.m_PlayerActions_Hold_RB;
         public InputAction @UseItem => m_Wrapper.m_PlayerActions_UseItem;
         public InputAction @LB => m_Wrapper.m_PlayerActions_LB;
+        public InputAction @Hold_LB => m_Wrapper.m_PlayerActions_Hold_LB;
         public InputAction @TwoHandWeapon => m_Wrapper.m_PlayerActions_TwoHandWeapon;
         public InputAction @TwoHandRightWeapon => m_Wrapper.m_PlayerActions_TwoHandRightWeapon;
         public InputAction @TwoHandLeftWeapon => m_Wrapper.m_PlayerActions_TwoHandLeftWeapon;
@@ -1230,12 +1298,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started += instance.OnRB;
             @RB.performed += instance.OnRB;
             @RB.canceled += instance.OnRB;
+            @Hold_RB.started += instance.OnHold_RB;
+            @Hold_RB.performed += instance.OnHold_RB;
+            @Hold_RB.canceled += instance.OnHold_RB;
             @UseItem.started += instance.OnUseItem;
             @UseItem.performed += instance.OnUseItem;
             @UseItem.canceled += instance.OnUseItem;
             @LB.started += instance.OnLB;
             @LB.performed += instance.OnLB;
             @LB.canceled += instance.OnLB;
+            @Hold_LB.started += instance.OnHold_LB;
+            @Hold_LB.performed += instance.OnHold_LB;
+            @Hold_LB.canceled += instance.OnHold_LB;
             @TwoHandWeapon.started += instance.OnTwoHandWeapon;
             @TwoHandWeapon.performed += instance.OnTwoHandWeapon;
             @TwoHandWeapon.canceled += instance.OnTwoHandWeapon;
@@ -1297,12 +1371,18 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
             @RB.started -= instance.OnRB;
             @RB.performed -= instance.OnRB;
             @RB.canceled -= instance.OnRB;
+            @Hold_RB.started -= instance.OnHold_RB;
+            @Hold_RB.performed -= instance.OnHold_RB;
+            @Hold_RB.canceled -= instance.OnHold_RB;
             @UseItem.started -= instance.OnUseItem;
             @UseItem.performed -= instance.OnUseItem;
             @UseItem.canceled -= instance.OnUseItem;
             @LB.started -= instance.OnLB;
             @LB.performed -= instance.OnLB;
             @LB.canceled -= instance.OnLB;
+            @Hold_LB.started -= instance.OnHold_LB;
+            @Hold_LB.performed -= instance.OnHold_LB;
+            @Hold_LB.canceled -= instance.OnHold_LB;
             @TwoHandWeapon.started -= instance.OnTwoHandWeapon;
             @TwoHandWeapon.performed -= instance.OnTwoHandWeapon;
             @TwoHandWeapon.canceled -= instance.OnTwoHandWeapon;
@@ -1425,8 +1505,10 @@ public partial class @PlayerControls: IInputActionCollection2, IDisposable
         void OnSprint(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRB(InputAction.CallbackContext context);
+        void OnHold_RB(InputAction.CallbackContext context);
         void OnUseItem(InputAction.CallbackContext context);
         void OnLB(InputAction.CallbackContext context);
+        void OnHold_LB(InputAction.CallbackContext context);
         void OnTwoHandWeapon(InputAction.CallbackContext context);
         void OnTwoHandRightWeapon(InputAction.CallbackContext context);
         void OnTwoHandLeftWeapon(InputAction.CallbackContext context);
