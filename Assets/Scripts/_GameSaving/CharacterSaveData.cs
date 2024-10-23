@@ -25,18 +25,20 @@ namespace KrazyKatGames
         [Header("Resources")]
         public int currentHealth;
         public float currentStamina;
+        public int currentFocusPoints;
 
         [Header("Character Stats")]
-        public int endurance = 10;
-        public int vitality = 10;
+        public int endurance = 1;
+        public int vitality = 1;
+        public int mind = 1;
 
         [Header("Sites Of Grace")]
         public SerializableDictionary<int, bool> sitesOfGrace; // int is the id, bool the activation status
-        
+
         [Header("Bosses")]
         public SerializableDictionary<int, bool> bossesAwakened;
         public SerializableDictionary<int, bool> bossesDefeated;
-        
+
         [Header("World Items")]
         public SerializableDictionary<int, bool> worldItemsLooted; // world items and looted status
 

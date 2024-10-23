@@ -225,9 +225,11 @@ namespace KrazyKatGames
 
             currentCharacterData.vitality = playerNetworkManager.vitality.Value;
             currentCharacterData.endurance = playerNetworkManager.endurance.Value;
+            currentCharacterData.mind = playerNetworkManager.mind.Value;
 
             currentCharacterData.currentHealth = playerNetworkManager.currentHealth.Value;
             currentCharacterData.currentStamina = playerNetworkManager.currentStamina.Value;
+            currentCharacterData.currentFocusPoints = playerNetworkManager.currentFocusPoints.Value;
 
             // Equipment
             currentCharacterData.pantsEquipment = playerNetworkManager.pantsEquipmentID.Value;
@@ -258,15 +260,19 @@ namespace KrazyKatGames
 
             playerNetworkManager.vitality.Value = currentCharacterData.vitality;
             playerNetworkManager.endurance.Value = currentCharacterData.endurance;
+            playerNetworkManager.mind.Value = currentCharacterData.mind;
 
             playerNetworkManager.maxStamina.Value = playerStatsManager.CalculateStaminaBasedOnEnduranceLevel(currentCharacterData.endurance);
             playerNetworkManager.maxHealth.Value = playerStatsManager.CalculateHealthBasedOnVitalityLevel(currentCharacterData.vitality);
+            playerNetworkManager.maxFocusPoints.Value = playerStatsManager.CalculateFocusPointsBasedOnMindLevel(currentCharacterData.mind);
 
             playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
             playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
-
+            playerNetworkManager.currentFocusPoints.Value = currentCharacterData.currentFocusPoints;
+            
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxFocusPointsValue(playerNetworkManager.maxFocusPoints.Value);
 
             // Equipment
             if (WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment) != null)

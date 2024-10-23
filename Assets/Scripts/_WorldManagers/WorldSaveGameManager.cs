@@ -248,8 +248,13 @@ namespace KrazyKatGames
         {
             //  SAVES THE NEWLY CREATED CHARACTERS STATS, AND ITEMS (WHEN CREATION SCREEN IS ADDED)
             // This is for setting the health and stamina on start  
-            player.playerNetworkManager.currentHealth.Value = player.playerNetworkManager.maxHealth.Value;
-            player.playerNetworkManager.currentStamina.Value = player.playerNetworkManager.maxStamina.Value;
+            player.playerNetworkManager.vitality.Value = 15;
+            player.playerNetworkManager.endurance.Value = 10;
+            player.playerNetworkManager.mind.Value = 10;
+            // player.playerNetworkManager.currentHealth.Value = player.playerNetworkManager.maxHealth.Value;
+            // player.playerNetworkManager.currentStamina.Value = player.playerNetworkManager.maxStamina.Value;
+            // player.playerNetworkManager.currentFocusPoints.Value = player.playerNetworkManager.maxFocusPoints.Value;
+            
 
             SaveGame();
             LoadWorldScene(worldSceneIndex);

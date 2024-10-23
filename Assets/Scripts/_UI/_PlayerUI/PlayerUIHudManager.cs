@@ -61,9 +61,9 @@ namespace KrazyKatGames
         {
             healthBar.SetStat(newValue);
         }
-        public void SetMaxHealthValue(int maxStamina)
+        public void SetMaxHealthValue(int maxHealth)
         {
-            healthBar.SetMaxStat(maxStamina);
+            healthBar.SetMaxStat(maxHealth);
         }
         public void SetNewFocusPointsBarValue(int oldValue, int newValue)
         {
