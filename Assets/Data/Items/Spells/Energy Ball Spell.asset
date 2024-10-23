@@ -17,7 +17,10 @@ MonoBehaviour:
   itemDescription: 
   itemID: 0
   SpellClass: 0
+  fullChargeEffectMultiplier: 1.4
   spellSlotsUsed: 1
+  staminaCost: 10
+  focusPointCost: 10
   spellCastWarmUpFX: {fileID: 5556046879170063695, guid: bedc11493b02f494ea52cd3d27f23a57, type: 3}
   spellChargeFX: {fileID: 1120835270511274, guid: 83a087ef6319c407898ef6da04653a40, type: 3}
   spellCastReleaseFX: {fileID: 4150650995022997676, guid: 7582a27821f084b4db04535ab46fa7f8, type: 3}

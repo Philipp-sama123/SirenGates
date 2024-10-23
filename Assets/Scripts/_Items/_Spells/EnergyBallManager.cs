@@ -48,7 +48,7 @@ namespace KrazyKatGames
             damageCollider.fireDamage = 50;
 
             if (isFullyCharged)
-                damageCollider.fireDamage *= 1.5f;
+                damageCollider.fireDamage *= 1.5f; // ToDo: maybe use here also the spell charged damage multiplier
 
             // ToDo: 
             // setup DamageFormula to calculate Damage based on Character stats,spell Power and spell casting weapons spell buff

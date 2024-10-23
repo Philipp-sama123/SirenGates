@@ -20,7 +20,7 @@ namespace KrazyKatGames
         public float blockingLightningAbsorption;
         public float blockingHolyAbsorption;
         public float blockingStability;
-        
+
         [Header("Armor Absorption")]
         public float armorPhysicalDamageAbsorption;
         public float armorMagicDamageAbsorption;
@@ -62,6 +62,16 @@ namespace KrazyKatGames
             stamina = endurance * 10;
 
             return Mathf.RoundToInt(stamina);
+        }
+        public int CalculateFocusPointsBasedOnMindLevel(int mind)
+        {
+            float focusPoints = 0;
+
+            //  CREATE AN EQUATION FOR HOW YOU WANT YOUR STAMINA TO BE CALCULATED
+
+            focusPoints = mind * 10;
+
+            return Mathf.RoundToInt(focusPoints);
         }
         public int CalculateHealthBasedOnVitalityLevel(int vitality)
         {

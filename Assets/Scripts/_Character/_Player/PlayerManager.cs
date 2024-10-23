@@ -87,10 +87,12 @@ namespace KrazyKatGames
                 // Update Maximum Health or Maximum Stamina when endurance or vitality is changed
                 playerNetworkManager.vitality.OnValueChanged += playerNetworkManager.SetNewMaxHealthValue;
                 playerNetworkManager.endurance.OnValueChanged += playerNetworkManager.SetNewMaxStaminaValue;
+                playerNetworkManager.mind.OnValueChanged += playerNetworkManager.SetNewMaxFocusPointsValue;
 
                 // Updates UI for Stat Bars (!)
                 playerNetworkManager.currentStamina.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
                 playerNetworkManager.currentHealth.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+                playerNetworkManager.currentFocusPoints.OnValueChanged += PlayerUIManager.instance.playerUIHudManager.SetNewFocusPointsBarValue;
 
                 playerNetworkManager.currentStamina.OnValueChanged += playerStatsManager.ResetStaminaRegenTimer;
             }
@@ -141,6 +143,56 @@ namespace KrazyKatGames
                 LoadGameDataFromCurrentCharacterData(ref WorldSaveGameManager.instance.currentCharacterData);
             }
         }
+        public override void OnNetworkDespawn()
+        {
+            base.OnNetworkDespawn();
+
+            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
+            if (IsOwner)
+            {
+                playerNetworkManager.vitality.OnValueChanged -= playerNetworkManager.SetNewMaxHealthValue;
+                playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaValue;
+                playerNetworkManager.mind.OnValueChanged -= playerNetworkManager.SetNewMaxFocusPointsValue;
+
+                playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
+                playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
+                playerNetworkManager.currentFocusPoints.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewFocusPointsBarValue;
+
+                playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
+            }
+
+            if (!IsOwner)
+                playerNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
+            // Stats
+            playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
+            // LockOn
+            playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
+            playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
+            // Equipment
+            playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
+            playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
+            playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
+            playerNetworkManager.currentSpellID.OnValueChanged -= playerNetworkManager.OnCurrentSpellIDChange;
+            // Spells
+            playerNetworkManager.isChargingRightSpell.OnValueChanged -= playerNetworkManager.OnIsChargingRightSpellChanged;
+            playerNetworkManager.isChargingLeftSpell.OnValueChanged -= playerNetworkManager.OnIsChargingLeftSpellChanged;
+            // Blocking
+            playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
+            // Armor
+            playerNetworkManager.cloakEquipmentID.OnValueChanged -= playerNetworkManager.OnCloakEquipmentChanged;
+            playerNetworkManager.pantsEquipmentID.OnValueChanged -= playerNetworkManager.OnPantsEquipmentChanged;
+            playerNetworkManager.outfitEquipmentID.OnValueChanged -= playerNetworkManager.OnOutfitEquipmentChanged;
+            playerNetworkManager.underwearEquipmentID.OnValueChanged -= playerNetworkManager.OnUnderwearEquipmentChanged;
+            playerNetworkManager.hoodEquipmentID.OnValueChanged -= playerNetworkManager.OnHoodEquipmentChanged;
+            playerNetworkManager.shoesAndGlovesEquipmentID.OnValueChanged -= playerNetworkManager.OnShoesAndGlovesEquipmentChanged;
+            // Two Handing 
+            playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingWeaponChanged;
+            playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;
+            playerNetworkManager.isTwoHandingLeftWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingLeftWeaponChanged;
+            // Flags
+            playerNetworkManager.isChargingAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
+            playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
+        }
         public override void ReviveCharacter()
         {
             base.ReviveCharacter();
@@ -162,7 +214,6 @@ namespace KrazyKatGames
             // ToDo: check for alive Players, if 0 --> Respawn all Characters (!)
             return base.ProcessDeathEvent(manuallySelectDeathAnimation);
         }
-
         public void SaveGameDataToCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
             currentCharacterData.sceneIndex = SceneManager.GetActiveScene().buildIndex;
@@ -199,7 +250,6 @@ namespace KrazyKatGames
             currentCharacterData.leftWeapon02 = playerInventoryManager.weaponsInLeftHandSlots[1].itemID; // They should always default to (unarmed)
             currentCharacterData.leftWeapon03 = playerInventoryManager.weaponsInLeftHandSlots[2].itemID; // They should always default to (unarmed)
         }
-
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
             playerNetworkManager.characterName.Value = currentCharacterData.characterName;
@@ -388,55 +438,6 @@ namespace KrazyKatGames
                 playerNetworkManager.OnLockOnTargetIDChange(0, playerNetworkManager.currentTargetNetworkObjectID.Value);
             }
         }
-        public override void OnNetworkDespawn()
-        {
-            base.OnNetworkDespawn();
-
-            NetworkManager.Singleton.OnClientConnectedCallback -= OnClientConnectedCallback;
-            if (IsOwner)
-            {
-                playerNetworkManager.vitality.OnValueChanged -= playerNetworkManager.SetNewMaxHealthValue;
-                playerNetworkManager.endurance.OnValueChanged -= playerNetworkManager.SetNewMaxStaminaValue;
-
-                playerNetworkManager.currentStamina.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewStaminaValue;
-                playerNetworkManager.currentHealth.OnValueChanged -= PlayerUIManager.instance.playerUIHudManager.SetNewHealthValue;
-
-                playerNetworkManager.currentStamina.OnValueChanged -= playerStatsManager.ResetStaminaRegenTimer;
-            }
-
-            if (!IsOwner)
-                playerNetworkManager.currentHealth.OnValueChanged -= characterUIManager.OnHPChanged;
-            // Stats
-            playerNetworkManager.currentHealth.OnValueChanged -= playerNetworkManager.CheckHP;
-            // LockOn
-            playerNetworkManager.isLockedOn.OnValueChanged -= playerNetworkManager.OnIsLockedOnChanged;
-            playerNetworkManager.currentTargetNetworkObjectID.OnValueChanged -= playerNetworkManager.OnLockOnTargetIDChange;
-            // Equipment
-            playerNetworkManager.currentRightHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentRightHandWeaponIDChange;
-            playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
-            playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
-            playerNetworkManager.currentSpellID.OnValueChanged -= playerNetworkManager.OnCurrentSpellIDChange;
-            // Spells
-            playerNetworkManager.isChargingRightSpell.OnValueChanged -= playerNetworkManager.OnIsChargingRightSpellChanged;
-            playerNetworkManager.isChargingLeftSpell.OnValueChanged -= playerNetworkManager.OnIsChargingLeftSpellChanged;
-            // Blocking
-            playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
-            // Armor
-            playerNetworkManager.cloakEquipmentID.OnValueChanged -= playerNetworkManager.OnCloakEquipmentChanged;
-            playerNetworkManager.pantsEquipmentID.OnValueChanged -= playerNetworkManager.OnPantsEquipmentChanged;
-            playerNetworkManager.outfitEquipmentID.OnValueChanged -= playerNetworkManager.OnOutfitEquipmentChanged;
-            playerNetworkManager.underwearEquipmentID.OnValueChanged -= playerNetworkManager.OnUnderwearEquipmentChanged;
-            playerNetworkManager.hoodEquipmentID.OnValueChanged -= playerNetworkManager.OnHoodEquipmentChanged;
-            playerNetworkManager.shoesAndGlovesEquipmentID.OnValueChanged -= playerNetworkManager.OnShoesAndGlovesEquipmentChanged;
-            // Two Handing 
-            playerNetworkManager.isTwoHandingWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingWeaponChanged;
-            playerNetworkManager.isTwoHandingRightWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingRightWeaponChanged;
-            playerNetworkManager.isTwoHandingLeftWeapon.OnValueChanged -= playerNetworkManager.OnIsTwoHandingLeftWeaponChanged;
-            // Flags
-            playerNetworkManager.isChargingAttack.OnValueChanged -= playerNetworkManager.OnIsChargingAttackChanged;
-            playerNetworkManager.isBlocking.OnValueChanged -= playerNetworkManager.OnIsBlockingChanged;
-        }
-
         private void DebugMenu()
         {
             if (respawnCharacter)

@@ -10,6 +10,7 @@ namespace KrazyKatGames
         [Header("Stat Bars")]
         [SerializeField] UI_StatBar staminaBar;
         [SerializeField] UI_StatBar healthBar;
+        [SerializeField] UI_StatBar focusPointsBar;
 
         [Header("Quick Slots")]
         [SerializeField] Image rightWeaponQuickSlotIcon;
@@ -45,6 +46,8 @@ namespace KrazyKatGames
             healthBar.gameObject.SetActive(true);
             staminaBar.gameObject.SetActive(false);
             staminaBar.gameObject.SetActive(true);
+            focusPointsBar.gameObject.SetActive(false);
+            focusPointsBar.gameObject.SetActive(true);
         }
         public void SetNewStaminaValue(float oldValue, float newValue)
         {
@@ -61,6 +64,14 @@ namespace KrazyKatGames
         public void SetMaxHealthValue(int maxStamina)
         {
             healthBar.SetMaxStat(maxStamina);
+        }
+        public void SetNewFocusPointsBarValue(int oldValue, int newValue)
+        {
+            focusPointsBar.SetStat(newValue);
+        }
+        public void SetMaxFocusPointsValue(int maxFocusPoints)
+        {
+            focusPointsBar.SetMaxStat(maxFocusPoints);
         }
         public void SetRightWeaponQuickSlotIcon(int weaponID)
         {

@@ -91,6 +91,12 @@ namespace KrazyKatGames
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(maxStamina.Value);
             currentStamina.Value = maxStamina.Value;
         }
+        public void SetNewMaxFocusPointsValue(int oldMind, int newMind)
+        {
+            maxFocusPoints.Value = player.playerStatsManager.CalculateFocusPointsBasedOnMindLevel(newMind);
+            PlayerUIManager.instance.playerUIHudManager.SetMaxFocusPointsValue(maxFocusPoints.Value);
+            currentFocusPoints.Value = maxFocusPoints.Value;
+        }
 
         public void OnCurrentRightHandWeaponIDChange(int oldID, int newID)
         {
