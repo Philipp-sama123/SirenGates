@@ -98,3 +98,4 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0fe9230f21588448ca293c46078d6e8e, type: 2}
   spells:
   - {fileID: 11400000, guid: 0c953daa84f104514b0bb1eff0743e1c, type: 2}
+  - {fileID: 11400000, guid: 722c71927bade49279b7416233c7ccb5, type: 2}

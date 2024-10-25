@@ -63,6 +63,8 @@ namespace KrazyKatGames
         public int leftWeapon02;
         public int leftWeapon03;
 
+        public int currentSpell;
+
         // also a list maybe ... 
         //  public List<int> rightWeapons; 
         //  public List<int> leftWeapons; 

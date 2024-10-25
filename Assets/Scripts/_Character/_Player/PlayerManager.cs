@@ -251,6 +251,10 @@ namespace KrazyKatGames
             currentCharacterData.leftWeapon01 = playerInventoryManager.weaponsInLeftHandSlots[0].itemID; // They should always default to (unarmed)
             currentCharacterData.leftWeapon02 = playerInventoryManager.weaponsInLeftHandSlots[1].itemID; // They should always default to (unarmed)
             currentCharacterData.leftWeapon03 = playerInventoryManager.weaponsInLeftHandSlots[2].itemID; // They should always default to (unarmed)
+
+            // Spells
+            if (playerInventoryManager.currentSpell)
+                currentCharacterData.currentSpell = playerInventoryManager.currentSpell.itemID;
         }
         public void LoadGameDataFromCurrentCharacterData(ref CharacterSaveData currentCharacterData)
         {
@@ -269,13 +273,13 @@ namespace KrazyKatGames
             playerNetworkManager.currentHealth.Value = currentCharacterData.currentHealth;
             playerNetworkManager.currentStamina.Value = currentCharacterData.currentStamina;
             playerNetworkManager.currentFocusPoints.Value = currentCharacterData.currentFocusPoints;
-            
+
             PlayerUIManager.instance.playerUIHudManager.SetMaxStaminaValue(playerNetworkManager.maxStamina.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxHealthValue(playerNetworkManager.maxHealth.Value);
             PlayerUIManager.instance.playerUIHudManager.SetMaxFocusPointsValue(playerNetworkManager.maxFocusPoints.Value);
 
             // Equipment
-            if (WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment) != null)
+            if (WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment))
             {
                 UnderwearWearableItem underwear =
                     Instantiate(WorldItemDatabase.Instance.GetUnderwearEquipmentByID(currentCharacterData.underwearEquipment));
@@ -332,7 +336,7 @@ namespace KrazyKatGames
                 playerInventoryManager.shoesAndGlovesWearable = null;
             }
 
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon01) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon01))
             {
                 WeaponItem rightWeapon01 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon01));
                 playerInventoryManager.weaponsInRightHandSlots[0] = rightWeapon01;
@@ -341,7 +345,7 @@ namespace KrazyKatGames
             {
                 playerInventoryManager.weaponsInRightHandSlots[0] = null;
             }
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon02) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon02))
             {
                 WeaponItem rightWeapon02 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon02));
                 playerInventoryManager.weaponsInRightHandSlots[1] = rightWeapon02;
@@ -350,7 +354,7 @@ namespace KrazyKatGames
             {
                 playerInventoryManager.weaponsInRightHandSlots[1] = null;
             }
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon03) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon03))
             {
                 WeaponItem rightWeapon03 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.rightWeapon03));
                 playerInventoryManager.weaponsInRightHandSlots[2] = rightWeapon03;
@@ -359,7 +363,7 @@ namespace KrazyKatGames
             {
                 playerInventoryManager.weaponsInRightHandSlots[2] = null;
             }
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon01) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon01))
             {
                 WeaponItem leftWeapon01 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon01));
                 playerInventoryManager.weaponsInLeftHandSlots[0] = leftWeapon01;
@@ -368,7 +372,7 @@ namespace KrazyKatGames
             {
                 playerInventoryManager.weaponsInLeftHandSlots[0] = null;
             }
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon02) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon02))
             {
                 WeaponItem leftWeapon02 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon02));
                 playerInventoryManager.weaponsInLeftHandSlots[1] = leftWeapon02;
@@ -377,7 +381,7 @@ namespace KrazyKatGames
             {
                 playerInventoryManager.weaponsInLeftHandSlots[1] = null;
             }
-            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon03) != null)
+            if (WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon03))
             {
                 WeaponItem leftWeapon03 = Instantiate(WorldItemDatabase.Instance.GetWeaponByID(currentCharacterData.leftWeapon03));
                 playerInventoryManager.weaponsInLeftHandSlots[2] = leftWeapon03;
@@ -385,6 +389,16 @@ namespace KrazyKatGames
             else
             {
                 playerInventoryManager.weaponsInLeftHandSlots[2] = null;
+            }
+            // Spells
+            if (WorldItemDatabase.Instance.GetSpellByID(currentCharacterData.currentSpell))
+            {
+                SpellItem spellItem = Instantiate(WorldItemDatabase.Instance.GetSpellByID(currentCharacterData.currentSpell));
+                playerNetworkManager.currentSpellID.Value = spellItem.itemID;
+            }
+            else
+            {
+                playerNetworkManager.currentSpellID.Value = -1;
             }
             playerEquipmentManager.EquipWearables();
 

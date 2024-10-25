@@ -1920,7 +1920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -1995,7 +1995,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.10666606, g: 0.4433962, b: 0.12504527, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3136,7 +3136,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3825,7 +3825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.6981132, g: 0.062566735, b: 0.09606309, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -3900,7 +3900,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4523,6 +4523,7 @@ MonoBehaviour:
   focusPointsBar: {fileID: 2383663377648930538}
   rightWeaponQuickSlotIcon: {fileID: 572100329299377830}
   leftWeaponQuickSlotIcon: {fileID: 5307459011667263420}
+  spellItemQuickSlotIcon: {fileID: 2813823973708584465}
   bossHealthBarParent: {fileID: 180665713306142662}
   bossHealthBarObject: {fileID: 8498836994033643107, guid: 7b2fc310a7f2c455a8170507b24e1556, type: 3}
 --- !u!1 &6787923200825980043
@@ -4829,7 +4830,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -4904,7 +4905,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5216,7 +5217,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -5291,7 +5292,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0.08884287, g: 0, b: 1, a: 1}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
@@ -6463,6 +6464,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2480090023237071997, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866198649208195442, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
       propertyPath: m_Name
       value: SpellQuickSlotUI
@@ -6477,6 +6482,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 1737854849131816328, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
   m_PrefabInstance: {fileID: 389483588114571884}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &2813823973708584465 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2480090023237071997, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
+  m_PrefabInstance: {fileID: 389483588114571884}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &426752023772781578
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8004,6 +8020,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2480090023237071997, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5866198649208195442, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
       propertyPath: m_Name
       value: RightQuickSlotUI
@@ -8657,6 +8677,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1737854849131816328, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2480090023237071997, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}
+      propertyPath: m_RaycastTarget
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5866198649208195442, guid: 27c3c5bb031bf48119e7d85d6d7ab726, type: 3}

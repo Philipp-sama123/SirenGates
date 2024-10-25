@@ -133,9 +133,18 @@ namespace KrazyKatGames
         }
         public void OnCurrentSpellIDChange(int oldID, int newID)
         {
-            SpellItem newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
+            SpellItem newSpell = null;
+            
+            if (WorldItemDatabase.Instance.GetSpellByID(newID))
+                newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
+
             if (newSpell != null)
                 player.playerInventoryManager.currentSpell = newSpell;
+
+            if (player.IsOwner)
+            {
+                PlayerUIManager.instance.playerUIHudManager.SetSpellItemQuickSlotIcon(newID);
+            }
         }
 
         public void OnIsChargingRightSpellChanged(bool oldStatus, bool newStatus)

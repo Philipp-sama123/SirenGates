@@ -15,6 +15,7 @@ namespace KrazyKatGames
         [Header("Quick Slots")]
         [SerializeField] Image rightWeaponQuickSlotIcon;
         [SerializeField] Image leftWeaponQuickSlotIcon;
+        [SerializeField] Image spellItemQuickSlotIcon;
 
 
         [Header("Boss Health Bar")]
@@ -114,6 +115,27 @@ namespace KrazyKatGames
             // Check if you meet item requirements (!)
             leftWeaponQuickSlotIcon.sprite = weapon.itemIcon;
             leftWeaponQuickSlotIcon.enabled = true;
+        }
+        public void SetSpellItemQuickSlotIcon(int spellID)
+        {
+            SpellItem spell = WorldItemDatabase.Instance.GetSpellByID(spellID);
+            if (spell == null)
+            {
+                Debug.Log("spell is null!");
+                spellItemQuickSlotIcon.enabled = false;
+                spellItemQuickSlotIcon.sprite = null;
+                return;
+            }
+            if (spell.itemIcon == null)
+            {
+                Debug.LogWarning("spell has no Icon!");
+                spellItemQuickSlotIcon.enabled = false;
+                spellItemQuickSlotIcon.sprite = null;
+                return;
+            }
+            // Check if you meet item requirements (!)
+            spellItemQuickSlotIcon.sprite = spell.itemIcon;
+            spellItemQuickSlotIcon.enabled = true;
         }
     }
 }
