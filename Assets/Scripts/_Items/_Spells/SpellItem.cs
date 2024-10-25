@@ -49,7 +49,8 @@ namespace KrazyKatGames
             if (player.IsOwner)
             {
                 player.playerNetworkManager.currentFocusPoints.Value -= Mathf.RoundToInt(focusPointCost * fullChargeEffectMultiplier);
-                player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaCost * fullChargeEffectMultiplier);;
+                player.playerNetworkManager.currentStamina.Value -= Mathf.RoundToInt(staminaCost * fullChargeEffectMultiplier);
+                ;
             }
         }
         public virtual void InstantiateWarmUpSpellFX(PlayerManager player)
@@ -57,6 +58,10 @@ namespace KrazyKatGames
         }
         public virtual bool CanICastThisSpell(PlayerManager player)
         {
+            if (player.playerNetworkManager.currentFocusPoints.Value <= focusPointCost)
+                return false;
+            if (player.playerNetworkManager.currentStamina.Value <= 0) // or stamina cost (?)
+                return false;
             return true;
         }
     }

@@ -55,7 +55,6 @@ namespace KrazyKatGames
                 return;
 
             GetBlockingDotValues(damageTarget);
-            Debug.Log("---- CHECK FOR BLOCK make dotValueFromAttackToDamageTarget a Variable----" + dotValueFromAttackToDamageTarget);
             // 1. Check if the Character is blocking
             // 2. If Character is Blocking -> Check for the correct Direction to block (!)
             if (damageTarget.characterNetworkManager.isBlocking.Value && dotValueFromAttackToDamageTarget < 0.3f) // ToDo: extract to variable
