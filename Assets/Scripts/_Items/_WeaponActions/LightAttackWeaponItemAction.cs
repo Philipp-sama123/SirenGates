@@ -11,6 +11,7 @@ namespace KrazyKatGames
         [SerializeField] private string light_Attack_02 = "Main_Light_Attack_02";
         [SerializeField] private string light_Attack_03 = "Main_Light_Attack_03";
         [SerializeField] private string light_Attack_04 = "Main_Light_Attack_04";
+        [SerializeField] private string light_Jumping_Attack_01 = "Main_Jump_Light_Attack_01";
 
         [Header("Main Hand Running Attacks")]
         [SerializeField] private string run_attack_01 = "Main_Run_Attack_01";
@@ -22,11 +23,13 @@ namespace KrazyKatGames
         [SerializeField] private string backstep_attack_01 = "Main_Backstep_Attack_01";
 
         // Two Hand
-        [Header("Main Hand Light Attacks")]
+        [Header("Two Hand Light Attacks")]
         [SerializeField] private string th_light_Attack_01 = "TH_Light_Attack_01"; // Main Hand (Right) Light Attack
         [SerializeField] private string th_light_Attack_02 = "TH_Light_Attack_02";
         [SerializeField] private string th_light_Attack_03 = "TH_Light_Attack_03";
         [SerializeField] private string th_light_Attack_04 = "TH_Light_Attack_04";
+
+        [SerializeField] private string th_light_Jumping_Attack_01 = "TH_Jump_Light_Attack_01";
 
         [Header("Two Hand Running Attacks")]
         [SerializeField] private string th_run_attack_01 = "TH_Run_Attack_01";
@@ -47,12 +50,15 @@ namespace KrazyKatGames
             if (playerPerformingAction.playerNetworkManager.currentStamina.Value <= 0)
                 return;
 
+            // Jump Attack if inAir
             if (!playerPerformingAction.playerLocomotionManager.isGrounded)
+            {
+                PerformJumpingLightAttack(playerPerformingAction, weaponPerformingAction);
                 return;
-
-            if (playerPerformingAction.IsOwner)
-                playerPerformingAction.playerNetworkManager.isAttacking.Value = true;
-
+            }
+            if (playerPerformingAction.playerNetworkManager.isJumping.Value)
+                return;
+            
             if (playerPerformingAction.playerNetworkManager.isSprinting.Value)
             {
                 PerformRunningAttack(playerPerformingAction, weaponPerformingAction);
@@ -116,7 +122,6 @@ namespace KrazyKatGames
                     run_attack_01, true);
             }
         }
-
         private void PerformLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
         {
             if (playerPerformingAction.playerNetworkManager.isTwoHandingWeapon.Value)
@@ -185,6 +190,31 @@ namespace KrazyKatGames
                 playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightAttack01,
                     th_light_Attack_01, true);
             }
+        }
+        private void PerformJumpingLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            if (playerPerformingAction.playerNetworkManager.isTwoHandingWeapon.Value)
+            {
+                PerformJumpingTwoHandLightAttack(playerPerformingAction, weaponPerformingAction);
+            }
+            else
+            {
+                PerformJumpingMainHandLightAttack(playerPerformingAction, weaponPerformingAction);
+            }
+        }
+        private void PerformJumpingMainHandLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            if (playerPerformingAction.isPerformingAction)
+                return;
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightJumpingAttack_01,
+                light_Jumping_Attack_01, true);
+        }
+        private void PerformJumpingTwoHandLightAttack(PlayerManager playerPerformingAction, WeaponItem weaponPerformingAction)
+        {
+            if (playerPerformingAction.isPerformingAction)
+                return;
+            playerPerformingAction.playerAnimatorManager.PlayTargetAttackActionAnimation(weaponPerformingAction, AttackType.LightJumpingAttack_01,
+                th_light_Jumping_Attack_01, true);
         }
     }
 }

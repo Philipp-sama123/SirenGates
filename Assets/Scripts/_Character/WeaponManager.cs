@@ -36,6 +36,9 @@ namespace KrazyKatGames
             meleeDamageCollider.run_Attack_01_Modifier = weapon.run_Attack_01_Modifier;
             meleeDamageCollider.roll_Attack_01_Modifier = weapon.roll_Attack_01_Modifier;
             meleeDamageCollider.backstep_Attack_01_Modifier = weapon.backstep_Attack_01_Modifier;
+            
+            meleeDamageCollider.light_Jump_Attack_Modifier = weapon.light_Jump_Attack_Modifier;
+            meleeDamageCollider.heavy_Jump_Attack_Modifier = weapon.heavy_Jump_Attack_Modifier;
         }
     }
 }

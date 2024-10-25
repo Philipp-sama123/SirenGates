@@ -23,6 +23,9 @@ namespace KrazyKatGames
         public float run_Attack_01_Modifier;
         public float roll_Attack_01_Modifier;
         public float backstep_Attack_01_Modifier;
+        
+        public float light_Jump_Attack_Modifier;
+        public float heavy_Jump_Attack_Modifier;
 
         protected override void Awake()
         {
@@ -135,6 +138,12 @@ namespace KrazyKatGames
                     break;
                 case AttackType.BackstepAttack_01:
                     ApplyAttackDamageModifiers(backstep_Attack_01_Modifier, damageEffect);
+                    break;
+                case AttackType.LightJumpingAttack_01:
+                    ApplyAttackDamageModifiers(light_Jump_Attack_Modifier, damageEffect);
+                    break;
+                case AttackType.HeavyJumpingAttack_01:
+                    ApplyAttackDamageModifiers(heavy_Jump_Attack_Modifier, damageEffect);
                     break;
                 default:
                     break;

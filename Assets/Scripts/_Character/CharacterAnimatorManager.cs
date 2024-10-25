@@ -212,6 +212,8 @@ namespace KrazyKatGames
             character.isPerformingAction = isPerformingAction;
             character.characterLocomotionManager.canRotate = canRotate;
             character.characterLocomotionManager.canMove = canMove;
+            character.characterNetworkManager.isAttacking.Value = true;
+
             character.characterNetworkManager.NotifyTheServerOfAttackActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
                 applyRootMotion);
         }
@@ -233,7 +235,9 @@ namespace KrazyKatGames
             character.characterLocomotionManager.canMove = canMove;
 
             //  TELL THE SERVER/HOST WE PLAYED AN ANIMATION, AND TO PLAY THAT ANIMATION FOR EVERYBODY ELSE PRESENT
-            character.characterNetworkManager.NotifyTheServerOfInstantActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId, targetAnimation,
-                applyRootMotion);      }
+            character.characterNetworkManager.NotifyTheServerOfInstantActionAnimationServerRpc(NetworkManager.Singleton.LocalClientId,
+                targetAnimation,
+                applyRootMotion);
+        }
     }
 }

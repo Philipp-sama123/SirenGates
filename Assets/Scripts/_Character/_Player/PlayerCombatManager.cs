@@ -257,6 +257,13 @@ namespace KrazyKatGames
                 case AttackType.BackstepAttack_01:
                     staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.backstepAttackStaminaCostMultiplier;
                     break;
+                case AttackType.LightJumpingAttack_01:
+                    staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.lightAttackStaminaCostMultiplier;
+                    break;
+                case AttackType.HeavyJumpingAttack_01:
+                    staminaDeducted = currentWeaponBeingUsed.baseStaminaCost * currentWeaponBeingUsed.heavyAttackStaminaCostMultiplier;
+
+                    break;
                 default:
                     break;
             }
