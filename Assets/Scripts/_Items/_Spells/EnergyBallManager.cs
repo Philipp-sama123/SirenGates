@@ -33,13 +33,7 @@ namespace KrazyKatGames
             base.Update();
 
             if (spellTarget != null)
-                transform.LookAt(spellTarget.transform);
-
-            if (energyBallRigidbody != null)
-            {
-                Vector3 currentVelocity = energyBallRigidbody.velocity;
-                energyBallRigidbody.velocity = transform.forward + currentVelocity;
-            }
+                transform.LookAt(spellTarget.characterCombatManager.lockOnTransform.position);
         }
 
         public void InitializeEnergyBall(CharacterManager character)
