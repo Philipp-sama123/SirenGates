@@ -69,7 +69,7 @@ public enum WeaponModelType
     Shield
     // maybe Item (?)
 }
-public enum WearableModelType 
+public enum WearableModelType
 {
     Underwear,
     Mask,
@@ -93,31 +93,34 @@ public enum WeaponClass
 
 public enum ItemPickUpType
 {
-    WorldSpawn, 
+    WorldSpawn,
     CharacterDrop,
 }
 
-//  USED TO DETERMINE WHICH EQUIPMENT SLOT IS CURRENTLY SELECTED (HELMET, BODY, LEGS, HANDS, RIGHT WEAPON 01, TALISMAN 02, ECT)
 public enum EquipmentType
 {
-    RightWeapon01,  // 0
-    RightWeapon02,  // 1
-    RightWeapon03,  // 2
-    LeftWeapon01,   // 3
-    LeftWeapon02,   // 4
-    LeftWeapon03,   // 5
-    Underwear,      // 6
-    Pants,          // 7
-    Outfit,         // 8
-    Hood,           // 9 
-    Cloak,          // 10
+    RightWeapon01, // 0
+    RightWeapon02, // 1
+    RightWeapon03, // 2
+    LeftWeapon01, // 3
+    LeftWeapon02, // 4
+    LeftWeapon03, // 5
+    Underwear, // 6
+    Pants, // 7
+    Outfit, // 8
+    Hood, // 9 
+    Cloak, // 10
     ShoesAndGloves, // 11
     // more to come
 }
 
-//  USED TO DETERMINE WHICH ITEM (CATALYST) IS NEEDED TO CAST SPELL
 public enum SpellClass
 {
     Incantation,
     Sorcery
+}
+public enum ProjectileClass
+{
+    Arrow,
+    Bolt
 }

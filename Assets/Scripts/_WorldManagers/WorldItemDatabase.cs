@@ -39,6 +39,9 @@ namespace KrazyKatGames
         [Header("Spells")]
         [SerializeField] List<SpellItem> spells = new();
 
+        [Header("Projectiles")]
+        [SerializeField] List<RangedProjectileItem> projectiles = new();
+
         //  A List of all the items in Game
         [Header("Items")]
         private List<Item> items = new List<Item>();
@@ -96,6 +99,12 @@ namespace KrazyKatGames
                 items.Add(item);
             }
 
+            // add projectiles
+            foreach (var item in projectiles)
+            {
+                items.Add(item);
+            }
+
             //  assign all of the items a unique ID
             for (int i = 0; i < items.Count; i++)
             {
@@ -145,6 +154,10 @@ namespace KrazyKatGames
         public SpellItem GetSpellByID(int ID)
         {
             return spells.FirstOrDefault(spell => spell.itemID == ID);
+        }
+        public RangedProjectileItem GetProjectileByID(int ID)
+        {
+            return projectiles.FirstOrDefault(projectile => projectile.itemID == ID);
         }
     }
 }

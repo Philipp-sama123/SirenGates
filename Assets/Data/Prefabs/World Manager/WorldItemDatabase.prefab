@@ -54,6 +54,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: dc29240b591a347bca46717159c5fcce, type: 2}
   - {fileID: 11400000, guid: 9d5f752c647ee4ede82c45fe2e15b4bd, type: 2}
   - {fileID: 11400000, guid: 242b12a7cb802417abd6cb5db2c0af92, type: 2}
+  - {fileID: 11400000, guid: 89dbda222a8d74fcaad5abad2523e305, type: 2}
   cloakEquipment:
   - {fileID: 11400000, guid: 543a046daf3a74dce896dc8c21467bed, type: 2}
   - {fileID: 11400000, guid: e331d8c56aad44b148bf3a95eacfa028, type: 2}
@@ -99,3 +100,5 @@ MonoBehaviour:
   spells:
   - {fileID: 11400000, guid: 0c953daa84f104514b0bb1eff0743e1c, type: 2}
   - {fileID: 11400000, guid: 722c71927bade49279b7416233c7ccb5, type: 2}
+  projectiles:
+  - {fileID: 11400000, guid: b41f964d207c44e038e0f2a66a8d959a, type: 2}
