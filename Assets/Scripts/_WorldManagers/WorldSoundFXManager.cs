@@ -19,6 +19,9 @@ namespace KrazyKatGames
         public AudioClip pickUpItemSFX;
         public AudioClip stanceBreakSFX;
         public AudioClip criticalStrikeSFX;
+        public AudioClip[] releaseArrowSFX;
+        public AudioClip[] notchArrowSFX;
+
 
         private void Awake()
         {

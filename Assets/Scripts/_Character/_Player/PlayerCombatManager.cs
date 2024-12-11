@@ -207,6 +207,29 @@ namespace KrazyKatGames
                 // canComboWithOffHandWeapon = false; 
             }
         }
+        public void ReleaseArrow()
+        {
+            if (player.IsOwner)
+                player.playerNetworkManager.hasArrowNotched.Value = false;
+
+            if (player.playerEffectsManager.activeDrawnProjectileFX != null)
+                Destroy(player.playerEffectsManager.activeDrawnProjectileFX);
+            // Play Sfx
+            player.characterSoundFXManager.PlaySoundFX(
+                WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.releaseArrowSFX));
+            // Animate Bow
+            Animator bowAnimator;
+            if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+            {
+                bowAnimator = player.playerEquipmentManager.leftHandWeaponModel.GetComponentInChildren<Animator>();
+            }
+            else
+            {
+                bowAnimator = player.playerEquipmentManager.rightHandWeaponModel.GetComponentInChildren<Animator>();
+            }
+            bowAnimator.SetBool("IsDrawn", false);
+            bowAnimator.Play("Bow_Fire_01");
+        }
 
         public void DrainStaminaBasedOnAttack()
         {

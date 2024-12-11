@@ -475,6 +475,17 @@ namespace KrazyKatGames
             else
                 player.playerNetworkManager.isMoving.Value = false;
 
+            if (!player.playerLocomotionManager.canRun)
+            {
+                if (moveAmount > 0.5f)
+                    moveAmount = 0.5f;
+                
+                if (vertical_Input > 0.5f)
+                    vertical_Input = 0.5f;
+                
+                if (horizontal_Input > 0.5f)
+                    horizontal_Input = 0.5f;
+            }
             //  IF WE ARE NOT LOCKED ON, ONLY USE THE MOVE AMOUNT
 
             if (!player.playerNetworkManager.isLockedOn.Value || player.playerNetworkManager.isSprinting.Value)

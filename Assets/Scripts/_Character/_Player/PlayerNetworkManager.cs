@@ -386,6 +386,31 @@ namespace KrazyKatGames
                 player.playerEquipmentManager.leftHandWeaponSlot.transform);
 
             player.playerEffectsManager.activeDrawnProjectileFX = arrow;
+
+            player.characterSoundFXManager.PlaySoundFX(
+                WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.notchArrowSFX));
+        }
+        [ClientRpc]
+        public override void DestroyAllCurrentActionFXClientRpc()
+        {
+            base.DestroyAllCurrentActionFXClientRpc();
+
+            if (hasArrowNotched.Value)
+            {
+                Animator bowAnimator;
+                if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
+                {
+                    bowAnimator = player.playerEquipmentManager.leftHandWeaponModel.GetComponentInChildren<Animator>();
+                }
+                else
+                {
+                    bowAnimator = player.playerEquipmentManager.rightHandWeaponModel.GetComponentInChildren<Animator>();
+                }
+                bowAnimator.SetBool("IsDrawn", false);
+
+                if (player.IsOwner)
+                    player.playerNetworkManager.hasArrowNotched.Value = false;
+            }
         }
     }
 }

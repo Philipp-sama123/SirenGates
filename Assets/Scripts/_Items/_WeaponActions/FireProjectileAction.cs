@@ -56,6 +56,7 @@ namespace KrazyKatGames
             //  4. If the player does not have an arrow notched, do so now
             if (!playerPerformingAction.playerNetworkManager.hasArrowNotched.Value)
             {
+                playerPerformingAction.playerNetworkManager.hasArrowNotched.Value = true;
                 bool canIDrawAProjectile = CanIFireThisProjectile(weaponPerformingAction, projectileItem);
 
                 if (!canIDrawAProjectile)
@@ -68,7 +69,7 @@ namespace KrazyKatGames
                     return;
                 }
 
-                playerPerformingAction.playerAnimatorManager.PlayTargetActionAnimation("Bow_Draw_01", true, true,true);
+                playerPerformingAction.playerAnimatorManager.PlayTargetActionAnimation("Bow_Draw_01", true);
                 playerPerformingAction.playerNetworkManager.NotifyServerOfDrawnProjectileServerRpc(projectileItem.itemID);
             }
         }

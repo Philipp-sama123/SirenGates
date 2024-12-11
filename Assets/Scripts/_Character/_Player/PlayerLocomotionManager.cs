@@ -112,7 +112,7 @@ namespace KrazyKatGames
         {
             if (player.isDead.Value)
                 return;
-            
+
             if (!player.playerLocomotionManager.canMove)
                 return;
 
@@ -259,6 +259,7 @@ namespace KrazyKatGames
             }
 
             player.playerNetworkManager.currentStamina.Value -= dodgeStaminaCost;
+            // TODO : CRASHES THE GAAAAAME even in the editor player.playerNetworkManager.DestroyAllCurrentActionFXServerRpc();
         }
         public void AttemptToPerformJump()
         {

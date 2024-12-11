@@ -412,13 +412,28 @@ namespace KrazyKatGames
             playerEquipmentManager.EquipWearables();
 
             playerInventoryManager.rightHandWeaponIndex = currentCharacterData.rightWeaponIndex;
-            playerNetworkManager.currentRightHandWeaponID.Value =
-                playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+
+            if (currentCharacterData.rightWeaponIndex >= 0)
+            {
+                playerNetworkManager.currentRightHandWeaponID.Value =
+                    playerInventoryManager.weaponsInRightHandSlots[currentCharacterData.rightWeaponIndex].itemID;
+            }
+            else
+            {
+                playerNetworkManager.currentRightHandWeaponID.Value = 0;
+            }
 
             playerInventoryManager.leftHandWeaponIndex = currentCharacterData.leftWeaponIndex;
-
-            playerNetworkManager.currentLeftHandWeaponID.Value =
-                playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex].itemID;
+            
+            if (currentCharacterData.leftWeaponIndex >= 0)
+            {
+                playerNetworkManager.currentLeftHandWeaponID.Value =
+                    playerInventoryManager.weaponsInLeftHandSlots[currentCharacterData.leftWeaponIndex].itemID;
+            }
+            else
+            {
+                playerNetworkManager.currentLeftHandWeaponID.Value = 0;
+            }
         }
         private void OnClientConnectedCallback(ulong clientID)
         {
