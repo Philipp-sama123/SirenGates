@@ -113,6 +113,10 @@ namespace KrazyKatGames
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged += playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged += playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
             playerNetworkManager.currentSpellID.OnValueChanged += playerNetworkManager.OnCurrentSpellIDChange;
+            // Projectiles
+            playerNetworkManager.mainProjectileID.OnValueChanged += playerNetworkManager.OnCurrentMainProjectileIDChange;
+            playerNetworkManager.secondaryProjectileID.OnValueChanged += playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
+            playerNetworkManager.isHoldingArrow.OnValueChanged += playerNetworkManager.OnIsHoldingArrowChanged;
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged += playerNetworkManager.OnIsChargingRightSpellChanged;
             playerNetworkManager.isChargingLeftSpell.OnValueChanged += playerNetworkManager.OnIsChargingLeftSpellChanged;
@@ -173,6 +177,11 @@ namespace KrazyKatGames
             playerNetworkManager.currentLeftHandWeaponID.OnValueChanged -= playerNetworkManager.OnCurrentLeftHandWeaponIDChange;
             playerNetworkManager.currentWeaponBeingUsed.OnValueChanged -= playerNetworkManager.OnCurrentWeaponBeingUsedIDChange;
             playerNetworkManager.currentSpellID.OnValueChanged -= playerNetworkManager.OnCurrentSpellIDChange;
+            // Projectiles
+            playerNetworkManager.mainProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentMainProjectileIDChange;
+            playerNetworkManager.secondaryProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
+            playerNetworkManager.isHoldingArrow.OnValueChanged -= playerNetworkManager.OnIsHoldingArrowChanged;
+
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged -= playerNetworkManager.OnIsChargingRightSpellChanged;
             playerNetworkManager.isChargingLeftSpell.OnValueChanged -= playerNetworkManager.OnIsChargingLeftSpellChanged;
@@ -431,19 +440,20 @@ namespace KrazyKatGames
         }
         private void LoadOtherPlayerCharacterWhenJoiningServer()
         {
-            // Sync Weapons when joining (!)
+            // Sync Weapons
             playerNetworkManager.OnCurrentRightHandWeaponIDChange(0, playerNetworkManager.currentRightHandWeaponID.Value);
             playerNetworkManager.OnCurrentLeftHandWeaponIDChange(0, playerNetworkManager.currentLeftHandWeaponID.Value);
             playerNetworkManager.OnCurrentSpellIDChange(0, playerNetworkManager.currentSpellID.Value);
-
             // Sync Two Hand Status
             playerNetworkManager.OnIsTwoHandingWeaponChanged(false, playerNetworkManager.isTwoHandingWeapon.Value);
             playerNetworkManager.OnIsTwoHandingRightWeaponChanged(false, playerNetworkManager.isTwoHandingRightWeapon.Value);
             playerNetworkManager.OnIsTwoHandingLeftWeaponChanged(false, playerNetworkManager.isTwoHandingLeftWeapon.Value);
-
+            // Sync Projectiles
+            playerNetworkManager.OnCurrentMainProjectileIDChange(-1, playerNetworkManager.mainProjectileID.Value);
+            playerNetworkManager.OnCurrentSecondaryProjectileIDChange(-1, playerNetworkManager.secondaryProjectileID.Value);
+            playerNetworkManager.OnIsHoldingArrowChanged(false, playerNetworkManager.isHoldingArrow.Value);
             // Sync Blocking Status
             playerNetworkManager.OnIsBlockingChanged(false, playerNetworkManager.isBlocking.Value);
-
             // Sync Armor
             playerNetworkManager.OnCloakEquipmentChanged(-1, playerNetworkManager.cloakEquipmentID.Value);
             playerNetworkManager.OnOutfitEquipmentChanged(-1, playerNetworkManager.outfitEquipmentID.Value);

@@ -11,6 +11,10 @@ namespace KrazyKatGames
         public WeaponItem currentLeftHandWeapon;
         public WeaponItem currentTwoHandWeapon;
 
+        [Header("Projectiles")]
+        public RangedProjectileItem mainProjectile;
+        public RangedProjectileItem secondaryProjectile;
+
         [Header("Armor")]
         public CloakWearableItem cloakWearable;
         public PantsWearableItem pantsWearable;
@@ -25,7 +29,7 @@ namespace KrazyKatGames
         public WeaponItem[] weaponsInLeftHandSlots = new WeaponItem[3];
         public int leftHandWeaponIndex = 0;
         public SpellItem currentSpell;
-        
+
         [Header("Inventory")]
         public List<Item> itemsInInventory;
 

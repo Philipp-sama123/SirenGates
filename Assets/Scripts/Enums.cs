@@ -88,6 +88,7 @@ public enum WeaponClass
     StraightSword,
     Fist,
     LightShield,
+    Bow
     // ... todo more (!)
 }
 
@@ -123,4 +124,10 @@ public enum ProjectileClass
 {
     Arrow,
     Bolt
+}
+
+public enum ProjectileSlot
+{
+    Main,
+    Secondary,
 }

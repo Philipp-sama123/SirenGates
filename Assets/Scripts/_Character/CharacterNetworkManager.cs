@@ -461,6 +461,9 @@ namespace KrazyKatGames
         {
             if (character.characterEffectsManager.activeSpellWarmUpFX != null)
                 Destroy(character.characterEffectsManager.activeSpellWarmUpFX);
+            
+            if (character.characterEffectsManager.activeDrawnProjectileFX != null)
+                Destroy(character.characterEffectsManager.activeDrawnProjectileFX);
         }
         #endregion
     }

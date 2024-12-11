@@ -12,13 +12,18 @@ namespace KrazyKatGames
         public NetworkVariable<FixedString64Bytes> characterName = new("Character", NetworkVariableReadPermission.Everyone,
             NetworkVariableWritePermission.Owner);
 
+        [Header("Actions")]
+        public NetworkVariable<bool> isUsingRightHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isUsingLeftHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+        public NetworkVariable<bool> hasArrowNotched = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isHoldingArrow = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
         [Header("Equipment")]
         public NetworkVariable<int> currentWeaponBeingUsed = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentRightHandWeaponID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentLeftHandWeaponID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentSpellID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<bool> isUsingRightHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<bool> isUsingLeftHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         [Header("Two Handing")]
         public NetworkVariable<int> currentWeaponBeingTwoHanded =
@@ -43,6 +48,10 @@ namespace KrazyKatGames
         public NetworkVariable<int> maskEquipmentID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> bagpackEquipmentID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> hairEquipmentID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+        [Header("Projectiles")]
+        public NetworkVariable<int> mainProjectileID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<int> secondaryProjectileID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected override void Awake()
         {
@@ -134,7 +143,7 @@ namespace KrazyKatGames
         public void OnCurrentSpellIDChange(int oldID, int newID)
         {
             SpellItem newSpell = null;
-            
+
             if (WorldItemDatabase.Instance.GetSpellByID(newID))
                 newSpell = Instantiate(WorldItemDatabase.Instance.GetSpellByID(newID));
 
@@ -145,6 +154,31 @@ namespace KrazyKatGames
             {
                 PlayerUIManager.instance.playerUIHudManager.SetSpellItemQuickSlotIcon(newID);
             }
+        }
+        public void OnCurrentMainProjectileIDChange(int oldID, int newID)
+        {
+            RangedProjectileItem newProjectile = null;
+
+            if (WorldItemDatabase.Instance.GetProjectileByID(newID))
+                newProjectile = Instantiate(WorldItemDatabase.Instance.GetProjectileByID(newID));
+
+            if (newProjectile != null)
+                player.playerInventoryManager.mainProjectile = newProjectile;
+        }
+        public void OnCurrentSecondaryProjectileIDChange(int oldID, int newID)
+        {
+            RangedProjectileItem newProjectile = null;
+
+            if (WorldItemDatabase.Instance.GetProjectileByID(newID))
+                newProjectile = Instantiate(WorldItemDatabase.Instance.GetProjectileByID(newID));
+
+            if (newProjectile != null)
+                player.playerInventoryManager.secondaryProjectile = newProjectile;
+        }
+
+        public void OnIsHoldingArrowChanged(bool oldStatus, bool newStatus)
+        {
+            player.animator.SetBool("IsHoldingArrow", isHoldingArrow.Value);
         }
 
         public void OnIsChargingRightSpellChanged(bool oldStatus, bool newStatus)
@@ -176,7 +210,6 @@ namespace KrazyKatGames
 
             player.animator.SetBool("IsTwoHandingWeapon", isTwoHandingWeapon.Value);
         }
-
         public void OnIsTwoHandingRightWeaponChanged(bool oldStatus, bool newStatus)
         {
             if (!isTwoHandingRightWeapon.Value)
@@ -323,6 +356,36 @@ namespace KrazyKatGames
             {
                 Debug.LogError("Action is null, cannot be performed!");
             }
+        }
+        [ServerRpc]
+        public void NotifyServerOfDrawnProjectileServerRpc(int projectileID)
+        {
+            if (IsServer)
+            {
+                NotifyServerOfDrawnProjectileClientRpc(projectileID);
+            }
+        }
+        [ClientRpc]
+        public void NotifyServerOfDrawnProjectileClientRpc(int projectileID)
+        {
+            Animator bowAnimator;
+            if (isTwoHandingLeftWeapon.Value)
+            {
+                bowAnimator = player.playerEquipmentManager.leftHandWeaponModel.GetComponentInChildren<Animator>();
+            }
+            else
+            {
+                bowAnimator = player.playerEquipmentManager.rightHandWeaponModel.GetComponentInChildren<Animator>();
+            }
+
+            // Animate the bow
+            bowAnimator.SetBool("IsDrawn", true);
+            bowAnimator.Play("Bow_Draw_01");
+
+            GameObject arrow = Instantiate(WorldItemDatabase.Instance.GetProjectileByID(projectileID).drawProjectileModel,
+                player.playerEquipmentManager.leftHandWeaponSlot.transform);
+
+            player.playerEffectsManager.activeDrawnProjectileFX = arrow;
         }
     }
 }

@@ -134,7 +134,7 @@ namespace KrazyKatGames
             Vector3 upwardVelocityVector = instantiatedReleaseSpellFX.transform.up * upwardVelocity;
             Vector3 forwardVelocityVector = instantiatedReleaseSpellFX.transform.forward * forwardVelocity;
             Vector3 totalVelocity = upwardVelocityVector + forwardVelocityVector;
-            spellRigidbody.velocity = totalVelocity;
+            spellRigidbody.linearVelocity = totalVelocity;
         }
         public override void SuccessfullyCastSpellFullCharged(PlayerManager player)
         {
@@ -182,7 +182,7 @@ namespace KrazyKatGames
             Vector3 upwardVelocityVector = instantiatedReleaseSpellFX.transform.up * upwardVelocity;
             Vector3 forwardVelocityVector = instantiatedReleaseSpellFX.transform.forward * forwardVelocity;
             Vector3 totalVelocity = upwardVelocityVector + forwardVelocityVector;
-            spellRigidbody.velocity = totalVelocity;
+            spellRigidbody.linearVelocity = totalVelocity;
         }
 
         public override bool CanICastThisSpell(PlayerManager player)

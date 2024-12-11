@@ -228,7 +228,7 @@ namespace KrazyKatGames
 
             HandleRBInput();
             HandleLBInput();
-            
+
             HandleHoldRBInput();
             HandleHoldLBInput();
 
@@ -253,10 +253,12 @@ namespace KrazyKatGames
             if (Hold_RB_Input)
             {
                 player.playerNetworkManager.isChargingRightSpell.Value = true;
+                player.playerNetworkManager.isHoldingArrow.Value = true;
             }
             else
             {
                 player.playerNetworkManager.isChargingRightSpell.Value = false;
+                player.playerNetworkManager.isHoldingArrow.Value = false;
             }
         }
         private void HandleHoldLBInput()

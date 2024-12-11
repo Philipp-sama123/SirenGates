@@ -48,8 +48,14 @@ namespace KrazyKatGames
                     weaponModel.transform.localRotation = Quaternion.Euler(0, 0, 0);
                     break;
                 case WeaponClass.MediumShield:
-                    weaponModel.transform.localPosition = new Vector3(0.1f,0.25f,0f);
+                    weaponModel.transform.localPosition = new Vector3(0.1f, 0.25f, 0f);
                     weaponModel.transform.localRotation = Quaternion.Euler(320, 15, 40);
+                    break;
+                case WeaponClass.Fist:
+                    break;
+                case WeaponClass.LightShield:
+                    break;
+                case WeaponClass.Bow:
                     break;
                 default:
                     throw new ArgumentOutOfRangeException(nameof(weaponClass), weaponClass, null);

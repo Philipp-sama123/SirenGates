@@ -21,7 +21,8 @@ namespace KrazyKatGames
         [SerializeField] List<StaticCharacterEffect> staticEffects;
 
         [Header("Current Active FX")]
-        public GameObject activeSpellWarmUpFX; 
+        public GameObject activeSpellWarmUpFX;
+        public GameObject activeDrawnProjectileFX;
 
         [Header("Debug Delete Later")]
         [SerializeField] InstantCharacterEffect effectToTest;
@@ -43,6 +44,7 @@ namespace KrazyKatGames
         }
         public virtual void ProcessInstantEffect(InstantCharacterEffect effect)
         {
+            Debug.LogWarning("effect " + effect.name + " is instant");
             effect.ProcessEffect(character);
         }
         //

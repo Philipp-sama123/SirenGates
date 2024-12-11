@@ -263,7 +263,7 @@
                     "name": "Dodge",
                     "type": "Button",
                     "id": "820a0405-4f05-489c-9943-5f23a3e93a4c",
-                    "expectedControlType": "Button",
+                    "expectedControlType": "",
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false

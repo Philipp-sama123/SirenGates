@@ -73,8 +73,7 @@ namespace KrazyKatGames
                 damageTarget.characterEffectsManager.ProcessInstantEffect(blockedDamageEffect);
             }
         }
-
-
+        
         protected virtual void CheckForParry(CharacterManager damageTarget)
         {
             Debug.LogWarning("CheckForParry!!");

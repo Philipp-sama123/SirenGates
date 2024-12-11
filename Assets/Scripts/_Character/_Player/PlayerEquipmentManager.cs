@@ -657,7 +657,6 @@ namespace KrazyKatGames
             player.playerAnimatorManager.UpdateAnimatorController(player.playerInventoryManager.currentRightHandWeapon.weaponAnimator);
 
             // add to hand strength bonus
-
             backSlot.PlaceWeaponModelInUnequippedSlot(leftHandWeaponModel, player.playerInventoryManager.currentLeftHandWeapon.weaponClass, player);
 
             rightHandWeaponSlot.PlaceWeaponModelIntoSlot(rightHandWeaponModel);
