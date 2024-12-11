@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -8,6 +10,7 @@ namespace KrazyKatGames
         PlayerManager player;
 
         public WeaponItem currentWeaponBeingUsed;
+        public ProjectileSlot currentProjectileBeingUsed;
 
         [Header("Flags")]
         public bool canComboWithMainHandWeapon = false;
@@ -229,6 +232,72 @@ namespace KrazyKatGames
             }
             bowAnimator.SetBool("IsDrawn", false);
             bowAnimator.Play("Bow_Fire_01");
+
+            // 
+            if (!player.IsOwner)
+                return;
+
+            RangedProjectileItem projectileItem = null;
+            switch (currentProjectileBeingUsed)
+            {
+                case ProjectileSlot.Main:
+                    projectileItem = player.playerInventoryManager.mainProjectile;
+                    break;
+                case ProjectileSlot.Secondary:
+                    projectileItem = player.playerInventoryManager.secondaryProjectile;
+                    break;
+                default:
+                    break;
+            }
+            if (projectileItem == null)
+                return;
+
+            if (projectileItem.currentAmmoAmount <= 0)
+                return;
+
+            Transform projectileInstantiationLocation;
+            GameObject projectileGameObject;
+            Rigidbody projectileRigidbody;
+            RangedProjectileDamageCollider projectileDamageCollider;
+
+            //  SUBTRACT AMMO
+            projectileItem.currentAmmoAmount -= 1;
+            //  (TODO MAKE AND UPDATE ARROW COUNT UI)
+
+            projectileInstantiationLocation = player.playerCombatManager.lockOnTransform;
+            projectileGameObject = Instantiate(projectileItem.releaseProjectileModel, projectileInstantiationLocation);
+            projectileDamageCollider = projectileGameObject.GetComponent<RangedProjectileDamageCollider>();
+            projectileRigidbody = projectileGameObject.GetComponent<Rigidbody>();
+
+            //  (TODO MAKE FORMULA TO SET RANGE PROJECTILE DAMAGE)
+            projectileDamageCollider.physicalDamage = 100;
+            projectileDamageCollider.characterShootingProjectile = player;
+
+            //  FIRE AN ARROW BASED ON 1 OF 3 VARIATIONS
+            // 1. LOCKED ONTO A TARGET
+            if (player.playerCombatManager.currentTarget != null)
+            {
+                Quaternion arrowRotation = Quaternion.LookRotation(player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position 
+                    - projectileGameObject.transform.position);
+                projectileGameObject.transform.rotation = arrowRotation;
+            }
+            // 2. UNLOCKED AND NOT AIMING
+            // 3. AIMING
+
+            //  GET ALL CHARACTER COLLIDERS AND IGNORE SELF
+            Collider[] characterColliders = player.GetComponentsInChildren<Collider>();
+            List<Collider> collidersArrowWillIgnore = new List<Collider>();
+
+            foreach (var item in characterColliders)
+                collidersArrowWillIgnore.Add(item);
+
+            foreach (Collider hitBox in collidersArrowWillIgnore)
+                Physics.IgnoreCollision(projectileDamageCollider.damageCollider, hitBox, true);
+
+            projectileRigidbody.AddForce(projectileGameObject.transform.forward * projectileItem.forwardVelocity);
+            projectileGameObject.transform.parent = null;
+
+            //  TO DO (SYNC ARRROW FIRE WITH SERVER RPC)
         }
 
         public void DrainStaminaBasedOnAttack()
