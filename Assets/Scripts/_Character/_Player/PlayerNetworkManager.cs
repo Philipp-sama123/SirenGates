@@ -16,9 +16,6 @@ namespace KrazyKatGames
         public NetworkVariable<bool> isUsingRightHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isUsingLeftHand = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
-        public NetworkVariable<bool> hasArrowNotched = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<bool> isHoldingArrow = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-
         [Header("Equipment")]
         public NetworkVariable<int> currentWeaponBeingUsed = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> currentRightHandWeaponID = new(0, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
@@ -52,6 +49,10 @@ namespace KrazyKatGames
         [Header("Projectiles")]
         public NetworkVariable<int> mainProjectileID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<int> secondaryProjectileID = new(-1, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+
+        public NetworkVariable<bool> hasArrowNotched = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isHoldingArrow = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
+        public NetworkVariable<bool> isAiming = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected override void Awake()
         {

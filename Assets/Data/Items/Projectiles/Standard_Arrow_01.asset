@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d2f57c6768384e15af0ee98d167a0e3, type: 3}
+  m_Name: Standard_Arrow_01
+  m_EditorClassIdentifier: 
+  itemName: 
+  itemIcon: {fileID: 0}
+  itemDescription: A well balanced Arrow
+  itemID: 42
+  projectileClass: 0
+  forwardVelocity: 2200
+  upwardVelocity: 0
+  ammoMass: 0.01
+  maxAmmoAmount: 30
+  currentAmmoAmount: 28
+  physicalDamage: 72
+  magicDamage: 0
+  fireDamage: 0
+  holyDamage: 0
+  lightningDamage: 0
+  drawProjectileModel: {fileID: 5175416543169733003, guid: 28fe1a6855c61471687118cf0cd99b49, type: 3}
+  releaseProjectileModel: {fileID: 5950207989269709391, guid: 8daed147883cd4cdd8a69ebb5e2cdcbb, type: 3}

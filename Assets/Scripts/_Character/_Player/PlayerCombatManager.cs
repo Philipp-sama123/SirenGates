@@ -275,14 +275,30 @@ namespace KrazyKatGames
 
             //  FIRE AN ARROW BASED ON 1 OF 3 VARIATIONS
             // 1. LOCKED ONTO A TARGET
-            if (player.playerCombatManager.currentTarget != null)
+            
+            // 2. AIMING
+            if (player.playerNetworkManager.isAiming.Value)
             {
-                Quaternion arrowRotation = Quaternion.LookRotation(player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position 
-                    - projectileGameObject.transform.position);
-                projectileGameObject.transform.rotation = arrowRotation;
+                
             }
-            // 2. UNLOCKED AND NOT AIMING
-            // 3. AIMING
+            else
+            {
+            
+                // 2.1. Locked AND NOT AIMING
+                if (player.playerCombatManager.currentTarget != null)
+                {
+                    Quaternion arrowRotation = Quaternion.LookRotation(player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position 
+                                                                       - projectileGameObject.transform.position);
+                    projectileGameObject.transform.rotation = arrowRotation;
+                }
+                // 2.2. UNLOCKED AND NOT AIMING
+                else
+                {
+                    Quaternion arrowRotation = Quaternion.LookRotation(player.transform.forward);
+                    projectileRigidbody.transform.rotation = arrowRotation;
+                }
+            }
+           
 
             //  GET ALL CHARACTER COLLIDERS AND IGNORE SELF
             Collider[] characterColliders = player.GetComponentsInChildren<Collider>();
