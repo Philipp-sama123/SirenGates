@@ -9,11 +9,12 @@ namespace KrazyKatGames
         public static PlayerCamera instance;
         public PlayerManager player;
         public Camera cameraObject;
-        [SerializeField] Transform cameraPivotTransform;
+        public Transform cameraPivotTransform;
 
         //  CHANGE THESE TO TWEAK CAMERA PERFORMANCE
         [Header("Camera Settings")]
-        [SerializeField] private float cameraSmoothSpeed = 1; // THE BIGGER THIS NUMBER, THE LONGER FOR THE CAMERA TO REACH ITS POSITION DURING MOVEMENT
+        [SerializeField]
+        private float cameraSmoothSpeed = 1; // THE BIGGER THIS NUMBER, THE LONGER FOR THE CAMERA TO REACH ITS POSITION DURING MOVEMENT
         [SerializeField] float leftAndRightRotationSpeed = 220;
         [SerializeField] float upAndDownRotationSpeed = 220;
         [SerializeField] float minimumPivot = -30; //  THE LOWEST POINT YOU ARE ABLE TO LOOK DOWN
@@ -43,6 +44,8 @@ namespace KrazyKatGames
         public CharacterManager leftLockOnTarget;
         public CharacterManager rightLockOnTarget;
 
+        [Header("Ranged Aim")]
+        [SerializeField] Transform followTransformWhenAiming;
         private void Awake()
         {
             if (instance == null)
@@ -73,12 +76,58 @@ namespace KrazyKatGames
 
         private void HandleFollowTarget()
         {
-            Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity,
-                cameraSmoothSpeed * Time.deltaTime);
-            transform.position = targetCameraPosition;
+            if (player.playerNetworkManager.isAiming.Value)
+            {
+                if (followTransformWhenAiming == null)
+                {
+                    followTransformWhenAiming = player.GetComponentInChildren<PlayerAimCameraFollowTransform>().transform;
+                    return;
+                }
+                Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, followTransformWhenAiming.position, ref cameraVelocity,
+                    cameraSmoothSpeed * Time.deltaTime);
+                transform.position = targetCameraPosition;
+            }
+            else
+            {
+                Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity,
+                    cameraSmoothSpeed * Time.deltaTime);
+                transform.position = targetCameraPosition;
+            }
         }
 
         private void HandleRotations()
+        {
+            if (player.playerNetworkManager.isAiming.Value)
+            {
+                HandleAimRotation();
+            }
+            else
+            {
+                HandleStandardRotations();
+            }
+        }
+        private void HandleAimRotation()
+        {
+            if (!player.playerLocomotionManager.isGrounded)
+                player.playerNetworkManager.isAiming.Value = false;
+            if (player.isPerformingAction)
+                return;
+
+            // left and right look
+            Vector3 cameraRotationY = Vector3.zero;
+            // up and down look
+            Vector3 cameraRotationX = Vector3.zero;
+
+            leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontal_Input * leftAndRightRotationSpeed) * Time.deltaTime;
+            upAndDownLookAngle -= (PlayerInputManager.instance.cameraVertical_Input * upAndDownRotationSpeed) * Time.deltaTime;
+            upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
+
+            cameraRotationY.y = leftAndRightLookAngle;
+            cameraRotationX.x = upAndDownLookAngle;
+
+            cameraObject.transform.localEulerAngles = new Vector3(upAndDownLookAngle, leftAndRightLookAngle, 0);
+        }
+        private void HandleStandardRotations()
         {
             //  IF LOCKED ON, FORCE ROTATION TOWARDS TARGET
             if (player.playerNetworkManager.isLockedOn.Value)

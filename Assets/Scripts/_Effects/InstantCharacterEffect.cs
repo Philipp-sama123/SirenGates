@@ -9,6 +9,7 @@ namespace KrazyKatGames
 
         public virtual void ProcessEffect(CharacterManager character)
         {
+            Debug.Log($"Process Instant Effect ID: {instantEffectID} on character: {character.name}");
         }
     }
 }

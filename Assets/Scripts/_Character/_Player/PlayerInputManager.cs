@@ -139,7 +139,9 @@ namespace KrazyKatGames
                 // Bumpers
                 playerControls.PlayerActions.RB.performed += i => RB_Input = true;
                 playerControls.PlayerActions.LB.performed += i => LB_Input = true;
+
                 playerControls.PlayerActions.LB.canceled += i => player.playerNetworkManager.isBlocking.Value = false;
+                playerControls.PlayerActions.LB.canceled += i => player.playerNetworkManager.isAiming.Value = false;
                 // hold
                 playerControls.PlayerActions.Hold_RB.performed += i => Hold_RB_Input = true;
                 playerControls.PlayerActions.Hold_RB.canceled += i => Hold_RB_Input = false;
@@ -479,10 +481,10 @@ namespace KrazyKatGames
             {
                 if (moveAmount > 0.5f)
                     moveAmount = 0.5f;
-                
+
                 if (vertical_Input > 0.5f)
                     vertical_Input = 0.5f;
-                
+
                 if (horizontal_Input > 0.5f)
                     horizontal_Input = 0.5f;
             }
@@ -585,9 +587,16 @@ namespace KrazyKatGames
                 player.playerNetworkManager.SetCharacterActionHand(false);
 
                 //  TODO: IF WE ARE TWO HANDING THE WEAPON, USE THE TWO HANDED ACTION
-
-                player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oh_LB_Action,
-                    player.playerInventoryManager.currentLeftHandWeapon);
+                if (player.playerNetworkManager.isTwoHandingRightWeapon.Value)
+                {
+                    player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentRightHandWeapon.oh_LB_Action,
+                        player.playerInventoryManager.currentLeftHandWeapon);
+                }
+                else
+                {
+                    player.playerCombatManager.PerformWeaponBasedAction(player.playerInventoryManager.currentLeftHandWeapon.oh_LB_Action,
+                        player.playerInventoryManager.currentLeftHandWeapon);
+                }
             }
         }
         private void HandleRTInput()

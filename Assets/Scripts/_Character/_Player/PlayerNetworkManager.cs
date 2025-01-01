@@ -182,6 +182,21 @@ namespace KrazyKatGames
             player.animator.SetBool("IsHoldingArrow", isHoldingArrow.Value);
         }
 
+        public void OnIsAimingChanged(bool oldStatus, bool newStatus)
+        {
+            if (!isAiming.Value)
+            {
+                PlayerCamera.instance.cameraObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+                PlayerUIManager.instance.playerUIHudManager.crosshair.SetActive(false);
+            }
+            else
+            {
+                PlayerCamera.instance.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
+                PlayerCamera.instance.cameraPivotTransform.transform.localEulerAngles = new Vector3(0, 0, 0);
+                PlayerUIManager.instance.playerUIHudManager.crosshair.SetActive(true);
+            }
+        }
+
         public void OnIsChargingRightSpellChanged(bool oldStatus, bool newStatus)
         {
             player.animator.SetBool("IsChargingRightSpell", isChargingRightSpell.Value);

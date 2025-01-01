@@ -117,6 +117,7 @@ namespace KrazyKatGames
             playerNetworkManager.mainProjectileID.OnValueChanged += playerNetworkManager.OnCurrentMainProjectileIDChange;
             playerNetworkManager.secondaryProjectileID.OnValueChanged += playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
             playerNetworkManager.isHoldingArrow.OnValueChanged += playerNetworkManager.OnIsHoldingArrowChanged;
+            playerNetworkManager.isAiming.OnValueChanged += playerNetworkManager.OnIsAimingChanged;
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged += playerNetworkManager.OnIsChargingRightSpellChanged;
             playerNetworkManager.isChargingLeftSpell.OnValueChanged += playerNetworkManager.OnIsChargingLeftSpellChanged;
@@ -181,6 +182,7 @@ namespace KrazyKatGames
             playerNetworkManager.mainProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentMainProjectileIDChange;
             playerNetworkManager.secondaryProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
             playerNetworkManager.isHoldingArrow.OnValueChanged -= playerNetworkManager.OnIsHoldingArrowChanged;
+            playerNetworkManager.isAiming.OnValueChanged += playerNetworkManager.OnIsAimingChanged;
 
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged -= playerNetworkManager.OnIsChargingRightSpellChanged;

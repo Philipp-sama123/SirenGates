@@ -17,11 +17,12 @@ namespace KrazyKatGames
         [SerializeField] Image leftWeaponQuickSlotIcon;
         [SerializeField] Image spellItemQuickSlotIcon;
 
-
         [Header("Boss Health Bar")]
         public Transform bossHealthBarParent;
         public GameObject bossHealthBarObject;
-
+        
+        [Header("Crosshair")]
+        public GameObject crosshair;
 
         public void ToggleHUD(bool status)
         {

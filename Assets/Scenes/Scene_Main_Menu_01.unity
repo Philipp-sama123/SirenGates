@@ -5404,6 +5404,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: WorldActionManager
       objectReference: {fileID: 0}
+    - target: {fileID: 9054149090929534995, guid: 3e456b9eea2e744edaa1d2c561e2a0d9, type: 3}
+      propertyPath: weaponItemActions.Array.size
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 9054149090929534995, guid: 3e456b9eea2e744edaa1d2c561e2a0d9, type: 3}
+      propertyPath: 'weaponItemActions.Array.data[8]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 14bbcd5a18c1641b5a023c6480813ca5, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

@@ -149,6 +149,28 @@ namespace KrazyKatGames
             if (!player.playerLocomotionManager.canRotate)
                 return;
 
+            if (player.playerNetworkManager.isAiming.Value)
+            {
+                HandleAimedRotation(); 
+            }
+            else
+            {
+                HandleStandardRotation(); 
+            }
+        }
+        private void HandleAimedRotation()
+        {
+            Vector3 targetDirection = Vector3.zero;
+            targetDirection = PlayerCamera.instance.cameraObject.transform.forward;
+            targetDirection.y = 0;
+            targetDirection.Normalize();
+
+            Quaternion targetRotation = Quaternion.LookRotation(targetDirection);
+            Quaternion finalRotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
+            transform.rotation = finalRotation;
+        }
+        private void HandleStandardRotation()
+        {
             if (player.playerNetworkManager.isLockedOn.Value)
             {
                 if (player.playerNetworkManager.isSprinting.Value

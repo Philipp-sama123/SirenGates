@@ -51,7 +51,8 @@ namespace KrazyKatGames
                 return;
 
             CalculateDamage(character);
-            PlayDirectionalBasedDamageAnimation(character);
+          //  PlayDirectionalBasedDamageAnimation(character); // TODO HERE THE PLAYER kills the fame
+          
             // ToDo: Check for Buildups (poison,bleed, ....) 
             PlayDamageSFX(character);
             PlayDamageVFX(character);
