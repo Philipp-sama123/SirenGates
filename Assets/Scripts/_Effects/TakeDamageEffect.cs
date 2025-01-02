@@ -51,8 +51,7 @@ namespace KrazyKatGames
                 return;
 
             CalculateDamage(character);
-          //  PlayDirectionalBasedDamageAnimation(character); // TODO HERE THE PLAYER kills the fame
-          
+            PlayDirectionalBasedDamageAnimation(character); // TODO HERE THE PLAYER kills the fame
             // ToDo: Check for Buildups (poison,bleed, ....) 
             PlayDamageSFX(character);
             PlayDamageVFX(character);
@@ -181,9 +180,8 @@ namespace KrazyKatGames
 
             if (poiseIsBroken)
             {
-                // restrict Movement and Actions 
+                //   restrict Movement and Actions 
                 character.characterAnimatorManager.PlayTargetActionAnimation(damageAnimation, true);
-                character.characterCombatManager.DestroyAllCurrentActionFX(); 
             }
             else
             {
