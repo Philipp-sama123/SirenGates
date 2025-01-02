@@ -8,6 +8,7 @@ namespace KrazyKatGames
     public class PlayerCombatManager : CharacterCombatManager
     {
         PlayerManager player;
+        private LineRenderer aimingLineRenderer;
 
         public WeaponItem currentWeaponBeingUsed;
         public ProjectileSlot currentProjectileBeingUsed;
@@ -21,8 +22,23 @@ namespace KrazyKatGames
 
             player = GetComponent<PlayerManager>();
             lockOnTransform = GetComponentInChildren<LockOnTransform>().transform;
-        }
 
+            if (aimingLineRenderer == null)
+            {
+                aimingLineRenderer = gameObject.AddComponent<LineRenderer>();
+                aimingLineRenderer.startWidth = 0.02f;
+                aimingLineRenderer.endWidth = 0.02f;
+                aimingLineRenderer.material = new Material(Shader.Find("Sprites/Default"));
+                aimingLineRenderer.startColor = Color.red;
+                aimingLineRenderer.endColor = Color.red;
+            }
+        }
+        protected  override void Update()
+        {
+            base.Update();
+            if (player.playerNetworkManager.hasArrowNotched.Value)
+                DrawAimingRay();
+        }
         public void PerformWeaponBasedAction(WeaponItemAction weaponAction, WeaponItem weaponPerformingAction)
         {
             if (player.IsOwner)
@@ -275,30 +291,20 @@ namespace KrazyKatGames
 
             //  FIRE AN ARROW BASED ON 1 OF 3 VARIATIONS
             // 1. LOCKED ONTO A TARGET
-            
-            // 2. AIMING
-            if (player.playerNetworkManager.isAiming.Value)
+            if (player.playerCombatManager.currentTarget != null)
             {
-                
+                Quaternion arrowRotation = Quaternion.LookRotation(
+                    player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position
+                    - projectileGameObject.transform.position);
+                projectileGameObject.transform.rotation = arrowRotation;
             }
+            // 2.2. UNLOCKED 
             else
             {
-            
-                // 2.1. Locked AND NOT AIMING
-                if (player.playerCombatManager.currentTarget != null)
-                {
-                    Quaternion arrowRotation = Quaternion.LookRotation(player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position 
-                                                                       - projectileGameObject.transform.position);
-                    projectileGameObject.transform.rotation = arrowRotation;
-                }
-                // 2.2. UNLOCKED AND NOT AIMING
-                else
-                {
-                    Quaternion arrowRotation = Quaternion.LookRotation(player.transform.forward);
-                    projectileRigidbody.transform.rotation = arrowRotation;
-                }
+                Quaternion arrowRotation = Quaternion.LookRotation(player.playerAimCameraFollowTransform.transform.forward);
+                projectileRigidbody.transform.rotation = arrowRotation;
             }
-           
+
 
             //  GET ALL CHARACTER COLLIDERS AND IGNORE SELF
             Collider[] characterColliders = player.GetComponentsInChildren<Collider>();
@@ -413,6 +419,25 @@ namespace KrazyKatGames
             player.playerNetworkManager.SetCharacterActionHand(false);
             player.playerNetworkManager.currentWeaponBeingUsed.Value = selectedWeapon.itemID;
             return selectedWeapon;
+        }
+        private void DrawAimingRay()
+        {
+            if (player == null || player.playerAimCameraFollowTransform == null) return;
+
+            // Starting position of the ray
+            Vector3 start = player.playerCombatManager.lockOnTransform.position;
+
+            // Direction vector from the forward transform
+            Vector3 direction = player.playerAimCameraFollowTransform.transform.forward;
+
+            // Adjust the length of the ray
+            float rayLength = 100f;
+            Vector3 end = start + direction * rayLength;
+
+            // Set positions in LineRenderer
+            aimingLineRenderer.positionCount = 2;
+            aimingLineRenderer.SetPosition(0, start);
+            aimingLineRenderer.SetPosition(1, end);
         }
         public override void CloseAllDamageColliders()
         {

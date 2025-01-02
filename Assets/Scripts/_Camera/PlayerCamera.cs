@@ -43,9 +43,6 @@ namespace KrazyKatGames
         public CharacterManager nearestLockOnTarget;
         public CharacterManager leftLockOnTarget;
         public CharacterManager rightLockOnTarget;
-
-        [Header("Ranged Aim")]
-        [SerializeField] Transform followTransformWhenAiming;
         private void Awake()
         {
             if (instance == null)
@@ -76,62 +73,19 @@ namespace KrazyKatGames
 
         private void HandleFollowTarget()
         {
-            if (player.playerNetworkManager.isAiming.Value)
-            {
-                if (followTransformWhenAiming == null)
-                {
-                    followTransformWhenAiming = player.GetComponentInChildren<PlayerAimCameraFollowTransform>().transform;
-                    return;
-                }
-                Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, followTransformWhenAiming.position, ref cameraVelocity,
-                    cameraSmoothSpeed * Time.deltaTime);
-                transform.position = targetCameraPosition;
-            }
-            else
-            {
-                Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity,
-                    cameraSmoothSpeed * Time.deltaTime);
-                transform.position = targetCameraPosition;
-            }
+            Vector3 targetCameraPosition = Vector3.SmoothDamp(transform.position, player.transform.position, ref cameraVelocity,
+                cameraSmoothSpeed * Time.deltaTime);
+            transform.position = targetCameraPosition;
         }
 
         private void HandleRotations()
         {
-            if (player.playerNetworkManager.isAiming.Value)
-            {
-                HandleAimRotation();
-            }
-            else
-            {
-                HandleStandardRotations();
-            }
-        }
-        private void HandleAimRotation()
-        {
-            if (!player.playerLocomotionManager.isGrounded)
-                player.playerNetworkManager.isAiming.Value = false;
-            if (player.isPerformingAction)
-                return;
-
-            // left and right look
-            Vector3 cameraRotationY = Vector3.zero;
-            // up and down look
-            Vector3 cameraRotationX = Vector3.zero;
-
-            leftAndRightLookAngle += (PlayerInputManager.instance.cameraHorizontal_Input * leftAndRightRotationSpeed) * Time.deltaTime;
-            upAndDownLookAngle -= (PlayerInputManager.instance.cameraVertical_Input * upAndDownRotationSpeed) * Time.deltaTime;
-            upAndDownLookAngle = Mathf.Clamp(upAndDownLookAngle, minimumPivot, maximumPivot);
-
-            cameraRotationY.y = leftAndRightLookAngle;
-            cameraRotationX.x = upAndDownLookAngle;
-
-            cameraObject.transform.localEulerAngles = new Vector3(upAndDownLookAngle, leftAndRightLookAngle, 0);
-        }
-        private void HandleStandardRotations()
-        {
             //  IF LOCKED ON, FORCE ROTATION TOWARDS TARGET
             if (player.playerNetworkManager.isLockedOn.Value)
             {
+                if (player.playerCombatManager.currentTarget == null)
+                    return;
+                
                 //  THIS ROTATES THIS GAMEOBJECT
                 Vector3 rotationDirection = player.playerCombatManager.currentTarget.characterCombatManager.lockOnTransform.position -
                                             transform.position;
@@ -146,7 +100,8 @@ namespace KrazyKatGames
                 rotationDirection.Normalize();
 
                 targetRotation = Quaternion.LookRotation(rotationDirection);
-                cameraPivotTransform.transform.rotation = Quaternion.Slerp(cameraPivotTransform.rotation, targetRotation, lockOnTargetFollowSpeed);
+                cameraPivotTransform.transform.rotation =
+                    Quaternion.Slerp(cameraPivotTransform.rotation, targetRotation, lockOnTargetFollowSpeed);
 
                 //  SAVE OUR ROTATIONS TO OUR LOOK ANGLES, SO WHEN WE UNLOCK IT DOESNT SNAP TOO FAR AWAY
                 leftAndRightLookAngle = transform.eulerAngles.y;

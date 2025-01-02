@@ -40,7 +40,9 @@ namespace KrazyKatGames
         {
             character = GetComponent<CharacterManager>();
         }
-
+        protected virtual void Update()
+        {
+        }
         public virtual void SetTarget(CharacterManager newTarget)
         {
             if (character.IsOwner)
@@ -124,7 +126,6 @@ namespace KrazyKatGames
         {
             Debug.LogWarning("Attempting Riposte");
         }
-
         public virtual void ApplyCriticalDamage()
         {
             character.characterEffectsManager.PlayCriticalBloodSplatterVFX(character.characterCombatManager.lockOnTransform.transform.position);
@@ -155,7 +156,6 @@ namespace KrazyKatGames
                 yield return null;
             }
         }
-
         public IEnumerator ForceMoveEnemyCharacterToBackStabPosition(CharacterManager enemyCharacter, Vector3 backStabPosition)
         {
             float timer = 0;
@@ -176,6 +176,7 @@ namespace KrazyKatGames
                 yield return null;
             }
         }
+        
         #region Animation Events
         public void EnableIsInvulnerable()
         {
@@ -220,18 +221,15 @@ namespace KrazyKatGames
         {
             canPerformBackstepAttack = false;
         }
-
         public virtual void DisableCanDoCombo()
         {
         }
-
         public virtual void EnableCanDoCombo()
         {
         }
-        #endregion
         public virtual void CloseAllDamageColliders()
         {
-            
         }
+        #endregion
     }
 }

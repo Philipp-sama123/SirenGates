@@ -23,6 +23,7 @@ namespace KrazyKatGames
         [HideInInspector] public PlayerEffectsManager playerEffectsManager;
         [HideInInspector] public PlayerBodyManager playerBodyManager;
         [HideInInspector] public PlayerSoundFXManager playerSoundFXManager;
+        [HideInInspector] public PlayerAimCameraFollowTransform playerAimCameraFollowTransform;
 
         protected override void Awake()
         {
@@ -40,6 +41,8 @@ namespace KrazyKatGames
             playerCombatManager = GetComponent<PlayerCombatManager>();
             playerStatsManager = GetComponent<PlayerStatsManager>();
             playerBodyManager = GetComponent<PlayerBodyManager>();
+
+            playerAimCameraFollowTransform = GetComponentInChildren<PlayerAimCameraFollowTransform>();
         }
 
         protected override void Update()
@@ -117,7 +120,6 @@ namespace KrazyKatGames
             playerNetworkManager.mainProjectileID.OnValueChanged += playerNetworkManager.OnCurrentMainProjectileIDChange;
             playerNetworkManager.secondaryProjectileID.OnValueChanged += playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
             playerNetworkManager.isHoldingArrow.OnValueChanged += playerNetworkManager.OnIsHoldingArrowChanged;
-            playerNetworkManager.isAiming.OnValueChanged += playerNetworkManager.OnIsAimingChanged;
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged += playerNetworkManager.OnIsChargingRightSpellChanged;
             playerNetworkManager.isChargingLeftSpell.OnValueChanged += playerNetworkManager.OnIsChargingLeftSpellChanged;
@@ -182,7 +184,6 @@ namespace KrazyKatGames
             playerNetworkManager.mainProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentMainProjectileIDChange;
             playerNetworkManager.secondaryProjectileID.OnValueChanged -= playerNetworkManager.OnCurrentSecondaryProjectileIDChange;
             playerNetworkManager.isHoldingArrow.OnValueChanged -= playerNetworkManager.OnIsHoldingArrowChanged;
-            playerNetworkManager.isAiming.OnValueChanged += playerNetworkManager.OnIsAimingChanged;
 
             // Spells
             playerNetworkManager.isChargingRightSpell.OnValueChanged -= playerNetworkManager.OnIsChargingRightSpellChanged;

@@ -52,7 +52,6 @@ namespace KrazyKatGames
 
         public NetworkVariable<bool> hasArrowNotched = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
         public NetworkVariable<bool> isHoldingArrow = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
-        public NetworkVariable<bool> isAiming = new(false, NetworkVariableReadPermission.Everyone, NetworkVariableWritePermission.Owner);
 
         protected override void Awake()
         {
@@ -180,23 +179,21 @@ namespace KrazyKatGames
         public void OnIsHoldingArrowChanged(bool oldStatus, bool newStatus)
         {
             player.animator.SetBool("IsHoldingArrow", isHoldingArrow.Value);
-        }
-
-        public void OnIsAimingChanged(bool oldStatus, bool newStatus)
-        {
-            if (!isAiming.Value)
+            if (isHoldingArrow.Value)
             {
-                PlayerCamera.instance.cameraObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-                PlayerUIManager.instance.playerUIHudManager.crosshair.SetActive(false);
+                // player.playerNetworkManager.isLockedOn.Value = true;
+                // player.playerCombatManager.currentAimTarget = player.playerAimCameraFollowTransform.transform;
+                // TODO :   make the player strafe around the aim target 
+                // TODO:    make the aim 
             }
             else
             {
-                PlayerCamera.instance.gameObject.transform.localEulerAngles = new Vector3(0, 0, 0);
-                PlayerCamera.instance.cameraPivotTransform.transform.localEulerAngles = new Vector3(0, 0, 0);
-                PlayerUIManager.instance.playerUIHudManager.crosshair.SetActive(true);
+                // player.playerNetworkManager.isLockedOn.Value = false;
+                // player.playerCombatManager.currentAimTarget = null;
+
             }
         }
-
+        
         public void OnIsChargingRightSpellChanged(bool oldStatus, bool newStatus)
         {
             player.animator.SetBool("IsChargingRightSpell", isChargingRightSpell.Value);
