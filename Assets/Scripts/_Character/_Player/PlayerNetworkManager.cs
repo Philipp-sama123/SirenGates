@@ -393,40 +393,25 @@ namespace KrazyKatGames
             {
                 bowAnimator = player.playerEquipmentManager.rightHandWeaponModel.GetComponentInChildren<Animator>();
             }
-
-            // Animate the bow
-            bowAnimator.SetBool("IsDrawn", true);
-            bowAnimator.Play("Bow_Draw_01");
-
-            GameObject arrow = Instantiate(WorldItemDatabase.Instance.GetProjectileByID(projectileID).drawProjectileModel,
-                player.playerEquipmentManager.leftHandWeaponSlot.transform);
-
-            player.playerEffectsManager.activeDrawnProjectileFX = arrow;
-
-            player.characterSoundFXManager.PlaySoundFX(
-                WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.notchArrowSFX));
-        }
-        [ClientRpc]
-        public override void DestroyAllCurrentActionFXClientRpc()
-        {
-            base.DestroyAllCurrentActionFXClientRpc();
-
-            if (hasArrowNotched.Value)
+            if (bowAnimator != null)
             {
-                Animator bowAnimator;
-                if (player.playerNetworkManager.isTwoHandingLeftWeapon.Value)
-                {
-                    bowAnimator = player.playerEquipmentManager.leftHandWeaponModel.GetComponentInChildren<Animator>();
-                }
-                else
-                {
-                    bowAnimator = player.playerEquipmentManager.rightHandWeaponModel.GetComponentInChildren<Animator>();
-                }
-                bowAnimator.SetBool("IsDrawn", false);
+                // Animate the bow
+                bowAnimator.SetBool("IsDrawn", true);
+                bowAnimator.Play("Bow_Draw_01");
 
-                if (player.IsOwner)
-                    player.playerNetworkManager.hasArrowNotched.Value = false;
+                GameObject arrow = Instantiate(WorldItemDatabase.Instance.GetProjectileByID(projectileID).drawProjectileModel,
+                    player.playerEquipmentManager.leftHandWeaponSlot.transform);
+
+                player.playerEffectsManager.activeDrawnProjectileFX = arrow;
+
+                player.characterSoundFXManager.PlaySoundFX(
+                    WorldSoundFXManager.instance.ChooseRandomSFXFromArray(WorldSoundFXManager.instance.notchArrowSFX));
+            }
+            else
+            {
+                Debug.LogError("bowAnimator is null!");
             }
         }
+
     }
 }

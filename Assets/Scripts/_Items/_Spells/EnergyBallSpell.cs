@@ -53,9 +53,9 @@ namespace KrazyKatGames
         public override void SuccessfullyChargeSpell(PlayerManager player)
         {
             base.SuccessfullyChargeSpell(player);
-
-            if (player.IsOwner)
-                player.playerCombatManager.DestroyAllCurrentActionFX();
+            // TODO: find out why its crashing
+            // if (player.IsOwner)
+            //     player.playerCombatManager.DestroyAllCurrentActionFX();
 
             SpellInstantiationLocation spellInstantiationLocation;
             GameObject instantiatedChargeSpellFX = Instantiate(spellChargeFX);
@@ -69,7 +69,7 @@ namespace KrazyKatGames
                 spellInstantiationLocation = player.playerEquipmentManager.leftWeaponManager.GetComponentInChildren<SpellInstantiationLocation>();
             }
             // Save the charge up fx 
-            player.playerEffectsManager.activeSpellWarmUpFX = instantiatedChargeSpellFX;
+            player.playerEffectsManager.activeDrawnProjectileFX = instantiatedChargeSpellFX;
 
             instantiatedChargeSpellFX.transform.parent = spellInstantiationLocation.transform;
             instantiatedChargeSpellFX.transform.localPosition = Vector3.zero;
@@ -80,8 +80,9 @@ namespace KrazyKatGames
             base.SuccessfullyCastSpell(player);
 
             // 1. Destroy ANY warm up fx from this spell 
-            if (player.IsOwner)
-                player.playerCombatManager.DestroyAllCurrentActionFX();
+            // TODO: find out why its crashing
+            // if (player.IsOwner)
+            //     player.playerCombatManager.DestroyAllCurrentActionFX();
 
             // 2. Instantiate the Projectile
             SpellInstantiationLocation spellInstantiationLocation;
@@ -141,8 +142,9 @@ namespace KrazyKatGames
             base.SuccessfullyCastSpellFullCharged(player);
 
             // 1. Destroy ANY warm up fx from this spell 
-            if (player.IsOwner)
-                player.playerCombatManager.DestroyAllCurrentActionFX();
+            // ToDo: find out why this breaks
+            // if (player.IsOwner)
+            //     player.playerCombatManager.DestroyAllCurrentActionFX();
 
             // 2. Instantiate the Projectile
             SpellInstantiationLocation spellInstantiationLocation;

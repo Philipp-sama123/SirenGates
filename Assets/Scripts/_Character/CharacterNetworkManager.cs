@@ -447,25 +447,6 @@ namespace KrazyKatGames
                 parriedCharacter.characterAnimatorManager.PlayTargetActionAnimationInstantly("Parried_01", true);
             }
         }
-        // used to cancel Effect if Poise is Broken
-        [ServerRpc]
-        public void DestroyAllCurrentActionFXServerRpc()
-        {
-            if (IsServer)
-            {
-                DestroyAllCurrentActionFXClientRpc();
-            }
-        }
-        [ClientRpc]
-        public virtual void DestroyAllCurrentActionFXClientRpc()
-        {
-            if (character.characterEffectsManager.activeSpellWarmUpFX != null)
-                Destroy(character.characterEffectsManager.activeSpellWarmUpFX);
-            
-            if (character.characterEffectsManager.activeDrawnProjectileFX != null)
-                Destroy(character.characterEffectsManager.activeDrawnProjectileFX);
-            
-        }
         #endregion
     }
 }

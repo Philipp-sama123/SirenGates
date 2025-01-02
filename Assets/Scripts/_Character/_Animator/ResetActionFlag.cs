@@ -25,7 +25,10 @@ namespace KrazyKatGames
             character.characterCombatManager.DisableCanDoRollingAttack();
 
             if (character.characterEffectsManager.activeSpellWarmUpFX != null)
+            {
                 Destroy(character.characterEffectsManager.activeSpellWarmUpFX);
+                character.characterEffectsManager.activeSpellWarmUpFX = null;
+            }
 
             if (character.IsOwner)
             {
