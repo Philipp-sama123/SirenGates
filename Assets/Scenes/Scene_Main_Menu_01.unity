@@ -5406,7 +5406,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 9054149090929534995, guid: 3e456b9eea2e744edaa1d2c561e2a0d9, type: 3}
       propertyPath: weaponItemActions.Array.size
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 9054149090929534995, guid: 3e456b9eea2e744edaa1d2c561e2a0d9, type: 3}
       propertyPath: 'weaponItemActions.Array.data[8]'

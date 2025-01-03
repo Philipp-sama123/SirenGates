@@ -171,9 +171,6 @@ namespace KrazyKatGames
                 }
                 else
                 {
-                    if (player.playerCombatManager.currentTarget == null)
-                        return;
-                    
                     Vector3 targetDirection = Vector3.zero;
                     targetDirection = player.playerCombatManager.currentTarget.transform.position - transform.position;
                     targetDirection.y = 0;

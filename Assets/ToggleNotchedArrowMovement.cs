@@ -13,9 +13,10 @@ namespace KrazyKatGames
             if (playerManager == null)
                 return;
 
-            playerManager.playerLocomotionManager.canMove = allowMovement;
             playerManager.playerLocomotionManager.canRotate = allowMovement;
+            playerManager.playerLocomotionManager.canMove = allowMovement;
             playerManager.playerLocomotionManager.canRun = !allowMovement;
+            playerManager.playerAnimatorManager.applyRootMotion = false; 
             playerManager.isPerformingAction = !allowMovement;
         }
     }
